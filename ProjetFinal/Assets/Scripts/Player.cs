@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    GameObject _previousTile = null;
     Vector3 touchPosWorld;
 
     //Change me to change the touch phase used.
@@ -34,29 +35,68 @@ public class Player : MonoBehaviour
                     {
                         if (touchedObject.GetComponent<Tile>().canMoveHere)
                         {
-                            gameObject.transform.position = new Vector2(touchedObject.transform.position.x, touchedObject.transform.position.y);
+                            if(_previousTile != null) _previousTile.GetComponent<PolygonCollider2D>().enabled = true;
+                            
                             GameObject tempTile;
 
-                            foreach(Vector2 pos in MapGrid.mapTiles.Keys)
+
+                            gameObject.transform.position = new Vector2(touchedObject.transform.position.x, touchedObject.transform.position.y);
+                            touchedObject.GetComponent<PolygonCollider2D>().enabled = false;
+
+                            _previousTile = touchedObject;
+
+
+                            foreach (Vector2 pos in MapGrid.mapTiles.Keys)
                             {
-                                if(Vector2.Distance(pos, gameObject.transform.position) <= 1.2 && pos != new Vector2(gameObject.transform.position.x, gameObject.transform.position.y))
-                                {
-                                    MapGrid.mapTiles.TryGetValue(pos, out tempTile);
-                                    tempTile.GetComponent<SpriteRenderer>().color = Color.green;
-                                }
-                                else
-                                {
-
-                                    MapGrid.mapTiles.TryGetValue(pos, out tempTile);
-                                    tempTile.GetComponent<SpriteRenderer>().color = MapGrid.staticBaseColor;
-                                }
-
+                                MapGrid.mapTiles.TryGetValue(pos, out tempTile);
+                                tempTile.GetComponent<SpriteRenderer>().color = MapGrid.staticBaseColor;
                             }
+
+                            RaycastHit2D[] hits = Physics2D.RaycastAll(touchedObject.transform.position, new Vector2(0, 1), Mathf.Infinity);
+                            ColorDiagonal(hits);
+
+                            hits = Physics2D.RaycastAll(touchedObject.transform.position, new Vector2(0, -1), Mathf.Infinity);
+                            ColorDiagonal(hits);
+
+                            hits = Physics2D.RaycastAll(touchedObject.transform.position, new Vector2(2/3, 1), Mathf.Infinity);
+                            ColorDiagonal(hits);
+
+                            hits = Physics2D.RaycastAll(touchedObject.transform.position, new Vector2(2/3, -1), Mathf.Infinity);
+                            ColorDiagonal(hits);
+
+                            hits = Physics2D.RaycastAll(touchedObject.transform.position, new Vector2(-2/3, 1), Mathf.Infinity);
+                            ColorDiagonal(hits);
+                            hits = Physics2D.RaycastAll(touchedObject.transform.position, new Vector2(-2/3, -1), Mathf.Infinity);
+                            ColorDiagonal(hits);
+
+
+
                         }
                     } else
                     {
                         Debug.Log("Too far");
                     }
+                }
+            }
+        }
+    }
+
+    void ColorDiagonal(RaycastHit2D[] hits)
+    {
+        GameObject tempTile;
+        bool firstFound = false;
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider != null)
+            {
+
+                MapGrid.mapTiles.TryGetValue(hit.collider.gameObject.transform.position, out tempTile);
+                tempTile.GetComponent<SpriteRenderer>().color = Color.blue;
+
+                if (!firstFound)
+                {
+                    firstFound = true;
+                    tempTile.GetComponent<SpriteRenderer>().color = Color.green;
                 }
             }
         }

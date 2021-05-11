@@ -30,12 +30,32 @@ public class Player : MonoBehaviour
                 GameObject touchedObject = hitInformation.transform.gameObject;
                 if(touchedObject.GetComponent<Tile>() != null)
                 {
-                    if(Vector2.Distance(gameObject.transform.position, touchedObject.transform.position) < 1)
+                    if(Vector2.Distance(gameObject.transform.position, touchedObject.transform.position) < 1.1)
                     {
                         if (touchedObject.GetComponent<Tile>().canMoveHere)
                         {
                             gameObject.transform.position = new Vector2(touchedObject.transform.position.x, touchedObject.transform.position.y);
+                            GameObject tempTile;
+
+                            foreach(Vector2 pos in MapGrid.mapTiles.Keys)
+                            {
+                                if(Vector2.Distance(pos, gameObject.transform.position) <= 1.2 && pos != new Vector2(gameObject.transform.position.x, gameObject.transform.position.y))
+                                {
+                                    MapGrid.mapTiles.TryGetValue(pos, out tempTile);
+                                    tempTile.GetComponent<SpriteRenderer>().color = Color.green;
+                                }
+                                else
+                                {
+
+                                    MapGrid.mapTiles.TryGetValue(pos, out tempTile);
+                                    tempTile.GetComponent<SpriteRenderer>().color = MapGrid.staticBaseColor;
+                                }
+
+                            }
                         }
+                    } else
+                    {
+                        Debug.Log("Too far");
                     }
                 }
             }

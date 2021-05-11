@@ -9,7 +9,12 @@ public class Tile : MonoBehaviour
     public bool canMoveHere;
 
 
+    public Player player;
+
     void Start()
     {
+        position = transform.position;
+        GridMap.instance.mapTiles.Add(position, this);
+
     }
 }

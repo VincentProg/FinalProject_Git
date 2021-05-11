@@ -169,6 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &11829929
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -232,6 +234,7 @@ GameObject:
   - component: {fileID: 39820603}
   - component: {fileID: 39820605}
   - component: {fileID: 39820604}
+  - component: {fileID: 39820606}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (5)
   m_TagString: Untagged
@@ -267,6 +270,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &39820605
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -319,6 +324,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &39820606
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39820602}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &46305591
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +401,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &46305594
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -463,6 +501,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &54882858
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -561,6 +601,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &190558099
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -659,6 +701,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &198050520
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -722,6 +766,7 @@ GameObject:
   - component: {fileID: 210985506}
   - component: {fileID: 210985508}
   - component: {fileID: 210985507}
+  - component: {fileID: 210985509}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (15)
   m_TagString: Untagged
@@ -757,6 +802,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &210985508
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -809,6 +856,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &210985509
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210985505}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &218564909
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +933,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &218564912
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -953,6 +1033,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &227205063
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1016,6 +1098,7 @@ GameObject:
   - component: {fileID: 231391483}
   - component: {fileID: 231391485}
   - component: {fileID: 231391484}
+  - component: {fileID: 231391486}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (23)
   m_TagString: Untagged
@@ -1051,6 +1134,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &231391485
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1103,6 +1188,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &231391486
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231391482}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &247354941
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,6 +1265,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &247354944
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1212,6 +1330,7 @@ GameObject:
   - component: {fileID: 256977838}
   - component: {fileID: 256977840}
   - component: {fileID: 256977839}
+  - component: {fileID: 256977841}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (27)
   m_TagString: Untagged
@@ -1247,6 +1366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &256977840
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1299,6 +1420,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &256977841
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256977837}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &273639582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,6 +1462,7 @@ GameObject:
   - component: {fileID: 273639583}
   - component: {fileID: 273639585}
   - component: {fileID: 273639584}
+  - component: {fileID: 273639586}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (31)
   m_TagString: Untagged
@@ -1345,6 +1498,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &273639585
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1397,6 +1552,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &273639586
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273639582}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &365462862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,6 +1594,7 @@ GameObject:
   - component: {fileID: 365462863}
   - component: {fileID: 365462865}
   - component: {fileID: 365462864}
+  - component: {fileID: 365462866}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (19)
   m_TagString: Untagged
@@ -1443,6 +1630,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &365462865
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1495,6 +1684,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &365462866
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365462862}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &396484321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,6 +1761,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &396484324
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1604,6 +1826,7 @@ GameObject:
   - component: {fileID: 438343949}
   - component: {fileID: 438343951}
   - component: {fileID: 438343950}
+  - component: {fileID: 438343952}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (1)
   m_TagString: Untagged
@@ -1639,6 +1862,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &438343951
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1691,6 +1916,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &438343952
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438343948}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &458888344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,6 +1958,7 @@ GameObject:
   - component: {fileID: 458888345}
   - component: {fileID: 458888347}
   - component: {fileID: 458888346}
+  - component: {fileID: 458888348}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (37)
   m_TagString: Untagged
@@ -1737,6 +1994,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &458888347
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1789,6 +2048,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &458888348
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458888344}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &476127890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,6 +2125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &476127893
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1933,6 +2225,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &480904106
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2038,7 +2332,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.19
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2114,6 +2408,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &549785496
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2177,6 +2473,7 @@ GameObject:
   - component: {fileID: 565067776}
   - component: {fileID: 565067778}
   - component: {fileID: 565067777}
+  - component: {fileID: 565067779}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (21)
   m_TagString: Untagged
@@ -2212,6 +2509,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &565067778
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2264,6 +2563,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &565067779
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565067775}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &584145028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2275,6 +2605,7 @@ GameObject:
   - component: {fileID: 584145029}
   - component: {fileID: 584145031}
   - component: {fileID: 584145030}
+  - component: {fileID: 584145032}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (36)
   m_TagString: Untagged
@@ -2310,6 +2641,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &584145031
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2362,6 +2695,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &584145032
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584145028}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &591520404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,6 +2737,7 @@ GameObject:
   - component: {fileID: 591520405}
   - component: {fileID: 591520407}
   - component: {fileID: 591520406}
+  - component: {fileID: 591520408}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (2)
   m_TagString: Untagged
@@ -2408,6 +2773,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &591520407
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2460,6 +2827,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &591520408
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591520404}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &634014069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2471,6 +2869,7 @@ GameObject:
   - component: {fileID: 634014070}
   - component: {fileID: 634014072}
   - component: {fileID: 634014071}
+  - component: {fileID: 634014073}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (4)
   m_TagString: Untagged
@@ -2506,6 +2905,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &634014072
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2558,6 +2959,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &634014073
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634014069}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &642328293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,6 +3036,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &642328296
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2702,6 +3136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &645995903
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2765,6 +3201,7 @@ GameObject:
   - component: {fileID: 654426827}
   - component: {fileID: 654426829}
   - component: {fileID: 654426828}
+  - component: {fileID: 654426830}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (33)
   m_TagString: Untagged
@@ -2800,6 +3237,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &654426829
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2852,6 +3291,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &654426830
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654426826}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &659576133
 GameObject:
   m_ObjectHideFlags: 0
@@ -2898,6 +3368,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &659576136
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2996,6 +3468,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &708496071
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3059,6 +3533,7 @@ GameObject:
   - component: {fileID: 751432973}
   - component: {fileID: 751432975}
   - component: {fileID: 751432974}
+  - component: {fileID: 751432976}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (35)
   m_TagString: Untagged
@@ -3094,6 +3569,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &751432975
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3146,6 +3623,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &751432976
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751432972}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &787168078
 GameObject:
   m_ObjectHideFlags: 0
@@ -3157,6 +3665,7 @@ GameObject:
   - component: {fileID: 787168079}
   - component: {fileID: 787168081}
   - component: {fileID: 787168080}
+  - component: {fileID: 787168082}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (29)
   m_TagString: Untagged
@@ -3192,6 +3701,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &787168081
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3244,6 +3755,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &787168082
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787168078}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &803040265
 GameObject:
   m_ObjectHideFlags: 0
@@ -3255,6 +3797,7 @@ GameObject:
   - component: {fileID: 803040266}
   - component: {fileID: 803040268}
   - component: {fileID: 803040267}
+  - component: {fileID: 803040269}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (17)
   m_TagString: Untagged
@@ -3290,6 +3833,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &803040268
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3342,6 +3887,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &803040269
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803040265}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &814706656
 GameObject:
   m_ObjectHideFlags: 0
@@ -3388,6 +3964,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &814706659
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3451,6 +4029,7 @@ GameObject:
   - component: {fileID: 901267063}
   - component: {fileID: 901267065}
   - component: {fileID: 901267064}
+  - component: {fileID: 901267066}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (3)
   m_TagString: Untagged
@@ -3486,6 +4065,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &901267065
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3538,6 +4119,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &901267066
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901267062}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &923146959
 GameObject:
   m_ObjectHideFlags: 0
@@ -3584,6 +4196,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &923146962
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3647,6 +4261,7 @@ GameObject:
   - component: {fileID: 972622316}
   - component: {fileID: 972622315}
   - component: {fileID: 972622317}
+  - component: {fileID: 972622318}
   m_Layer: 0
   m_Name: Hexagon Flat-Top
   m_TagString: Untagged
@@ -3734,6 +4349,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
+--- !u!60 &972622318
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972622314}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1045697736
 GameObject:
   m_ObjectHideFlags: 0
@@ -3745,6 +4393,7 @@ GameObject:
   - component: {fileID: 1045697737}
   - component: {fileID: 1045697739}
   - component: {fileID: 1045697738}
+  - component: {fileID: 1045697740}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (26)
   m_TagString: Untagged
@@ -3780,6 +4429,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1045697739
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3832,6 +4483,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1045697740
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045697736}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1111973634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3878,6 +4560,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1111973637
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4042,6 +4726,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1128078681
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4140,6 +4826,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1139551463
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4203,6 +4891,7 @@ GameObject:
   - component: {fileID: 1160428488}
   - component: {fileID: 1160428490}
   - component: {fileID: 1160428489}
+  - component: {fileID: 1160428491}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (16)
   m_TagString: Untagged
@@ -4238,6 +4927,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1160428490
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4290,6 +4981,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1160428491
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160428487}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1192953348
 GameObject:
   m_ObjectHideFlags: 0
@@ -4301,6 +5023,7 @@ GameObject:
   - component: {fileID: 1192953349}
   - component: {fileID: 1192953351}
   - component: {fileID: 1192953350}
+  - component: {fileID: 1192953352}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (10)
   m_TagString: Untagged
@@ -4336,6 +5059,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1192953351
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4388,6 +5113,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1192953352
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192953348}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1199212858
 GameObject:
   m_ObjectHideFlags: 0
@@ -4399,6 +5155,7 @@ GameObject:
   - component: {fileID: 1199212859}
   - component: {fileID: 1199212861}
   - component: {fileID: 1199212860}
+  - component: {fileID: 1199212862}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (7)
   m_TagString: Untagged
@@ -4434,6 +5191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1199212861
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4486,6 +5245,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1199212862
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199212858}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1220860161
 GameObject:
   m_ObjectHideFlags: 0
@@ -4532,6 +5322,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1220860164
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4630,6 +5422,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1230176832
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4728,6 +5522,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1237019900
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4826,6 +5622,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1316559069
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4908,6 +5706,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfTiles: 0
+  baseColor: {r: 0.7137255, g: 0.8117648, b: 0.6313726, a: 1}
+  lightingColor: {r: 0.93078345, g: 1, b: 0.8726415, a: 1}
 --- !u!4 &1326110188
 Transform:
   m_ObjectHideFlags: 0
@@ -4970,6 +5770,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1365026174
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5099,8 +5901,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369537142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 5, z: 1}
+  m_LocalPosition: {x: 0.06, y: -0.4402, z: 0}
+  m_LocalScale: {x: 2.95539, y: 6.67231, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -5116,6 +5918,7 @@ GameObject:
   - component: {fileID: 1397505263}
   - component: {fileID: 1397505265}
   - component: {fileID: 1397505264}
+  - component: {fileID: 1397505266}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (12)
   m_TagString: Untagged
@@ -5151,6 +5954,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1397505265
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5203,6 +6008,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1397505266
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397505262}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1460784370
 GameObject:
   m_ObjectHideFlags: 0
@@ -5249,6 +6085,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1460784373
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5347,6 +6185,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1476757912
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5410,6 +6250,7 @@ GameObject:
   - component: {fileID: 1503072801}
   - component: {fileID: 1503072803}
   - component: {fileID: 1503072802}
+  - component: {fileID: 1503072804}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (24)
   m_TagString: Untagged
@@ -5445,6 +6286,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1503072803
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5497,6 +6340,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1503072804
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503072800}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1510585677
 GameObject:
   m_ObjectHideFlags: 0
@@ -5543,6 +6417,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1510585680
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5606,6 +6482,7 @@ GameObject:
   - component: {fileID: 1545050755}
   - component: {fileID: 1545050757}
   - component: {fileID: 1545050756}
+  - component: {fileID: 1545050758}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (9)
   m_TagString: Untagged
@@ -5641,6 +6518,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1545050757
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5693,6 +6572,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1545050758
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545050754}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1616447523
 GameObject:
   m_ObjectHideFlags: 0
@@ -5704,6 +6614,7 @@ GameObject:
   - component: {fileID: 1616447524}
   - component: {fileID: 1616447526}
   - component: {fileID: 1616447525}
+  - component: {fileID: 1616447527}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (13)
   m_TagString: Untagged
@@ -5739,6 +6650,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1616447526
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5791,6 +6704,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1616447527
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616447523}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1619244715
 GameObject:
   m_ObjectHideFlags: 0
@@ -5802,6 +6746,7 @@ GameObject:
   - component: {fileID: 1619244716}
   - component: {fileID: 1619244718}
   - component: {fileID: 1619244717}
+  - component: {fileID: 1619244719}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (28)
   m_TagString: Untagged
@@ -5837,6 +6782,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1619244718
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5889,6 +6836,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1619244719
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619244715}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1641330826
 GameObject:
   m_ObjectHideFlags: 0
@@ -5900,6 +6878,7 @@ GameObject:
   - component: {fileID: 1641330827}
   - component: {fileID: 1641330829}
   - component: {fileID: 1641330828}
+  - component: {fileID: 1641330830}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (34)
   m_TagString: Untagged
@@ -5935,6 +6914,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1641330829
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5987,6 +6968,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1641330830
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641330826}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1654659418
 GameObject:
   m_ObjectHideFlags: 0
@@ -6033,6 +7045,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1654659421
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6096,6 +7110,7 @@ GameObject:
   - component: {fileID: 1683567895}
   - component: {fileID: 1683567897}
   - component: {fileID: 1683567896}
+  - component: {fileID: 1683567898}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (32)
   m_TagString: Untagged
@@ -6131,6 +7146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1683567897
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6183,6 +7200,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1683567898
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683567894}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1755964271
 GameObject:
   m_ObjectHideFlags: 0
@@ -6194,6 +7242,7 @@ GameObject:
   - component: {fileID: 1755964272}
   - component: {fileID: 1755964274}
   - component: {fileID: 1755964273}
+  - component: {fileID: 1755964275}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (14)
   m_TagString: Untagged
@@ -6229,6 +7278,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1755964274
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6281,6 +7332,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1755964275
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755964271}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1768862082
 GameObject:
   m_ObjectHideFlags: 0
@@ -6327,6 +7409,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1768862085
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6425,6 +7509,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1782459830
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6591,6 +7677,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1787489469
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6654,6 +7742,7 @@ GameObject:
   - component: {fileID: 1800726720}
   - component: {fileID: 1800726722}
   - component: {fileID: 1800726721}
+  - component: {fileID: 1800726723}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (11)
   m_TagString: Untagged
@@ -6689,6 +7778,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1800726722
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6741,6 +7832,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1800726723
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800726719}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1828323615
 GameObject:
   m_ObjectHideFlags: 0
@@ -6787,6 +7909,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1828323618
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6850,6 +7974,7 @@ GameObject:
   - component: {fileID: 1847400958}
   - component: {fileID: 1847400960}
   - component: {fileID: 1847400959}
+  - component: {fileID: 1847400961}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (8)
   m_TagString: Untagged
@@ -6885,6 +8010,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1847400960
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6937,6 +8064,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1847400961
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847400957}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1852854531
 GameObject:
   m_ObjectHideFlags: 0
@@ -6983,6 +8141,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &1852854534
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7046,6 +8206,7 @@ GameObject:
   - component: {fileID: 1931162201}
   - component: {fileID: 1931162203}
   - component: {fileID: 1931162202}
+  - component: {fileID: 1931162204}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (30)
   m_TagString: Untagged
@@ -7081,6 +8242,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1931162203
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7133,6 +8296,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1931162204
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931162200}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1934539541
 GameObject:
   m_ObjectHideFlags: 0
@@ -7143,8 +8337,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1934539543}
   - component: {fileID: 1934539542}
+  - component: {fileID: 1934539544}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7216,6 +8411,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1934539544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934539541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0bf517525313ec4c9e9c6bb6bbf2510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1936985661
 GameObject:
   m_ObjectHideFlags: 0
@@ -7227,6 +8434,7 @@ GameObject:
   - component: {fileID: 1936985662}
   - component: {fileID: 1936985664}
   - component: {fileID: 1936985663}
+  - component: {fileID: 1936985665}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (18)
   m_TagString: Untagged
@@ -7262,6 +8470,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1936985664
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7314,6 +8524,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1936985665
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936985661}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &1982757631
 GameObject:
   m_ObjectHideFlags: 0
@@ -7325,6 +8566,7 @@ GameObject:
   - component: {fileID: 1982757632}
   - component: {fileID: 1982757634}
   - component: {fileID: 1982757633}
+  - component: {fileID: 1982757635}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (22)
   m_TagString: Untagged
@@ -7360,6 +8602,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &1982757634
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7412,6 +8656,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1982757635
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982757631}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &2020153774
 GameObject:
   m_ObjectHideFlags: 0
@@ -7423,6 +8698,7 @@ GameObject:
   - component: {fileID: 2020153775}
   - component: {fileID: 2020153777}
   - component: {fileID: 2020153776}
+  - component: {fileID: 2020153778}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (6)
   m_TagString: Untagged
@@ -7458,6 +8734,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &2020153777
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7510,6 +8788,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &2020153778
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020153774}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &2024188916
 GameObject:
   m_ObjectHideFlags: 0
@@ -7521,6 +8830,7 @@ GameObject:
   - component: {fileID: 2024188917}
   - component: {fileID: 2024188919}
   - component: {fileID: 2024188918}
+  - component: {fileID: 2024188920}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (20)
   m_TagString: Untagged
@@ -7556,6 +8866,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &2024188919
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7608,6 +8920,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &2024188920
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024188916}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}
 --- !u!1 &2034737554
 GameObject:
   m_ObjectHideFlags: 0
@@ -7654,6 +8997,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 0
+  player: {fileID: 0}
 --- !u!212 &2034737557
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7717,6 +9062,7 @@ GameObject:
   - component: {fileID: 2063511367}
   - component: {fileID: 2063511369}
   - component: {fileID: 2063511368}
+  - component: {fileID: 2063511370}
   m_Layer: 0
   m_Name: Hexagon Flat-Top (25)
   m_TagString: Untagged
@@ -7752,6 +9098,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   id: 0
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &2063511369
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7804,3 +9152,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &2063511370
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063511366}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1130434, y: 0.9826087}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.27826086, y: 0.48260868}
+      - {x: -0.5565217, y: 0}
+      - {x: -0.27826086, y: -0.48260868}
+      - {x: 0.27826086, y: -0.48260868}
+      - {x: 0.5565217, y: 0}
+      - {x: 0.27826086, y: 0.48260868}

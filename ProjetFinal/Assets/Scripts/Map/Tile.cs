@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour
     public int id;
     public bool canMoveHere;
 
+
     public Player player;
 
     void Start()

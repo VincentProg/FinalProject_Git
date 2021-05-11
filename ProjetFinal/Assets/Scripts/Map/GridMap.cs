@@ -11,7 +11,7 @@ public class GridMap : MonoBehaviour
     public Color baseColor;
     public Color lightingColor;
 
-    public List<Vector2> tilesArround = new List<Vector2>() { new Vector2(0, 1), new Vector2(0.87f, 0.5f), new Vector2(0.87f, -0.5f), new Vector2(0, -1), new Vector2(-0.87f, -0.5f), new Vector2(-0.87f, 0.5f) };
+    public List<Vector2> tilesArround = new List<Vector2>() { new Vector2(0.0f, 1.0f), new Vector2(0.870f, 0.50f), new Vector2(0.870f, -0.50f), new Vector2(0.0f, -1.0f), new Vector2(-0.870f, -0.50f), new Vector2(-0.870f, 0.50f) };
 
 
     private void Awake()

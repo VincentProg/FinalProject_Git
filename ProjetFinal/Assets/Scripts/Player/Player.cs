@@ -26,11 +26,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Ray ray = new Ray(transform.position + new Vector3(0,0,-0.5f), new Vector3(0, 0, 2));
-        Gizmos.DrawRay(ray);
-    }
 
     // Update is called once per frame
     void Update()
@@ -90,13 +85,19 @@ public class Player : MonoBehaviour
         isTilesArround_TurnedOn = true;
         foreach (Vector2 arround in GridMap.instance.tilesArround)
         {
-            Vector2 tilePosition = myTile.position + arround;
+            Vector2 tilePosition = new Vector2(myTile.position.x + arround.x, myTile.position.y + arround.y);
             Tile tileArround;
             GridMap.instance.mapTiles.TryGetValue(tilePosition, out tileArround);
 
             if (tileArround != null)
             {
                 tileArround.transform.GetComponent<SpriteRenderer>().color = GridMap.instance.lightingColor;
+            }
+            else
+            {
+                print("tile not found");
+                print("tile position = " + tilePosition);
+                print("my tile pos X + tile.x =  " + (myTile.position.x + arround.x));
             }
         }
     }
@@ -105,7 +106,7 @@ public class Player : MonoBehaviour
         isTilesArround_TurnedOn = false;
         foreach (Vector2 arround in GridMap.instance.tilesArround)
         {
-            Vector2 tilePosition = myTile.position + arround;
+            Vector2 tilePosition = new Vector2(myTile.position.x + arround.x, myTile.position.y + arround.y);
             Tile tileArround;
             GridMap.instance.mapTiles.TryGetValue(tilePosition, out tileArround);
 

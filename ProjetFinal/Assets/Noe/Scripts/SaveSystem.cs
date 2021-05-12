@@ -8,7 +8,6 @@ public static class SaveSystem
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/option.yeet";
-        Debug.Log(path);
         FileStream stream = new FileStream(path, FileMode.Create);
         OptionsData data = new OptionsData(audioManager);
         formatter.Serialize(stream, data);

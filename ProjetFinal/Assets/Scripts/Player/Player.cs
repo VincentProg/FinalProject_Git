@@ -10,6 +10,11 @@ public class Player : MonoBehaviour
     //Change me to change the touch phase used.
     TouchPhase touchPhase = TouchPhase.Ended;
 
+    [Range(0, 10)]
+    public int radiusRange = 1;
+    [Range(0, 10)]
+    public int diagonalsRange = 1;
+
     private bool isTilesArround_TurnedOn = false;
 
     private void Start()
@@ -46,17 +51,17 @@ public class Player : MonoBehaviour
                     // CAS 1 : MA TUILE
                     if(tileTouched == myTile)
                     {
-                        print("turn on");
-                        TurnOn_TilesArround();
+/*                        print("turn on");
+                        TurnOn_TilesArround();*/
                     }
 
                     // CAS 2 : TUILE A PORTEE
-                    else if(Vector2.Distance(gameObject.transform.position, tileTouched.transform.position) < 50)
+                    else if(Vector2.Distance(gameObject.transform.position, tileTouched.transform.position) < 500)
                     {
-                        if (isTilesArround_TurnedOn)
+/*                        if (isTilesArround_TurnedOn)
                         {
                             TurnOff_TilesArround();
-                        }
+                        }*/
 
                         if (tileTouched.canMoveHere)
                         {
@@ -64,16 +69,21 @@ public class Player : MonoBehaviour
                             myTile.player = null;
                             tileTouched.player = this;
                             myTile = tileTouched;
-                          
+                            TilesManager.instance.ClearTiles();
+                            TilesManager.instance.GetRange(myTile.coordinates, radiusRange);
+
+                            TilesManager.instance.GetRadius(myTile.coordinates, radiusRange);
+                            TilesManager.instance.GetDiagonals(myTile.coordinates, diagonalsRange);
+
                         }
                         
                     } else
                     {
-                        // CAS 3 : TUILES TROP LOIN
+/*                        // CAS 3 : TUILES TROP LOIN
                         if (isTilesArround_TurnedOn)
                         {
                             TurnOff_TilesArround();
-                        }
+                        }*/
                         Debug.Log("Too far");
                     }
                 }
@@ -81,7 +91,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void TurnOn_TilesArround()
+/*    private void TurnOn_TilesArround()
     {
         isTilesArround_TurnedOn = true;
         foreach (HexCoordinates arround in TilesManager.instance.tilesArround)
@@ -110,5 +120,5 @@ public class Player : MonoBehaviour
                 tileArround.transform.GetComponent<SpriteRenderer>().color = TilesManager.instance.baseColor;
             }
         }
-    }
+    }*/
 }

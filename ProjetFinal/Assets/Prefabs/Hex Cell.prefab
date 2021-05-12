@@ -48,7 +48,9 @@ MonoBehaviour:
   coordinates:
     x: 0
     z: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  canMoveHere: 1
+  player: {fileID: 0}
 --- !u!212 &9172664526708501547
 SpriteRenderer:
   m_ObjectHideFlags: 0

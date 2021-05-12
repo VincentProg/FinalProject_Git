@@ -7,8 +7,16 @@ using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+
+    [Range(0f, 1f)]
+    public float musicVolume = 1f;
+
+    [Range(0f, 1f)]
+    public float effectVolume = 1f;
+
     public static AudioManager instance;
 
+    public Slider MSlider, ESlider;
 
     void Awake()
     {
@@ -27,7 +35,8 @@ public class AudioManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 
-
+        MSlider.value = 1f;
+        ESlider.value = 1f;
 
         foreach (Sound s in sounds)
         {
@@ -36,10 +45,20 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
         }
 
+
+
     }
     private void Start()
     {
+        OptionsData data = SaveSystem.LoadOptions();
+        musicVolume = data.musicVolume;
+        effectVolume = data.effectVolume;
+        MSlider.value = musicVolume;
+        ESlider.value = effectVolume;
+
         Play("Theme");
+        Play("bell");
+        Play("foot");
     }
     public void Play(string name)
     {
@@ -50,7 +69,11 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        s.source.volume = s.volume;
+        if(s.type == Sound.Type.Music)
+            s.source.volume = s.volume * musicVolume;
+        else
+            s.source.volume = s.volume * effectVolume;
+
         s.source.Play();
     }
     public void StopPlaying(string sound)
@@ -65,6 +88,20 @@ public class AudioManager : MonoBehaviour
         s.source.volume = s.volume;
 
         s.source.Stop();
+    }
+
+    public void ApplyChanges()
+    {
+        musicVolume = MSlider.value;
+        effectVolume = ESlider.value;
+        for (int i = 0; i< sounds.Length; i++)
+        {
+            if (sounds[i].type == Sound.Type.Music)
+                sounds[i].source.volume = sounds[i].volume * musicVolume;
+            else
+                sounds[i].source.volume = sounds[i].volume * effectVolume;
+        }
+        SaveSystem.SaveOptions(this);
     }
 }
 

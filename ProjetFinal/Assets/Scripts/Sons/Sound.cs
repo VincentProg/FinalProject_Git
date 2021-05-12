@@ -15,4 +15,14 @@ public class Sound
 
     [HideInInspector]
     public AudioSource source;
+
+    public enum Type
+    {
+        Music,
+        Effects
+    }
+
+    public Type type;
 }
+
+

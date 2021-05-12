@@ -31,6 +31,7 @@ public class HexGrid : MonoBehaviour {
 				CreateCell(x, z, i++);
 			}
 		}
+
 		
 	}
 

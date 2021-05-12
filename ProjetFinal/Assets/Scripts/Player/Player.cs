@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Tile myTile;
+    HexCell myTile;
     Vector3 touchPosWorld;
 
     //Change me to change the touch phase used.
@@ -18,10 +18,11 @@ public class Player : MonoBehaviour
         RaycastHit2D hitStart = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity);
         if (hitStart)
         {
-            if (hitStart.transform.GetComponent<Tile>())
+            if (hitStart.transform.GetComponent<HexCell>())
             {
-                myTile = hitStart.transform.GetComponent<Tile>();
+                myTile = hitStart.transform.GetComponent<HexCell>();
                 myTile.player = this;
+                print("yo");
             }
         }
     }
@@ -38,9 +39,9 @@ public class Player : MonoBehaviour
             RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
             if (hitInformation)
             {
-                if(hitInformation.transform.GetComponent<Tile>() != null)
+                if(hitInformation.transform.GetComponent<HexCell>() != null)
                 {
-                    Tile tileTouched = hitInformation.transform.GetComponent<Tile>();
+                    HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
 
                     // CAS 1 : MA TUILE
                     if(tileTouched == myTile)
@@ -50,7 +51,7 @@ public class Player : MonoBehaviour
                     }
 
                     // CAS 2 : TUILE A PORTEE
-                    else if(Vector2.Distance(gameObject.transform.position, tileTouched.position) < 1.1f)
+                    else if(Vector2.Distance(gameObject.transform.position, tileTouched.transform.position) < 50)
                     {
                         if (isTilesArround_TurnedOn)
                         {
@@ -59,7 +60,7 @@ public class Player : MonoBehaviour
 
                         if (tileTouched.canMoveHere)
                         {
-                            transform.position = new Vector2(tileTouched.position.x, tileTouched.position.y);
+                            transform.position = new Vector2(tileTouched.transform.position.x, tileTouched.transform.position.y);
                             myTile.player = null;
                             tileTouched.player = this;
                             myTile = tileTouched;
@@ -83,36 +84,30 @@ public class Player : MonoBehaviour
     private void TurnOn_TilesArround()
     {
         isTilesArround_TurnedOn = true;
-        foreach (Vector2 arround in GridMap.instance.tilesArround)
+        foreach (HexCoordinates arround in TilesManager.instance.tilesArround)
         {
-            Vector2 tilePosition = new Vector2(myTile.position.x + arround.x, myTile.position.y + arround.y);
-            Tile tileArround;
-            GridMap.instance.mapTiles.TryGetValue(tilePosition, out tileArround);
+            HexCoordinates tileCoordinates = new HexCoordinates(myTile.coordinates.X + arround.X, myTile.coordinates.Z + arround.Z);
+            HexCell tileArround;
+            TilesManager.instance.mapTiles.TryGetValue(tileCoordinates, out tileArround);
 
             if (tileArround != null)
             {
-                tileArround.transform.GetComponent<SpriteRenderer>().color = GridMap.instance.lightingColor;
-            }
-            else
-            {
-                print("tile not found");
-                print("tile position = " + tilePosition);
-                print("my tile pos X + tile.x =  " + (myTile.position.x + arround.x));
+                tileArround.transform.GetComponent<SpriteRenderer>().color = TilesManager.instance.lightingColor;
             }
         }
     }
     private void TurnOff_TilesArround()
     {
         isTilesArround_TurnedOn = false;
-        foreach (Vector2 arround in GridMap.instance.tilesArround)
+        foreach (HexCoordinates arround in TilesManager.instance.tilesArround)
         {
-            Vector2 tilePosition = new Vector2(myTile.position.x + arround.x, myTile.position.y + arround.y);
-            Tile tileArround;
-            GridMap.instance.mapTiles.TryGetValue(tilePosition, out tileArround);
+            HexCoordinates tileCoordinates = new HexCoordinates(myTile.coordinates.X + arround.X, myTile.coordinates.Z + arround.Z);
+            HexCell tileArround;
+            TilesManager.instance.mapTiles.TryGetValue(tileCoordinates, out tileArround);
 
             if (tileArround != null)
             {
-                tileArround.transform.GetComponent<SpriteRenderer>().color = GridMap.instance.baseColor;
+                tileArround.transform.GetComponent<SpriteRenderer>().color = TilesManager.instance.baseColor;
             }
         }
     }

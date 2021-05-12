@@ -7,7 +7,8 @@ public class HexCell : MonoBehaviour {
 
 	public bool canMoveHere = true;
 
-	public Player player;
+	public HeroController hero;
+	public EnemyController enemy;
 
 	void Start()
 	{

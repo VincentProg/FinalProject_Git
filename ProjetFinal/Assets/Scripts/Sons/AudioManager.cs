@@ -51,10 +51,14 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         OptionsData data = SaveSystem.LoadOptions();
-        musicVolume = data.musicVolume;
-        effectVolume = data.effectVolume;
-        MSlider.value = musicVolume;
-        ESlider.value = effectVolume;
+        if(data != null)
+        {
+            musicVolume = data.musicVolume;
+            effectVolume = data.effectVolume;
+            MSlider.value = musicVolume;
+            ESlider.value = effectVolume;
+        }
+        
 
         Play("Theme");
         Play("bell");

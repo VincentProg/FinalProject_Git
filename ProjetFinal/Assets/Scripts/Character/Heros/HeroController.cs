@@ -10,6 +10,8 @@ public class HeroController : MonoBehaviour
     public string nameHero;
     public int health;
 
+    // ATTACKS
+    public List<Attacks> attacks = new List<Attacks>();
 
     // VARIABLES GRID
     HexCell myTile;
@@ -89,7 +91,7 @@ public class HeroController : MonoBehaviour
             }
         }
 
-
+        
 
 
 
@@ -102,6 +104,26 @@ public class HeroController : MonoBehaviour
         nameHero = stats.heroName;
         health = stats.health;
     }
+
+    private void Attack(int id)
+    {
+        switch (attacks[id].type)
+        {
+            case Attacks.ATTACK_TYPE.MELEE:
+
+                break;
+
+            case Attacks.ATTACK_TYPE.SHOT:
+
+                break;
+
+            case Attacks.ATTACK_TYPE.RADIUS:
+
+                break;
+        }
+    }
+
+
 
     private void TurnOn_TilesArround()
     {

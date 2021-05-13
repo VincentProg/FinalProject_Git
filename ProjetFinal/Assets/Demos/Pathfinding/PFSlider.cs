@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SliderTest : MonoBehaviour
+public class PFSlider : MonoBehaviour
 {
-    public PlayerTest player;
+    public PFPlayer player;
     public Slider _slider;
     float cache = 0;
 

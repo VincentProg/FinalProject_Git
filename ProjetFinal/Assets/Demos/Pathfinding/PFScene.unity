@@ -5889,7 +5889,7 @@ MonoBehaviour:
     z: 10
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 0
+  canMoveHere: 1
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &141304147
@@ -6244,7 +6244,7 @@ MonoBehaviour:
     z: 12
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 0
+  canMoveHere: 1
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &153074693
@@ -16189,7 +16189,7 @@ MonoBehaviour:
     z: 16
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 0
+  canMoveHere: 1
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &432005364
@@ -16597,7 +16597,7 @@ MonoBehaviour:
     z: 10
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 1
+  canMoveHere: 0
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &438706065
@@ -18453,7 +18453,7 @@ MonoBehaviour:
     z: 10
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 0
+  canMoveHere: 1
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &465959416
@@ -20824,7 +20824,7 @@ MonoBehaviour:
     z: 7
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 1
+  canMoveHere: 0
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &528403968
@@ -25838,7 +25838,7 @@ MonoBehaviour:
     z: 14
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 0
+  canMoveHere: 1
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &680683853
@@ -34635,7 +34635,7 @@ MonoBehaviour:
     z: 15
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 0
+  canMoveHere: 1
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &880829886
@@ -37119,7 +37119,7 @@ MonoBehaviour:
     z: 9
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 0
+  canMoveHere: 1
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &934923155
@@ -39581,7 +39581,7 @@ MonoBehaviour:
     z: 6
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 1
+  canMoveHere: 0
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &992227784
@@ -42345,7 +42345,7 @@ MonoBehaviour:
     z: 2
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 1
+  canMoveHere: 0
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &1064838965
@@ -46316,7 +46316,7 @@ MonoBehaviour:
     z: 12
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 0
+  canMoveHere: 1
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &1155176327
@@ -51194,7 +51194,7 @@ MonoBehaviour:
     z: 14
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 0
+  canMoveHere: 1
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &1274042441
@@ -53520,7 +53520,7 @@ MonoBehaviour:
     z: 4
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 1
+  canMoveHere: 0
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &1316461938
@@ -54230,7 +54230,7 @@ MonoBehaviour:
     z: 3
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 1
+  canMoveHere: 0
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &1332173768
@@ -55295,7 +55295,7 @@ MonoBehaviour:
     z: 16
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 0
+  canMoveHere: 1
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &1345128379
@@ -61396,7 +61396,7 @@ MonoBehaviour:
     z: 11
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 0
+  canMoveHere: 1
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &1470308953
@@ -64402,7 +64402,7 @@ MonoBehaviour:
     z: 13
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 0
+  canMoveHere: 1
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &1528888146
@@ -71539,7 +71539,7 @@ MonoBehaviour:
     z: 8
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 1
+  canMoveHere: 0
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &1706649256
@@ -88450,7 +88450,7 @@ MonoBehaviour:
     z: 5
   color: {r: 1, g: 1, b: 1, a: 1}
   movementCost: 1
-  canMoveHere: 1
+  canMoveHere: 0
   hero: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!1 &2145154592

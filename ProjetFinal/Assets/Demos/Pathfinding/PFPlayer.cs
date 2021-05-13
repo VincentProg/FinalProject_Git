@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTest : MonoBehaviour
+public class PFPlayer : MonoBehaviour
 {
     public HexCell myTile;
     HexCell touchedtile;

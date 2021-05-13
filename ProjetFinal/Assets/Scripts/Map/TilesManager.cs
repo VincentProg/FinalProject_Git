@@ -32,6 +32,7 @@ public class TilesManager : MonoBehaviour
         foreach(GameObject tile in _coloredTiles)
         {
             tile.GetComponent<SpriteRenderer>().color = Color.white;
+            tile.GetComponent<HexCell>().isSelected = false;
         }
         _coloredTiles.Clear();
     }
@@ -51,11 +52,12 @@ public class TilesManager : MonoBehaviour
                 HexCoordinates testCoords = GetNeighboor(center, i);
 
                 mapTiles.TryGetValue(testCoords, out temp);
-                if (temp)
+                if (temp && temp.canMoveHere)
                 {
                     temp.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
                     _coloredTiles.Add(temp.gameObject);
                     results.Add(temp.gameObject);
+                    temp.isSelected = true;
                 }
                 center = testCoords;
             }
@@ -83,11 +85,12 @@ public class TilesManager : MonoBehaviour
                     HexCoordinates testCoords = GetNeighboor(tempCenter, i);
 
                     mapTiles.TryGetValue(testCoords, out temp);
-                    if (temp)
+                    if (temp && temp.canMoveHere)
                     {
                         temp.gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
                         _coloredTiles.Add(temp.gameObject);
                         results.Add(temp.gameObject);
+                        temp.isSelected = true;
                     }
                     tempCenter = testCoords;
                 }
@@ -116,11 +119,12 @@ public class TilesManager : MonoBehaviour
 
 
                 mapTiles.TryGetValue(testCoords, out temp);
-                if (temp)
+                if (temp && temp.canMoveHere)
                 {
                     temp.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
                     _coloredTiles.Add(temp.gameObject);
                     results.Add(temp.gameObject);
+                    temp.isSelected = true;
                 }
                 tempCenter = testCoords;
 

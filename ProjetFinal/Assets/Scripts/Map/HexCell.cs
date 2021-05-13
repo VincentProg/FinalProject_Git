@@ -10,7 +10,9 @@ public class HexCell : MonoBehaviour {
 	public HeroController hero;
 	public EnemyController enemy;
 
-	void Start()
+	public bool isSelected;
+
+	void Awake()
 	{
 		TilesManager.instance.mapTiles.Add(coordinates, this);
 	}

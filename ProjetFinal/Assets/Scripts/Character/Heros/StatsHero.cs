@@ -10,5 +10,6 @@ public class StatsHero : ScriptableObject
     public string heroName;
     public int health;
     public int PM;
+    public int PA;
 
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TilesManager : MonoBehaviour
 {
     public static TilesManager instance;
@@ -16,6 +17,8 @@ public class TilesManager : MonoBehaviour
     public List<HexCoordinates> tilesArround = new List<HexCoordinates>() { new HexCoordinates(0, -1), new HexCoordinates(-1, 0), new HexCoordinates(-1, 1), new HexCoordinates(0, 1), new HexCoordinates(1, 0), new HexCoordinates(1, -1) };
 
     private List<GameObject> _coloredTiles = new List<GameObject>();
+
+    public HexCoordinates target;
 
 
     private void Awake()
@@ -53,8 +56,8 @@ public class TilesManager : MonoBehaviour
                 mapTiles.TryGetValue(testCoords, out temp);
                 if (temp)
                 {
-                    temp.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
-                    _coloredTiles.Add(temp.gameObject);
+                    //temp.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+                    //_coloredTiles.Add(temp.gameObject);
                     results.Add(temp.gameObject);
                 }
                 center = testCoords;
@@ -103,7 +106,6 @@ public class TilesManager : MonoBehaviour
     {
         List<GameObject> results = new List<GameObject>();
 
-
         for (int i = 0; i < 6; i++)
         {
             HexCoordinates tempCenter = center;
@@ -130,6 +132,122 @@ public class TilesManager : MonoBehaviour
     }
 
 
+    public List<HexCoordinates> GetPath(HexCoordinates center, HexCoordinates target, int treshold)
+    {
+        this.target = target;
+
+        List<HexCoordinates> path = new List<HexCoordinates>();
+        PriorityQueue<HexCoordinates, float> frontier = new PriorityQueue<HexCoordinates, float>();
+        Dictionary<HexCoordinates, HexCoordinates> cameFrom = new Dictionary<HexCoordinates, HexCoordinates>();
+        Dictionary<HexCoordinates, int> costSoFar = new Dictionary<HexCoordinates, int>();
+        
+        frontier.Enqueue(center, 0f);
+        cameFrom.Add(center, center);
+        costSoFar.Add(center, 0);
+
+        HexCoordinates current;
+        
+        int failsafe = 0;
+
+        while (frontier.Count > 0 && failsafe < treshold)
+        {
+            current = frontier.Dequeue();
+
+            List<HexCoordinates> neighbors = new List<HexCoordinates>();
+            HexCell temp;
+
+
+
+            // Get all neighbors of current
+            foreach (GameObject item in GetRadius(current, 1))
+            {
+                neighbors.Add(item.GetComponent<HexCell>().coordinates);
+            }
+
+            // Check neighbors
+            foreach (HexCoordinates next in neighbors)
+            {
+                mapTiles.TryGetValue(next, out temp);
+
+                // If current tile coords equal target coords
+                if (next.Equals(target))
+                {
+                    mapTiles.TryGetValue(next, out temp);
+
+                    if (temp)
+                    {
+                        temp.gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
+                        _coloredTiles.Add(temp.gameObject);
+                        cameFrom.Add(next, current);
+                        Debug.Log("found");
+                        frontier.Clear();
+                        break;
+                    }
+                }
+
+
+                if (temp)
+                {
+                    if (temp.canMoveHere)
+                    {
+                        int newCost = costSoFar[current] + temp.movementCost;
+                        if (!costSoFar.ContainsKey(next) || newCost < costSoFar[next])
+                        {
+                            temp.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+                            _coloredTiles.Add(temp.gameObject);
+
+                            //frontier.Enqueue(next, HeuristicDistance(target, next));
+                            float priority = newCost + HeuristicDistance(target, next);
+                            frontier.Enqueue(next, priority);
+
+                            if (costSoFar.ContainsKey(next))
+                                costSoFar.Remove(next);
+                            if (cameFrom.ContainsKey(next))
+                                cameFrom.Remove(next);
+
+                            costSoFar.Add(next, newCost);
+                            cameFrom.Add(next, current);
+
+                        }
+                        else
+                        {
+                            temp.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+                            _coloredTiles.Add(temp.gameObject);
+                            
+                        }
+                    }
+                }
+            }
+            failsafe++;
+        }
+
+        current = target;
+
+        while(!current.Equals(center) && failsafe < treshold)
+        {
+            path.Add(current);
+
+
+            HexCell temp;
+            mapTiles.TryGetValue(current, out temp);
+
+            if (temp)
+            {
+                temp.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                _coloredTiles.Add(temp.gameObject);
+            }
+
+            HexCoordinates tempCoord;
+            cameFrom.TryGetValue(current, out tempCoord);
+            current = tempCoord;
+
+            failsafe++;
+        }
+
+        return path;
+    }
+
+
     // HexCoordinates calculus methods
     private HexCoordinates AddCoords(HexCoordinates coords1, HexCoordinates coords2)
     {
@@ -148,5 +266,10 @@ public class TilesManager : MonoBehaviour
     private HexCoordinates GetNeighboor(HexCoordinates coords, int direction)
     {
         return new HexCoordinates(coords.X + tilesArround[direction].X, coords.Z + tilesArround[direction].Z);
+    }
+
+    private float HeuristicDistance(HexCoordinates coords1, HexCoordinates coords2)
+    {
+        return Mathf.Abs(coords1.X - coords2.X) + Mathf.Abs(coords1.Z - coords2.Z);
     }
 }

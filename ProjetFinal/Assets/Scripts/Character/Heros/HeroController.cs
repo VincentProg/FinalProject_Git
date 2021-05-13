@@ -13,11 +13,12 @@ public class HeroController : MonoBehaviour
     public int health, PM, PA;
 
     // ATTACKS
-    public List<Attacks> attacks = new List<Attacks>();
+    public List<Attack> attacks = new List<Attack>();
+    public GameObject UI_Attacks;
+    public GameObject UI_AttackBTN;
 
     // VARIABLES GRID
-    HexCell myTile;
-    private bool isTilesArround_TurnedOn = false;
+    public HexCell myTile;
 
     private enum ACTION { NONE ,MOVE, ATTACK };
     private ACTION currentAction;
@@ -40,7 +41,14 @@ public class HeroController : MonoBehaviour
         }
         #endregion
 
-        StartTurn(); // ------------- TO DELETE
+        StartTurn(); // ------------- TO DELETE BECAUSE FIGHTMANAGER
+
+        foreach(Attack attack in attacks)
+        {
+            GameObject newUIAttack = Instantiate(UI_AttackBTN, UI_Attacks.transform);
+            newUIAttack.GetComponent<UI_Attack>().attack = attack;
+            newUIAttack.GetComponent<UI_Attack>().hero = this;
+        }
 
     }
 
@@ -149,20 +157,20 @@ public class HeroController : MonoBehaviour
 
     private void Attack(int id)
     {
-        switch (attacks[id].type)
-        {
-            case Attacks.ATTACK_TYPE.MELEE:
+        //switch (attacks[id].type)
+        //{
+        //    case Attacks.RANGE_TYPE.MELEE:
 
-                break;
+        //        break;
 
-            case Attacks.ATTACK_TYPE.SHOT:
+        //    case Attacks.RANGE_TYPE.SHOT:
 
-                break;
+        //        break;
 
-            case Attacks.ATTACK_TYPE.RADIUS:
+        //    case Attacks.RANGE_TYPE.RADIUS:
 
-                break;
-        }
+        //        break;
+        //}
     }
 
 

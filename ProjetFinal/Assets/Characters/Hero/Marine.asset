@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b52f95a3323f1a4885661338b191d20, type: 3}
   m_Name: Marine
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  heroName: 
+  sprite: {fileID: -9095717837082945937, guid: 9ae343ac378fd3a4abc0c57f56be5247, type: 3}
+  heroName: Marine
   health: 0
-  range: 0
-  damages: 0
+  PM: 5
+  PA: 5

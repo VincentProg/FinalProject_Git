@@ -9,5 +9,6 @@ public class StatsEnemy : ScriptableObject
     public string enemyName;
     public int health;
     public int PM;
+    public int PA;
     public int damages;
 }

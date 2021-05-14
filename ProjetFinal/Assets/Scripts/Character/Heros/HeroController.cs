@@ -18,16 +18,20 @@ public class HeroController : MonoBehaviour
     public GameObject UI_AttackBTN;
 
     // VARIABLES GRID
+    [HideInInspector]
     public HexCell myTile;
 
     private enum ACTION { NONE ,MOVE, ATTACK };
     private ACTION currentAction;
+
+    bool isMyTurn = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
         SetMyStats();
+        SetUIAttacks();
         #region GET MY START TILE()
         // AJOUT TUILE DEPART
         RaycastHit2D hitStart = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity);
@@ -43,12 +47,12 @@ public class HeroController : MonoBehaviour
 
         StartTurn(); // ------------- TO DELETE BECAUSE FIGHTMANAGER
 
-        foreach(Attack attack in attacks)
-        {
-            GameObject newUIAttack = Instantiate(UI_AttackBTN, UI_Attacks.transform);
-            newUIAttack.GetComponent<UI_Attack>().attack = attack;
-            newUIAttack.GetComponent<UI_Attack>().hero = this;
-        }
+        //foreach(Attack attack in attacks)
+        //{
+        //    GameObject newUIAttack = Instantiate(UI_AttackBTN, UI_Attacks.transform);
+        //    newUIAttack.GetComponent<UI_Attack>().attack = attack;
+        //    newUIAttack.GetComponent<UI_Attack>().hero = this;
+        //}
 
     }
 
@@ -56,47 +60,64 @@ public class HeroController : MonoBehaviour
     void Update()
     {
 
-        if (PA > 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        if (isMyTurn)
         {
-            Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
-            Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
-            RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
-            if (hitInformation)
+            if (PA > 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
             {
-                if (hitInformation.transform.GetComponent<HexCell>() != null)
+                Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+
+                Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
+                RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
+                if (hitInformation)
                 {
-                    HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
-
-                    // CAS 1 : MA TUILE
-                    if (tileTouched == myTile)
+                    if (hitInformation.transform.GetComponent<HexCell>() != null)
                     {
-                        ShowMovements();
-                    }
+                        HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
 
-                    // CAS 2 : TUILE SELECTIONNEE
-                    else if (tileTouched.isSelected)
-                    {
-                        switch (currentAction)
+                        if (tileTouched.isSelected)
                         {
-                            case ACTION.MOVE:
-                                Move(tileTouched);
-                                break;
+                            switch (tileTouched.selectionType)
+                            {
+                                case HexCell.SELECTION_TYPE.MOVEMENT:
+                                    Move(tileTouched);
+                                    break;
 
-                            case ACTION.ATTACK:
+                                case HexCell.SELECTION_TYPE.AIM:
+                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                    break;
+                                case HexCell.SELECTION_TYPE.IMPACT:
 
-                                break;
+                                    break;
+                                case HexCell.SELECTION_TYPE.AIM_IMPACT:
+
+                                    break;
+                            }
+
                         }
-
-                    }
-                    else
-                    {
-                        // CAS 3 : TUILES NON SELECTIONNEE
-
-                        ShowMovements();
+                        else
+                        {
+                            ShowMovements();
+                        }
                     }
                 }
             }
+        }
+    }
+
+    private void SetUIAttacks()
+    {
+        for (int i = 0; i < attacks.Count; i++)
+        {
+            if(UI_Attacks.transform.childCount - 1 < i)
+            {
+                print("NOT ENOUGH SLOTS");
+                return;
+            }
+            UI_Attack UIAttack = UI_Attacks.transform.GetChild(i).GetComponent<UI_Attack>();
+            UIAttack.attack = attacks[i];
+            UIAttack.UpdateUI();
+
         }
     }
 
@@ -111,48 +132,54 @@ public class HeroController : MonoBehaviour
 
     public void StartTurn()
     {
-        PM = stats.PM;
-        PA = stats.PA;
+        isMyTurn = true;
+        //PM = stats.PM;
+        //PA = stats.PA;
+        // Show my UI
         ShowMovements();
 
     }
 
     public void ShowMovements()
     {
-        TilesManager.instance.ClearTiles();
+        TilesManager.instance.ClearTiles(false);
         currentAction = ACTION.MOVE;
 
         if (PM >= 1)
         {
-            TilesManager.instance.GetRange(myTile.coordinates, PM);
+            foreach( HexCell tile in TilesManager.instance.GetMinMaxRange(myTile.coordinates, 0, PM)[1])
+            {
+                tile.SelectCell(HexCell.SELECTION_TYPE.MOVEMENT);
+            }
+            
         }
 
     }
 
     public void EndTurn()
     {
+        isMyTurn = false;
         currentAction = ACTION.NONE;
         // BatlleManager.instance.NextTurn();
     }
 
     private void Move(HexCell tile)
     {
+        PM -= TilesManager.instance.HeuristicDistance(myTile.coordinates, tile.coordinates);
+        PA--;
         myTile.hero = null;
         myTile = tile;
         myTile.hero = this;
 
         transform.position = myTile.transform.position;
-        PM--; // ------------------------------------------------------ � modifier avec la distance s�parant
-        PA--;
+        
 
         if (PA > 0)
         ShowMovements();
         else
         {
-            TilesManager.instance.ClearTiles();
+            TilesManager.instance.ClearTiles(false);
         }
-
-
     }
 
 

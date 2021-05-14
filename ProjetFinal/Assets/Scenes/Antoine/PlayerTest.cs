@@ -44,13 +44,13 @@ public class PlayerTest : MonoBehaviour
                     if (Vector2.Distance(gameObject.transform.position, tileTouched.transform.position) < 500)
                     {
 
-                        List<List<GameObject>> results = TilesManager.instance.GetMinMaxRange(myTile.coordinates, 0, 5);
+                        List<List<HexCell>> results = TilesManager.instance.GetMinMaxRange(myTile.coordinates, 0, 5);
 
-                        foreach (GameObject item in results[0])
+                        foreach (HexCell item in results[0])
                         {
                             item.GetComponent<SpriteRenderer>().color = Color.red;
                         }
-                        foreach (GameObject item in results[1])
+                        foreach (HexCell item in results[1])
                         {
                             item.GetComponent<SpriteRenderer>().color = Color.green;
                         }

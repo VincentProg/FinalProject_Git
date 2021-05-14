@@ -16,7 +16,7 @@ public class TilesManager : MonoBehaviour
     // List of chained positions around 0,0 (starting with bottom left and going clockwise)
     public List<HexCoordinates> tilesArround = new List<HexCoordinates>() { new HexCoordinates(0, -1), new HexCoordinates(-1, 0), new HexCoordinates(-1, 1), new HexCoordinates(0, 1), new HexCoordinates(1, 0), new HexCoordinates(1, -1) };
 
-    private List<GameObject> _coloredTiles = new List<GameObject>();
+    public List<HexCell> _selectedTiles = new List<HexCell>();
 
     public HexCoordinates target;
 
@@ -30,20 +30,48 @@ public class TilesManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void ClearTiles()
+    public void ClearTiles(bool keepRangeSelected)
     {
-        foreach(GameObject tile in _coloredTiles)
+
+        if (keepRangeSelected)
         {
-            tile.GetComponent<SpriteRenderer>().color = Color.white;
-            tile.GetComponent<HexCell>().isSelected = false;
+            List<HexCell> cellsToRemove = new List<HexCell>();
+            foreach (HexCell tile in _selectedTiles)
+            {
+                print("hello");
+                if (tile.selectionType == HexCell.SELECTION_TYPE.AIM_IMPACT)
+                {
+                    tile.ModifySelection(HexCell.SELECTION_TYPE.AIM);
+                } else if(tile.selectionType != HexCell.SELECTION_TYPE.AIM)
+                {
+                    tile.UnselectCell();
+                    cellsToRemove.Add(tile);
+                }
+                
+            }
+            for(int i = 0; i < cellsToRemove.Count; i++)
+            {
+                _selectedTiles.Remove(cellsToRemove[i]);
+            }
         }
-        _coloredTiles.Clear();
+        else
+        {
+            foreach (HexCell tile in _selectedTiles)
+            {
+                tile.UnselectCell();
+            }
+            _selectedTiles.Clear();
+        }
+                
+
+        
+        
     }
 
 
-    public List<GameObject> GetRadius(HexCoordinates center, int radius = 1)
+    public List<HexCell> GetRadius(HexCoordinates center, int radius = 1)
     {
-        List<GameObject> results = new List<GameObject>();
+        List<HexCell> results = new List<HexCell>();
         HexCell temp;
 
         center = new HexCoordinates(center.X + radius, center.Z);
@@ -59,7 +87,7 @@ public class TilesManager : MonoBehaviour
                 {
                     //temp.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
                     //_coloredTiles.Add(temp.gameObject);
-                    results.Add(temp.gameObject);
+                    results.Add(temp);
                     temp.isSelected = true;
                 }
                 center = testCoords;
@@ -69,14 +97,14 @@ public class TilesManager : MonoBehaviour
     }
 
 
-    public List<GameObject> GetRange(HexCoordinates center, int radius = 1)
+    public List<HexCell> GetRange(HexCoordinates center, int radius = 1)
     {
-        List<GameObject> results = new List<GameObject>();
+        List<HexCell> results = new List<HexCell>();
         HexCell temp;
 
         // Add player tile to result
         mapTiles.TryGetValue(center, out temp);
-        results.Add(temp.gameObject);
+        results.Add(temp);
 
         for (int j = 1; j <= radius; j++)
         {
@@ -93,8 +121,7 @@ public class TilesManager : MonoBehaviour
                     mapTiles.TryGetValue(testCoords, out temp);
                     if (temp && temp.canMoveHere)
                     {
-                        results.Add(temp.gameObject);
-                        temp.isSelected = true;
+                        results.Add(temp);
                     }
                     tempCenter = testCoords;
                 }
@@ -104,13 +131,21 @@ public class TilesManager : MonoBehaviour
         
         return results;
     }
-    public List<List<GameObject>> GetMinMaxRange(HexCoordinates center, int minRadius, int maxRadius)
+    public List<List<HexCell>> GetMinMaxRange(HexCoordinates center, int minRadius, int maxRadius)
     {
-        List<GameObject> minRange = GetRange(center, minRadius);
-        List<GameObject> maxRange = new List<GameObject>();
-        List<List<GameObject>> results = new List<List<GameObject>>();
+ 
+        List<HexCell> minRange = GetRange(center, minRadius);
+        List<HexCell> maxRange = new List<HexCell>();
+        List<List<HexCell>> results = new List<List<HexCell>>();
 
-        for (int i = minRadius + 1; i <= maxRadius; i++)
+        if (minRadius == 0)
+        {
+            HexCell centerTile;
+            mapTiles.TryGetValue(center, out centerTile);
+            maxRange.Add(centerTile);
+        }
+
+        for (int i = minRadius; i <= maxRadius; i++)
         {
             maxRange.AddRange(GetRadius(center, i));
         }
@@ -124,10 +159,10 @@ public class TilesManager : MonoBehaviour
 
         return results;
     }
-
-    public List<GameObject> GetDiagonals(HexCoordinates center, int radius = 1)
+    
+    public List<HexCell> GetDiagonals(HexCoordinates center, int radius = 1)
     {
-        List<GameObject> results = new List<GameObject>();
+        List<HexCell> results = new List<HexCell>();
 
         for (int i = 0; i < 6; i++)
         {
@@ -143,10 +178,7 @@ public class TilesManager : MonoBehaviour
                 mapTiles.TryGetValue(testCoords, out temp);
                 if (temp && temp.canMoveHere)
                 {
-                    temp.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
-                    _coloredTiles.Add(temp.gameObject);
-                    results.Add(temp.gameObject);
-                    temp.isSelected = true;
+                    results.Add(temp);
                 }
                 tempCenter = testCoords;
 
@@ -183,7 +215,7 @@ public class TilesManager : MonoBehaviour
 
 
             // Get all neighbors of current
-            foreach (GameObject item in GetRadius(current, 1))
+            foreach (HexCell item in GetRadius(current, 1))
             {
                 neighbors.Add(item.GetComponent<HexCell>().coordinates);
             }
@@ -201,7 +233,7 @@ public class TilesManager : MonoBehaviour
                     if (temp)
                     {
                         temp.gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
-                        _coloredTiles.Add(temp.gameObject);
+                        _selectedTiles.Add(temp);
                         cameFrom.Add(next, current);
                         Debug.Log("found");
                         frontier.Clear();
@@ -218,7 +250,7 @@ public class TilesManager : MonoBehaviour
                         if (!costSoFar.ContainsKey(next) || newCost < costSoFar[next])
                         {
                             temp.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
-                            _coloredTiles.Add(temp.gameObject);
+                            _selectedTiles.Add(temp);
 
                             //frontier.Enqueue(next, HeuristicDistance(target, next));
                             float priority = newCost + HeuristicDistance(target, next);
@@ -236,7 +268,7 @@ public class TilesManager : MonoBehaviour
                         else
                         {
                             temp.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
-                            _coloredTiles.Add(temp.gameObject);
+                            _selectedTiles.Add(temp);
                             
                         }
                     }
@@ -258,7 +290,7 @@ public class TilesManager : MonoBehaviour
             if (temp)
             {
                 temp.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-                _coloredTiles.Add(temp.gameObject);
+                _selectedTiles.Add(temp);
             }
 
             HexCoordinates tempCoord;
@@ -292,8 +324,9 @@ public class TilesManager : MonoBehaviour
         return new HexCoordinates(coords.X + tilesArround[direction].X, coords.Z + tilesArround[direction].Z);
     }
 
-    private float HeuristicDistance(HexCoordinates coords1, HexCoordinates coords2)
+    public int HeuristicDistance(HexCoordinates coords1, HexCoordinates coords2)
     {
+        print(Mathf.Abs(coords1.X - coords2.X) + Mathf.Abs(coords1.Z - coords2.Z));
         return Mathf.Abs(coords1.X - coords2.X) + Mathf.Abs(coords1.Z - coords2.Z);
     }
 }

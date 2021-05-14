@@ -6,10 +6,10 @@ using TMPro;
 
 public class UI_Attack : MonoBehaviour
 {
+    public int index;
     [HideInInspector]
     public Attack attack;
 
-    [HideInInspector]
     public HeroController hero;
 
 
@@ -27,9 +27,9 @@ public class UI_Attack : MonoBehaviour
     private int nbrUseTotal;
 
 
+ 
 
-
-    private void Start()
+    public void UpdateUI()
     {
         GetComponent<Image>().sprite = attack.sprite;
         textCD = transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -46,10 +46,10 @@ public class UI_Attack : MonoBehaviour
             isNbrTotal = true;
             Txt_NbrUse = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
             Txt_NbrUse.text = nbrUseTotal.ToString();
-            
-        } else transform.GetChild(2).gameObject.SetActive(false);
-    }
 
+        }
+        else transform.GetChild(2).gameObject.SetActive(false);
+    }
 
     public void OnClick()
     {

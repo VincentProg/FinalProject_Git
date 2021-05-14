@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcb10621537e4d438ca0700f7b53a21, type: 3}
   m_Name: Heal
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: b6e9324ed81c6434baa479a60909c31c, type: 3}
   name: 
-  costPA: 0
-  cooldown: 0
+  costPA: 1
+  cooldown: 2
   nbrUsePerTurn: 0
   nbrUseTotal: 0
   rangeType: 0
   rangeAttack: 0
   radiusUnattackableAttack: 0
   impactType: 0
-  damages: 0
+  damages: -5
   rangeImpact: 0
   radiusUnattackableImpact: 0
   spawnObject: {fileID: 0}

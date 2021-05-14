@@ -12,9 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcb10621537e4d438ca0700f7b53a21, type: 3}
   m_Name: Explosion
   m_EditorClassIdentifier: 
-  attackImage: {fileID: 0}
-  attackName: 
-  type: 2
-  range: 0
-  radiusUnattackable: 0
-  damages: 0
+  sprite: {fileID: 21300000, guid: 309cca25939a25140900b9faad06ba10, type: 3}
+  name: 
+  costPA: 5
+  cooldown: 3
+  nbrUsePerTurn: 0
+  nbrUseTotal: 10
+  rangeType: 0
+  rangeAttack: 0
+  radiusUnattackableAttack: 0
+  impactType: 3
+  damages: 3
+  rangeImpact: 5
+  radiusUnattackableImpact: 0
+  spawnObject: {fileID: 0}

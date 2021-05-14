@@ -142,7 +142,7 @@ public class HeroController : MonoBehaviour
 
     public void ShowMovements()
     {
-        TilesManager.instance.ClearTiles();
+        TilesManager.instance.ClearTiles(false);
         currentAction = ACTION.MOVE;
 
         if (PM >= 1)
@@ -178,7 +178,7 @@ public class HeroController : MonoBehaviour
         ShowMovements();
         else
         {
-            TilesManager.instance.ClearTiles();
+            TilesManager.instance.ClearTiles(false);
         }
     }
 

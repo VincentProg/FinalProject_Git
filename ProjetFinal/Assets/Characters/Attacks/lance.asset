@@ -22,7 +22,7 @@ MonoBehaviour:
   rangeAttack: 5
   radiusUnattackableAttack: 2
   impactType: 0
-  damages: 0
+  damages: 5
   rangeImpact: 0
   radiusUnattackableImpact: 0
   spawnObject: {fileID: 0}

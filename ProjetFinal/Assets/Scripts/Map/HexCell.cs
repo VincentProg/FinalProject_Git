@@ -61,6 +61,27 @@ public class HexCell : MonoBehaviour {
 
     }
 
+	public void ModifySelection( SELECTION_TYPE type)
+    {
+		selectionType = type;
+		switch (type)
+		{
+			case SELECTION_TYPE.MOVEMENT:
+				sprite.color = colors[1];
+				break;
+			case SELECTION_TYPE.AIM:
+				sprite.color = colors[2];
+				break;
+			case SELECTION_TYPE.IMPACT:
+				sprite.color = colors[3];
+				break;
+			case SELECTION_TYPE.AIM_IMPACT:
+				sprite.color = colors[4];
+				break;
+
+		}
+	}
+
 	public void UnselectCell()
     {
 		isSelected = false;

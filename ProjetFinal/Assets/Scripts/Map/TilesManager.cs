@@ -30,13 +30,42 @@ public class TilesManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void ClearTiles()
+    public void ClearTiles(bool keepRangeSelected)
     {
-        foreach(HexCell tile in _selectedTiles)
+
+        if (keepRangeSelected)
         {
-            tile.UnselectCell();
+            List<HexCell> cellsToRemove = new List<HexCell>();
+            foreach (HexCell tile in _selectedTiles)
+            {
+                print("hello");
+                if (tile.selectionType == HexCell.SELECTION_TYPE.AIM_IMPACT)
+                {
+                    tile.ModifySelection(HexCell.SELECTION_TYPE.AIM);
+                } else if(tile.selectionType != HexCell.SELECTION_TYPE.AIM)
+                {
+                    tile.UnselectCell();
+                    cellsToRemove.Add(tile);
+                }
+                
+            }
+            for(int i = 0; i < cellsToRemove.Count; i++)
+            {
+                _selectedTiles.Remove(cellsToRemove[i]);
+            }
         }
-        _selectedTiles.Clear();
+        else
+        {
+            foreach (HexCell tile in _selectedTiles)
+            {
+                tile.UnselectCell();
+            }
+            _selectedTiles.Clear();
+        }
+                
+
+        
+        
     }
 
 
@@ -104,11 +133,19 @@ public class TilesManager : MonoBehaviour
     }
     public List<List<HexCell>> GetMinMaxRange(HexCoordinates center, int minRadius, int maxRadius)
     {
+ 
         List<HexCell> minRange = GetRange(center, minRadius);
         List<HexCell> maxRange = new List<HexCell>();
         List<List<HexCell>> results = new List<List<HexCell>>();
 
-        for (int i = minRadius + 1; i <= maxRadius; i++)
+        if (minRadius == 0)
+        {
+            HexCell centerTile;
+            mapTiles.TryGetValue(center, out centerTile);
+            maxRange.Add(centerTile);
+        }
+
+        for (int i = minRadius; i <= maxRadius; i++)
         {
             maxRange.AddRange(GetRadius(center, i));
         }

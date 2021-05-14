@@ -18,11 +18,11 @@ MonoBehaviour:
   cooldown: 0
   nbrUsePerTurn: 0
   nbrUseTotal: 0
-  rangeType: 0
-  rangeAttack: 0
+  rangeType: 1
+  rangeAttack: 1
   radiusUnattackableAttack: 0
-  impactType: 0
-  damages: 0
-  rangeImpact: 0
+  impactType: 3
+  damages: 10
+  rangeImpact: 1
   radiusUnattackableImpact: 0
   spawnObject: {fileID: 0}

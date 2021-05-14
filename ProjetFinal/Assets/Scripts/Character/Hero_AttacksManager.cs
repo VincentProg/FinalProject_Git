@@ -23,7 +23,7 @@ public class Hero_AttacksManager : MonoBehaviour
 
     public void ShowAttackRange(UI_Attack caller, Attack attackCalled)
     {
-        TilesManager.instance.ClearTiles();
+        TilesManager.instance.ClearTiles(false);
         UI_Caller = caller;
         attack = attackCalled;
 
@@ -51,17 +51,17 @@ public class Hero_AttacksManager : MonoBehaviour
 
     public void ShowImpactRange(HexCell oTile)
     {
-
+        TilesManager.instance.ClearTiles(true);
         originTile = oTile;
 
 
-        switch (attack.rangeType)
+        switch (attack.impactType)
         {
-            case Attack.RANGE_TYPE.OWNCELL:
+            case Attack.IMPACT_TYPE.POINT:
                 originTile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
                 break;
-            case Attack.RANGE_TYPE.LINE:
-                foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack))
+            case Attack.IMPACT_TYPE.LINE:
+                foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeImpact))
                 {
                     if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
                     {
@@ -72,8 +72,10 @@ public class Hero_AttacksManager : MonoBehaviour
                     }
                 }
                 break;
-            case Attack.RANGE_TYPE.RADIUS:
-                foreach (HexCell tile in TilesManager.instance.GetMinMaxRange(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack)[1])
+            case Attack.IMPACT_TYPE.ARC:
+                break;
+            case Attack.IMPACT_TYPE.RADIUS:
+                foreach (HexCell tile in TilesManager.instance.GetMinMaxRange(originTile.coordinates, attack.radiusUnattackableImpact, attack.rangeImpact)[1])
                 {
                     if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
                     {

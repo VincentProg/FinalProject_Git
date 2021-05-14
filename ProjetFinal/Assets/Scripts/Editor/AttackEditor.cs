@@ -109,5 +109,15 @@ public class AttackEditor : Editor
                     break;
             }
         }
+
+
+        GUILayout.Label("\n \n \n");
+
+        if(GUILayout.Button("Save Changes (Do Ctrl+S after click)"))
+        {
+            EditorUtility.SetDirty(target);
+        }
     }
+
+    
 }

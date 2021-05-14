@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour
     // ----
     public string nameHero;
     public int health;
+    public int PM;
+    public int PA;
 
 
     // VARIABLES GRID
@@ -39,5 +41,8 @@ public class EnemyController : MonoBehaviour
         SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
         nameHero = stats.enemyName;
         health = stats.health;
+        PM = stats.PM;
+        PA = stats.PA;
+
     }
 }

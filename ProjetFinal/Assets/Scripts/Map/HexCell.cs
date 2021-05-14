@@ -7,9 +7,12 @@ public class HexCell : MonoBehaviour {
 
 	public bool canMoveHere = true;
 
-	public Player player;
+	public HeroController hero;
+	public EnemyController enemy;
 
-	void Start()
+	public bool isSelected;
+
+	void Awake()
 	{
 		TilesManager.instance.mapTiles.Add(coordinates, this);
 	}

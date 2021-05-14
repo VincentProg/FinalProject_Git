@@ -17,7 +17,7 @@ public class HexCell : MonoBehaviour {
 	public bool isSelected;
 	public enum SELECTION_TYPE {NONE, MOVEMENT, AIM, IMPACT, AIM_IMPACT}
 	[HideInInspector]
-	public SELECTION_TYPE selectionType;
+	public SELECTION_TYPE selectionType = SELECTION_TYPE.NONE;
 
 	private SpriteRenderer sprite;
 	[SerializeField]
@@ -39,8 +39,9 @@ public class HexCell : MonoBehaviour {
     {
 		isSelected = true;
 		selectionType = type;
+		print(type.ToString());
 
-        switch (type)
+		switch (type)
         {
 			case SELECTION_TYPE.MOVEMENT:
 				sprite.color = colors[1];
@@ -56,6 +57,8 @@ public class HexCell : MonoBehaviour {
 				break;
 
 		}
+
+		TilesManager.instance._selectedTiles.Add(this);
 
     }
 

@@ -31,13 +31,19 @@ public class Hero_AttacksManager : MonoBehaviour
         switch (attack.rangeType)
         {
             case Attack.RANGE_TYPE.OWNCELL:
-                TilesManager.instance.GetRange(originTile.coordinates, 1);
+                originTile.SelectCell(HexCell.SELECTION_TYPE.AIM);
                 break;
             case Attack.RANGE_TYPE.LINE:
-
+                foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack))
+                {
+                    tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                }
                 break;
             case Attack.RANGE_TYPE.RADIUS:
-
+                foreach (HexCell tile in TilesManager.instance.GetMinMaxRange(originTile.coordinates, attack.radiusUnattackableAttack,attack.rangeAttack)[1])
+                {
+                    tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                }
                 break;
         }
     }

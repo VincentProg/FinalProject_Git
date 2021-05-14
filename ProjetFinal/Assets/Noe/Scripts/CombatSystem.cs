@@ -15,15 +15,26 @@ public class CombatSystem : MonoBehaviour
 
     public CombatState state = CombatState.Start;
 
-    void Start()
+
+    public List<HeroController> heros;
+    [HideInInspector]
+    public List<EnemyController> enemies;
+    int index = 0;
+    bool heroesTurn;
+
+
+    private void StartFight()
     {
+        heros[index].StartTurn();
+
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void NextTurn()
     {
-        //
+
+        index++;
+
     }
 
     public void CheckHealthOfEveryone(/* allies[], ennemies[] */)

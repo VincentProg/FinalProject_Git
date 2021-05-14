@@ -16,4 +16,4 @@ MonoBehaviour:
   heroName: Marine
   health: 0
   PM: 5
-  PA: 5
+  PA: 20

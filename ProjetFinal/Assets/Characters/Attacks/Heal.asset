@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bcb10621537e4d438ca0700f7b53a21, type: 3}
+  m_Name: Heal
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  name: 
+  costPA: 0
+  cooldown: 0
+  nbrUsePerTurn: 0
+  nbrUseTotal: 0
+  rangeType: 0
+  rangeAttack: 0
+  radiusUnattackableAttack: 0
+  impactType: 0
+  damages: 0
+  rangeImpact: 0
+  radiusUnattackableImpact: 0
+  spawnObject: {fileID: 0}

@@ -4,6 +4,7 @@ public class HexCell : MonoBehaviour {
 
 	public HexCoordinates coordinates;
 	public Color color;
+	public int movementCost = 1;
 
 	public bool canMoveHere = true;
 
@@ -15,5 +16,9 @@ public class HexCell : MonoBehaviour {
 	void Awake()
 	{
 		TilesManager.instance.mapTiles.Add(coordinates, this);
+        if (!canMoveHere)
+        {
+			GetComponent<SpriteRenderer>().color = Color.gray;
+        }
 	}
 }

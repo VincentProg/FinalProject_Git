@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CombatSystem : MonoBehaviour
 {
+    public static CombatSystem Instance { get; private set; }
     public enum CombatState
     {
         Start,
@@ -15,92 +16,80 @@ public class CombatSystem : MonoBehaviour
 
     public CombatState state = CombatState.Start;
 
+    public List<HeroController> heros;
+    [HideInInspector]
+    public List<EnemyController> ennemies;
+    int index = 0;
+    bool heroesTurn;
+    int nbRound = 1;
+
     void Start()
     {
+        StartFight();
+    }
+
+    private void StartFight()
+    {
+        heros[0].StartTurn();
+    }
+
+    public void NextTurn()
+    {
+        index++;
+
+        if(state == CombatState.PlayerTurn)
+        {
+            if (index >= heros.Count - 1) // SI ON ATTEINT LA FIN DE LA LISTE DES HEROS
+            {
+                state = CombatState.EnnemiesTurn; // --> tour des ennemis
+                index = 0;// reset de l'index
+            }
+            else
+            {
+                heros[index].StartTurn(); //on joue le tour du player en question
+                if(index == 0)
+                {
+                    //show "c'est a ton tour" anim
+                }
+            }
+        }
+
+        if (state == CombatState.EnnemiesTurn) // SI ON ATTEINT LA FIN DE LA LISTE DES ENNEMIS
+        {
+            if (index >= ennemies.Count - 1)
+            {
+                state = CombatState.PlayerTurn; // --> tour des players
+                index = 0; // reset de l'index
+                nbRound++;
+            }
+            else
+            {
+                //ennemies[index].StartTurn();
+            }
+        }
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //
-    }
-
-    public void CheckHealthOfEveryone(/* allies[], ennemies[] */)
-    {
-        /*isAllAlliesDead = true;
-         *isAllEnnemiesDead = true;
-         * for(int i = 0; i< allies.lengh; i++)
-         * {
-         *      if(allies[i].hp > 0)
-         *      {
-         *          isAllAlliesDead = false;
-         *          break;
-         *      }
-         *          
-         * }
-         * 
-         * 
-         * for(int i = 0; i< ennemies.lengh; i++)
-         * {
-         *      if(ennemies[i].hp > 0)
-         *      {
-         *          isAllEnnemiesDead = false;
-         *          break;
-         *      }    
-         * }
-         * 
-         * if(state == CombatState.EnnemiesTurn)
-         * {
-         *      StopCoroutine(EnnemiesTurn());
-         *      
-         * }
-         * 
-         * if(state == CombatState.PlayerTurn)
-         * {
-         *      StopCoroutine(PlayerTurn());
-         * }
-         * 
-         * if(isAllAlliesDead){
-         *      Lose();
-         * }
-         * if(isAllEnnemiesDead){
-         *      Win();
-         * }
-         * 
-         * */
-
-        
+        if(state == CombatState.PlayerTurn || state == CombatState.EnnemiesTurn)
+        {
+            if (ennemies.Count == 0)
+            {
+                Win();
+            }
+        }
     }
 
     public void Win()
     {
         state = CombatState.Win;
-        //Show Win Screen
     }
 
-    public void Lose()
+    public void Loose()
     {
         state = CombatState.Lose;
-        //Show Lose Screen
     }
 
-    public IEnumerator StartCombat()
-    {
-        //spawn ennemies and allies on terrain;
-        yield return new WaitForSeconds(0.01f);
-    }
-
-    public IEnumerator PlayerTurn()
-    {
-        //for (int i = 0; i< allies.Lengh; i++) --> player play
-        yield return new WaitForSeconds(0.01f);
-        StartCoroutine(EnnemyTurn());
-    }
-    public IEnumerator EnnemyTurn()
-    {
-        //foreach n in ennemies --> ia play
-        yield return new WaitForSeconds(0.01f);
-        StartCoroutine(PlayerTurn());
-    }
 }

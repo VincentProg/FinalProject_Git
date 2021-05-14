@@ -31,7 +31,7 @@ public class Hero_AttacksManager : MonoBehaviour
         switch (attack.rangeType)
         {
             case Attack.RANGE_TYPE.OWNCELL:
-                TilesManager.instance.GetRadius(originTile.coordinates, 1);
+                TilesManager.instance.GetRange(originTile.coordinates, 1);
                 break;
             case Attack.RANGE_TYPE.LINE:
 

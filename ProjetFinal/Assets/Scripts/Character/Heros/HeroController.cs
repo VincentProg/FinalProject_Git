@@ -142,7 +142,7 @@ public class HeroController : MonoBehaviour
         myTile.hero = this;
 
         transform.position = myTile.transform.position;
-        PM--; // ------------------------------------------------------ à modifier avec la distance séparant
+        PM--; // ------------------------------------------------------ ï¿½ modifier avec la distance sï¿½parant
         PA--;
 
         if (PA > 0)
@@ -155,23 +155,20 @@ public class HeroController : MonoBehaviour
 
     }
 
-    private void Attack(int id)
+
+    public void TakeDamages(int damages)
     {
-        //switch (attacks[id].type)
-        //{
-        //    case Attacks.RANGE_TYPE.MELEE:
+        health -= damages;
+        health = Mathf.Clamp(health, 0, stats.health);
 
-        //        break;
-
-        //    case Attacks.RANGE_TYPE.SHOT:
-
-        //        break;
-
-        //    case Attacks.RANGE_TYPE.RADIUS:
-
-        //        break;
-        //}
+        if(health == 0)
+        {
+            Death();
+        }
     }
 
-
+    private void Death()
+    {
+        print("Death");
+    }
 }

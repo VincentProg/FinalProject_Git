@@ -43,6 +43,7 @@ public class TilesManager : MonoBehaviour
     public List<GameObject> GetRadius(HexCoordinates center, int radius = 1)
     {
         List<GameObject> results = new List<GameObject>();
+        HexCell temp;
 
         center = new HexCoordinates(center.X + radius, center.Z);
 
@@ -50,7 +51,6 @@ public class TilesManager : MonoBehaviour
         {
             for (int j = 0; j < radius; j++)
             {
-                HexCell temp;
                 HexCoordinates testCoords = GetNeighboor(center, i);
 
                 mapTiles.TryGetValue(testCoords, out temp);
@@ -70,7 +70,11 @@ public class TilesManager : MonoBehaviour
     public List<GameObject> GetRange(HexCoordinates center, int radius = 1)
     {
         List<GameObject> results = new List<GameObject>();
-        radius -= 1;
+        HexCell temp;
+
+        // Add player tile to result
+        mapTiles.TryGetValue(center, out temp);
+        results.Add(temp.gameObject);
 
         for (int j = 1; j <= radius; j++)
         {
@@ -82,14 +86,11 @@ public class TilesManager : MonoBehaviour
             {
                 for (int k = 0; k < j; k++)
                 {
-                    HexCell temp;
                     HexCoordinates testCoords = GetNeighboor(tempCenter, i);
 
                     mapTiles.TryGetValue(testCoords, out temp);
                     if (temp)
                     {
-                        temp.gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
-                        _coloredTiles.Add(temp.gameObject);
                         results.Add(temp.gameObject);
                     }
                     tempCenter = testCoords;
@@ -100,7 +101,26 @@ public class TilesManager : MonoBehaviour
         
         return results;
     }
+    public List<List<GameObject>> GetMinMaxRange(HexCoordinates center, int minRadius, int maxRadius)
+    {
+        List<GameObject> minRange = GetRange(center, minRadius);
+        List<GameObject> maxRange = new List<GameObject>();
+        List<List<GameObject>> results = new List<List<GameObject>>();
 
+        for (int i = minRadius + 1; i <= maxRadius; i++)
+        {
+            maxRange.AddRange(GetRadius(center, i));
+        }
+
+        results.Add(minRange);
+        results.Add(maxRange);
+
+
+        // results[0] = range interdite
+        // results[1] = range acceptée
+
+        return results;
+    }
 
     public List<GameObject> GetDiagonals(HexCoordinates center, int radius = 1)
     {

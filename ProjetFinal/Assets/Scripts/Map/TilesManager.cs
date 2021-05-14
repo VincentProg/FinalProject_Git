@@ -287,8 +287,9 @@ public class TilesManager : MonoBehaviour
         return new HexCoordinates(coords.X + tilesArround[direction].X, coords.Z + tilesArround[direction].Z);
     }
 
-    private float HeuristicDistance(HexCoordinates coords1, HexCoordinates coords2)
+    public int HeuristicDistance(HexCoordinates coords1, HexCoordinates coords2)
     {
+        print(Mathf.Abs(coords1.X - coords2.X) + Mathf.Abs(coords1.Z - coords2.Z));
         return Mathf.Abs(coords1.X - coords2.X) + Mathf.Abs(coords1.Z - coords2.Z);
     }
 }

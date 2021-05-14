@@ -39,7 +39,6 @@ public class HexCell : MonoBehaviour {
     {
 		isSelected = true;
 		selectionType = type;
-		print(type.ToString());
 
 		switch (type)
         {

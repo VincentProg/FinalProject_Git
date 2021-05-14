@@ -75,22 +75,21 @@ public class HeroController : MonoBehaviour
                     {
                         HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
 
-                        // CAS 1 : MA TUILE
-                        if (tileTouched == myTile)
+                        if (tileTouched.isSelected)
                         {
-                            ShowMovements();
-                        }
-
-                        // CAS 2 : TUILE SELECTIONNEE
-                        else if (tileTouched.isSelected)
-                        {
-                            switch (currentAction)
+                            switch (tileTouched.selectionType)
                             {
-                                case ACTION.MOVE:
+                                case HexCell.SELECTION_TYPE.MOVEMENT:
                                     Move(tileTouched);
                                     break;
 
-                                case ACTION.ATTACK:
+                                case HexCell.SELECTION_TYPE.AIM:
+                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                    break;
+                                case HexCell.SELECTION_TYPE.IMPACT:
+
+                                    break;
+                                case HexCell.SELECTION_TYPE.AIM_IMPACT:
 
                                     break;
                             }
@@ -98,8 +97,6 @@ public class HeroController : MonoBehaviour
                         }
                         else
                         {
-                            // CAS 3 : TUILES NON SELECTIONNEE
-
                             ShowMovements();
                         }
                     }
@@ -150,7 +147,7 @@ public class HeroController : MonoBehaviour
 
         if (PM >= 1)
         {
-            foreach( HexCell tile in TilesManager.instance.GetRange(myTile.coordinates, PM))
+            foreach( HexCell tile in TilesManager.instance.GetMinMaxRange(myTile.coordinates, 0, PM)[1])
             {
                 tile.SelectCell(HexCell.SELECTION_TYPE.MOVEMENT);
             }
@@ -168,13 +165,14 @@ public class HeroController : MonoBehaviour
 
     private void Move(HexCell tile)
     {
+        PM -= TilesManager.instance.HeuristicDistance(myTile.coordinates, tile.coordinates);
+        PA--;
         myTile.hero = null;
         myTile = tile;
         myTile.hero = this;
 
         transform.position = myTile.transform.position;
-        PM--; // ------------------------------------------------------ � modifier avec la distance s�parant
-        PA--;
+        
 
         if (PA > 0)
         ShowMovements();
@@ -182,8 +180,6 @@ public class HeroController : MonoBehaviour
         {
             TilesManager.instance.ClearTiles();
         }
-
-
     }
 
 

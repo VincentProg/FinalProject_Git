@@ -7,7 +7,8 @@ public class Hero_AttacksManager : MonoBehaviour
 
     public static Hero_AttacksManager instance;
     [HideInInspector]
-    public UI_Attack UI_Caller;
+    private UI_Attack UI_Caller;
+    private Attack attack;
 
     private HexCell originTile;
 
@@ -20,11 +21,11 @@ public class Hero_AttacksManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void ShowAttackRange(UI_Attack caller, Attack attack)
+    public void ShowAttackRange(UI_Attack caller, Attack attackCalled)
     {
-        print("SHOW ATTACK");
         TilesManager.instance.ClearTiles();
         UI_Caller = caller;
+        attack = attackCalled;
 
         originTile = caller.hero.myTile;
 
@@ -46,6 +47,46 @@ public class Hero_AttacksManager : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void ShowImpactRange(HexCell oTile)
+    {
+
+        originTile = oTile;
+
+
+        switch (attack.rangeType)
+        {
+            case Attack.RANGE_TYPE.OWNCELL:
+                originTile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                break;
+            case Attack.RANGE_TYPE.LINE:
+                foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack))
+                {
+                    if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
+                    {
+                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                    } else
+                    {
+                        tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
+                    }
+                }
+                break;
+            case Attack.RANGE_TYPE.RADIUS:
+                foreach (HexCell tile in TilesManager.instance.GetMinMaxRange(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack)[1])
+                {
+                    if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
+                    {
+                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                    }
+                    else
+                    {
+                        tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
+                    }
+                }
+                break;
+        }
+
     }
 
 }

@@ -28,7 +28,7 @@ public class PlayerTest : MonoBehaviour
     void Update()
     {
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
@@ -48,7 +48,7 @@ public class PlayerTest : MonoBehaviour
 
                         foreach (HexCell item in results[0])
                         {
-                            item.GetComponent<SpriteRenderer>().color = Color.red;
+                            result[i].gameObject.GetComponent<SpriteRenderer>().color = Color.green;
                         }
                         foreach (HexCell item in results[1])
                         {

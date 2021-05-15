@@ -118,7 +118,7 @@ public class TilesManager : MonoBehaviour
                     HexCoordinates testCoords = GetNeighboor(tempCenter, i);
 
                     mapTiles.TryGetValue(testCoords, out temp);
-                    if (temp && temp.canMoveHere)
+                    if (temp)
                     {
                         results.Add(temp);
                     }
@@ -154,7 +154,7 @@ public class TilesManager : MonoBehaviour
 
 
         // results[0] = range interdite
-        // results[1] = range acceptée
+        // results[1] = range acceptï¿½e
 
         return results;
     }
@@ -186,6 +186,24 @@ public class TilesManager : MonoBehaviour
         return results;
     }
 
+    public List<GameObject> GetArc(HexCoordinates center, HexCoordinates target)
+    {
+        List<GameObject> results = new List<GameObject>();
+        List<GameObject> radius = GetRadius(center, (int) HeuristicDistance(center, target));
+
+        for (int i = 0; i < radius.Count; i++)
+        {
+            if (radius[i].GetComponent<HexCell>().coordinates.Equals(target))
+            {
+                results.Add(radius[i - 1]);
+                results.Add(radius[i]);
+                results.Add(radius[i + 1]);
+            }
+        }
+
+        return results;
+
+    }
 
     public List<HexCoordinates> GetPath(HexCoordinates center, HexCoordinates target, int treshold)
     {

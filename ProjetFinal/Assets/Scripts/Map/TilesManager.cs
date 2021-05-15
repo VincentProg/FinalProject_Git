@@ -186,10 +186,10 @@ public class TilesManager : MonoBehaviour
         return results;
     }
 
-    public List<GameObject> GetArc(HexCoordinates center, HexCoordinates target)
+    public List<HexCell> GetArc(HexCoordinates center, HexCoordinates target)
     {
-        List<GameObject> results = new List<GameObject>();
-        List<GameObject> radius = GetRadius(center, (int) HeuristicDistance(center, target));
+        List<HexCell> results = new List<HexCell>();
+        List<HexCell> radius = GetRadius(center, HeuristicDistance(center, target));
 
         for (int i = 0; i < radius.Count; i++)
         {

@@ -48,7 +48,7 @@ public class PlayerTest : MonoBehaviour
 
                         foreach (HexCell item in results[0])
                         {
-                            result[i].gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+                            item.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
                         }
                         foreach (HexCell item in results[1])
                         {

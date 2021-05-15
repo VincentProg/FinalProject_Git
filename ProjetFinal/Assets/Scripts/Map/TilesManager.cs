@@ -38,8 +38,7 @@ public class TilesManager : MonoBehaviour
             List<HexCell> cellsToRemove = new List<HexCell>();
             foreach (HexCell tile in _selectedTiles)
             {
-                print("hello");
-                if (tile.selectionType == HexCell.SELECTION_TYPE.AIM_IMPACT)
+                if (tile.selectionType == HexCell.SELECTION_TYPE.AIM_IMPACT || tile.selectionType == HexCell.SELECTION_TYPE.ORIGIN_IMPACT)
                 {
                     tile.ModifySelection(HexCell.SELECTION_TYPE.AIM);
                 } else if(tile.selectionType != HexCell.SELECTION_TYPE.AIM)
@@ -326,7 +325,6 @@ public class TilesManager : MonoBehaviour
 
     public int HeuristicDistance(HexCoordinates coords1, HexCoordinates coords2)
     {
-        print(Mathf.Abs(coords1.X - coords2.X) + Mathf.Abs(coords1.Z - coords2.Z));
         return Mathf.Abs(coords1.X - coords2.X) + Mathf.Abs(coords1.Z - coords2.Z);
     }
 }

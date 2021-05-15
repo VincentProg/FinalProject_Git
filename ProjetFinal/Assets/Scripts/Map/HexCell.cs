@@ -6,16 +6,19 @@ public class HexCell : MonoBehaviour {
 	public HexCoordinates coordinates;
 	public int movementCost = 1;
 
+	[HideInInspector]
 	public bool canMoveHere = true;
 
 	[HideInInspector]
 	public HeroController hero;
 	[HideInInspector]
 	public EnemyController enemy;
+	[HideInInspector]
+	public GameObject item;
 
 	[HideInInspector]
 	public bool isSelected;
-	public enum SELECTION_TYPE {NONE, MOVEMENT, AIM, IMPACT, AIM_IMPACT}
+	public enum SELECTION_TYPE {NONE, MOVEMENT, AIM, IMPACT, AIM_IMPACT, ORIGIN_AIM, ORIGIN_IMPACT}
 	[HideInInspector]
 	public SELECTION_TYPE selectionType = SELECTION_TYPE.NONE;
 
@@ -23,15 +26,22 @@ public class HexCell : MonoBehaviour {
 	[SerializeField]
 	private List<Color> colors = new List<Color>();
 
+	public enum TILE_TYPE {NONE, GROUND, WALL, HOLE}
+	public TILE_TYPE tileType;
+	public List<Sprite> tileSprites;
+	
+
 	void Awake()
 	{
 		TilesManager.instance.mapTiles.Add(coordinates, this);
-        if (!canMoveHere)
+		sprite = GetComponent<SpriteRenderer>();
+		
+		if (!canMoveHere)
         {
-			GetComponent<SpriteRenderer>().color = Color.gray;
+			sprite.color = Color.gray;
         }
 
-		sprite = GetComponent<SpriteRenderer>();
+		
 	}
 
 
@@ -53,6 +63,12 @@ public class HexCell : MonoBehaviour {
 				break;
 			case SELECTION_TYPE.AIM_IMPACT:
 				sprite.color = colors[4];
+				break;
+			case SELECTION_TYPE.ORIGIN_AIM:
+				sprite.color = colors[5];
+				break;
+			case SELECTION_TYPE.ORIGIN_IMPACT:
+				sprite.color = colors[6];
 				break;
 
 		}
@@ -78,6 +94,12 @@ public class HexCell : MonoBehaviour {
 			case SELECTION_TYPE.AIM_IMPACT:
 				sprite.color = colors[4];
 				break;
+			case SELECTION_TYPE.ORIGIN_AIM:
+				sprite.color = colors[5];
+				break;
+			case SELECTION_TYPE.ORIGIN_IMPACT:
+				sprite.color = colors[6];
+				break;
 
 		}
 	}
@@ -88,4 +110,32 @@ public class HexCell : MonoBehaviour {
 		selectionType = SELECTION_TYPE.NONE;
 		sprite.color = colors[0];
 	}
+
+	public void UpdateTileDatas(TILE_TYPE type)
+    {
+		tileType = type;
+		SpriteRenderer myTileSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+		switch (type)
+        {
+			case TILE_TYPE.GROUND:
+				myTileSprite.sprite = tileSprites[1];
+				canMoveHere = true;
+				break;
+
+			case TILE_TYPE.WALL:
+				myTileSprite.sprite = tileSprites[2];
+				canMoveHere = false;
+				break;
+
+			case TILE_TYPE.HOLE:
+				myTileSprite.sprite = tileSprites[3];
+				canMoveHere = false;
+				break;
+
+			case TILE_TYPE.NONE:
+				myTileSprite.sprite = tileSprites[0];
+				canMoveHere = false;
+				break;
+        }
+    }
 }

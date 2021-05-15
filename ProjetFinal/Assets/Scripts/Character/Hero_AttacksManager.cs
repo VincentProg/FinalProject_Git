@@ -29,6 +29,8 @@ public class Hero_AttacksManager : MonoBehaviour
 
         originTile = caller.hero.myTile;
 
+        print("hello");
+
         switch (attack.rangeType)
         {
             case Attack.RANGE_TYPE.OWNCELL:
@@ -54,13 +56,16 @@ public class Hero_AttacksManager : MonoBehaviour
         TilesManager.instance.ClearTiles(true);
         originTile = oTile;
 
+        
+
 
         switch (attack.impactType)
         {
             case Attack.IMPACT_TYPE.POINT:
-                originTile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                originTile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
                 break;
-            case Attack.IMPACT_TYPE.LINE:
+            case Attack.IMPACT_TYPE.LINES:
+                originTile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
                 foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeImpact))
                 {
                     if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
@@ -69,6 +74,11 @@ public class Hero_AttacksManager : MonoBehaviour
                     } else
                     {
                         tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
+                    }
+
+                    if(tile == originTile)
+                    {
+                        tile.ModifySelection(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
                     }
                 }
                 break;
@@ -85,9 +95,53 @@ public class Hero_AttacksManager : MonoBehaviour
                     {
                         tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
                     }
+
+                    if (tile == originTile)
+                    {
+                        tile.ModifySelection(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
+                    }
+                }
+                break;
+            case Attack.IMPACT_TYPE.SPAWNOBJECT:
+                originTile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                break;
+        }
+
+        if (originTile.selectionType == HexCell.SELECTION_TYPE.AIM)
+        {
+            originTile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_AIM);
+        }
+
+    }
+
+    public void LaunchAttack()
+    {
+        switch (attack.impactType)
+        {
+            case Attack.IMPACT_TYPE.SPAWNOBJECT:
+                GameObject newObject = Instantiate(attack.spawnObject, originTile.transform.position, attack.spawnObject.transform.rotation);
+                originTile.item = newObject;
+                break;
+            default:
+                foreach(HexCell tile in TilesManager.instance._selectedTiles)
+                {
+                    if(tile.selectionType == HexCell.SELECTION_TYPE.IMPACT || tile.selectionType == HexCell.SELECTION_TYPE.ORIGIN_IMPACT)
+                    {
+                        if(tile.hero != null)
+                        {
+                            tile.hero.TakeDamages(attack.damages);
+                        } else if(tile.enemy != null)
+                        {
+                            tile.enemy.TakeDamages(attack.damages);
+                        }
+                    }
                 }
                 break;
         }
+
+        UI_Caller.ActivateAttack();
+
+        TilesManager.instance.ClearTiles(false);
 
     }
 

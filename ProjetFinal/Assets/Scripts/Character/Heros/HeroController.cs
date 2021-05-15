@@ -15,7 +15,7 @@ public class HeroController : MonoBehaviour
     // ATTACKS
     public List<Attack> attacks = new List<Attack>();
     public GameObject UI_Attacks;
-    public GameObject UI_AttackBTN;
+  //  public GameObject UI_AttackBTN;
 
     // VARIABLES GRID
     [HideInInspector]
@@ -86,11 +86,17 @@ public class HeroController : MonoBehaviour
                                 case HexCell.SELECTION_TYPE.AIM:
                                     Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
                                     break;
-                                case HexCell.SELECTION_TYPE.IMPACT:
-
-                                    break;
                                 case HexCell.SELECTION_TYPE.AIM_IMPACT:
-
+                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                    break;
+                                case HexCell.SELECTION_TYPE.ORIGIN_AIM:
+                                    Hero_AttacksManager.instance.LaunchAttack();
+                                    break;
+                                case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
+                                    Hero_AttacksManager.instance.LaunchAttack();
+                                    break;
+                                default:
+                                    ShowMovements();
                                     break;
                             }
 
@@ -136,6 +142,10 @@ public class HeroController : MonoBehaviour
         //PM = stats.PM;
         //PA = stats.PA;
         // Show my UI
+        foreach(Transform UI_AttackBtn in UI_Attacks.transform)
+        {
+            UI_AttackBtn.GetComponent<UI_Attack>().StartTurn();
+        }
         ShowMovements();
 
     }
@@ -147,7 +157,7 @@ public class HeroController : MonoBehaviour
 
         if (PM >= 1)
         {
-            foreach( HexCell tile in TilesManager.instance.GetMinMaxRange(myTile.coordinates, 0, PM)[1])
+            foreach( HexCell tile in TilesManager.instance.GetMinMaxRange(myTile.coordinates, 1, PM)[1])
             {
                 tile.SelectCell(HexCell.SELECTION_TYPE.MOVEMENT);
             }

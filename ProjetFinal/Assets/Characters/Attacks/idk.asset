@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcb10621537e4d438ca0700f7b53a21, type: 3}
   m_Name: idk
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 0f721b9409fb9694491ee46644f7e6c5, type: 3}
   name: 
-  costPA: 0
+  costPA: 3
   cooldown: 0
   nbrUsePerTurn: 0
   nbrUseTotal: 0
   rangeType: 1
   rangeAttack: 1
   radiusUnattackableAttack: 0
-  impactType: 3
+  impactType: 0
   damages: 10
   rangeImpact: 1
   radiusUnattackableImpact: 0

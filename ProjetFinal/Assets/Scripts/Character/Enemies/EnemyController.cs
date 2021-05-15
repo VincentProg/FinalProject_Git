@@ -45,4 +45,20 @@ public class EnemyController : MonoBehaviour
         PA = stats.PA;
 
     }
+
+    public void TakeDamages(int damages)
+    {
+        health -= damages;
+        health = Mathf.Clamp(health, 0, stats.health);
+
+        if (health == 0)
+        {
+            Death();
+        }
+    }
+
+    private void Death()
+    {
+        print("Death");
+    }
 }

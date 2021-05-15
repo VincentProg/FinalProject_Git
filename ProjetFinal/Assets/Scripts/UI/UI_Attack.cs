@@ -112,6 +112,7 @@ public class UI_Attack : MonoBehaviour
     public void ActivateAttack()
     {
         cooldown = attack.cooldown;
+        hero.PA -= attack.costPA;
         if(cooldown > 0)
         {
             isDisabled = true;

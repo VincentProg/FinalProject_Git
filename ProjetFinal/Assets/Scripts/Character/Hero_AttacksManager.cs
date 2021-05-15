@@ -37,13 +37,13 @@ public class Hero_AttacksManager : MonoBehaviour
                 originTile.SelectCell(HexCell.SELECTION_TYPE.AIM);
                 break;
             case Attack.RANGE_TYPE.LINE:
-                foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack))
+                foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, false, false))
                 {
                     tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
                 }
                 break;
             case Attack.RANGE_TYPE.RADIUS:
-                foreach (HexCell tile in TilesManager.instance.GetMinMaxRange(originTile.coordinates, attack.radiusUnattackableAttack,attack.rangeAttack)[1])
+                foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack,attack.rangeAttack, false, false))
                 {
                     tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
                 }
@@ -56,9 +56,6 @@ public class Hero_AttacksManager : MonoBehaviour
         TilesManager.instance.ClearTiles(true);
         originTile = oTile;
 
-        
-
-
         switch (attack.impactType)
         {
             case Attack.IMPACT_TYPE.POINT:
@@ -66,7 +63,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 break;
             case Attack.IMPACT_TYPE.LINES:
                 originTile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
-                foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeImpact))
+                foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeImpact, true, true))
                 {
                     if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
                     {
@@ -85,7 +82,7 @@ public class Hero_AttacksManager : MonoBehaviour
             case Attack.IMPACT_TYPE.ARC:
                 break;
             case Attack.IMPACT_TYPE.RADIUS:
-                foreach (HexCell tile in TilesManager.instance.GetMinMaxRange(originTile.coordinates, attack.radiusUnattackableImpact, attack.rangeImpact)[1])
+                foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableImpact, attack.rangeImpact, false, false))
                 {
                     if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
                     {

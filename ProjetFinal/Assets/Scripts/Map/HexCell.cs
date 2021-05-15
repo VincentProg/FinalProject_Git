@@ -6,8 +6,6 @@ public class HexCell : MonoBehaviour {
 	public HexCoordinates coordinates;
 	public int movementCost = 1;
 
-	[HideInInspector]
-	public bool canMoveHere = true;
 
 	[HideInInspector]
 	public HeroController hero;
@@ -26,7 +24,7 @@ public class HexCell : MonoBehaviour {
 	[SerializeField]
 	private List<Color> colors = new List<Color>();
 
-	public enum TILE_TYPE {NONE, GROUND, WALL, HOLE}
+	public enum TILE_TYPE {GROUND, WALL, HOLE}
 	public TILE_TYPE tileType;
 	public List<Sprite> tileSprites;
 	
@@ -35,13 +33,6 @@ public class HexCell : MonoBehaviour {
 	{
 		TilesManager.instance.mapTiles.Add(coordinates, this);
 		sprite = GetComponent<SpriteRenderer>();
-		
-		if (!canMoveHere)
-        {
-			sprite.color = Color.gray;
-        }
-
-		
 	}
 
 
@@ -119,22 +110,14 @@ public class HexCell : MonoBehaviour {
         {
 			case TILE_TYPE.GROUND:
 				myTileSprite.sprite = tileSprites[1];
-				canMoveHere = true;
 				break;
 
 			case TILE_TYPE.WALL:
 				myTileSprite.sprite = tileSprites[2];
-				canMoveHere = false;
 				break;
 
 			case TILE_TYPE.HOLE:
 				myTileSprite.sprite = tileSprites[3];
-				canMoveHere = false;
-				break;
-
-			case TILE_TYPE.NONE:
-				myTileSprite.sprite = tileSprites[0];
-				canMoveHere = false;
 				break;
         }
     }

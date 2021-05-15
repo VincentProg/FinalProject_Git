@@ -157,7 +157,7 @@ public class HeroController : MonoBehaviour
 
         if (PM >= 1)
         {
-            foreach( HexCell tile in TilesManager.instance.GetMinMaxRange(myTile.coordinates, 1, PM)[1])
+            foreach( HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, PM, false, false))
             {
                 tile.SelectCell(HexCell.SELECTION_TYPE.MOVEMENT);
             }

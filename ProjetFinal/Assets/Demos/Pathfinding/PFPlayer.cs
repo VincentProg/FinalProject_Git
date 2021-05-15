@@ -46,16 +46,12 @@ public class PFPlayer : MonoBehaviour
 
                     if (Vector2.Distance(gameObject.transform.position, tileTouched.transform.position) < 500)
                     {
-                        if (tileTouched.canMoveHere)
-                        {
                             /*                            transform.position = new Vector2(tileTouched.transform.position.x, tileTouched.transform.position.y);
                                                         myTile.hero = null;
                                                         myTile = tileTouched;*/
-                            tileTouched.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+                        tileTouched.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
 
-                            startPath(myTile, tileTouched);
-                        }
-
+                        startPath(myTile, tileTouched);
                     }
                 }
             }
@@ -73,7 +69,7 @@ public class PFPlayer : MonoBehaviour
                 if (index < 400)
                 {
                     index++;
-                    TilesManager.instance.GetPath(myTile.coordinates, touchedtile.coordinates, index);
+                    TilesManager.instance.GetPath(myTile.coordinates, touchedtile.coordinates, false, false, index);
                 }
                 else
                 {

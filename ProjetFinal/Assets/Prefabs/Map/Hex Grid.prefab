@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &710897100356126662
 RectTransform:
   m_ObjectHideFlags: 0
@@ -91,6 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1600953938135921844}
   - component: {fileID: 7395330584310982768}
+  - component: {fileID: 929871689}
   m_Layer: 0
   m_Name: Hex Grid
   m_TagString: Untagged
@@ -125,7 +126,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414a0fc06528949a0baff4f719b04a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 10
-  height: 5
+  width: 20
+  height: 20
   cellPrefab: {fileID: 11422220, guid: 94c2312396697489abc866a188f80152, type: 3}
   cellLabelPrefab: {fileID: 11470134, guid: f68794ca03b6f4510b9a5bd6ee9ba2f4, type: 3}
+--- !u!114 &929871689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8412240783845579995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f099e62a251b004abf4b5e8e6460f93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfTiles: 0
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  lightingColor: {r: 0, g: 0, b: 0, a: 0}
+  tilesArround:
+  - x: 0
+    z: -1
+  - x: -1
+    z: 0
+  - x: -1
+    z: 1
+  - x: 0
+    z: 1
+  - x: 1
+    z: 0
+  - x: 1
+    z: -1
+  _selectedTiles: []
+  target:
+    x: 0
+    z: 0

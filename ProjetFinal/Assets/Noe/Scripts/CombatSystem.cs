@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CombatSystem : MonoBehaviour
 {
-    public static CombatSystem Instance { get; private set; }
+    public static CombatSystem instance { get; private set; }
     public enum CombatState
     {
         Start,
@@ -21,28 +22,41 @@ public class CombatSystem : MonoBehaviour
     public List<EnemyController> ennemies;
     int index = 0;
     bool heroesTurn;
-    int nbRound = 1;
 
-    void Start()
+    int nbrRound = 1;
+    public TextMeshProUGUI nbrRoundTXT;
+
+    private void Awake()
     {
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        nbrRoundTXT.text = nbrRound.ToString(); ;
         StartFight();
     }
 
-    private void StartFight()
+
+    public void StartFight()
     {
+        state = CombatState.PlayerTurn;
         heros[0].StartTurn();
     }
 
     public void NextTurn()
     {
         index++;
-
-        if(state == CombatState.PlayerTurn)
+        print("1");
+        if (state == CombatState.PlayerTurn)
         {
-            if (index >= heros.Count - 1) // SI ON ATTEINT LA FIN DE LA LISTE DES HEROS
+            print("2");
+            if (index >= heros.Count) // SI ON ATTEINT LA FIN DE LA LISTE DES HEROS
             {
                 state = CombatState.EnnemiesTurn; // --> tour des ennemis
                 index = 0;// reset de l'index
+                print("3");
             }
             else
             {
@@ -56,11 +70,14 @@ public class CombatSystem : MonoBehaviour
 
         if (state == CombatState.EnnemiesTurn) // SI ON ATTEINT LA FIN DE LA LISTE DES ENNEMIS
         {
+            print("test");
             if (index >= ennemies.Count - 1)
             {
                 state = CombatState.PlayerTurn; // --> tour des players
-                index = 0; // reset de l'index
-                nbRound++;
+                index = 0; // reset de l'index 
+                nbrRound++;
+                nbrRoundTXT.text = nbrRound.ToString();
+                heros[index].StartTurn();
             }
             else
             {
@@ -73,13 +90,7 @@ public class CombatSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(state == CombatState.PlayerTurn || state == CombatState.EnnemiesTurn)
-        {
-            if (ennemies.Count == 0)
-            {
-                Win();
-            }
-        }
+        
     }
 
     public void Win()

@@ -6,12 +6,12 @@ public class PlayerTest : MonoBehaviour
 {
 
     public HexCell myTile;
+    HexCell tileTouched;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
         RaycastHit2D hitStart = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity);
         if (hitStart)
         {
@@ -28,8 +28,9 @@ public class PlayerTest : MonoBehaviour
     void Update()
     {
 
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
+
             Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
             Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
@@ -38,20 +39,40 @@ public class PlayerTest : MonoBehaviour
             {
                 if (hitInformation.transform.GetComponent<HexCell>() != null)
                 {
-                    HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
+                    tileTouched = hitInformation.transform.GetComponent<HexCell>();
 
 
-                    if (Vector2.Distance(gameObject.transform.position, tileTouched.transform.position) < 500)
-                    {
-                        List<HexCell> result = TilesManager.instance.GetDiagonals(myTile.coordinates, 5, false, false);
-
-                        foreach (HexCell item in result)
+                   /* if (Vector2.Distance(gameObject.transform.position, tileTouched.transform.position) < 500)
+                    {*/
+                        gameObject.transform.position = tileTouched.gameObject.transform.position;
+                        RaycastHit2D hitStart = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity);
+                        if (hitStart)
                         {
-                            item.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                            if (hitStart.transform.GetComponent<HexCell>())
+                            {
+                                myTile = hitStart.transform.GetComponent<HexCell>();
+                            }
                         }
-                    }
+
+                        List<List<HexCell>> result = TilesManager.instance.GetFOV(myTile, 50);
+
+                        foreach (var item in result[0])
+                        {
+                            item.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+                        }
+
+                        foreach (var item in result[1])
+                        {
+                            item.gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+                        }
+                    //}
                 }
             }
+        }
+
+        if (tileTouched)
+        {
+            Debug.DrawLine(gameObject.transform.position, tileTouched.gameObject.transform.position, Color.red);
         }
     }
 }

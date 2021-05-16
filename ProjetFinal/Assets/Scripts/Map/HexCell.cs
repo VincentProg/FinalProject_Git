@@ -33,6 +33,9 @@ public class HexCell : MonoBehaviour {
 	{
 		TilesManager.instance.mapTiles.Add(coordinates, this);
 		sprite = GetComponent<SpriteRenderer>();
+
+		if (tileType.Equals(TILE_TYPE.WALL))
+			GetComponent<SpriteRenderer>().color = Color.red;
 	}
 
 

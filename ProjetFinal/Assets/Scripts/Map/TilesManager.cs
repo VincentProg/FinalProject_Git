@@ -119,6 +119,7 @@ public class TilesManager : MonoBehaviour
         mapTiles.TryGetValue(center, out temp);
         results.Add(temp);
 
+
         for (int j = 1; j <= radius; j++)
         {
             HexCoordinates tempCenter = center;
@@ -145,8 +146,7 @@ public class TilesManager : MonoBehaviour
                                 canPass = false;
 
                         if (canPass)
-                            results.Add(temp);
-                        
+                            results.Add(temp);                        
                     }
                     tempCenter = testCoords;
                 }
@@ -468,6 +468,50 @@ public class TilesManager : MonoBehaviour
         return path;
     }
 
+    public List<List<HexCell>> GetFOV(HexCell centerCell, int radius)
+    {
+        Debug.Log(centerCell.coordinates);
+        List<HexCell> range = this.GetRange(centerCell.coordinates, radius, true, true);
+
+        List<HexCell> inReach = new List<HexCell>();
+        List<HexCell> notAccessible = new List<HexCell>();
+
+        for (int i = 0; i < range.Count; i++)
+        {
+            if (!range[i].tileType.Equals(HexCell.TILE_TYPE.WALL))
+            {
+                Vector2 direction = new Vector2(range[i].gameObject.transform.position.x - centerCell.gameObject.transform.position.x, range[i].gameObject.transform.position.y - centerCell.gameObject.transform.position.y);
+                float distance = direction.magnitude;
+
+                RaycastHit2D[] hits = Physics2D.CircleCastAll(centerCell.gameObject.transform.position, .15f, new Vector2(range[i].gameObject.transform.position.x - centerCell.gameObject.transform.position.x, range[i].gameObject.transform.position.y - centerCell.gameObject.transform.position.y), distance);
+
+                if (hits.Length > 0)
+                {
+                    bool blocked = false;
+                    foreach (var item in hits)
+                    {
+                        if (item.collider.gameObject.GetComponent<HexCell>())
+                        {
+                            if (item.collider.gameObject.GetComponent<HexCell>().tileType.Equals(HexCell.TILE_TYPE.WALL))
+                            {
+                                notAccessible.Add(range[i]);
+                                blocked = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!blocked)
+                        inReach.Add(range[i]);
+                }
+            }
+        }
+
+        List<List<HexCell>> result = new List<List<HexCell>>();
+        result.Add(inReach);
+        result.Add(notAccessible);
+
+        return result;
+    }
 
     // HexCoordinates calculus methods
     private HexCoordinates AddCoords(HexCoordinates coords1, HexCoordinates coords2)

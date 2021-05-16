@@ -6,12 +6,12 @@ public class PlayerTest : MonoBehaviour
 {
 
     public HexCell myTile;
+    HexCell tileTouched;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
         RaycastHit2D hitStart = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity);
         if (hitStart)
         {
@@ -38,20 +38,30 @@ public class PlayerTest : MonoBehaviour
             {
                 if (hitInformation.transform.GetComponent<HexCell>() != null)
                 {
-                    HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
+                    tileTouched = hitInformation.transform.GetComponent<HexCell>();
 
 
                     if (Vector2.Distance(gameObject.transform.position, tileTouched.transform.position) < 500)
                     {
-                        List<HexCell> result = TilesManager.instance.GetDiagonals(myTile.coordinates, 5, false, false);
+                        List<List<HexCell>> result = TilesManager.instance.GetFOV(myTile, 8);
 
-                        foreach (HexCell item in result)
+                        foreach (var item in result[0])
                         {
-                            item.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                            item.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+                        }
+
+                        foreach (var item in result[1])
+                        {
+                            item.gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
                         }
                     }
                 }
             }
+        }
+
+        if (tileTouched)
+        {
+            Debug.DrawLine(gameObject.transform.position, tileTouched.gameObject.transform.position, Color.red);
         }
     }
 }

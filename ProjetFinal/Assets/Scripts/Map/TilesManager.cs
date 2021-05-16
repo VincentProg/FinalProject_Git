@@ -118,7 +118,6 @@ public class TilesManager : MonoBehaviour
         // Add player tile to result
         mapTiles.TryGetValue(center, out temp);
         results.Add(temp);
-        Debug.Log("added " + temp.coordinates);
 
 
         for (int j = 1; j <= radius; j++)

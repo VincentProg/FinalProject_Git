@@ -50,9 +50,9 @@ MonoBehaviour:
     x: 0
     z: 0
   movementCost: 1
-  canMoveHere: 1
   hero: {fileID: 0}
   enemy: {fileID: 0}
+  item: {fileID: 0}
   isSelected: 0
   selectionType: 0
   colors:
@@ -162,7 +162,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1851301020765344376}
   - component: {fileID: 6577401680425684088}
-  - component: {fileID: 8427311979950151704}
   m_Layer: 0
   m_Name: Hex Cell
   m_TagString: Untagged
@@ -236,34 +235,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &8427311979950151704
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8993971953053540813}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.1130434, y: 0.9826087}
-    newSize: {x: 1.1130434, y: 0.9826087}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.27826086, y: 0.48260868}
-      - {x: -0.5565217, y: 0}
-      - {x: -0.27826086, y: -0.48260868}
-      - {x: 0.27826086, y: -0.48260868}
-      - {x: 0.5565217, y: 0}
-      - {x: 0.27826086, y: 0.48260868}

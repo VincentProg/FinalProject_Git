@@ -29,7 +29,6 @@ public class Hero_AttacksManager : MonoBehaviour
 
         originTile = caller.hero.myTile;
 
-        print("hello");
 
         switch (attack.rangeType)
         {

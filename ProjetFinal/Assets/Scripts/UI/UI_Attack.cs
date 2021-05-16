@@ -27,7 +27,8 @@ public class UI_Attack : MonoBehaviour
     private int nbrUseTotal;
 
 
- 
+
+
 
     public void UpdateUI()
     {
@@ -102,7 +103,7 @@ public class UI_Attack : MonoBehaviour
 
     private void TryShowAttack()
     {
-        if (hero.PA > attack.costPA)
+        if (hero.PA >= attack.costPA)
         {    
                 Hero_AttacksManager.instance.ShowAttackRange(this, attack);
         }
@@ -113,6 +114,7 @@ public class UI_Attack : MonoBehaviour
     {
         cooldown = attack.cooldown;
         hero.PA -= attack.costPA;
+        hero.SetUI_PA_PM();
         if(cooldown > 0)
         {
             isDisabled = true;
@@ -140,6 +142,7 @@ public class UI_Attack : MonoBehaviour
             if(cooldown == 0)
             {
                 isDisabled = false;
+                cooldownGO.SetActive(false);
             }
             else textCD.text = cooldown.ToString();     
         }

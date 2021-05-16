@@ -10,9 +10,6 @@ public class TilesManager : MonoBehaviour
     [HideInInspector]
     public int numberOfTiles = 0;
 
-    public Color baseColor;
-    public Color lightingColor;
-
     // List of chained positions around 0,0 (starting with bottom left and going clockwise)
     public List<HexCoordinates> tilesArround = new List<HexCoordinates>() { new HexCoordinates(0, -1), new HexCoordinates(-1, 0), new HexCoordinates(-1, 1), new HexCoordinates(0, 1), new HexCoordinates(1, 0), new HexCoordinates(1, -1) };
 
@@ -535,7 +532,7 @@ public class TilesManager : MonoBehaviour
 
     public int HeuristicDistance(HexCoordinates coords1, HexCoordinates coords2)
     {
-        return Mathf.Abs(coords1.X - coords2.X) + Mathf.Abs(coords1.Z - coords2.Z);
+        return Mathf.Max(Mathf.Abs(coords1.X - coords2.X), Mathf.Abs(coords1.Y - coords2.Y), Mathf.Abs(coords1.Z - coords2.Z));
     }
 
     public int GetDirection(HexCoordinates center, HexCoordinates target)

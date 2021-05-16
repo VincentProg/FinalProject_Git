@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HeroController : MonoBehaviour
 {
@@ -14,15 +15,14 @@ public class HeroController : MonoBehaviour
 
     // ATTACKS
     public List<Attack> attacks = new List<Attack>();
-    public GameObject UI_Attacks;
-  //  public GameObject UI_AttackBTN;
+    public GameObject myCanvas;
+    TextMeshProUGUI PAtxt, PMtxt;
+    
 
     // VARIABLES GRID
     [HideInInspector]
     public HexCell myTile;
 
-    private enum ACTION { NONE ,MOVE, ATTACK };
-    private ACTION currentAction;
 
     bool isMyTurn = false;
 
@@ -32,6 +32,9 @@ public class HeroController : MonoBehaviour
     {
         SetMyStats();
         SetUIAttacks();
+        PAtxt = myCanvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        PMtxt = myCanvas.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
+
         #region GET MY START TILE()
         // AJOUT TUILE DEPART
         RaycastHit2D hitStart = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity);
@@ -44,15 +47,6 @@ public class HeroController : MonoBehaviour
             }
         }
         #endregion
-
-        StartTurn(); // ------------- TO DELETE BECAUSE FIGHTMANAGER
-
-        //foreach(Attack attack in attacks)
-        //{
-        //    GameObject newUIAttack = Instantiate(UI_AttackBTN, UI_Attacks.transform);
-        //    newUIAttack.GetComponent<UI_Attack>().attack = attack;
-        //    newUIAttack.GetComponent<UI_Attack>().hero = this;
-        //}
 
     }
 
@@ -74,9 +68,10 @@ public class HeroController : MonoBehaviour
                     if (hitInformation.transform.GetComponent<HexCell>() != null)
                     {
                         HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
-
+                        
                         if (tileTouched.isSelected)
                         {
+                            
                             switch (tileTouched.selectionType)
                             {
                                 case HexCell.SELECTION_TYPE.MOVEMENT:
@@ -115,12 +110,12 @@ public class HeroController : MonoBehaviour
     {
         for (int i = 0; i < attacks.Count; i++)
         {
-            if(UI_Attacks.transform.childCount - 1 < i)
+            if(myCanvas.transform.GetChild(0).transform.childCount - 1 < i)
             {
                 print("NOT ENOUGH SLOTS");
                 return;
             }
-            UI_Attack UIAttack = UI_Attacks.transform.GetChild(i).GetComponent<UI_Attack>();
+            UI_Attack UIAttack = myCanvas.transform.GetChild(0).transform.GetChild(i).GetComponent<UI_Attack>();
             UIAttack.attack = attacks[i];
             UIAttack.UpdateUI();
 
@@ -139,10 +134,10 @@ public class HeroController : MonoBehaviour
     public void StartTurn()
     {
         isMyTurn = true;
-        //PM = stats.PM;
-        //PA = stats.PA;
-        // Show my UI
-        foreach(Transform UI_AttackBtn in UI_Attacks.transform)
+        print("StartTurn");
+        myCanvas.SetActive(true);
+        SetUI_PA_PM();
+        foreach (Transform UI_AttackBtn in myCanvas.transform.GetChild(0).transform)
         {
             UI_AttackBtn.GetComponent<UI_Attack>().StartTurn();
         }
@@ -153,11 +148,14 @@ public class HeroController : MonoBehaviour
     public void ShowMovements()
     {
         TilesManager.instance.ClearTiles(false);
-        currentAction = ACTION.MOVE;
+
+        int rangePM;
+        if (stats.isDofusPM) rangePM = PM;
+        else rangePM = 1;
 
         if (PM >= 1)
         {
-            foreach( HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, PM, false, false))
+            foreach( HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, rangePM, false, false))
             {
                 tile.SelectCell(HexCell.SELECTION_TYPE.MOVEMENT);
             }
@@ -168,15 +166,20 @@ public class HeroController : MonoBehaviour
 
     public void EndTurn()
     {
+        print("endturn");
         isMyTurn = false;
-        currentAction = ACTION.NONE;
-        // BatlleManager.instance.NextTurn();
+        myCanvas.SetActive(false);
+        PM = stats.PM;
+        PA = stats.PA;
+        CombatSystem.instance.NextTurn();
     }
 
     private void Move(HexCell tile)
     {
         PM -= TilesManager.instance.HeuristicDistance(myTile.coordinates, tile.coordinates);
         PA--;
+        SetUI_PA_PM();
+        
         myTile.hero = null;
         myTile = tile;
         myTile.hero = this;
@@ -192,6 +195,11 @@ public class HeroController : MonoBehaviour
         }
     }
 
+    public void SetUI_PA_PM()
+    {
+        PMtxt.text = PM.ToString();
+        PAtxt.text = PA.ToString();
+    }
 
     public void TakeDamages(int damages)
     {

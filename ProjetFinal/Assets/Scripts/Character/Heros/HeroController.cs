@@ -32,8 +32,9 @@ public class HeroController : MonoBehaviour
     {
         SetMyStats();
         SetUIAttacks();
-        PAtxt = myCanvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
-        PMtxt = myCanvas.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
+
+            PAtxt = myCanvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+            PMtxt = myCanvas.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
 
         #region GET MY START TILE()
         // AJOUT TUILE DEPART

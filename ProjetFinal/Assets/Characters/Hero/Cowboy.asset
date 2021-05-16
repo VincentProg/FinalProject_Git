@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b52f95a3323f1a4885661338b191d20, type: 3}
-  m_Name: Marine
+  m_Name: Cowboy
   m_EditorClassIdentifier: 
   sprite: {fileID: -9095717837082945937, guid: 9ae343ac378fd3a4abc0c57f56be5247, type: 3}
-  heroName: Marine
+  heroName: 
   health: 3
-  PM: 3
-  PA: 6
-  isDofusPM: 0
+  PM: 5
+  PA: 7
+  isDofusPM: 1

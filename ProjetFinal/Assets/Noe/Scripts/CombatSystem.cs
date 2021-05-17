@@ -21,7 +21,7 @@ public class CombatSystem : MonoBehaviour
     public List<HeroController> heros;
     [HideInInspector]
     public List<EnemyController> enemies;
-    public List<Spawn> spawners;
+    public List<Spawner> spawners;
     int index = 0;
     bool heroesTurn;
 
@@ -100,20 +100,24 @@ public class CombatSystem : MonoBehaviour
         print(state);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        print(nbrRound);
-    }
-
     public void Win()
     {
         state = CombatState.Win;
+        print("WIN");
     }
 
     public void Loose()
     {
         state = CombatState.Lose;
+    }
+
+    public void DestroySpawner(Spawner spawner)
+    {
+        spawners.Remove(spawner);
+        if(spawners.Count == 0)
+        {
+            Win();
+        }
     }
 
 }

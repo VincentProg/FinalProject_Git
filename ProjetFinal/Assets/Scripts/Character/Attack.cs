@@ -19,13 +19,19 @@ public class Attack : ScriptableObject
     public RANGE_TYPE rangeType;
     public int rangeAttack;
     public int radiusUnattackableAttack;
+    public bool canSelectHole;
+    public enum VISION_TYPE { SEE_EVERYTHING, WALLS_BLOCK, WALLSHUMANS_BLOCK }
+    public VISION_TYPE visionType;
 
 
-    public enum IMPACT_TYPE { POINT, LINES, LINE, ARC, RADIUS, SPAWNOBJECT }
+    public enum IMPACT_TYPE { POINT, LINES, LINE, ARC, RADIUS, SPAWNOBJECT, TELEPORT }
     public IMPACT_TYPE impactType;
     public int damages;
     public int rangeImpact;
     public int radiusUnattackableImpact;
+
+    //Teleport
+    public bool goThrewWalls;
 
     public GameObject spawnObject;
 

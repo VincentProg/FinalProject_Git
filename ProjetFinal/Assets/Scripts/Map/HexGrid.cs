@@ -15,13 +15,13 @@ public class HexGrid : MonoBehaviour {
 
 	public void Generate () {
 
-        gridCanvas = GetComponentInChildren<Canvas>();
+        //gridCanvas = GetComponentInChildren<Canvas>();
 
-        if (gridCanvas.transform.childCount > 0)
-        {
-            Debug.LogError("Supprimez les enfants actuels pour générer une nouvelle map");
-            return;
-        }
+        //if (gridCanvas.transform.childCount > 0)
+        //{
+        //    Debug.LogError("Supprimez les enfants actuels pour générer une nouvelle map");
+        //    return;
+        //}
 
 
         cells = new HexCell[height * width];
@@ -47,9 +47,9 @@ public class HexGrid : MonoBehaviour {
 		cell.transform.localPosition = position;
 		cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
 
-        Text label = Instantiate<Text>(cellLabelPrefab);
-        label.rectTransform.SetParent(gridCanvas.transform, false);
-        label.rectTransform.anchoredPosition = new Vector2(position.x, position.z);
-        label.text = cell.coordinates.ToStringOnSeparateLines();
+        //Text label = Instantiate<Text>(cellLabelPrefab);
+        //label.rectTransform.SetParent(gridCanvas.transform, false);
+        //label.rectTransform.anchoredPosition = new Vector2(position.x, position.z);
+        //label.text = cell.coordinates.ToStringOnSeparateLines();
     }
 }

@@ -69,37 +69,29 @@ public class HeroController : MonoBehaviour
                     if (hitInformation.transform.GetComponent<HexCell>() != null)
                     {
                         HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
-                        
-                        if (tileTouched.isSelected)
-                        {
-                            
-                            switch (tileTouched.selectionType)
-                            {
-                                case HexCell.SELECTION_TYPE.MOVEMENT:
-                                    Move(tileTouched);
-                                    break;
 
-                                case HexCell.SELECTION_TYPE.AIM:
-                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                    break;
-                                case HexCell.SELECTION_TYPE.AIM_IMPACT:
-                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                    break;
-                                case HexCell.SELECTION_TYPE.ORIGIN_AIM:
-                                    Hero_AttacksManager.instance.LaunchAttack();
-                                    break;
-                                case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
-                                    Hero_AttacksManager.instance.LaunchAttack();
-                                    break;
-                                default:
-                                    ShowMovements();
-                                    break;
-                            }
 
-                        }
-                        else
+                        switch (tileTouched.selectionType)
                         {
-                            ShowMovements();
+                            case HexCell.SELECTION_TYPE.MOVEMENT:
+                                Move(tileTouched);
+                                break;
+
+                            case HexCell.SELECTION_TYPE.AIM:
+                                Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                break;
+                            case HexCell.SELECTION_TYPE.AIM_IMPACT:
+                                Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                break;
+                            case HexCell.SELECTION_TYPE.ORIGIN_AIM:
+                                Hero_AttacksManager.instance.LaunchAttack();
+                                break;
+                            case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
+                                Hero_AttacksManager.instance.LaunchAttack();
+                                break;
+                            default:
+                                ShowMovements();
+                                break;
                         }
                     }
                 }
@@ -149,7 +141,7 @@ public class HeroController : MonoBehaviour
     public void ShowMovements()
     {
         TilesManager.instance.ClearTiles(false);
-
+  
         int rangePM;
         if (stats.isDofusPM) rangePM = PM;
         else rangePM = 1;

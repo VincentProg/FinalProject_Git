@@ -11,6 +11,7 @@ public class Hero_AttacksManager : MonoBehaviour
     private Attack attack;
 
     private HexCell originTile;
+    private HexCell playerTile;
 
     private void Awake()
     {
@@ -28,7 +29,9 @@ public class Hero_AttacksManager : MonoBehaviour
         attack = attackCalled;
 
         originTile = caller.hero.myTile;
+        playerTile = originTile;
 
+        List<List<HexCell>> TilesInRange = TilesManager.instance.GetFOV(originTile, attack.rangeAttack, attack.visionType == Attack.VISION_TYPE.WALLSHUMANS_BLOCK);
 
         switch (attack.rangeType)
         {
@@ -36,16 +39,73 @@ public class Hero_AttacksManager : MonoBehaviour
                 originTile.SelectCell(HexCell.SELECTION_TYPE.AIM);
                 break;
             case Attack.RANGE_TYPE.LINE:
-                foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, false, false))
+                // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
+                if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
                 {
-                    tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                    foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, attack.canSelectHole, true))
+                    {
+                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                    }
+                }
+                else
+                {
+                    foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, attack.canSelectHole, true))
+                    {
+                        bool isInRange = false;
+                        for (int i = 0; i < TilesInRange[0].Count; i++)
+                        {
+                            if (tile == TilesInRange[0][i])
+                            {
+                                isInRange = true;
+                            }
+                        }
+
+                        if (isInRange)
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                        }
+                        else
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_AIM);
+                        }
+                    }
                 }
                 break;
             case Attack.RANGE_TYPE.RADIUS:
-                foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack,attack.rangeAttack, false, false))
+
+                // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
+                if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
                 {
-                    tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                    foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, attack.canSelectHole, false))
+                    {
+                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                    }
                 }
+                else
+                {
+
+                    foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, attack.canSelectHole, false))
+                    {
+                        bool isInRange = false;
+                        for (int i = 0; i < TilesInRange[0].Count; i++)
+                        {
+                            if (tile == TilesInRange[0][i])
+                            {
+                                isInRange = true;
+                            }
+                        }
+
+                        if (isInRange)
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                        }
+                        else
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_AIM);
+                        }
+                    }
+                }
+
                 break;
         }
     }
@@ -55,6 +115,8 @@ public class Hero_AttacksManager : MonoBehaviour
         TilesManager.instance.ClearTiles(true);
         originTile = oTile;
 
+        List<List<HexCell>> TilesInRange = TilesManager.instance.GetFOV(originTile, attack.rangeImpact, false);
+
         switch (attack.impactType)
         {
             case Attack.IMPACT_TYPE.POINT:
@@ -62,44 +124,152 @@ public class Hero_AttacksManager : MonoBehaviour
                 break;
             case Attack.IMPACT_TYPE.LINES:
                 originTile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
+                // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
                 foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeImpact, true, true))
                 {
-                    if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
+                    bool isInRange = false;
+                    for (int i = 0; i < TilesInRange[0].Count; i++)
                     {
-                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
-                    } else
-                    {
-                        tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
+                        if (tile == TilesInRange[0][i])
+                        {
+                            isInRange = true;
+                        }
                     }
 
-                    if(tile == originTile)
+                    if (isInRange)
                     {
-                        tile.ModifySelection(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
-                    }
-                }
-                break;
-            case Attack.IMPACT_TYPE.ARC:
-                break;
-            case Attack.IMPACT_TYPE.RADIUS:
-                foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableImpact, attack.rangeImpact, false, false))
-                {
-                    if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
-                    {
-                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                        if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                        }
+                        else
+                        {
+                            if (tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIM)
+                                tile.SelectCell(HexCell.SELECTION_TYPE.DISABLEDAIM_IMPACT);
+                            else tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
+                            
+                        }
                     }
                     else
                     {
-                        tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
+                       if(tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIM)
+                       {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_AIMIMPACT);
+                       }
+                        else tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_IMPACT);
+                    }               
+
+                    if(tile == originTile)
+                    {
+                        tile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
+                    }
+                }
+                break;
+            case Attack.IMPACT_TYPE.LINE:
+                foreach (HexCell tile in TilesManager.instance.GetImpactLine(playerTile.coordinates, originTile.coordinates, attack.rangeImpact, true, true))
+                {
+                    bool isInRange = false;
+                    for (int i = 0; i < TilesInRange[0].Count; i++)
+                    {
+                        if (tile == TilesInRange[0][i])
+                        {
+                            isInRange = true;
+                        }
+                    }
+
+                    if (isInRange)
+                    {
+                        if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                        }
+                        else
+                        {
+                            if (tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIM)
+                                tile.SelectCell(HexCell.SELECTION_TYPE.DISABLEDAIM_IMPACT);
+                            else tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
+
+                        }
+                    }
+                    else
+                    {
+                        if (tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIM)
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_AIMIMPACT);
+                        }
+                        else tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_IMPACT);
                     }
 
                     if (tile == originTile)
                     {
-                        tile.ModifySelection(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
+                        tile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
+                    }
+                }
+                    break;
+            case Attack.IMPACT_TYPE.ARC:
+                foreach(HexCell tile in TilesManager.instance.GetImpactArc(playerTile.coordinates, originTile.coordinates, true, true))
+                {
+                    if (tile.tileType != HexCell.TILE_TYPE.WALL)
+                    {
+                        if (tile == originTile)
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
+                        } else if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                        }
+                            else tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
+                    }
+                    else tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_IMPACT);
+                }
+                break;
+            case Attack.IMPACT_TYPE.RADIUS:
+                // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
+                foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableImpact, attack.rangeImpact, true, true))
+                {
+                    bool isInRange = false;
+                    for (int i = 0; i < TilesInRange[0].Count; i++)
+                    {
+                        if (tile == TilesInRange[0][i])
+                        {
+                            isInRange = true;
+                        }
+                    }
+
+                    if (isInRange)
+                    {
+                        if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                        }
+                        else
+                        {
+                            if (tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIM)
+                                tile.SelectCell(HexCell.SELECTION_TYPE.DISABLEDAIM_IMPACT);
+                            else tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
+
+                        }
+                    }
+                    else
+                    {
+                        if (tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIM)
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_AIMIMPACT);
+                        }
+                        else tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_IMPACT);
+                    }
+
+                    if (tile == originTile)
+                    {
+                        tile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
                     }
                 }
                 break;
             case Attack.IMPACT_TYPE.SPAWNOBJECT:
                 originTile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                break;
+            case Attack.IMPACT_TYPE.TELEPORT:
+                originTile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
                 break;
         }
 
@@ -117,6 +287,12 @@ public class Hero_AttacksManager : MonoBehaviour
             case Attack.IMPACT_TYPE.SPAWNOBJECT:
                 GameObject newObject = Instantiate(attack.spawnObject, originTile.transform.position, attack.spawnObject.transform.rotation);
                 originTile.item = newObject;
+                break;
+            case Attack.IMPACT_TYPE.TELEPORT:
+                originTile.hero = playerTile.hero;
+                playerTile.hero = null;
+                originTile.hero.myTile = originTile;
+                originTile.hero.transform.position = originTile.transform.position;     
                 break;
             default:
                 foreach(HexCell tile in TilesManager.instance._selectedTiles)
@@ -138,6 +314,12 @@ public class Hero_AttacksManager : MonoBehaviour
         UI_Caller.ActivateAttack();
 
         TilesManager.instance.ClearTiles(false);
+
+    }
+
+    
+    private void RangeVision()
+    {
 
     }
 

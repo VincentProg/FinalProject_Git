@@ -15,9 +15,9 @@ public class HexCell : MonoBehaviour {
 	public GameObject item;
 
 	[HideInInspector]
-	public bool isSelected;
-	public enum SELECTION_TYPE {NONE, MOVEMENT, AIM, IMPACT, AIM_IMPACT, ORIGIN_AIM, ORIGIN_IMPACT}
-	[HideInInspector]
+	private bool isSelected = false;
+	public enum SELECTION_TYPE {NONE, MOVEMENT, AIM, IMPACT, AIM_IMPACT, ORIGIN_AIM, ORIGIN_IMPACT, DISABLED_AIM, DISABLED_IMPACT, DISABLED_AIMIMPACT, DISABLEDAIM_IMPACT}
+	//[HideInInspector]
 	public SELECTION_TYPE selectionType = SELECTION_TYPE.NONE;
 
 	private SpriteRenderer sprite;
@@ -34,14 +34,18 @@ public class HexCell : MonoBehaviour {
 		TilesManager.instance.mapTiles.Add(coordinates, this);
 		sprite = GetComponent<SpriteRenderer>();
 
-		if (tileType.Equals(TILE_TYPE.WALL))
-			GetComponent<SpriteRenderer>().color = Color.red;
+		UpdateTileDatas(tileType);
 	}
 
 
 	public void SelectCell( SELECTION_TYPE type )
     {
-		isSelected = true;
+		if (!isSelected)
+		{
+			isSelected = true;
+			TilesManager.instance._selectedTiles.Add(this);
+		}
+		
 		selectionType = type;
 
 		switch (type)
@@ -64,39 +68,26 @@ public class HexCell : MonoBehaviour {
 			case SELECTION_TYPE.ORIGIN_IMPACT:
 				sprite.color = colors[6];
 				break;
+			case SELECTION_TYPE.DISABLED_AIM:
+				sprite.color = colors[7];
+				break;
+			case SELECTION_TYPE.DISABLED_IMPACT:
+				sprite.color = colors[8];
+				break;
+			case SELECTION_TYPE.DISABLED_AIMIMPACT:
+				sprite.color = colors[8];
+				break;
+			case SELECTION_TYPE.DISABLEDAIM_IMPACT:
+				sprite.color = colors[3];
+				break;
+
 
 		}
 
-		TilesManager.instance._selectedTiles.Add(this);
+		
 
     }
 
-	public void ModifySelection( SELECTION_TYPE type)
-    {
-		selectionType = type;
-		switch (type)
-		{
-			case SELECTION_TYPE.MOVEMENT:
-				sprite.color = colors[1];
-				break;
-			case SELECTION_TYPE.AIM:
-				sprite.color = colors[2];
-				break;
-			case SELECTION_TYPE.IMPACT:
-				sprite.color = colors[3];
-				break;
-			case SELECTION_TYPE.AIM_IMPACT:
-				sprite.color = colors[4];
-				break;
-			case SELECTION_TYPE.ORIGIN_AIM:
-				sprite.color = colors[5];
-				break;
-			case SELECTION_TYPE.ORIGIN_IMPACT:
-				sprite.color = colors[6];
-				break;
-
-		}
-	}
 
 	public void UnselectCell()
     {
@@ -117,11 +108,21 @@ public class HexCell : MonoBehaviour {
 
 			case TILE_TYPE.WALL:
 				myTileSprite.sprite = tileSprites[2];
+				myTileSprite.color = Color.gray;
 				break;
 
 			case TILE_TYPE.HOLE:
 				myTileSprite.sprite = tileSprites[3];
+				myTileSprite.color = Color.black;
 				break;
         }
+    }
+
+	public bool isPossessed()
+    {
+		if(hero != null || enemy != null || item != null)
+        {
+			return true;
+        } return false;
     }
 }

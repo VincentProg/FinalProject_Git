@@ -29,7 +29,7 @@ public class TilesManager : MonoBehaviour
 
     public void ClearTiles(bool keepRangeSelected)
     {
-
+        
         if (keepRangeSelected)
         {
             List<HexCell> cellsToRemove = new List<HexCell>();
@@ -37,8 +37,12 @@ public class TilesManager : MonoBehaviour
             {
                 if (tile.selectionType == HexCell.SELECTION_TYPE.AIM_IMPACT || tile.selectionType == HexCell.SELECTION_TYPE.ORIGIN_IMPACT)
                 {
-                    tile.ModifySelection(HexCell.SELECTION_TYPE.AIM);
-                } else if(tile.selectionType != HexCell.SELECTION_TYPE.AIM)
+                    tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                } else if(tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIM || tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIMIMPACT || tile.selectionType == HexCell.SELECTION_TYPE.DISABLEDAIM_IMPACT)
+                {
+                    tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_AIM);
+                }
+                else if(tile.selectionType != HexCell.SELECTION_TYPE.AIM)
                 {
                     tile.UnselectCell();
                     cellsToRemove.Add(tile);
@@ -97,7 +101,6 @@ public class TilesManager : MonoBehaviour
                         //temp.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
                         //_coloredTiles.Add(temp.gameObject);
                         results.Add(temp);
-                        temp.isSelected = true;
                     }
                 }
                 center = testCoords;
@@ -465,9 +468,8 @@ public class TilesManager : MonoBehaviour
         return path;
     }
 
-    public List<List<HexCell>> GetFOV(HexCell centerCell, int radius)
+    public List<List<HexCell>> GetFOV(HexCell centerCell, int radius, bool isBlockedByObjects)
     {
-        Debug.Log(centerCell.coordinates);
         List<HexCell> range = this.GetRange(centerCell.coordinates, radius, true, true);
 
         List<HexCell> inReach = new List<HexCell>();
@@ -480,20 +482,33 @@ public class TilesManager : MonoBehaviour
                 Vector2 direction = new Vector2(range[i].gameObject.transform.position.x - centerCell.gameObject.transform.position.x, range[i].gameObject.transform.position.y - centerCell.gameObject.transform.position.y);
                 float distance = direction.magnitude;
 
-                RaycastHit2D[] hits = Physics2D.CircleCastAll(centerCell.gameObject.transform.position, .15f, new Vector2(range[i].gameObject.transform.position.x - centerCell.gameObject.transform.position.x, range[i].gameObject.transform.position.y - centerCell.gameObject.transform.position.y), distance);
+                RaycastHit2D[] hits = Physics2D.CircleCastAll(centerCell.gameObject.transform.position, .15f, direction, distance);
 
                 if (hits.Length > 0)
                 {
                     bool blocked = false;
                     foreach (var item in hits)
                     {
-                        if (item.collider.gameObject.GetComponent<HexCell>())
+                        
+                        if (item.transform.gameObject.GetComponent<HexCell>())
                         {
-                            if (item.collider.gameObject.GetComponent<HexCell>().tileType.Equals(HexCell.TILE_TYPE.WALL))
+                            HexCell tileScript = item.transform.gameObject.GetComponent<HexCell>();
+                            if (isBlockedByObjects)
                             {
-                                notAccessible.Add(range[i]);
-                                blocked = true;
-                                break;
+                                if ((tileScript != centerCell && tileScript != range[i] && tileScript.isPossessed()) || tileScript.tileType.Equals(HexCell.TILE_TYPE.WALL))
+                                {
+                                    notAccessible.Add(range[i]);
+                                    blocked = true;
+                                    break;
+                                }
+                            } else
+                            {
+                                if (tileScript.tileType.Equals(HexCell.TILE_TYPE.WALL))
+                                {
+                                    notAccessible.Add(range[i]);
+                                    blocked = true;
+                                    break;
+                                }
                             }
                         }
                     }

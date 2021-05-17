@@ -16,5 +16,5 @@ MonoBehaviour:
   heroName: 
   health: 3
   PM: 5
-  PA: 7
+  PA: 20
   isDofusPM: 1

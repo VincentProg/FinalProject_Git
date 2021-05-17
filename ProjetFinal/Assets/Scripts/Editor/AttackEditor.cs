@@ -55,6 +55,10 @@ public class AttackEditor : Editor
             GUILayout.Label("\n RANGE DATAS");
             attack.rangeAttack = EditorGUILayout.IntField("Range Attack", attack.rangeAttack);
             attack.radiusUnattackableAttack = EditorGUILayout.IntField("Range Unattackable", attack.radiusUnattackableAttack);
+            attack.visionType = (Attack.VISION_TYPE)EditorGUILayout.EnumPopup("Vision Type", attack.visionType);
+            attack.canSelectHole = EditorGUILayout.Toggle("Can Select Hole", attack.canSelectHole);
+
+
 
             GUILayout.Label("\n IMPACT DATAS");
             switch (attack.impactType)
@@ -67,9 +71,12 @@ public class AttackEditor : Editor
                     attack.rangeImpact = EditorGUILayout.IntField("Range Impact", attack.rangeImpact);
                     attack.radiusUnattackableImpact = EditorGUILayout.IntField("Range UnImpactable", attack.radiusUnattackableImpact);
                     break;
-                case Attack.IMPACT_TYPE.ARC:
+                case Attack.IMPACT_TYPE.LINE:
                     attack.damages = EditorGUILayout.IntField("Amount Damages", attack.damages);
                     attack.rangeImpact = EditorGUILayout.IntField("Range Impact", attack.rangeImpact);
+                    break;
+                case Attack.IMPACT_TYPE.ARC:
+                    attack.damages = EditorGUILayout.IntField("Amount Damages", attack.damages);
                     break;
                 case Attack.IMPACT_TYPE.RADIUS:
                     attack.damages = EditorGUILayout.IntField("Amount Damages", attack.damages);
@@ -86,6 +93,8 @@ public class AttackEditor : Editor
             GUILayout.Label("\n RANGE DATAS");
             attack.rangeAttack = EditorGUILayout.IntField("Range Attack", attack.rangeAttack);
             attack.radiusUnattackableAttack = EditorGUILayout.IntField("Range Unattackable", attack.radiusUnattackableAttack);
+            attack.visionType = (Attack.VISION_TYPE)EditorGUILayout.EnumPopup("Vision Type", attack.visionType);
+            attack.canSelectHole = EditorGUILayout.Toggle("Can Select Hole", attack.canSelectHole);
 
             GUILayout.Label("\n IMPACT DATAS");
             switch (attack.impactType)

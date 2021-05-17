@@ -54,7 +54,7 @@ public class PlayerTest : MonoBehaviour
                             }
                         }
 
-                        List<List<HexCell>> result = TilesManager.instance.GetFOV(myTile, 50);
+                        List<List<HexCell>> result = TilesManager.instance.GetFOV(myTile, 50, true);
 
                         foreach (var item in result[0])
                         {

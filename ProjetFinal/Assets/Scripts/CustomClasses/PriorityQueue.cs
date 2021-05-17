@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 public class PriorityQueue<TElement, TPriority>
 {
@@ -16,7 +14,10 @@ public class PriorityQueue<TElement, TPriority>
     private int _count;
     private int _version;
 
+
+#nullable enable
     private UnorderedItemsCollection? _unorderedItemsCollection;
+#nullable disable
 
     #region Constructors
     public PriorityQueue() : this(0, null)
@@ -28,11 +29,12 @@ public class PriorityQueue<TElement, TPriority>
     {
 
     }
-
+#nullable enable
     public PriorityQueue(IComparer<TPriority>? comparer) : this(0, comparer)
     {
 
     }
+
 
     public PriorityQueue(int initialCapacity, IComparer<TPriority>? comparer)
     {
@@ -52,12 +54,14 @@ public class PriorityQueue<TElement, TPriority>
 
         _priorityComparer = comparer ?? Comparer<TPriority>.Default;
     }
+#nullable disable
 
     public PriorityQueue(IEnumerable<(TElement Element, TPriority Priority)> values) : this(values, null)
     {
 
     }
 
+#nullable enable
     public PriorityQueue(IEnumerable<(TElement Element, TPriority Priority)> values, IComparer<TPriority>? comparer)
     {
         _priorityComparer = comparer ?? Comparer<TPriority>.Default;
@@ -67,6 +71,8 @@ public class PriorityQueue<TElement, TPriority>
         AppendRaw(values);
         Heapify();
     }
+#nullable disable
+    
     #endregion
 
     public int Count => _count;

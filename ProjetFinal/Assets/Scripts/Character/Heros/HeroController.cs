@@ -135,7 +135,7 @@ public class HeroController : MonoBehaviour
     public void StartTurn()
     {
         isMyTurn = true;
-        print("StartTurn");
+        //print("StartTurn");
         myCanvas.SetActive(true);
         SetUI_PA_PM();
         foreach (Transform UI_AttackBtn in myCanvas.transform.GetChild(0).transform)
@@ -167,7 +167,7 @@ public class HeroController : MonoBehaviour
 
     public void EndTurn()
     {
-        print("endturn");
+        //print("endturn");
         isMyTurn = false;
         myCanvas.SetActive(false);
         PM = stats.PM;

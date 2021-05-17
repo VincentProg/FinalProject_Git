@@ -12,5 +12,4 @@ public class StatsHero : ScriptableObject
     public int PM;
     public int PA;
     public bool isDofusPM;
-
 }

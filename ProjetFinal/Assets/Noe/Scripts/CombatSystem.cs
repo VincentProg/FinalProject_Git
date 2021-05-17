@@ -10,7 +10,8 @@ public class CombatSystem : MonoBehaviour
     {
         Start,
         PlayerTurn,
-        EnnemiesTurn,
+        Spawner,
+        EnemiesTurn,
         Win,
         Lose
     }
@@ -19,7 +20,8 @@ public class CombatSystem : MonoBehaviour
 
     public List<HeroController> heros;
     [HideInInspector]
-    public List<EnemyController> ennemies;
+    public List<EnemyController> enemies;
+    public List<Spawn> spawners;
     int index = 0;
     bool heroesTurn;
 
@@ -48,15 +50,13 @@ public class CombatSystem : MonoBehaviour
     public void NextTurn()
     {
         index++;
-        print("1");
         if (state == CombatState.PlayerTurn)
         {
-            print("2");
             if (index >= heros.Count) // SI ON ATTEINT LA FIN DE LA LISTE DES HEROS
             {
-                state = CombatState.EnnemiesTurn; // --> tour des ennemis
+
+                state = CombatState.Spawner; // --> tour des spawner
                 index = 0;// reset de l'index
-                print("3");
             }
             else
             {
@@ -68,10 +68,23 @@ public class CombatSystem : MonoBehaviour
             }
         }
 
-        if (state == CombatState.EnnemiesTurn) // SI ON ATTEINT LA FIN DE LA LISTE DES ENNEMIS
+        if (state == CombatState.Spawner)
         {
-            print("test");
-            if (index >= ennemies.Count - 1)
+            if (index >= spawners.Count) // SI ON ATTEINT LA FIN DE LA LISTE DES SPAWNERS
+            {
+                state = CombatState.EnemiesTurn; // --> tour des ennemis
+                index = 0;// reset de l'index
+            }
+            else
+            {
+                spawners[index].SpawnEnemies();
+            }
+        }
+
+        if (state == CombatState.EnemiesTurn) // SI ON ATTEINT LA FIN DE LA LISTE DES ENNEMIS
+        {
+            //print("test");
+            if (index >= enemies.Count - 1)
             {
                 state = CombatState.PlayerTurn; // --> tour des players
                 index = 0; // reset de l'index 
@@ -81,16 +94,16 @@ public class CombatSystem : MonoBehaviour
             }
             else
             {
-                //ennemies[index].StartTurn();
+                NextTurn();
             }
         }
-
+        print(state);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        print(nbrRound);
     }
 
     public void Win()

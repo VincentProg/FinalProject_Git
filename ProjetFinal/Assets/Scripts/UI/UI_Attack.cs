@@ -6,10 +6,10 @@ using TMPro;
 
 public class UI_Attack : MonoBehaviour
 {
+    public int index;
     [HideInInspector]
     public Attack attack;
 
-    [HideInInspector]
     public HeroController hero;
 
 
@@ -29,7 +29,8 @@ public class UI_Attack : MonoBehaviour
 
 
 
-    private void Start()
+
+    public void UpdateUI()
     {
         GetComponent<Image>().sprite = attack.sprite;
         textCD = transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -46,10 +47,10 @@ public class UI_Attack : MonoBehaviour
             isNbrTotal = true;
             Txt_NbrUse = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
             Txt_NbrUse.text = nbrUseTotal.ToString();
-            
-        } else transform.GetChild(2).gameObject.SetActive(false);
-    }
 
+        }
+        else transform.GetChild(2).gameObject.SetActive(false);
+    }
 
     public void OnClick()
     {
@@ -102,7 +103,7 @@ public class UI_Attack : MonoBehaviour
 
     private void TryShowAttack()
     {
-        if (hero.PA > attack.costPA)
+        if (hero.PA >= attack.costPA)
         {    
                 Hero_AttacksManager.instance.ShowAttackRange(this, attack);
         }
@@ -112,6 +113,8 @@ public class UI_Attack : MonoBehaviour
     public void ActivateAttack()
     {
         cooldown = attack.cooldown;
+        hero.PA -= attack.costPA;
+        hero.SetUI_PA_PM();
         if(cooldown > 0)
         {
             isDisabled = true;
@@ -139,6 +142,7 @@ public class UI_Attack : MonoBehaviour
             if(cooldown == 0)
             {
                 isDisabled = false;
+                cooldownGO.SetActive(false);
             }
             else textCD.text = cooldown.ToString();     
         }

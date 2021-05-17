@@ -22,7 +22,7 @@ public class PFSlider : MonoBehaviour
     public void UpdateSlide(float value)
     {
         Debug.Log("ok");
-        TilesManager.instance.ClearTiles();
-        TilesManager.instance.GetPath(player.myTile.coordinates, TilesManager.instance.target, (int) value);
+        TilesManager.instance.ClearTiles(false);
+        TilesManager.instance.GetPath(player.myTile.coordinates, TilesManager.instance.target, false, false, (int) value);
     }
 }

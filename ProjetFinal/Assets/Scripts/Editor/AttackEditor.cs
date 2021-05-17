@@ -35,7 +35,7 @@ public class AttackEditor : Editor
                 case Attack.IMPACT_TYPE.POINT:
                     attack.damages = EditorGUILayout.IntField("Amount Damages", attack.damages);
                     break;
-                case Attack.IMPACT_TYPE.LINE:
+                case Attack.IMPACT_TYPE.LINES:
                     GUILayout.Label("RANGE.OWNCELL et IMPACT.LINE ne sont pas compatibles");
                     break;
                 case Attack.IMPACT_TYPE.ARC:
@@ -62,7 +62,7 @@ public class AttackEditor : Editor
                 case Attack.IMPACT_TYPE.POINT:
                     attack.damages = EditorGUILayout.IntField("Amount Damages", attack.damages);
                     break;
-                case Attack.IMPACT_TYPE.LINE:
+                case Attack.IMPACT_TYPE.LINES:
                     attack.damages = EditorGUILayout.IntField("Amount Damages", attack.damages);
                     attack.rangeImpact = EditorGUILayout.IntField("Range Impact", attack.rangeImpact);
                     attack.radiusUnattackableImpact = EditorGUILayout.IntField("Range UnImpactable", attack.radiusUnattackableImpact);
@@ -93,7 +93,7 @@ public class AttackEditor : Editor
                 case Attack.IMPACT_TYPE.POINT:
                     attack.damages = EditorGUILayout.IntField("Amount Damages", attack.damages);
                     break;
-                case Attack.IMPACT_TYPE.LINE:
+                case Attack.IMPACT_TYPE.LINES:
                     GUILayout.Label("RANGE.RADIUS et IMPACT.LINE ne sont pas compatibles");
                     break;
                 case Attack.IMPACT_TYPE.ARC:
@@ -109,5 +109,15 @@ public class AttackEditor : Editor
                     break;
             }
         }
+
+
+        GUILayout.Label("\n \n \n");
+
+        if(GUILayout.Button("Save Changes (Do Ctrl+S after click)"))
+        {
+            EditorUtility.SetDirty(target);
+        }
     }
+
+    
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HeroController : MonoBehaviour
 {
@@ -14,20 +15,27 @@ public class HeroController : MonoBehaviour
 
     // ATTACKS
     public List<Attack> attacks = new List<Attack>();
-    public GameObject UI_Attacks;
-    public GameObject UI_AttackBTN;
+    public GameObject myCanvas;
+    TextMeshProUGUI PAtxt, PMtxt;
+    
 
     // VARIABLES GRID
+    [HideInInspector]
     public HexCell myTile;
 
-    private enum ACTION { NONE ,MOVE, ATTACK };
-    private ACTION currentAction;
+
+    bool isMyTurn = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
         SetMyStats();
+        SetUIAttacks();
+
+            PAtxt = myCanvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+            PMtxt = myCanvas.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
+
         #region GET MY START TILE()
         // AJOUT TUILE DEPART
         RaycastHit2D hitStart = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity);
@@ -41,62 +49,77 @@ public class HeroController : MonoBehaviour
         }
         #endregion
 
-        StartTurn(); // ------------- TO DELETE BECAUSE FIGHTMANAGER
-
-        foreach(Attack attack in attacks)
-        {
-            GameObject newUIAttack = Instantiate(UI_AttackBTN, UI_Attacks.transform);
-            newUIAttack.GetComponent<UI_Attack>().attack = attack;
-            newUIAttack.GetComponent<UI_Attack>().hero = this;
-        }
-
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (PA > 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        if (isMyTurn)
         {
-            Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
-            Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
-            RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
-            if (hitInformation)
+            if (PA > 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
             {
-                if (hitInformation.transform.GetComponent<HexCell>() != null)
+                Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+
+                Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
+                RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
+                if (hitInformation)
                 {
-                    HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
-
-                    // CAS 1 : MA TUILE
-                    if (tileTouched == myTile)
+                    if (hitInformation.transform.GetComponent<HexCell>() != null)
                     {
-                        ShowMovements();
-                    }
-
-                    // CAS 2 : TUILE SELECTIONNEE
-                    else if (tileTouched.isSelected)
-                    {
-                        switch (currentAction)
+                        HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
+                        
+                        if (tileTouched.isSelected)
                         {
-                            case ACTION.MOVE:
-                                Move(tileTouched);
-                                break;
+                            
+                            switch (tileTouched.selectionType)
+                            {
+                                case HexCell.SELECTION_TYPE.MOVEMENT:
+                                    Move(tileTouched);
+                                    break;
 
-                            case ACTION.ATTACK:
+                                case HexCell.SELECTION_TYPE.AIM:
+                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                    break;
+                                case HexCell.SELECTION_TYPE.AIM_IMPACT:
+                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                    break;
+                                case HexCell.SELECTION_TYPE.ORIGIN_AIM:
+                                    Hero_AttacksManager.instance.LaunchAttack();
+                                    break;
+                                case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
+                                    Hero_AttacksManager.instance.LaunchAttack();
+                                    break;
+                                default:
+                                    ShowMovements();
+                                    break;
+                            }
 
-                                break;
                         }
-
-                    }
-                    else
-                    {
-                        // CAS 3 : TUILES NON SELECTIONNEE
-
-                        ShowMovements();
+                        else
+                        {
+                            ShowMovements();
+                        }
                     }
                 }
             }
+        }
+    }
+
+    private void SetUIAttacks()
+    {
+        for (int i = 0; i < attacks.Count; i++)
+        {
+            if(myCanvas.transform.GetChild(0).transform.childCount - 1 < i)
+            {
+                print("NOT ENOUGH SLOTS");
+                return;
+            }
+            UI_Attack UIAttack = myCanvas.transform.GetChild(0).transform.GetChild(i).GetComponent<UI_Attack>();
+            UIAttack.attack = attacks[i];
+            UIAttack.UpdateUI();
+
         }
     }
 
@@ -111,50 +134,73 @@ public class HeroController : MonoBehaviour
 
     public void StartTurn()
     {
-        PM = stats.PM;
-        PA = stats.PA;
+        isMyTurn = true;
+        print("StartTurn");
+        myCanvas.SetActive(true);
+        SetUI_PA_PM();
+        foreach (Transform UI_AttackBtn in myCanvas.transform.GetChild(0).transform)
+        {
+            UI_AttackBtn.GetComponent<UI_Attack>().StartTurn();
+        }
         ShowMovements();
 
     }
 
     public void ShowMovements()
     {
-        TilesManager.instance.ClearTiles();
-        currentAction = ACTION.MOVE;
+        TilesManager.instance.ClearTiles(false);
+
+        int rangePM;
+        if (stats.isDofusPM) rangePM = PM;
+        else rangePM = 1;
 
         if (PM >= 1)
         {
-            TilesManager.instance.GetRange(myTile.coordinates, PM);
+            foreach( HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, rangePM, false, false))
+            {
+                tile.SelectCell(HexCell.SELECTION_TYPE.MOVEMENT);
+            }
+            
         }
 
     }
 
     public void EndTurn()
     {
-        currentAction = ACTION.NONE;
-        // BatlleManager.instance.NextTurn();
+        print("endturn");
+        isMyTurn = false;
+        myCanvas.SetActive(false);
+        PM = stats.PM;
+        PA = stats.PA;
+        CombatSystem.instance.NextTurn();
     }
 
     private void Move(HexCell tile)
     {
+        PM -= TilesManager.instance.HeuristicDistance(myTile.coordinates, tile.coordinates);
+        PA--;
+        SetUI_PA_PM();
+        
         myTile.hero = null;
         myTile = tile;
         myTile.hero = this;
 
         transform.position = myTile.transform.position;
-        PM--; // ------------------------------------------------------ � modifier avec la distance s�parant
-        PA--;
+        
 
         if (PA > 0)
         ShowMovements();
         else
         {
-            TilesManager.instance.ClearTiles();
+            TilesManager.instance.ClearTiles(false);
         }
-
-
     }
 
+    public void SetUI_PA_PM()
+    {
+        PMtxt.text = PM.ToString();
+        PAtxt.text = PA.ToString();
+    }
 
     public void TakeDamages(int damages)
     {

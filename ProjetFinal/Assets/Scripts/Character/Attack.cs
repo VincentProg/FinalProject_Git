@@ -21,7 +21,7 @@ public class Attack : ScriptableObject
     public int radiusUnattackableAttack;
 
 
-    public enum IMPACT_TYPE { POINT, LINE, ARC, RADIUS, SPAWNOBJECT }
+    public enum IMPACT_TYPE { POINT, LINES, LINE, ARC, RADIUS, SPAWNOBJECT }
     public IMPACT_TYPE impactType;
     public int damages;
     public int rangeImpact;

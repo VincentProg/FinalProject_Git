@@ -10,13 +10,10 @@ public class TilesManager : MonoBehaviour
     [HideInInspector]
     public int numberOfTiles = 0;
 
-    public Color baseColor;
-    public Color lightingColor;
-
     // List of chained positions around 0,0 (starting with bottom left and going clockwise)
     public List<HexCoordinates> tilesArround = new List<HexCoordinates>() { new HexCoordinates(0, -1), new HexCoordinates(-1, 0), new HexCoordinates(-1, 1), new HexCoordinates(0, 1), new HexCoordinates(1, 0), new HexCoordinates(1, -1) };
 
-    private List<GameObject> _coloredTiles = new List<GameObject>();
+    public List<HexCell> _selectedTiles = new List<HexCell>();
 
     public HexCoordinates target;
 
@@ -30,20 +27,47 @@ public class TilesManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void ClearTiles()
+    public void ClearTiles(bool keepRangeSelected)
     {
-        foreach(GameObject tile in _coloredTiles)
+
+        if (keepRangeSelected)
         {
-            tile.GetComponent<SpriteRenderer>().color = Color.white;
-            tile.GetComponent<HexCell>().isSelected = false;
+            List<HexCell> cellsToRemove = new List<HexCell>();
+            foreach (HexCell tile in _selectedTiles)
+            {
+                if (tile.selectionType == HexCell.SELECTION_TYPE.AIM_IMPACT || tile.selectionType == HexCell.SELECTION_TYPE.ORIGIN_IMPACT)
+                {
+                    tile.ModifySelection(HexCell.SELECTION_TYPE.AIM);
+                } else if(tile.selectionType != HexCell.SELECTION_TYPE.AIM)
+                {
+                    tile.UnselectCell();
+                    cellsToRemove.Add(tile);
+                }
+                
+            }
+            for(int i = 0; i < cellsToRemove.Count; i++)
+            {
+                _selectedTiles.Remove(cellsToRemove[i]);
+            }
         }
-        _coloredTiles.Clear();
+        else
+        {
+            foreach (HexCell tile in _selectedTiles)
+            {
+                tile.UnselectCell();
+            }
+            _selectedTiles.Clear();
+        }
+                
+
+        
+        
     }
 
 
-    public List<GameObject> GetRadius(HexCoordinates center, int radius = 1)
+    public List<HexCell> GetRadius(HexCoordinates center, int radius, bool passHole, bool passWall)
     {
-        List<GameObject> results = new List<GameObject>();
+        List<HexCell> results = new List<HexCell>();
         HexCell temp;
 
         center = new HexCoordinates(center.X + radius, center.Z);
@@ -55,12 +79,26 @@ public class TilesManager : MonoBehaviour
                 HexCoordinates testCoords = GetNeighboor(center, i);
 
                 mapTiles.TryGetValue(testCoords, out temp);
-                if (temp && temp.canMoveHere)
+
+                if (temp)
                 {
-                    //temp.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
-                    //_coloredTiles.Add(temp.gameObject);
-                    results.Add(temp.gameObject);
-                    temp.isSelected = true;
+                    bool canPass = true;
+
+                    if (!passHole)
+                        if (temp.tileType.Equals(HexCell.TILE_TYPE.HOLE))
+                            canPass = false;
+
+                    if (!passWall)
+                        if (temp.tileType.Equals(HexCell.TILE_TYPE.WALL))
+                            canPass = false;
+
+                    if (canPass)
+                    {
+                        //temp.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+                        //_coloredTiles.Add(temp.gameObject);
+                        results.Add(temp);
+                        temp.isSelected = true;
+                    }
                 }
                 center = testCoords;
             }
@@ -69,14 +107,15 @@ public class TilesManager : MonoBehaviour
     }
 
 
-    public List<GameObject> GetRange(HexCoordinates center, int radius = 1)
+    public List<HexCell> GetRange(HexCoordinates center, int radius, bool passHole, bool passWall)
     {
-        List<GameObject> results = new List<GameObject>();
+        List<HexCell> results = new List<HexCell>();
         HexCell temp;
 
         // Add player tile to result
         mapTiles.TryGetValue(center, out temp);
-        results.Add(temp.gameObject);
+        results.Add(temp);
+
 
         for (int j = 1; j <= radius; j++)
         {
@@ -91,10 +130,20 @@ public class TilesManager : MonoBehaviour
                     HexCoordinates testCoords = GetNeighboor(tempCenter, i);
 
                     mapTiles.TryGetValue(testCoords, out temp);
-                    if (temp && temp.canMoveHere)
+                    if (temp)
                     {
-                        results.Add(temp.gameObject);
-                        temp.isSelected = true;
+                        bool canPass = true;
+
+                        if (!passHole)
+                            if (temp.tileType.Equals(HexCell.TILE_TYPE.HOLE))
+                                canPass = false;
+
+                        if (!passWall)
+                            if (temp.tileType.Equals(HexCell.TILE_TYPE.WALL))
+                                canPass = false;
+
+                        if (canPass)
+                            results.Add(temp);                        
                     }
                     tempCenter = testCoords;
                 }
@@ -104,15 +153,41 @@ public class TilesManager : MonoBehaviour
         
         return results;
     }
-    public List<List<GameObject>> GetMinMaxRange(HexCoordinates center, int minRadius, int maxRadius)
+    public List<HexCell> GetRangeInRadius(HexCoordinates center, int minRadius, int maxRadius, bool passHole, bool passWall)
     {
-        List<GameObject> minRange = GetRange(center, minRadius);
-        List<GameObject> maxRange = new List<GameObject>();
-        List<List<GameObject>> results = new List<List<GameObject>>();
+        List<HexCell> result = new List<HexCell>();
 
-        for (int i = minRadius + 1; i <= maxRadius; i++)
+        if (minRadius == 0)
         {
-            maxRange.AddRange(GetRadius(center, i));
+            HexCell centerTile;
+            mapTiles.TryGetValue(center, out centerTile);
+            result.Add(centerTile);
+        }
+
+        for (int i = minRadius; i <= maxRadius; i++)
+        {
+            result.AddRange(GetRadius(center, i, passHole, passWall));
+        }
+
+        return result;
+    }
+    public List<List<HexCell>> GetMinMaxRange(HexCoordinates center, int minRadius, int maxRadius, bool passHole, bool passWall)
+    {
+
+        List<HexCell> minRange = GetRange(center, minRadius, passHole, passWall);
+        List<HexCell> maxRange = new List<HexCell>();
+        List<List<HexCell>> results = new List<List<HexCell>>();
+
+        if (minRadius == 0)
+        {
+            HexCell centerTile;
+            mapTiles.TryGetValue(center, out centerTile);
+            maxRange.Add(centerTile);
+        }
+
+        for (int i = minRadius; i <= maxRadius; i++)
+        {
+            maxRange.AddRange(GetRadius(center, i, passHole, passWall));
         }
 
         results.Add(minRange);
@@ -120,14 +195,16 @@ public class TilesManager : MonoBehaviour
 
 
         // results[0] = range interdite
-        // results[1] = range acceptée
+        // results[1] = range acceptï¿½e
 
         return results;
     }
 
-    public List<GameObject> GetDiagonals(HexCoordinates center, int radius = 1)
+
+
+    public List<HexCell> GetDiagonals(HexCoordinates center, int radius, bool passHole, bool passWall)
     {
-        List<GameObject> results = new List<GameObject>();
+        List<HexCell> results = new List<HexCell>();
 
         for (int i = 0; i < 6; i++)
         {
@@ -141,12 +218,17 @@ public class TilesManager : MonoBehaviour
 
 
                 mapTiles.TryGetValue(testCoords, out temp);
-                if (temp && temp.canMoveHere)
+                if (temp)
                 {
-                    temp.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
-                    _coloredTiles.Add(temp.gameObject);
-                    results.Add(temp.gameObject);
-                    temp.isSelected = true;
+                    if (!passHole)
+                        if (temp.tileType.Equals(HexCell.TILE_TYPE.HOLE))
+                            break;
+
+                    if (!passWall)
+                        if (temp.tileType.Equals(HexCell.TILE_TYPE.WALL))
+                            break;
+
+                    results.Add(temp);
                 }
                 tempCenter = testCoords;
 
@@ -155,8 +237,110 @@ public class TilesManager : MonoBehaviour
         return results;
     }
 
+    public List<HexCell> GetImpactArc(HexCoordinates center, HexCoordinates target, bool passHole, bool passWall)
+    {
+        List<HexCell> results = new List<HexCell>();
+        int direction = GetDirection(center, target);
 
-    public List<HexCoordinates> GetPath(HexCoordinates center, HexCoordinates target, int treshold)
+        if (direction > -1)
+        {
+            int newDirection = direction;
+
+            HexCell temp;
+            mapTiles.TryGetValue(target, out temp);
+            if (temp.gameObject)
+                results.Add(temp);
+
+            newDirection = direction - 2;
+
+            if (newDirection < 0)
+                newDirection += 6;
+
+            mapTiles.TryGetValue(GetNeighboor(target, newDirection), out temp);
+            if (temp.gameObject)
+            {
+                bool canPass = true;
+
+                if (!passHole)
+                    if (temp.tileType.Equals(HexCell.TILE_TYPE.HOLE))
+                        canPass = false;
+
+                if (!passWall)
+                    if (temp.tileType.Equals(HexCell.TILE_TYPE.WALL))
+                        canPass = false;
+
+                if (canPass)
+                    results.Add(temp);
+            }
+
+
+            newDirection = direction + 2;
+
+
+            if (newDirection > 5)
+                newDirection -= 6;
+
+            mapTiles.TryGetValue(GetNeighboor(target, newDirection), out temp);
+
+            if (temp.gameObject)
+            {
+                bool canPass = true;
+
+                if (!passHole)
+                    if (temp.tileType.Equals(HexCell.TILE_TYPE.HOLE))
+                        canPass = false;
+
+                if (!passWall)
+                    if (temp.tileType.Equals(HexCell.TILE_TYPE.WALL))
+                        canPass = false;
+
+                if (canPass)
+                    results.Add(temp);
+            }
+
+        }
+        return results;
+    }
+
+
+    public List<HexCell> GetImpactLine(HexCoordinates center, HexCoordinates target, int radius, bool passHole, bool passWall)
+    {
+        List<HexCell> results = new List<HexCell>();
+        int direction = GetDirection(center, target);
+        
+        HexCoordinates lastTile = target;
+
+        if (direction > -1)
+        {
+            HexCell temp;
+
+            mapTiles.TryGetValue(target, out temp); 
+            if(temp)
+                results.Add(temp);
+
+            for (int i = 0; i < radius - 1; i++)
+            {
+                lastTile = GetNeighboor(lastTile, direction);
+                mapTiles.TryGetValue(lastTile, out temp);
+                if (temp)
+                {
+                    if (!passHole)
+                        if (temp.tileType.Equals(HexCell.TILE_TYPE.HOLE))
+                            break;
+
+                    if (!passWall)
+                        if (temp.tileType.Equals(HexCell.TILE_TYPE.WALL))
+                            break;
+
+                    results.Add(temp);
+                }
+            }
+
+        }
+        return results;
+    }
+
+    public List<HexCoordinates> GetPath(HexCoordinates center, HexCoordinates target, bool passHole, bool passWall, int treshold = 500)
     {
         this.target = target;
 
@@ -183,7 +367,7 @@ public class TilesManager : MonoBehaviour
 
 
             // Get all neighbors of current
-            foreach (GameObject item in GetRadius(current, 1))
+            foreach (HexCell item in GetRadius(current, 1, passHole, passWall))
             {
                 neighbors.Add(item.GetComponent<HexCell>().coordinates);
             }
@@ -201,7 +385,7 @@ public class TilesManager : MonoBehaviour
                     if (temp)
                     {
                         temp.gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
-                        _coloredTiles.Add(temp.gameObject);
+                        _selectedTiles.Add(temp);
                         cameFrom.Add(next, current);
                         Debug.Log("found");
                         frontier.Clear();
@@ -212,13 +396,23 @@ public class TilesManager : MonoBehaviour
 
                 if (temp)
                 {
-                    if (temp.canMoveHere)
+                    bool canPass = true;
+
+                    if (!passHole)
+                        if (temp.tileType.Equals(HexCell.TILE_TYPE.HOLE))
+                            canPass = false;
+
+                    if (!passWall)
+                        if (temp.tileType.Equals(HexCell.TILE_TYPE.WALL))
+                            canPass = false;
+
+                    if (canPass)
                     {
                         int newCost = costSoFar[current] + temp.movementCost;
                         if (!costSoFar.ContainsKey(next) || newCost < costSoFar[next])
                         {
                             temp.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
-                            _coloredTiles.Add(temp.gameObject);
+                            _selectedTiles.Add(temp);
 
                             //frontier.Enqueue(next, HeuristicDistance(target, next));
                             float priority = newCost + HeuristicDistance(target, next);
@@ -236,7 +430,7 @@ public class TilesManager : MonoBehaviour
                         else
                         {
                             temp.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
-                            _coloredTiles.Add(temp.gameObject);
+                            _selectedTiles.Add(temp);
                             
                         }
                     }
@@ -258,7 +452,7 @@ public class TilesManager : MonoBehaviour
             if (temp)
             {
                 temp.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-                _coloredTiles.Add(temp.gameObject);
+                _selectedTiles.Add(temp);
             }
 
             HexCoordinates tempCoord;
@@ -271,6 +465,50 @@ public class TilesManager : MonoBehaviour
         return path;
     }
 
+    public List<List<HexCell>> GetFOV(HexCell centerCell, int radius)
+    {
+        Debug.Log(centerCell.coordinates);
+        List<HexCell> range = this.GetRange(centerCell.coordinates, radius, true, true);
+
+        List<HexCell> inReach = new List<HexCell>();
+        List<HexCell> notAccessible = new List<HexCell>();
+
+        for (int i = 0; i < range.Count; i++)
+        {
+            if (!range[i].tileType.Equals(HexCell.TILE_TYPE.WALL))
+            {
+                Vector2 direction = new Vector2(range[i].gameObject.transform.position.x - centerCell.gameObject.transform.position.x, range[i].gameObject.transform.position.y - centerCell.gameObject.transform.position.y);
+                float distance = direction.magnitude;
+
+                RaycastHit2D[] hits = Physics2D.CircleCastAll(centerCell.gameObject.transform.position, .15f, new Vector2(range[i].gameObject.transform.position.x - centerCell.gameObject.transform.position.x, range[i].gameObject.transform.position.y - centerCell.gameObject.transform.position.y), distance);
+
+                if (hits.Length > 0)
+                {
+                    bool blocked = false;
+                    foreach (var item in hits)
+                    {
+                        if (item.collider.gameObject.GetComponent<HexCell>())
+                        {
+                            if (item.collider.gameObject.GetComponent<HexCell>().tileType.Equals(HexCell.TILE_TYPE.WALL))
+                            {
+                                notAccessible.Add(range[i]);
+                                blocked = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!blocked)
+                        inReach.Add(range[i]);
+                }
+            }
+        }
+
+        List<List<HexCell>> result = new List<List<HexCell>>();
+        result.Add(inReach);
+        result.Add(notAccessible);
+
+        return result;
+    }
 
     // HexCoordinates calculus methods
     private HexCoordinates AddCoords(HexCoordinates coords1, HexCoordinates coords2)
@@ -292,8 +530,46 @@ public class TilesManager : MonoBehaviour
         return new HexCoordinates(coords.X + tilesArround[direction].X, coords.Z + tilesArround[direction].Z);
     }
 
-    private float HeuristicDistance(HexCoordinates coords1, HexCoordinates coords2)
+    public int HeuristicDistance(HexCoordinates coords1, HexCoordinates coords2)
     {
-        return Mathf.Abs(coords1.X - coords2.X) + Mathf.Abs(coords1.Z - coords2.Z);
+        return Mathf.Max(Mathf.Abs(coords1.X - coords2.X), Mathf.Abs(coords1.Y - coords2.Y), Mathf.Abs(coords1.Z - coords2.Z));
+    }
+
+    public int GetDirection(HexCoordinates center, HexCoordinates target)
+    {
+        float X = target.X - center.X;
+        float Z = target.Z - center.Z;
+
+        int direction = -1;
+
+        Vector2 normalized = new Vector2(X, Z).normalized;
+
+        var tolerance = 0.01;
+        if (normalized.x == 0f && normalized.y == -1f)
+        {
+            direction = 0;
+        }
+        else if (normalized.x == -1f && normalized.y == 0f)
+        {
+            direction = 1;
+        }
+        else if (Mathf.Abs(normalized.x - (-.7f)) < tolerance && Mathf.Abs(normalized.y - .7f) < tolerance)
+        {
+            direction = 2;
+        }
+        else if (normalized.x == 0f && normalized.y == 1f)
+        {
+            direction = 3;
+        }
+        else if (normalized.x == 1f && normalized.y == 0f)
+        {
+            direction = 4;
+        }
+        else if (Mathf.Abs(normalized.x - .7f) < tolerance && Mathf.Abs(normalized.y - (-.7f)) < tolerance)
+        {
+            direction = 5;
+        }
+
+        return direction;
     }
 }

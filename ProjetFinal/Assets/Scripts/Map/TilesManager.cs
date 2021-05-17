@@ -390,7 +390,6 @@ public class TilesManager : MonoBehaviour
                         temp.gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
                         _selectedTiles.Add(temp);
                         cameFrom.Add(next, current);
-                        Debug.Log("found");
                         frontier.Clear();
                         break;
                     }
@@ -401,13 +400,21 @@ public class TilesManager : MonoBehaviour
                 {
                     bool canPass = true;
 
-                    if (!passHole)
-                        if (temp.tileType.Equals(HexCell.TILE_TYPE.HOLE))
-                            canPass = false;
+                    if (temp.isPossessed())
+                    {
+                        canPass = false;
+                    }
+                    else
+                    {
 
-                    if (!passWall)
-                        if (temp.tileType.Equals(HexCell.TILE_TYPE.WALL))
-                            canPass = false;
+                        if (!passHole)
+                            if (temp.tileType.Equals(HexCell.TILE_TYPE.HOLE))
+                                canPass = false;
+
+                            else if (!passWall)
+                                if (temp.tileType.Equals(HexCell.TILE_TYPE.WALL))
+                                    canPass = false;
+                    }
 
                     if (canPass)
                     {

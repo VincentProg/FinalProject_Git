@@ -19,10 +19,13 @@ MonoBehaviour:
   nbrUsePerTurn: 0
   nbrUseTotal: 5
   rangeType: 1
-  rangeAttack: 5
+  rangeAttack: 7
   radiusUnattackableAttack: 0
-  impactType: 1
+  canSelectHole: 0
+  visionType: 0
+  impactType: 4
   damages: 5
   rangeImpact: 3
   radiusUnattackableImpact: 0
+  goThrewWalls: 0
   spawnObject: {fileID: 0}

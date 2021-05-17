@@ -17,6 +17,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] List<HexCell> adjacentCells = new List<HexCell>();
     private HexCell myTile;
 
+
     void Start()
     {
         nbEntityLeft = nbOfEntityToSpawn;
@@ -40,9 +41,6 @@ public class Spawner : MonoBehaviour
         adjacentCells = TilesManager.instance.GetRadius(myTile.coordinates, 1, false, false);
     }
 
-    void Update()
-    {
-    }
 
     public void SpawnEnemies()
     {
@@ -59,9 +57,11 @@ public class Spawner : MonoBehaviour
                         if (!adjacentCells[i].isPossessed() && nbEntityLeft > 0)
                         {
                             GameObject enemy = Instantiate(enemyList[Random.Range(0, enemyList.Count)], adjacentCells[i].gameObject.transform.position, transform.rotation);
-                            CombatSystem.instance.enemies.Add(enemy.GetComponent<EnemyController>());
+                            EnemyController enemyScript = enemy.GetComponent<EnemyController>();
+                            CombatSystem.instance.enemies.Add(enemyScript);
+                            enemyScript.Initialize();
                             nbEntityLeft--;
-                            adjacentCells[i].item = enemy;
+                            adjacentCells[i].enemy = enemy.GetComponent<EnemyController>();
                             hasSpawned = true;
                         }
                     }
@@ -72,8 +72,8 @@ public class Spawner : MonoBehaviour
                 }
                 nbOfTurnBeforeSpawning = turnDelay;
             }
-            else
-                nbOfTurnBeforeSpawning--;
+            else nbOfTurnBeforeSpawning--;
+               
 
             CombatSystem.instance.NextTurn();
         }

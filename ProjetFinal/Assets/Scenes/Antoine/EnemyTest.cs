@@ -65,7 +65,6 @@ public class EnemyTest : MonoBehaviour
 
         if(Time.time > nextUpdate)
         {
-            Debug.Log("ok");
             TakeOver();
             nextUpdate = Time.time + cooldown;
 
@@ -79,6 +78,8 @@ public class EnemyTest : MonoBehaviour
 
         // If player already in line of sight 
         List<List<HexCell>> diagonals = TilesManager.instance.GetDiagonals(myTile.coordinates, range, true, false, TilesManager.instance.GetDirection(myTile.coordinates, player.myTile.coordinates));
+        List<List<HexCell>> fov = TilesManager.instance.GetFOV(myTile, TilesManager.instance.HeuristicDistance(myTile.coordinates, player.myTile.coordinates), true);
+
         bool inRange = false;
         foreach (var diagonal in diagonals)
         {
@@ -92,10 +93,14 @@ public class EnemyTest : MonoBehaviour
             }
         }
 
-        // Can attack
-        // If far enough
+        // If too close
+        if(TilesManager.instance.HeuristicDistance(myTile.coordinates, player.myTile.coordinates) <= stayAway && fov[0].Contains(player.myTile))
+        {
+            AIMoveAway();
+            Debug.Log("move away");
 
-        if (TilesManager.instance.HeuristicDistance(myTile.coordinates, player.myTile.coordinates) > stayAway)
+        }
+        else
         {
             if (inRange)
             {
@@ -103,13 +108,8 @@ public class EnemyTest : MonoBehaviour
             }
             else
             {
-                AIMoveClosestDiag();
+                AIMoveClosestDiag(fov[0]);
             }
-        }
-        // If too close
-        else
-        {
-            AIMoveAway();
         }
     }
 
@@ -120,57 +120,96 @@ public class EnemyTest : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
     }
 
-    private void AIMoveClosestDiag(bool keepDistance = false)
+    private void AIMoveClosestDiag(List<HexCell> fov)
     {
         // Try and get nearest diagonals
-        int result = TilesManager.instance.GetClosestDiagonal(myTile.coordinates, player.myTile.coordinates, keepDistance);
-        if (result > -1)
+        moveTo = TilesManager.instance.GetClosestDiagonal(myTile.coordinates, player.myTile.coordinates, stayAway);
+        if (moveTo)
         {
-            // If diagonals found, move to closest by one tile
+            if (fov.Contains(moveTo))
+            {
+                int direction = TilesManager.instance.GetDirection(myTile.coordinates, moveTo.coordinates);
+                HexCoordinates newCoords = TilesManager.instance.GetNeighboor(myTile.coordinates, direction);
+                TilesManager.instance.mapTiles.TryGetValue(newCoords, out moveTo);
+                if (moveTo)
+                    AIMoveToTarget();
+            } 
+            else
+            {
+                Debug.Log("move path " + moveTo.coordinates);
+
+                List<HexCoordinates> newCoords = TilesManager.instance.GetPath(myTile.coordinates, moveTo.coordinates, false, false);
+                TilesManager.instance.mapTiles.TryGetValue(newCoords[newCoords.Count - 1], out moveTo);
+                if (moveTo)
+                    AIMoveToTarget();
+            }
+
+/*            // If diagonals found, move to closest by one tile
             TilesManager.instance.mapTiles.TryGetValue(TilesManager.instance.GetNeighboor(myTile.coordinates, result), out moveTo);
 
-            if (TilesManager.instance.HeuristicDistance(moveTo.coordinates, player.myTile.coordinates) > stayAway)
+            // If can move to tile
+            if (!moveTo.tileType.Equals(HexCell.TILE_TYPE.WALL) && !moveTo.tileType.Equals(HexCell.TILE_TYPE.HOLE))
             {
-                // If can move to tile
-                if (!moveTo.tileType.Equals(HexCell.TILE_TYPE.WALL) && !moveTo.tileType.Equals(HexCell.TILE_TYPE.HOLE))
-                {
-                    AIMoveToTarget();
-                }
-                else
-                {
-                    // If tile not ok, try get path to target
-                    List<HexCoordinates> path = TilesManager.instance.GetPath(myTile.coordinates, player.myTile.coordinates, false, false);
+                Debug.Log("ok move");
 
-                    foreach (var item in path)
-                    {
-                        Debug.Log(item);
-                    }
-
-                    // If path found
-                    if (path.Count > 1)
-                    {
-                        TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out moveTo);
-
-                        if (moveTo)
-                        {
-                            AIMoveToTarget();
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogWarning("No path to target");
-                    }
-                }
+                AIMoveToTarget();
             }
             else
             {
-                AIMoveClosestDiag(true);
-            }
+                // If tile not ok, try get path to target
+                List<HexCoordinates> path = TilesManager.instance.GetPath(myTile.coordinates, player.myTile.coordinates, false, false);
+
+                foreach (var item in path)
+                {
+                    Debug.Log(item);
+                }
+
+                // If path found
+                if (path.Count > 1)
+                {
+                    TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out moveTo);
+
+                    if (moveTo)
+                    {
+                        Debug.Log("path move");
+
+                        AIMoveToTarget();
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("No path to target");
+                }
+            }*/
+            
 
         }
         else
         {
-            // If no diagonal found, try get path to player
+            List<HexCoordinates> newCoords = TilesManager.instance.GetPath(myTile.coordinates, player.myTile.coordinates, false, false);
+            if(newCoords.Count > 2)
+            {
+                TilesManager.instance.mapTiles.TryGetValue(newCoords[newCoords.Count - 1], out moveTo);
+
+                if (moveTo)
+                {
+                    if (TilesManager.instance.HeuristicDistance(myTile.coordinates, player.myTile.coordinates) <= stayAway && fov.Contains(player.myTile))
+                    {
+                        AIMoveAway();
+                        Debug.Log("move away");
+                    }
+                    else
+                    {
+                        AIMoveToTarget();
+                    }
+                }
+            }
+
+
+
+            Debug.LogWarning("No path to target 2");
+
+/*            // If no diagonal found, try get path to player
             List<HexCoordinates> path = TilesManager.instance.GetPath(myTile.coordinates, player.myTile.coordinates, false, false);
 
             if (path.Count > 1)
@@ -189,7 +228,7 @@ public class EnemyTest : MonoBehaviour
             else
             {
                 Debug.LogWarning("No path to target 2");
-            }
+            }*/
         }
     }
     private void AIMoveAway()

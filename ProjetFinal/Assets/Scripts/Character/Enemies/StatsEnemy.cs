@@ -10,7 +10,7 @@ public class StatsEnemy : ScriptableObject
     {
         public int damages;
         public int costPA;
-        public int impactRange;
+        public int range;
     }
 
     public Sprite sprite;
@@ -18,6 +18,9 @@ public class StatsEnemy : ScriptableObject
     public int health;
     public int PM;
     public int PA;
+
+    public enum ENEMY_TYPE { CAC , DISTANCE};
+    public ENEMY_TYPE Type;
 
     public List<AttackStats> attacks;
 }

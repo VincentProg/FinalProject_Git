@@ -11,6 +11,7 @@ public class AttackEditor : Editor
     {
         var attack = target as Attack;
 
+
         attack.name = EditorGUILayout.TextField("Name", attack.name);
         GUILayout.Label("Sprite");
         attack.sprite = (Sprite)EditorGUILayout.ObjectField(attack.sprite, typeof(Sprite), allowSceneObjects: true);

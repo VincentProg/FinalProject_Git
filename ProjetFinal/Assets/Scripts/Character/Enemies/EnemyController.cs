@@ -140,6 +140,11 @@ public class EnemyController : MonoBehaviour
             tile.enemy = this;
             transform.position = myTile.transform.position;
 
+            if (myTile.item != null)
+            {
+                myTile.ActionItem();
+            }
+
             PM -= 1;
             PA -= 1;
             isActionDone = true;

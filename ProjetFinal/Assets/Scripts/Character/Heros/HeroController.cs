@@ -179,9 +179,16 @@ public class HeroController : MonoBehaviour
         PA--;
         SetUI_PA_PM();
         
+
+
         myTile.hero = null;
         myTile = tile;
         myTile.hero = this;
+
+        if(myTile.item != null)
+        {
+            myTile.ActionItem();
+        }
 
         transform.position = myTile.transform.position;
         

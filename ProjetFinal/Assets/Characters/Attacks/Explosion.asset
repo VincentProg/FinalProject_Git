@@ -18,14 +18,14 @@ MonoBehaviour:
   cooldown: 3
   nbrUsePerTurn: 0
   nbrUseTotal: 10
-  rangeType: 1
-  rangeAttack: 7
+  rangeType: 2
+  rangeAttack: 1
   radiusUnattackableAttack: 0
   canSelectHole: 1
-  visionType: 1
-  impactType: 4
+  visionType: 2
+  impactType: 5
   damages: 3
   rangeImpact: 3
   radiusUnattackableImpact: 0
   goThrewWalls: 0
-  spawnObject: {fileID: 0}
+  spawnObject: {fileID: 3438002323572375350, guid: a355284a55ff73f4bbbcad80e548941c, type: 3}

@@ -43,9 +43,12 @@ public class Hero_AttacksManager : MonoBehaviour
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
                 if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
                 {
-                    foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, attack.canSelectHole, true))
+                foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, false, false))
                     {
-                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                        foreach (HexCell tile in diagonal)
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                        }
                     }
                 }
                 else

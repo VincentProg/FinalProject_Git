@@ -8,7 +8,7 @@ public class Timeline : MonoBehaviour
     public Slider H1, H2;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame

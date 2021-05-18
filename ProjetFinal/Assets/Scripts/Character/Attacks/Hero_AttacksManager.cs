@@ -266,7 +266,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 }
                 break;
             case Attack.IMPACT_TYPE.SPAWNOBJECT:
-                originTile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                originTile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
                 break;
             case Attack.IMPACT_TYPE.TELEPORT:
                 originTile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
@@ -287,6 +287,10 @@ public class Hero_AttacksManager : MonoBehaviour
             case Attack.IMPACT_TYPE.SPAWNOBJECT:
                 GameObject newObject = Instantiate(attack.spawnObject, originTile.transform.position, attack.spawnObject.transform.rotation);
                 originTile.item = newObject;
+                if (newObject.GetComponent<Mine>())
+                {
+                    newObject.GetComponent<Mine>().myTile = originTile;
+                }
                 break;
             case Attack.IMPACT_TYPE.TELEPORT:
                 originTile.hero = playerTile.hero;

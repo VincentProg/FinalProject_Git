@@ -39,16 +39,12 @@ public class Hero_AttacksManager : MonoBehaviour
                 originTile.SelectCell(HexCell.SELECTION_TYPE.AIM);
                 break;
             case Attack.RANGE_TYPE.LINE:
-<<<<<<< Updated upstream
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
                 if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
                 {
-                foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, false, false))
+                    foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, attack.canSelectHole, true))
                     {
-                        foreach (HexCell tile in diagonal)
-                        {
-                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
-                        }
+                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
                     }
                 }
                 else
@@ -73,14 +69,6 @@ public class Hero_AttacksManager : MonoBehaviour
                             tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_AIM);
                         }
                     }
-=======
-                foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, false, false))
-                {
-                    foreach (HexCell tile in diagonal)
-                    {
-                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
-                    }
->>>>>>> Stashed changes
                 }
                 break;
             case Attack.RANGE_TYPE.RADIUS:
@@ -88,9 +76,12 @@ public class Hero_AttacksManager : MonoBehaviour
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
                 if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
                 {
-                    foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, attack.canSelectHole, false))
+                    foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, false, false))
                     {
-                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                        foreach (HexCell tile in diagonal)
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                        }
                     }
                 }
                 else
@@ -136,7 +127,6 @@ public class Hero_AttacksManager : MonoBehaviour
                 break;
             case Attack.IMPACT_TYPE.LINES:
                 originTile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
-<<<<<<< Updated upstream
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
                 foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeImpact, true, true))
                 {
@@ -151,20 +141,12 @@ public class Hero_AttacksManager : MonoBehaviour
 
                     if (isInRange)
                     {
-=======
-
-                foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeImpact, true, true))
-                {
-                    foreach (HexCell tile in diagonal)
-                    {
->>>>>>> Stashed changes
                         if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
                         {
                             tile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
                         }
                         else
                         {
-<<<<<<< Updated upstream
                             if (tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIM)
                                 tile.SelectCell(HexCell.SELECTION_TYPE.DISABLEDAIM_IMPACT);
                             else tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
@@ -183,15 +165,6 @@ public class Hero_AttacksManager : MonoBehaviour
                     if(tile == originTile)
                     {
                         tile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
-=======
-                            tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
-                        }
-
-                        if (tile == originTile)
-                        {
-                            tile.ModifySelection(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
-                        }
->>>>>>> Stashed changes
                     }
                 }
                 break;

@@ -27,6 +27,8 @@ public class HexCell : MonoBehaviour {
 	public enum TILE_TYPE {GROUND, WALL, HOLE}
 	public TILE_TYPE tileType;
 	public List<Sprite> tileSprites;
+
+	public bool isHero = false;
 	
 
 	void Awake()

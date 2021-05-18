@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: -9095717837082945937, guid: 9ae343ac378fd3a4abc0c57f56be5247, type: 3}
   heroName: 
-  health: 3
+  health: 20
   PM: 5
   PA: 20
   isDofusPM: 1

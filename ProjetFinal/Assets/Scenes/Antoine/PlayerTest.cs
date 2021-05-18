@@ -18,8 +18,6 @@ public class PlayerTest : MonoBehaviour
             if (hitStart.transform.GetComponent<HexCell>())
             {
                 myTile = hitStart.transform.GetComponent<HexCell>();
-                myTile.isHero = true;
-
             }
         }
     }

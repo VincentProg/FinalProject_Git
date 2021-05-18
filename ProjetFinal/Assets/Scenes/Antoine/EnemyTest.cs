@@ -85,7 +85,7 @@ public class EnemyTest : MonoBehaviour
         {
             foreach (var item in diagonal)
             {
-                if (item.isHero)
+                if (item.isPossessed())
                 {
                     inRange = true;
                     break;
@@ -136,52 +136,11 @@ public class EnemyTest : MonoBehaviour
             } 
             else
             {
-                Debug.Log("move path " + moveTo.coordinates);
-
                 List<HexCoordinates> newCoords = TilesManager.instance.GetPath(myTile.coordinates, moveTo.coordinates, false, false);
                 TilesManager.instance.mapTiles.TryGetValue(newCoords[newCoords.Count - 1], out moveTo);
                 if (moveTo)
                     AIMoveToTarget();
-            }
-
-/*            // If diagonals found, move to closest by one tile
-            TilesManager.instance.mapTiles.TryGetValue(TilesManager.instance.GetNeighboor(myTile.coordinates, result), out moveTo);
-
-            // If can move to tile
-            if (!moveTo.tileType.Equals(HexCell.TILE_TYPE.WALL) && !moveTo.tileType.Equals(HexCell.TILE_TYPE.HOLE))
-            {
-                Debug.Log("ok move");
-
-                AIMoveToTarget();
-            }
-            else
-            {
-                // If tile not ok, try get path to target
-                List<HexCoordinates> path = TilesManager.instance.GetPath(myTile.coordinates, player.myTile.coordinates, false, false);
-
-                foreach (var item in path)
-                {
-                    Debug.Log(item);
-                }
-
-                // If path found
-                if (path.Count > 1)
-                {
-                    TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out moveTo);
-
-                    if (moveTo)
-                    {
-                        Debug.Log("path move");
-
-                        AIMoveToTarget();
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning("No path to target");
-                }
-            }*/
-            
+            }           
 
         }
         else
@@ -196,7 +155,6 @@ public class EnemyTest : MonoBehaviour
                     if (TilesManager.instance.HeuristicDistance(myTile.coordinates, player.myTile.coordinates) <= stayAway && fov.Contains(player.myTile))
                     {
                         AIMoveAway();
-                        Debug.Log("move away");
                     }
                     else
                     {
@@ -205,30 +163,7 @@ public class EnemyTest : MonoBehaviour
                 }
             }
 
-
-
             Debug.LogWarning("No path to target 2");
-
-/*            // If no diagonal found, try get path to player
-            List<HexCoordinates> path = TilesManager.instance.GetPath(myTile.coordinates, player.myTile.coordinates, false, false);
-
-            if (path.Count > 1)
-            {
-                TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out moveTo);
-
-
-                if (moveTo)
-                {
-                    AIMoveToTarget();
-
-                    Debug.LogWarning("2");
-
-                }
-            }
-            else
-            {
-                Debug.LogWarning("No path to target 2");
-            }*/
         }
     }
     private void AIMoveAway()
@@ -241,7 +176,7 @@ public class EnemyTest : MonoBehaviour
         foreach (var item in tiles)
         {
             // Can move here
-            if ((item.tileType.Equals(HexCell.TILE_TYPE.GROUND) || (item.tileType.Equals(HexCell.TILE_TYPE.WALL) && canMoveWall) || (item.tileType.Equals(HexCell.TILE_TYPE.HOLE) && canMoveAir)) && !item.isHero)
+            if ((item.tileType.Equals(HexCell.TILE_TYPE.GROUND) || (item.tileType.Equals(HexCell.TILE_TYPE.WALL) && canMoveWall) || (item.tileType.Equals(HexCell.TILE_TYPE.HOLE) && canMoveAir)) && !item.isPossessed())
             {
                 moveTo = item;
                 canMove = true;
@@ -259,7 +194,7 @@ public class EnemyTest : MonoBehaviour
             foreach (var item in tiles)
             {
                 // Can move here
-                if ((item.tileType.Equals(HexCell.TILE_TYPE.GROUND) || (item.tileType.Equals(HexCell.TILE_TYPE.WALL) && canMoveWall) || (item.tileType.Equals(HexCell.TILE_TYPE.HOLE) && canMoveAir)) && !item.isHero)
+                if ((item.tileType.Equals(HexCell.TILE_TYPE.GROUND) || (item.tileType.Equals(HexCell.TILE_TYPE.WALL) && canMoveWall) || (item.tileType.Equals(HexCell.TILE_TYPE.HOLE) && canMoveAir)) && !item.isPossessed())
                 {
                     moveTo = item;
                     canMove = true;

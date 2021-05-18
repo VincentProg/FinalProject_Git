@@ -79,53 +79,67 @@ public class EnemyController : MonoBehaviour
 
     private void CheckAction()
     {
-        int dist1 = TilesManager.instance.GetPath(myTile.coordinates, hero1.myTile.coordinates, false, false).Count;
-        int dist2 = TilesManager.instance.GetPath(myTile.coordinates, hero2.myTile.coordinates, false, false).Count;
-        HeroController hero = null;
-        int distHero = 0;
-        int distRange = stats.attacks[0].impactRange + 1;
+        switch (stats.Type) {
 
-        if (dist1 <= distRange && dist2 <= distRange)
-        {
-            if (hero1.health < hero2.health)
-            {
-                hero = hero1;
-                distHero = dist1;
-            }
-            else
-            {
-                hero = hero2;
-                distHero = dist2;
-            }
+            case StatsEnemy.ENEMY_TYPE.CAC:
+                #region CAC_CheckAction
+                int dist1 = TilesManager.instance.GetPath(myTile.coordinates, hero1.myTile.coordinates, false, false).Count;
+                int dist2 = TilesManager.instance.GetPath(myTile.coordinates, hero2.myTile.coordinates, false, false).Count;
+                HeroController hero = null;
+                int distHero = 0;
+                int distRange = stats.attacks[0].range + 1;
 
-        }
-        else if (dist1 <= distRange) { hero = hero1; distHero = dist1; }
-        else if (dist2 <= distRange) { hero = hero2; distHero = dist2; }
-
-            if (hero != null)
-        {
-            AttackCAC(hero, distHero);
-        } else 
-        {
-            if (dist1 < dist2)
-                hero = hero1;
-            else if (dist1 == dist2)
-            {
-                if (hero1.health < hero2.health)
+                if (dist1 <= distRange && dist2 <= distRange)
                 {
-                    hero = hero1;       
-                }
-                else hero = hero2;
-            }
-            else hero = hero2;
+                    if (hero1.health < hero2.health)
+                    {
+                        hero = hero1;
+                        distHero = dist1;
+                    }
+                    else
+                    {
+                        hero = hero2;
+                        distHero = dist2;
+                    }
 
-            Move(hero);
+                }
+                else if (dist1 <= distRange) { hero = hero1; distHero = dist1; }
+                else if (dist2 <= distRange) { hero = hero2; distHero = dist2; }
+
+                if (hero != null)
+                {
+                    AttackCAC(hero, distHero);
+                }
+                else
+                {
+                    if (dist1 < dist2)
+                        hero = hero1;
+                    else if (dist1 == dist2)
+                    {
+                        if (hero1.health < hero2.health)
+                        {
+                            hero = hero1;
+                        }
+                        else hero = hero2;
+                    }
+                    else hero = hero2;
+
+                    MoveCAC(hero);
+                }
+                #endregion
+                break;
+
+            case StatsEnemy.ENEMY_TYPE.DISTANCE:
+
+                break;
+        
         }
+        
         
 
     }
 
-    private void Move(HeroController hero)
+    private void MoveCAC(HeroController hero)
     {
 
         if (PM > 0 && PA > 0)
@@ -140,6 +154,11 @@ public class EnemyController : MonoBehaviour
             tile.enemy = this;
             transform.position = myTile.transform.position;
 
+            if (myTile.item != null)
+            {
+                myTile.ActionItem();
+            }
+
             PM -= 1;
             PA -= 1;
             isActionDone = true;
@@ -153,7 +172,7 @@ public class EnemyController : MonoBehaviour
 
         if (PA >= stats.attacks[0].costPA)
         {
-            if (stats.attacks[0].impactRange < 1)
+            if (stats.attacks[0].range < 1)
             {
                 hero.TakeDamages(stats.attacks[0].damages);  
             } else
@@ -162,7 +181,7 @@ public class EnemyController : MonoBehaviour
                 path = TilesManager.instance.GetPath(myTile.coordinates, hero.myTile.coordinates, false, false);
                 HexCell tileAimed;
                 TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out tileAimed);
-                foreach (HexCell tile in TilesManager.instance.GetRange(tileAimed.coordinates, stats.attacks[0].impactRange, false, false))
+                foreach (HexCell tile in TilesManager.instance.GetRange(tileAimed.coordinates, stats.attacks[0].range, false, false))
                 {
                     if(tile != myTile)
                     {

@@ -222,7 +222,6 @@ public class TilesManager : MonoBehaviour
             else if (side == 2)
             {
                 directions = new List<int>() { 1, 2 };
-                Debug.Log("ok");
             }
             else if (side == 3)
             {
@@ -678,83 +677,59 @@ public class TilesManager : MonoBehaviour
         }
     }
 
-    public int GetClosestDiagonal(HexCoordinates center, HexCoordinates target, bool keepDistance = false)
+    public HexCell GetClosestDiagonal(HexCoordinates center, HexCoordinates target, int minimumDistance = 0)
     {
         int side = GetDirection(target, center);
         if(side < 6)
         {
-            List<List<HexCell>> diagonals = GetDiagonals(target, HeuristicDistance(center, target), true, false, side);
+            List<List<HexCell>> diagonals = GetDiagonals(target, HeuristicDistance(center, target) + 1, true, false, side);
 
             if (diagonals[0].Count > 0)
             {
                 int bestDistance = 1000;
                 HexCell bestCell = diagonals[0][0];
-
-                if (keepDistance)
-                    bestDistance = HeuristicDistance(center, target);
-
-                
+                                
 
                 foreach (var diagonal in diagonals)
                 {
-                    int lastDistance = 1000;
-                    HexCell lastCell = diagonals[0][0];
-
-                    foreach (var item in diagonal)
+                    for (int i = 0; i < diagonal.Count; i++)
                     {
-                        item.transform.GetComponent<SpriteRenderer>().color = Color.gray;
-                        int distance = HeuristicDistance(center, item.coordinates);
+                        diagonal[i].transform.GetComponent<SpriteRenderer>().color = Color.gray;
+                        int distance = HeuristicDistance(center, diagonal[i].coordinates);
+
+                        Debug.Log("test " + diagonal[i].coordinates);
 
 
-/*                        if (keepDistance)
+                        if (distance < bestDistance)
                         {
-                            if (distance == lastDistance)
+                            Debug.LogWarning(HeuristicDistance(diagonal[i].coordinates, target));
+                            if (HeuristicDistance(diagonal[i].coordinates, target) > minimumDistance)
                             {
-                                lastDistance = distance;
-                                lastCell = item;
 
+                                bestCell = diagonal[i];
+                                bestDistance = distance;
 
-                                if (lastDistance == bestDistance)
-                                {
-                                    bestCell = item;
-                                    bestDistance = lastDistance;
-                                }
+                                Debug.Log("oui " + bestCell.coordinates);
                             }
-                            else
-                            {
-                                break;
-                            }
-                        } else
-                        {*/
-                            if (distance < lastDistance)
-                            {
-                                lastDistance = distance;
-                                lastCell = item;
-
-
-                                if (lastDistance < bestDistance)
-                                {
-                                    bestCell = item;
-                                    bestDistance = lastDistance;
-                                }
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        //}
+                            
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
                 }
-                bestCell.transform.GetComponent<SpriteRenderer>().color = new Color(.54f, .95f, .9f);
+                if(bestCell)
+                    bestCell.transform.GetComponent<SpriteRenderer>().color = new Color(.54f, .95f, .9f);
 
 
-                return GetDirection(center, bestCell.coordinates);
+                return bestCell;
 
             }
             else
             {
                 Debug.Log("no diag");
-                return -1;
+                return null;
             }
 
 
@@ -783,6 +758,6 @@ public class TilesManager : MonoBehaviour
 
 
 
-        return 0;
+        return null;
     }
 }

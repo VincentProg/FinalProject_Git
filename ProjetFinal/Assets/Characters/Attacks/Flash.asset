@@ -28,4 +28,4 @@ MonoBehaviour:
   rangeImpact: 2
   radiusUnattackableImpact: 0
   goThrewWalls: 0
-  spawnObject: {fileID: 0}
+  spawnObject: {fileID: 1097986984103252501, guid: 84321bac10d8b49419d1913ac43ee8ee, type: 3}

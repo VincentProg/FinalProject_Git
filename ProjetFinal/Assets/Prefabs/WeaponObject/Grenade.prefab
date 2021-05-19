@@ -98,8 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   delay: 1
-  range: 1
-  damagesExplose: 10
+  range: 2
+  damagesExplose: 5
   nbrTurnSkipFlash: 0
   isFriendlyFire: 1
   myTile: {fileID: 0}

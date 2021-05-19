@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6698314129862538129}
   - component: {fileID: 8135643926215799163}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,4 +98,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damages: 3
   range: 1
+  isFriendlyFire: 1
   myTile: {fileID: 0}

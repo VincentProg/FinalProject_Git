@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bcb10621537e4d438ca0700f7b53a21, type: 3}
-  m_Name: ArrowEnflamme
+  m_Name: BigExplosion
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 4c56998069e9cbe4798c9716cb7200da, type: 3}
+  sprite: {fileID: 21300000, guid: bc14c775198ed924d932a63faf64222c, type: 3}
   name: 
-  costPA: 2
-  cooldown: 0
-  nbrUsePerTurn: 0
-  nbrUseTotal: 5
-  rangeType: 1
-  rangeAttack: 7
-  radiusUnattackableAttack: 0
+  costPA: 1
+  cooldown: 4
+  nbrUsePerTurn: 1
+  nbrUseTotal: 0
+  rangeType: 2
+  rangeAttack: 4
+  radiusUnattackableAttack: 2
   canSelectHole: 0
-  visionType: 0
-  impactType: 4
+  visionType: 1
+  impactType: 5
   damages: 5
-  rangeImpact: 3
+  rangeImpact: 0
   radiusUnattackableImpact: 0
   goThrewWalls: 0
-  spawnObject: {fileID: 0}
+  spawnObject: {fileID: 1097986984103252501, guid: 5682e462e72de714b8ee67a7aaac8c7d, type: 3}

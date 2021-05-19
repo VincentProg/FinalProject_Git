@@ -19,11 +19,11 @@ MonoBehaviour:
   nbrUsePerTurn: 1
   nbrUseTotal: 0
   rangeType: 2
-  rangeAttack: 3
+  rangeAttack: 4
   radiusUnattackableAttack: 1
   canSelectHole: 0
-  visionType: 0
-  impactType: 4
+  visionType: 1
+  impactType: 5
   damages: 0
   rangeImpact: 2
   radiusUnattackableImpact: 0

@@ -135,11 +135,13 @@ public class HexCell : MonoBehaviour {
     }
 
 
-	public void ActionItem()
+	public void ActionItem(bool isHero)
     {
         if (item.GetComponent<Mine>())
         {
-			item.GetComponent<Mine>().Attack();
+			Mine mine = item.GetComponent<Mine>();
+			if (isHero && !mine.isFriendlyFire) return;
+			mine.Attack();
 			item = null;
         } else if (item.GetComponent<Spawner>())
         {

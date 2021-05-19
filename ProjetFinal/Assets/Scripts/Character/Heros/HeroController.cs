@@ -25,13 +25,12 @@ public class HeroController : MonoBehaviour
 
 
     bool isMyTurn = false;
-
+    int nbrSkipTurn = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         
-
         PAtxt = myCanvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
         PMtxt = myCanvas.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
         PVtxt = myCanvas.transform.GetChild(5).GetComponent<TextMeshProUGUI>();
@@ -132,6 +131,13 @@ public class HeroController : MonoBehaviour
 
     public void StartTurn()
     {
+        if(nbrSkipTurn > 0)
+        {
+            nbrSkipTurn--;
+            EndTurn();
+            return;
+        }
+
         isMyTurn = true;
         //print("StartTurn");
         myCanvas.SetActive(true);
@@ -187,7 +193,7 @@ public class HeroController : MonoBehaviour
 
         if(myTile.item != null)
         {
-            myTile.ActionItem();
+            myTile.ActionItem(true);
         }
 
         transform.position = myTile.transform.position;

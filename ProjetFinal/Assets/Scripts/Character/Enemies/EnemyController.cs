@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public bool hasSpawned;
     private bool isFirstTurn = true;
     // STATISTIQUES
     public StatsEnemy stats;
@@ -14,7 +15,6 @@ public class EnemyController : MonoBehaviour
     private bool isActionDone = true;
   
 
-
     // VARIABLES GRID
     HexCell myTile;
 
@@ -22,7 +22,14 @@ public class EnemyController : MonoBehaviour
     HeroController hero2;
 
 
+    private void Start()
+    {
+        if (!hasSpawned)
+        {
+            Initialize();
 
+        }
+    }
 
 
     public void Initialize()
@@ -40,6 +47,7 @@ public class EnemyController : MonoBehaviour
         }
         #endregion
 
+        CombatSystem.instance.enemies.Add(this);
         hero1 = CombatSystem.instance.heros[0];
         hero2 = CombatSystem.instance.heros[1];
 

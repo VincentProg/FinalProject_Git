@@ -5,7 +5,7 @@ using TMPro;
 
 public class CombatSystem : MonoBehaviour
 {
-    float cooldown = .5f;
+    float cooldown = .05f;
     float next;
 
     public static CombatSystem instance { get; private set; }

@@ -38,7 +38,7 @@ public class Spawner : MonoBehaviour
             }
         }
         #endregion
-        adjacentCells = TilesManager.instance.GetRadius(myTile.coordinates, 1, false, false);
+        adjacentCells = TilesManager.instance.GetRadius(myTile.coordinates, 1, false, false, false, false);
     }
 
 

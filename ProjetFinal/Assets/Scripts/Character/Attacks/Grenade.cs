@@ -9,7 +9,7 @@ public class Grenade : MonoBehaviour
     public enum TYPE_GRENADE {EXPLOSE, FLASH};
     public TYPE_GRENADE type;
 
-    public int delay;
+    public int delay = 1;
     public int range;
     public int damagesExplose;
     public int nbrTurnSkipFlash;

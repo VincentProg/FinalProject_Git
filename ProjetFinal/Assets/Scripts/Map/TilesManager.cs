@@ -655,39 +655,31 @@ public class TilesManager : MonoBehaviour
         }
     }
 
-    public HexCell GetClosestDiagonal(HexCoordinates center, HexCoordinates target, int minimumDistance = 0)
+    public HexCell GetClosestDiagonal(HexCoordinates center, HexCoordinates target, List<HexCell> fov, int minimumDistance = 0)
     {
         int side = GetDirection(target, center);
         if(side < 6)
         {
-            List<List<HexCell>> diagonals = GetDiagonals(target, HeuristicDistance(center, target) + 1, true, false, side);
+            List<List<HexCell>> diagonals = GetDiagonals(target, HeuristicDistance(center, target) + 5, true, false, side);
 
-            if (diagonals[0].Count > 0)
+            if (diagonals[0].Count > 0 || diagonals[1].Count > 0)
             {
                 int bestDistance = 1000;
-                HexCell bestCell = diagonals[0][0];
+                HexCell bestCell = null;
                                 
 
                 foreach (var diagonal in diagonals)
                 {
                     for (int i = 0; i < diagonal.Count; i++)
                     {
-                        diagonal[i].transform.GetComponent<SpriteRenderer>().color = Color.gray;
                         int distance = HeuristicDistance(center, diagonal[i].coordinates);
-
-                        Debug.Log("test " + diagonal[i].coordinates);
-
 
                         if (distance < bestDistance)
                         {
-                            Debug.LogWarning(HeuristicDistance(diagonal[i].coordinates, target));
-                            if (HeuristicDistance(diagonal[i].coordinates, target) > minimumDistance)
+                            if (HeuristicDistance(diagonal[i].coordinates, target) > minimumDistance && fov.Contains(diagonal[i]))
                             {
-
                                 bestCell = diagonal[i];
                                 bestDistance = distance;
-
-                                Debug.Log("oui " + bestCell.coordinates);
                             }
                             
                         }

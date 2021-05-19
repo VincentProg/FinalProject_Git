@@ -5,6 +5,9 @@ using TMPro;
 
 public class CombatSystem : MonoBehaviour
 {
+    float cooldown = .5f;
+    float next;
+
     public static CombatSystem instance { get; private set; }
     public enum CombatState
     {
@@ -28,6 +31,14 @@ public class CombatSystem : MonoBehaviour
     int nbrRound = 1;
     public TextMeshProUGUI nbrRoundTXT;
 
+    private void FixedUpdate()
+    {
+        if(Time.time > next)
+        {
+            next = Time.time + cooldown;
+            heros[0].EndTurn();
+        }
+    }
 
     private void Awake()
     {

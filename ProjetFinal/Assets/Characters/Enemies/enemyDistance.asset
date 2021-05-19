@@ -15,12 +15,12 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 309cca25939a25140900b9faad06ba10, type: 3}
   enemyName: 
   health: 3
-  PM: 2
-  PA: 2
+  PM: 1
+  PA: 1
   isFlying: 0
-  distanceToStayAway: 0
+  distanceToStayAway: 2
   Type: 1
   attacks:
   - damages: 1
     costPA: 1
-    range: 0
+    range: 3

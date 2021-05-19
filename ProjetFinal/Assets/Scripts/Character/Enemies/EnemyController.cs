@@ -157,7 +157,6 @@ public class EnemyController : MonoBehaviour
                 else
                     targetCell = hero2.myTile;
 
-
                 // If player already in line of sight 
                 List<List<HexCell>> diagonals = TilesManager.instance.GetDiagonals(myTile.coordinates, stats.attacks[0].range, true, false, TilesManager.instance.GetDirection(myTile.coordinates, targetCell.coordinates));
                 List<List<HexCell>> fov = TilesManager.instance.GetFOV(myTile, TilesManager.instance.HeuristicDistance(myTile.coordinates, targetCell.coordinates) + 1, true);
@@ -167,7 +166,7 @@ public class EnemyController : MonoBehaviour
                 {
                     foreach (var item in diagonal)
                     {
-                        if (item.isPossessed())
+                        if (item.isHero())
                         {
                             inRange = true;
                             break;
@@ -179,6 +178,7 @@ public class EnemyController : MonoBehaviour
                 if (TilesManager.instance.HeuristicDistance(myTile.coordinates, targetCell.coordinates) <= stats.distanceToStayAway && fov[0].Contains(targetCell))
                 {
                     MoveAway();
+                    Debug.Log("Move away");
 
                 }
                 else
@@ -201,50 +201,73 @@ public class EnemyController : MonoBehaviour
     private void MoveClosestDiag(List<HexCell> fov)
     {
         // Try and get nearest diagonals
-        moveTo = TilesManager.instance.GetClosestDiagonal(myTile.coordinates, targetCell.coordinates, stats.distanceToStayAway);
+        moveTo = TilesManager.instance.GetClosestDiagonal(myTile.coordinates, targetCell.coordinates, fov, stats.distanceToStayAway);
         if (moveTo)
         {
-            Debug.Log("moveto " + moveTo.coordinates);
-
-            if (fov.Contains(moveTo))
+            if (!moveTo.isPossessed())
             {
-                int direction = TilesManager.instance.GetDirection(myTile.coordinates, moveTo.coordinates);
-                HexCoordinates newCoords = TilesManager.instance.GetNeighboor(myTile.coordinates, direction);
-                Debug.Log("newCoords " + newCoords);
-                Debug.Log("direction " + direction);
 
-                TilesManager.instance.mapTiles.TryGetValue(newCoords, out moveTo);
-                Debug.Log("movetonewCoords " + moveTo.coordinates);
 
-                if (moveTo)
-                    MoveDistance();
+            int direction = TilesManager.instance.GetDirection(myTile.coordinates, moveTo.coordinates);
+            HexCoordinates newCoords = TilesManager.instance.GetNeighboor(myTile.coordinates, direction);
+
+            TilesManager.instance.mapTiles.TryGetValue(newCoords, out moveTo);
+            if (moveTo)
+                MoveDistance();
+
+                /*            Debug.Log("moveto " + moveTo.coordinates);
+
+                            if (fov.Contains(moveTo))
+                            {
+                                int direction = TilesManager.instance.GetDirection(myTile.coordinates, moveTo.coordinates);
+                                HexCoordinates newCoords = TilesManager.instance.GetNeighboor(myTile.coordinates, direction);
+                                Debug.Log("newCoords " + newCoords);
+                                Debug.Log("direction " + direction);
+
+                                TilesManager.instance.mapTiles.TryGetValue(newCoords, out moveTo);
+                                Debug.Log("movetonewCoords " + moveTo.coordinates);
+
+                                if (moveTo)
+                                    MoveDistance();
+                            }
+                            else
+                            {
+                                List<HexCoordinates> newCoords = TilesManager.instance.GetPath(myTile.coordinates, moveTo.coordinates, false, false);
+                                TilesManager.instance.mapTiles.TryGetValue(newCoords[newCoords.Count - 1], out moveTo);
+                                if (moveTo)
+                                    MoveDistance();
+                            }*/
+
             }
             else
             {
-                List<HexCoordinates> newCoords = TilesManager.instance.GetPath(myTile.coordinates, moveTo.coordinates, false, false);
-                TilesManager.instance.mapTiles.TryGetValue(newCoords[newCoords.Count - 1], out moveTo);
-                if (moveTo)
-                    MoveDistance();
+                MovePath(fov);
             }
-
         }
         else
         {
-            List<HexCoordinates> newCoords = TilesManager.instance.GetPath(myTile.coordinates, targetCell.coordinates, false, false);
-            if (newCoords.Count > 2)
-            {
-                TilesManager.instance.mapTiles.TryGetValue(newCoords[newCoords.Count - 1], out moveTo);
+            MovePath(fov);
+        }
+    }
 
-                if (moveTo)
+    private void MovePath(List<HexCell> fov)
+    {
+        List<HexCoordinates> newCoords = TilesManager.instance.GetPath(myTile.coordinates, targetCell.coordinates, false, false);
+        if (newCoords.Count > 2)
+        {
+            TilesManager.instance.mapTiles.TryGetValue(newCoords[newCoords.Count - 1], out moveTo);
+
+            if (moveTo)
+            {
+                if (TilesManager.instance.HeuristicDistance(myTile.coordinates, targetCell.coordinates) <= stats.distanceToStayAway && fov.Contains(targetCell))
                 {
-                    if (TilesManager.instance.HeuristicDistance(myTile.coordinates, targetCell.coordinates) <= stats.distanceToStayAway && fov.Contains(targetCell))
-                    {
-                        MoveAway();
-                    }
-                    else
-                    {
-                        MoveDistance();
-                    }
+                    MoveAway();
+                    Debug.Log("Move away");
+                }
+                else
+                {
+                    MoveDistance();
+                    Debug.Log("Move tile");
                 }
             }
         }
@@ -292,17 +315,27 @@ public class EnemyController : MonoBehaviour
         if (canMove)
         {
             MoveDistance();
+
         }
         else
         {
+            int distance = TilesManager.instance.HeuristicDistance(myTile.coordinates, targetCell.coordinates);
+            if (distance <= stats.attacks[0].range && TilesManager.instance.GetFOV(myTile, distance, true)[0].Contains(targetCell))
+            {
+                AttackDistance();
+
+            }
             Debug.Log("couldn't find path out of here");
         }
     }
 
     private void MoveDistance()
     {
+
         if (PM > 0 && PA > 0)
         {
+            Debug.Log("Move distance");
+
             myTile.enemy = null;
             myTile = moveTo;
             myTile.enemy = this;
@@ -321,7 +354,7 @@ public class EnemyController : MonoBehaviour
 
     private void AttackDistance()
     {
-        Debug.Log("attack");
+        Debug.Log("attack " + myTile.coordinates);
     }
     #endregion
 

@@ -117,20 +117,29 @@ public class HexCell : MonoBehaviour {
     }
 
 	public bool isPossessed()
-    {
-		if(hero != null || enemy != null)
-		{ 
-			
+	{
+		if (hero != null || enemy != null)
+		{
+
 			return true;
-        } else if(item != null)
-        {
-            if (item.GetComponent<Spawner>())
-            {
+		}
+		else if (item != null)
+		{
+			if (item.GetComponent<Spawner>())
+			{
 				return true;
-            }
-        }
+			}
+		}
 		return false;
-    }
+	}
+
+
+	public bool isHero()
+	{
+		if (hero)
+			return true;
+		return false;
+	}
 
 
 	public void ActionItem(bool isHero)

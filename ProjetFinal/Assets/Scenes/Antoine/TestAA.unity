@@ -698,7 +698,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47141201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -149, y: 33.6, z: 0}
+  m_LocalPosition: {x: -135.7, y: 43.9, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -21025,9 +21025,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
+      propertyPath: enemyList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: enemyList.Array.data[0]
       value: 
       objectReference: {fileID: 1304322467498549548, guid: 77e99b65c71d2f742b2fd456be55e253, type: 3}
+    - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
+      propertyPath: enemyList.Array.data[1]
+      value: 
+      objectReference: {fileID: 4030915596351684975, guid: 44742f257fa754a4f9424008923d7fb1, type: 3}
     - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: adjacentCells.Array.size
       value: 0

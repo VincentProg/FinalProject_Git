@@ -19,7 +19,7 @@ public class EnemyTest : MonoBehaviour
     public bool canMoveAir = false;
     public bool canMoveWall = false;
 
-
+/*
     // Start is called before the first frame update
     void Start()
     {
@@ -222,5 +222,5 @@ public class EnemyTest : MonoBehaviour
     {
         gameObject.transform.position = moveTo.transform.position;
         myTile = moveTo;
-    }
+    }*/
 }

@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bcb10621537e4d438ca0700f7b53a21, type: 3}
-  m_Name: Heal
+  m_Name: AttackCowboy
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b6e9324ed81c6434baa479a60909c31c, type: 3}
   name: 
-  costPA: 1
-  cooldown: 2
-  nbrUsePerTurn: 0
+  costPA: 0
+  cooldown: 0
+  nbrUsePerTurn: 1
   nbrUseTotal: 0
   rangeType: 1
-  rangeAttack: 7
-  radiusUnattackableAttack: 0
-  canSelectHole: 1
-  visionType: 2
-  impactType: 4
-  damages: -5
+  rangeAttack: 3
+  radiusUnattackableAttack: 1
+  canSelectHole: 0
+  visionType: 1
+  impactType: 0
+  damages: 1
   rangeImpact: 2
   radiusUnattackableImpact: 0
   goThrewWalls: 0

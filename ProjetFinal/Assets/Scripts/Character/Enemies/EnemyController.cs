@@ -267,7 +267,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            tiles = TilesManager.instance.GetRadius(myTile.coordinates, 1, stats.isFlying, false);
+            tiles = TilesManager.instance.GetRadius(myTile.coordinates, 1, stats.isFlying, false, false, false);
             foreach (var item in tiles)
             {
                 // Can move here
@@ -310,7 +310,7 @@ public class EnemyController : MonoBehaviour
 
             if (myTile.item != null)
             {
-                myTile.ActionItem();
+                myTile.ActionItem(false);
             }
 
             PM -= 1;

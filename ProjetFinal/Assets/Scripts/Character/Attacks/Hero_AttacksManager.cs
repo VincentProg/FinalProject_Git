@@ -39,23 +39,22 @@ public class Hero_AttacksManager : MonoBehaviour
                 originTile.SelectCell(HexCell.SELECTION_TYPE.AIM);
                 break;
             case Attack.RANGE_TYPE.LINE:
-<<<<<<< Updated upstream
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
                 if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
                 {
-                    foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, false, false))
+                    foreach (List<HexCell> diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, attack.canSelectHole, true))
                     {
-                        foreach (HexCell tile in diagonal)
+                        foreach (var item in diagonal)
                         {
-                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                            item.SelectCell(HexCell.SELECTION_TYPE.AIM);
                         }
                     }
                 }
                 else
                 {
-                    foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, attack.canSelectHole, false))
+                    foreach (List<HexCell> diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, attack.canSelectHole, true))
                     {
-                        foreach (HexCell tile in diagonal)
+                        foreach (var tile in diagonal)
                         {
                             bool isInRange = false;
                             for (int i = 0; i < TilesInRange[0].Count; i++)
@@ -76,14 +75,6 @@ public class Hero_AttacksManager : MonoBehaviour
                             }
                         }
                     }
-=======
-                foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, false, false))
-                {
-                    foreach (HexCell tile in diagonal)
-                    {
-                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
-                    }
->>>>>>> Stashed changes
                 }
                 break;
             case Attack.RANGE_TYPE.RADIUS:
@@ -142,13 +133,11 @@ public class Hero_AttacksManager : MonoBehaviour
                 break;
             case Attack.IMPACT_TYPE.LINES:
                 originTile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
-<<<<<<< Updated upstream
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
 
-
-                foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeImpact, true, true))
+                foreach (List<HexCell> diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeImpact, true, true))
                 {
-                    foreach (HexCell tile in diagonal)
+                    foreach (var tile in diagonal)
                     {
                         bool isInRange = false;
                         for (int i = 0; i < TilesInRange[0].Count; i++)
@@ -173,9 +162,23 @@ public class Hero_AttacksManager : MonoBehaviour
 
                             }
                         }
+
+                        if (isInRange)
+                        {
+                            if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
+                            {
+                                tile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                            }
+                            else
+                            {
+                                if (tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIM)
+                                    tile.SelectCell(HexCell.SELECTION_TYPE.DISABLEDAIM_IMPACT);
+                                else tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
+
+                            }
+                        }
                         else
                         {
-<<<<<<< Updated upstream
                             if (tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIM)
                             {
                                 tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_AIMIMPACT);
@@ -230,20 +233,21 @@ public class Hero_AttacksManager : MonoBehaviour
                         tile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
                     }
                 }
-                    break;
+                break;
             case Attack.IMPACT_TYPE.ARC:
-                foreach(HexCell tile in TilesManager.instance.GetImpactArc(playerTile.coordinates, originTile.coordinates, true, true))
+                foreach (HexCell tile in TilesManager.instance.GetImpactArc(playerTile.coordinates, originTile.coordinates, true, true))
                 {
                     if (tile.tileType != HexCell.TILE_TYPE.WALL)
                     {
                         if (tile == originTile)
                         {
                             tile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
-                        } else if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
+                        }
+                        else if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
                         {
                             tile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
                         }
-                            else tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
+                        else tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
                     }
                     else tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_IMPACT);
                 }
@@ -315,30 +319,32 @@ public class Hero_AttacksManager : MonoBehaviour
                 if (newObject.GetComponent<Mine>())
                 {
                     newObject.GetComponent<Mine>().myTile = originTile;
-                } else if (newObject.GetComponent<Grenade>())
+                }
+                else if (newObject.GetComponent<Grenade>())
                 {
                     Grenade grenadeScript = newObject.GetComponent<Grenade>();
                     grenadeScript.hero = playerTile.hero;
                     grenadeScript.myTile = originTile;
                     playerTile.hero.grenades.Add(grenadeScript);
-                    
+
                 }
                 break;
             case Attack.IMPACT_TYPE.TELEPORT:
                 originTile.hero = playerTile.hero;
                 playerTile.hero = null;
                 originTile.hero.myTile = originTile;
-                originTile.hero.transform.position = originTile.transform.position;     
+                originTile.hero.transform.position = originTile.transform.position;
                 break;
             default:
-                foreach(HexCell tile in TilesManager.instance._selectedTiles)
+                foreach (HexCell tile in TilesManager.instance._selectedTiles)
                 {
-                    if(tile.selectionType == HexCell.SELECTION_TYPE.IMPACT || tile.selectionType == HexCell.SELECTION_TYPE.ORIGIN_IMPACT)
+                    if (tile.selectionType == HexCell.SELECTION_TYPE.IMPACT || tile.selectionType == HexCell.SELECTION_TYPE.ORIGIN_IMPACT)
                     {
-                        if(tile.hero != null)
+                        if (tile.hero != null)
                         {
                             tile.hero.TakeDamages(attack.damages);
-                        } else if(tile.enemy != null)
+                        }
+                        else if (tile.enemy != null)
                         {
                             tile.enemy.TakeDamages(attack.damages);
                         }
@@ -353,7 +359,7 @@ public class Hero_AttacksManager : MonoBehaviour
 
     }
 
-    
+
     private void RangeVision()
     {
 

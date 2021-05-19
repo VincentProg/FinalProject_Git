@@ -637,6 +637,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a3ded48857c5f0f49afa429db37ce5e1, type: 2}
   - {fileID: 11400000, guid: 3be217af95bd3674cafa9821464e7f2d, type: 2}
   myCanvas: {fileID: 555145218}
+  grenades: []
   myTile: {fileID: 0}
 --- !u!212 &47141203
 SpriteRenderer:
@@ -21018,7 +21019,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: turnDelay
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: nbOfEntityToSpawn
@@ -21026,7 +21027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: enemyList.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: enemyList.Array.data[0]
@@ -21671,6 +21672,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a3ded48857c5f0f49afa429db37ce5e1, type: 2}
   - {fileID: 11400000, guid: 3be217af95bd3674cafa9821464e7f2d, type: 2}
   myCanvas: {fileID: 603147631}
+  grenades: []
   myTile: {fileID: 0}
 --- !u!212 &1642619562
 SpriteRenderer:

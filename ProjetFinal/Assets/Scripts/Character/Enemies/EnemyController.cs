@@ -32,10 +32,6 @@ public class EnemyController : MonoBehaviour
         {
             Initialize();
 
-        }
-    }
-
-
     public void Initialize()
     {
         #region GET MY START TILE()

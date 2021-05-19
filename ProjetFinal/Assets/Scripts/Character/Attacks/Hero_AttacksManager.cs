@@ -43,7 +43,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
                 if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
                 {
-                foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, false, false))
+                    foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, false, false))
                     {
                         foreach (HexCell tile in diagonal)
                         {
@@ -53,24 +53,27 @@ public class Hero_AttacksManager : MonoBehaviour
                 }
                 else
                 {
-                    foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, attack.canSelectHole, true))
+                    foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, attack.canSelectHole, false))
                     {
-                        bool isInRange = false;
-                        for (int i = 0; i < TilesInRange[0].Count; i++)
+                        foreach (HexCell tile in diagonal)
                         {
-                            if (tile == TilesInRange[0][i])
+                            bool isInRange = false;
+                            for (int i = 0; i < TilesInRange[0].Count; i++)
                             {
-                                isInRange = true;
+                                if (tile == TilesInRange[0][i])
+                                {
+                                    isInRange = true;
+                                }
                             }
-                        }
 
-                        if (isInRange)
-                        {
-                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
-                        }
-                        else
-                        {
-                            tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_AIM);
+                            if (isInRange)
+                            {
+                                tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                            }
+                            else
+                            {
+                                tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_AIM);
+                            }
                         }
                     }
 =======
@@ -88,9 +91,12 @@ public class Hero_AttacksManager : MonoBehaviour
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
                 if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
                 {
-                    foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, attack.canSelectHole, false, true, true))
+                    foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, false, false))
                     {
-                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                        foreach (HexCell tile in diagonal)
+                        {
+                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                        }
                     }
                 }
                 else
@@ -138,60 +144,49 @@ public class Hero_AttacksManager : MonoBehaviour
                 originTile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
 <<<<<<< Updated upstream
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
-                foreach (HexCell tile in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeImpact, true, true))
-                {
-                    bool isInRange = false;
-                    for (int i = 0; i < TilesInRange[0].Count; i++)
-                    {
-                        if (tile == TilesInRange[0][i])
-                        {
-                            isInRange = true;
-                        }
-                    }
 
-                    if (isInRange)
-                    {
-=======
 
                 foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeImpact, true, true))
                 {
                     foreach (HexCell tile in diagonal)
                     {
->>>>>>> Stashed changes
-                        if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
+                        bool isInRange = false;
+                        for (int i = 0; i < TilesInRange[0].Count; i++)
                         {
-                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                            if (tile == TilesInRange[0][i])
+                            {
+                                isInRange = true;
+                            }
+                        }
+
+                        if (isInRange)
+                        {
+                            if (tile.selectionType == HexCell.SELECTION_TYPE.AIM)
+                            {
+                                tile.SelectCell(HexCell.SELECTION_TYPE.AIM_IMPACT);
+                            }
+                            else
+                            {
+                                if (tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIM)
+                                    tile.SelectCell(HexCell.SELECTION_TYPE.DISABLEDAIM_IMPACT);
+                                else tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
+
+                            }
                         }
                         else
                         {
 <<<<<<< Updated upstream
                             if (tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIM)
-                                tile.SelectCell(HexCell.SELECTION_TYPE.DISABLEDAIM_IMPACT);
-                            else tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
-                            
-                        }
-                    }
-                    else
-                    {
-                       if(tile.selectionType == HexCell.SELECTION_TYPE.DISABLED_AIM)
-                       {
-                            tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_AIMIMPACT);
-                       }
-                        else tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_IMPACT);
-                    }               
-
-                    if(tile == originTile)
-                    {
-                        tile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
-=======
-                            tile.SelectCell(HexCell.SELECTION_TYPE.IMPACT);
+                            {
+                                tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_AIMIMPACT);
+                            }
+                            else tile.SelectCell(HexCell.SELECTION_TYPE.DISABLED_IMPACT);
                         }
 
                         if (tile == originTile)
                         {
-                            tile.ModifySelection(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
+                            tile.SelectCell(HexCell.SELECTION_TYPE.ORIGIN_IMPACT);
                         }
->>>>>>> Stashed changes
                     }
                 }
                 break;

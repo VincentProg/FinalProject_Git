@@ -6,17 +6,20 @@ using UnityEngine;
 public class Grenade : MonoBehaviour
 {
 
-    public enum TYPE_GRENADE {  EXPLOSE, FLASH};
+    public enum TYPE_GRENADE {EXPLOSE, FLASH};
     public TYPE_GRENADE type;
 
     public int delay;
     public int range;
-    public int damages;
+    public int damagesExplose;
+    public int nbrTurnSkipFlash;
 
-    bool isFriendlyFire;
+    public bool isFriendlyFire;
 
     [HideInInspector]
     public HexCell myTile;
+
+    [HideInInspector]
     public HeroController hero;
 
     public void StartTurn()
@@ -41,12 +44,12 @@ public class Grenade : MonoBehaviour
 
                 foreach(HexCell tile in listTiles)
                 {
-                    if(!isFriendlyFire && tile.hero != null)
+                    if(isFriendlyFire && tile.hero != null)
                     {
-                        tile.hero.TakeDamages(damages);
+                        tile.hero.TakeDamages(damagesExplose);
                     } else if(tile.enemy != null)
                     {
-                        tile.enemy.TakeDamages(damages);
+                        tile.enemy.TakeDamages(damagesExplose);
                     }
                 }
 
@@ -54,14 +57,30 @@ public class Grenade : MonoBehaviour
 
             case TYPE_GRENADE.FLASH:
 
+                foreach (HexCell tile in listTiles)
+                {
+                    if (!isFriendlyFire && tile.hero != null)
+                    {
+                        tile.hero.SkipTurns(nbrTurnSkipFlash);
+                    }
+                    else if (tile.enemy != null)
+                    {
+                        tile.enemy.SkipTurns(nbrTurnSkipFlash);
+                    }
+                }
+
                 break;
 
         }
+
+        Death();
 
     }
 
     private void Death()
     {
+        print(hero.gameObject.name);
+        hero.grenades.Remove(this);
         Destroy(gameObject);
     }
 }

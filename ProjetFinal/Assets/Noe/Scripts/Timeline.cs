@@ -43,13 +43,11 @@ public class Timeline : MonoBehaviour
     {
         HeroBoxUI.GetComponent<RectTransform>().localScale *= enlargmentValue;
         HeroBoxUI.GetComponentInChildren<Image>().color = Color.blue;
-        print(HeroBoxUI.name + "enlarging");
     }
 
     public void ResetHeroBoxToDefaultSize(GameObject HeroBoxUI)
     {
         HeroBoxUI.GetComponent<RectTransform>().localScale = defSize;
         HeroBoxUI.GetComponentInChildren<Image>().color = Color.white;
-        print(HeroBoxUI.name + "reducing");
     }
 }

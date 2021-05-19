@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     public bool hasSpawned;
     private bool isFirstTurn = true;
+    private int nbrTurnToSkip;
     // STATISTIQUES
     public StatsEnemy stats;
     // ----
@@ -62,6 +63,13 @@ public class EnemyController : MonoBehaviour
 
     public void StartTurn()
     {
+        if (nbrTurnToSkip > 0)
+        {
+            nbrTurnToSkip--;
+            EndTurn();
+            return;
+        }
+
         if (isFirstTurn)
         {
             isFirstTurn = false;
@@ -219,6 +227,11 @@ public class EnemyController : MonoBehaviour
         {
             Death();
         }
+    }
+
+    public void SkipTurns(int turnsToSkip)
+    {
+        nbrTurnToSkip += turnsToSkip;
     }
 
     private void Death()

@@ -17,6 +17,8 @@ public class HeroController : MonoBehaviour
     public List<Attack> attacks = new List<Attack>();
     public GameObject myCanvas;
     TextMeshProUGUI PAtxt, PMtxt, PVtxt;
+
+    public List<Grenade> grenades = new List<Grenade>();
     
 
     // VARIABLES GRID
@@ -25,7 +27,7 @@ public class HeroController : MonoBehaviour
 
 
     bool isMyTurn = false;
-    int nbrSkipTurn = 0;
+    int nbrTurnsToSkip = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -131,9 +133,9 @@ public class HeroController : MonoBehaviour
 
     public void StartTurn()
     {
-        if(nbrSkipTurn > 0)
+        if(nbrTurnsToSkip > 0)
         {
-            nbrSkipTurn--;
+            nbrTurnsToSkip--;
             EndTurn();
             return;
         }
@@ -176,6 +178,13 @@ public class HeroController : MonoBehaviour
         myCanvas.SetActive(false);
         PM = stats.PM;
         PA = stats.PA;
+
+        for(int i = 0; i < grenades.Count; i++)
+        {
+            grenades[i].StartTurn();
+            print("grenadeLoop");
+        }
+
         CombatSystem.instance.NextTurn();
     }
 
@@ -223,6 +232,11 @@ public class HeroController : MonoBehaviour
         {
             Death();
         }
+    }
+
+    public void SkipTurns(int turnsToSkip)
+    {
+        nbrTurnsToSkip += turnsToSkip;
     }
 
     private void Death()

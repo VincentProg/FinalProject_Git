@@ -290,6 +290,13 @@ public class Hero_AttacksManager : MonoBehaviour
                 if (newObject.GetComponent<Mine>())
                 {
                     newObject.GetComponent<Mine>().myTile = originTile;
+                } else if (newObject.GetComponent<Grenade>())
+                {
+                    Grenade grenadeScript = newObject.GetComponent<Grenade>();
+                    grenadeScript.hero = playerTile.hero;
+                    grenadeScript.myTile = originTile;
+                    playerTile.hero.grenades.Add(grenadeScript);
+                    
                 }
                 break;
             case Attack.IMPACT_TYPE.TELEPORT:

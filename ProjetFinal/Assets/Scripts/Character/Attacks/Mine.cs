@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Mine : MonoBehaviour
 {
-    public int damages;
-    public int range;
+    [SerializeField]
+    private int damages, range;
+   
+    public bool isFriendlyFire;
 
     public HexCell myTile;
 
@@ -14,7 +16,7 @@ public class Mine : MonoBehaviour
     {
         foreach(HexCell tile in TilesManager.instance.GetRange(myTile.coordinates, range, true, false)){
             
-            if(tile.hero != null)
+            if(isFriendlyFire && tile.hero != null)
             {
                 tile.hero.TakeDamages(damages);
             } else if (tile.enemy != null)

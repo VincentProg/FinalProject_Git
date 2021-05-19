@@ -58,7 +58,7 @@ public class Spawner : MonoBehaviour
                         {
                             GameObject enemy = Instantiate(enemyList[Random.Range(0, enemyList.Count)], adjacentCells[i].gameObject.transform.position, transform.rotation);
                             EnemyController enemyScript = enemy.GetComponent<EnemyController>();
-                            CombatSystem.instance.enemies.Add(enemyScript);
+                            enemyScript.hasSpawned = true;
                             enemyScript.Initialize();
                             nbEntityLeft--;
                             adjacentCells[i].enemy = enemy.GetComponent<EnemyController>();

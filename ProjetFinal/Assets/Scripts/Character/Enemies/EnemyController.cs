@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public bool hasSpawned;
     private bool isFirstTurn = true;
     // STATISTIQUES
     public StatsEnemy stats;
     // ----
     private string nameEnemy;
-    private int health, PM, PA, damages;
+    private int health, PM, PA;
 
     private bool isActionDone = true;
   
-
 
     // VARIABLES GRID
     HexCell myTile;
@@ -22,9 +22,14 @@ public class EnemyController : MonoBehaviour
     HeroController hero2;
 
 
+    private void Start()
+    {
+        if (!hasSpawned)
+        {
+            Initialize();
 
-   
-
+        }
+    }
 
 
     public void Initialize()
@@ -42,6 +47,7 @@ public class EnemyController : MonoBehaviour
         }
         #endregion
 
+        CombatSystem.instance.enemies.Add(this);
         hero1 = CombatSystem.instance.heros[0];
         hero2 = CombatSystem.instance.heros[1];
 
@@ -51,7 +57,6 @@ public class EnemyController : MonoBehaviour
         health = stats.health;
         PM = stats.PM;
         PA = stats.PA;
-        damages = stats.damages;
 
     }
 
@@ -66,7 +71,8 @@ public class EnemyController : MonoBehaviour
 
         while (PA > 0 && isActionDone)
         {
-            CheckAction();          
+            isActionDone = false;
+            CheckAction();
         }
 
         EndTurn();
@@ -75,51 +81,73 @@ public class EnemyController : MonoBehaviour
     {
         PM = stats.PM;
         PA = stats.PA;
+        isActionDone = true;
         CombatSystem.instance.NextTurn();
     }
 
     private void CheckAction()
     {
-        int dist1 = TilesManager.instance.GetPath(myTile.coordinates, hero1.myTile.coordinates, false, false).Count;
-        int dist2 = TilesManager.instance.GetPath(myTile.coordinates, hero2.myTile.coordinates, false, false).Count;
-        HeroController hero = null;
+        switch (stats.Type) {
 
+            case StatsEnemy.ENEMY_TYPE.CAC:
+                #region CAC_CheckAction
+                int dist1 = TilesManager.instance.GetPath(myTile.coordinates, hero1.myTile.coordinates, false, false).Count;
+                int dist2 = TilesManager.instance.GetPath(myTile.coordinates, hero2.myTile.coordinates, false, false).Count;
+                HeroController hero = null;
+                int distHero = 0;
+                int distRange = stats.attacks[0].range + 1;
 
-        if (dist1 == 1 && dist2 == 1)
-        {
-            if (hero1.health < hero2.health)
-            {
-                hero = hero1;
-            }
-            else hero = hero2;
-
-        } else if (dist1 == 1) hero = hero1;
-          else if(dist2 == 1) hero = hero2;
-
-        if(hero != null)
-        {
-            AttackCAC(hero);
-        } else 
-        {
-            if (dist1 < dist2)
-                hero = hero1;
-            else if (dist1 == dist2)
-            {
-                if (hero1.health < hero2.health)
+                if (dist1 <= distRange && dist2 <= distRange)
                 {
-                    hero = hero1;
-                }
-                else hero = hero2;
-            }
-            else hero = hero2;
+                    if (hero1.health < hero2.health)
+                    {
+                        hero = hero1;
+                        distHero = dist1;
+                    }
+                    else
+                    {
+                        hero = hero2;
+                        distHero = dist2;
+                    }
 
-            Move(hero);
+                }
+                else if (dist1 <= distRange) { hero = hero1; distHero = dist1; }
+                else if (dist2 <= distRange) { hero = hero2; distHero = dist2; }
+
+                if (hero != null)
+                {
+                    AttackCAC(hero, distHero);
+                }
+                else
+                {
+                    if (dist1 < dist2)
+                        hero = hero1;
+                    else if (dist1 == dist2)
+                    {
+                        if (hero1.health < hero2.health)
+                        {
+                            hero = hero1;
+                        }
+                        else hero = hero2;
+                    }
+                    else hero = hero2;
+
+                    MoveCAC(hero);
+                }
+                #endregion
+                break;
+
+            case StatsEnemy.ENEMY_TYPE.DISTANCE:
+
+                break;
+        
         }
+        
         
 
     }
 
-    private void Move(HeroController hero)
+    private void MoveCAC(HeroController hero)
     {
 
         if (PM > 0 && PA > 0)
@@ -134,6 +162,11 @@ public class EnemyController : MonoBehaviour
             tile.enemy = this;
             transform.position = myTile.transform.position;
 
+            if (myTile.item != null)
+            {
+                myTile.ActionItem();
+            }
+
             PM -= 1;
             PA -= 1;
             isActionDone = true;
@@ -142,12 +175,35 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void AttackCAC(HeroController hero)
+    private void AttackCAC(HeroController hero, int distanceHero)
     {
-        if (PA > 0)
+
+        if (PA >= stats.attacks[0].costPA)
         {
-            hero.TakeDamages(damages);
-            PA--;
+            if (stats.attacks[0].range < 1)
+            {
+                hero.TakeDamages(stats.attacks[0].damages);  
+            } else
+            {
+                List<HexCoordinates> path = new List<HexCoordinates>();
+                path = TilesManager.instance.GetPath(myTile.coordinates, hero.myTile.coordinates, false, false);
+                HexCell tileAimed;
+                TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out tileAimed);
+                foreach (HexCell tile in TilesManager.instance.GetRange(tileAimed.coordinates, stats.attacks[0].range, false, false))
+                {
+                    if(tile != myTile)
+                    {
+                        if (tile.hero)
+                        {
+                            tile.hero.TakeDamages(stats.attacks[0].damages);
+                        } else if (tile.enemy)
+                        {
+                            tile.enemy.TakeDamages(stats.attacks[0].damages);
+                        }
+                    } 
+                }
+            }
+            PA -= stats.attacks[0].costPA;
             isActionDone = true;
         }
     }

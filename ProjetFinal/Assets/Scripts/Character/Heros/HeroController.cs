@@ -16,7 +16,7 @@ public class HeroController : MonoBehaviour
     // ATTACKS
     public List<Attack> attacks = new List<Attack>();
     public GameObject myCanvas;
-    TextMeshProUGUI PAtxt, PMtxt;
+    TextMeshProUGUI PAtxt, PMtxt, PVtxt;
     
 
     // VARIABLES GRID
@@ -30,11 +30,15 @@ public class HeroController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
+        PAtxt = myCanvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        PMtxt = myCanvas.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
+        PVtxt = myCanvas.transform.GetChild(5).GetComponent<TextMeshProUGUI>();
+
         SetMyStats();
         SetUIAttacks();
 
-            PAtxt = myCanvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
-            PMtxt = myCanvas.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
 
         #region GET MY START TILE()
         // AJOUT TUILE DEPART
@@ -122,6 +126,8 @@ public class HeroController : MonoBehaviour
         health = stats.health;
         PM = stats.PM;
         PA = stats.PA;
+        SetUI_PA_PM();
+        PVtxt.text = health.ToString();
     }
 
     public void StartTurn()
@@ -173,9 +179,16 @@ public class HeroController : MonoBehaviour
         PA--;
         SetUI_PA_PM();
         
+
+
         myTile.hero = null;
         myTile = tile;
         myTile.hero = this;
+
+        if(myTile.item != null)
+        {
+            myTile.ActionItem();
+        }
 
         transform.position = myTile.transform.position;
         
@@ -198,6 +211,7 @@ public class HeroController : MonoBehaviour
     {
         health -= damages;
         health = Mathf.Clamp(health, 0, stats.health);
+        PVtxt.text = health.ToString();
 
         if(health == 0)
         {

@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b492e189e8f21498de18680d62a00f, type: 3}
   m_Name: bigEnemyCAC
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 309cca25939a25140900b9faad06ba10, type: 3}
+  sprite: {fileID: 21300000, guid: 92122e4c51708394ba2f04ea7990e993, type: 3}
   enemyName: 
   health: 3
   PM: 1
   PA: 2
+  Type: 0
   attacks:
   - damages: 3
     costPA: 2
-    impactRange: 1
+    range: 0

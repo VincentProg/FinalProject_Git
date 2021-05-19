@@ -99,6 +99,7 @@ MonoBehaviour:
   enemyList:
   - {fileID: 0}
   nbOfEntityToSpawn: 1
+  nbEntityLeft: 0
   turnDelay: 1
   maxHp: 0
   hp: 5
@@ -109,4 +110,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  pos: {fileID: 0}
+  spawnerSprite: {fileID: 21300000, guid: 6e8e94dcd903e794a81f10cf0bc36c33, type: 3}
+  adjacentSprites:
+  - {fileID: 21300000, guid: 7b08c5f59206e2b43abc0f8d7b1357e0, type: 3}
+  - {fileID: 21300000, guid: d4f4c47673a661a40ba5b6779f4f97c0, type: 3}
+  - {fileID: 21300000, guid: f2f9df9bdf40976408c6445dfbc992b9, type: 3}
+  - {fileID: 21300000, guid: 17f0696e3b92c954d8cc74da28414b9d, type: 3}
+  - {fileID: 21300000, guid: ee38e1e7c26e34942924d494c4b710fc, type: 3}
+  - {fileID: 21300000, guid: 706df5fd24ac19344ad3569d74837312, type: 3}

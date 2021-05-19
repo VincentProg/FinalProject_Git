@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 309cca25939a25140900b9faad06ba10, type: 3}
   enemyName: 
-  health: 3
+  health: 2
   PM: 2
   PA: 2
+  Type: 0
   attacks:
   - damages: 1
     costPA: 1
-    impactRange: 0
+    range: 0

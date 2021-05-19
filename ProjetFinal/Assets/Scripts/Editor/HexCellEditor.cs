@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(HexCell))]
+[CustomEditor(typeof(HexCell)), CanEditMultipleObjects]
 public class HexCellEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -16,8 +16,14 @@ public class HexCellEditor : Editor
 
         if (GUILayout.Button("Update Tile (CTRL + S after click)"))
         {
-            tile.UpdateTileDatas(tile.tileType);
-            EditorUtility.SetDirty(target);
+            foreach (Transform t in tile.transform.parent)
+            {
+                if (t.GetComponent<HexCell>())
+                {
+                    t.GetComponent<HexCell>().UpdateTileDatas(tile.tileType);
+                    EditorUtility.SetDirty(t);
+                }
+            }
         }
     }
 }

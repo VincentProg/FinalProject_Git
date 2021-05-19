@@ -348,7 +348,7 @@ public class TilesManager : MonoBehaviour
 
 
             // Get all neighbors of current
-            foreach (HexCell item in GetRadius(current, 1, passHole, passWall, passWall, passWall))
+            foreach (HexCell item in GetRadius(current, 1, passHole, passWall, true, true))
             {
                 neighbors.Add(item.GetComponent<HexCell>().coordinates);
             }

@@ -25,6 +25,8 @@ public class HeroController : MonoBehaviour
     [HideInInspector]
     public HexCell myTile;
 
+    public HexCoordinates coordinates;
+
 
     bool isMyTurn = false;
     int nbrTurnsToSkip = 0;
@@ -43,6 +45,7 @@ public class HeroController : MonoBehaviour
 
 
         #region GET MY START TILE()
+       
         // AJOUT TUILE DEPART
         RaycastHit2D hitStart = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity);
         if (hitStart)
@@ -54,6 +57,7 @@ public class HeroController : MonoBehaviour
             }
         }
         #endregion
+        coordinates = myTile.coordinates;
 
     }
 
@@ -219,9 +223,6 @@ public class HeroController : MonoBehaviour
 
     public void SetUI_PA_PM()
     {
-
-        print(PMtxt.text);
-
         PMtxt.text = PM.ToString();
         PAtxt.text = PA.ToString();
     }

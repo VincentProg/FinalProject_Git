@@ -26,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157666}
-  m_LocalRotation: {x: 0.00000006718107, y: 0.7071068, z: -0.7071068, w: 0.00000008940696}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 16, y: 16, z: 16}
   m_Children:
   - {fileID: 1851301020765344376}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &11422220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,24 +53,25 @@ MonoBehaviour:
   hero: {fileID: 0}
   enemy: {fileID: 0}
   item: {fileID: 0}
-  isSelected: 0
   selectionType: 0
   colors:
   - {r: 1, g: 1, b: 1, a: 0}
-  - {r: 0.38736147, g: 0.735849, b: 0.28114986, a: 1}
-  - {r: 0.4471473, g: 0.43173724, b: 0.9245283, a: 1}
-  - {r: 0.94509804, g: 0.09956873, b: 0.0745098, a: 1}
-  - {r: 0.9450981, g: 0.098039225, b: 0.07450981, a: 1}
+  - {r: 0.8154278, g: 1, b: 0.759434, a: 1}
+  - {r: 0.6112064, g: 0.5990566, b: 1, a: 1}
+  - {r: 1, g: 0.2519123, b: 0.23113209, a: 1}
+  - {r: 1, g: 0.2509804, b: 0.23137257, a: 1}
   - {r: 0.2040974, g: 0.19272874, b: 0.5754717, a: 1}
   - {r: 0.5, g: 0.013513513, b: 0, a: 1}
-  - {r: 0.49506655, g: 0.493236, b: 0.6415094, a: 1}
+  - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  tileSprites:
-  - {fileID: 2747690628134850419, guid: be24a1732d40740488420a4f52e08397, type: 3}
-  - {fileID: 2747690628134850419, guid: be24a1732d40740488420a4f52e08397, type: 3}
-  - {fileID: 2747690628134850419, guid: be24a1732d40740488420a4f52e08397, type: 3}
-  - {fileID: 2747690628134850419, guid: be24a1732d40740488420a4f52e08397, type: 3}
+  basicTileSprites:
+  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
+  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
+  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
+  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
+  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
+  SpawnerTileSprites: []
 --- !u!212 &9172664526708501547
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -226,7 +227,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -100
-  m_Sprite: {fileID: 2747690628134850419, guid: be24a1732d40740488420a4f52e08397, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

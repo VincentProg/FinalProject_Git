@@ -26,7 +26,8 @@ public class HexCell : MonoBehaviour {
 
 	public enum TILE_TYPE {GROUND, WALL, HOLE}
 	public TILE_TYPE tileType;
-	public List<Sprite> tileSprites;
+	public List<Sprite> basicTileSprites;
+	public List<Sprite> SpawnerTileSprites;
 	
 
 	void Awake()
@@ -34,7 +35,6 @@ public class HexCell : MonoBehaviour {
 		TilesManager.instance.mapTiles.Add(coordinates, this);
 		sprite = GetComponent<SpriteRenderer>();
 
-		UpdateTileDatas(tileType);
 	}
 
 
@@ -103,16 +103,35 @@ public class HexCell : MonoBehaviour {
 		switch (type)
         {
 			case TILE_TYPE.GROUND:
-				myTileSprite.sprite = tileSprites[1];
+				int iSprite;
+				int rand = Random.Range(0, 100);
+				if (rand < 50)
+				{
+					iSprite = 0;
+				}
+				else if (rand < 65)
+				{
+					iSprite = 1;
+				}
+				else if (rand < 80)
+				{
+					iSprite = 2;
+				}
+				else if (rand < 98)
+				{
+					iSprite = 3;
+				}
+				else iSprite = 4;
+				myTileSprite.sprite = basicTileSprites[iSprite];
 				break;
 
 			case TILE_TYPE.WALL:
-				myTileSprite.sprite = tileSprites[2];
+				myTileSprite.sprite = basicTileSprites[2];
 				myTileSprite.color = Color.gray;
 				break;
 
 			case TILE_TYPE.HOLE:
-				myTileSprite.sprite = tileSprites[3];
+				myTileSprite.sprite = basicTileSprites[3];
 				myTileSprite.color = Color.black;
 				break;
         }

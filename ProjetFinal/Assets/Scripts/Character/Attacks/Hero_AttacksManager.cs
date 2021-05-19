@@ -76,7 +76,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
                 if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
                 {
-                    foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, attack.canSelectHole, false))
+                    foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, attack.canSelectHole, false, true, true))
                     {
                         tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
                     }
@@ -84,7 +84,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 else
                 {
 
-                    foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, attack.canSelectHole, false))
+                    foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, attack.canSelectHole, false, true, true))
                     {
                         bool isInRange = false;
                         for (int i = 0; i < TilesInRange[0].Count; i++)
@@ -225,7 +225,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 break;
             case Attack.IMPACT_TYPE.RADIUS:
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
-                foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableImpact, attack.rangeImpact, true, true))
+                foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableImpact, attack.rangeImpact, true, true, true, true))
                 {
                     bool isInRange = false;
                     for (int i = 0; i < TilesInRange[0].Count; i++)

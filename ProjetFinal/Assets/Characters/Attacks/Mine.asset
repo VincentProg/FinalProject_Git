@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 309cca25939a25140900b9faad06ba10, type: 3}
   name: Mine
-  costPA: 5
+  costPA: 1
   cooldown: 3
-  nbrUsePerTurn: 0
-  nbrUseTotal: 10
+  nbrUsePerTurn: 1
+  nbrUseTotal: 0
   rangeType: 2
   rangeAttack: 1
   radiusUnattackableAttack: 0

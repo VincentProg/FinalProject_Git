@@ -31,14 +31,15 @@ public class CombatSystem : MonoBehaviour
     int nbrRound = 1;
     public TextMeshProUGUI nbrRoundTXT;
 
-    private void FixedUpdate()
+    // auto turn
+/*    private void FixedUpdate()
     {
         if(Time.time > next)
         {
             next = Time.time + cooldown;
             heros[0].EndTurn();
         }
-    }
+    }*/
 
     private void Awake()
     {

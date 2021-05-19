@@ -31,6 +31,8 @@ public class EnemyController : MonoBehaviour
         if (!hasSpawned)
         {
             Initialize();
+        }
+    }
 
     public void Initialize()
     {

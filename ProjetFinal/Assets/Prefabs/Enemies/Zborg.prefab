@@ -98,3 +98,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSpawned: 0
   stats: {fileID: 11400000, guid: 8640c24d68959c342be93939f449f8b9, type: 2}
+  TXT_Damages: {fileID: 6266669382385152773, guid: 4bfe2c1cf56a6704f9f95b27aba90243, type: 3}

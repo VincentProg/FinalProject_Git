@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bcb10621537e4d438ca0700f7b53a21, type: 3}
-  m_Name: Explosion
+  m_Name: Mine
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 309cca25939a25140900b9faad06ba10, type: 3}
-  name: 
-  costPA: 5
+  name: Mine
+  costPA: 1
   cooldown: 3
-  nbrUsePerTurn: 0
-  nbrUseTotal: 10
+  nbrUsePerTurn: 1
+  nbrUseTotal: 0
   rangeType: 2
   rangeAttack: 1
   radiusUnattackableAttack: 0

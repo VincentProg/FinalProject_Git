@@ -17,30 +17,35 @@ public class HeroController : MonoBehaviour
     public List<Attack> attacks = new List<Attack>();
     public GameObject myCanvas;
     TextMeshProUGUI PAtxt, PMtxt, PVtxt;
+
+    public List<Grenade> grenades = new List<Grenade>();
     
 
     // VARIABLES GRID
     [HideInInspector]
     public HexCell myTile;
 
+    public HexCoordinates coordinates;
+
 
     bool isMyTurn = false;
-
+    int nbrTurnsToSkip = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         
-
         PAtxt = myCanvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
         PMtxt = myCanvas.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
         PVtxt = myCanvas.transform.GetChild(5).GetComponent<TextMeshProUGUI>();
+        print(PMtxt.text);
 
         SetMyStats();
         SetUIAttacks();
 
 
         #region GET MY START TILE()
+       
         // AJOUT TUILE DEPART
         RaycastHit2D hitStart = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity);
         if (hitStart)
@@ -52,6 +57,7 @@ public class HeroController : MonoBehaviour
             }
         }
         #endregion
+        coordinates = myTile.coordinates;
 
     }
 
@@ -132,6 +138,13 @@ public class HeroController : MonoBehaviour
 
     public void StartTurn()
     {
+        if(nbrTurnsToSkip > 0)
+        {
+            nbrTurnsToSkip--;
+            EndTurn();
+            return;
+        }
+
         isMyTurn = true;
         //print("StartTurn");
         myCanvas.SetActive(true);
@@ -154,7 +167,7 @@ public class HeroController : MonoBehaviour
 
         if (PM >= 1)
         {
-            foreach( HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, rangePM, false, false))
+            foreach( HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, rangePM, false, false, false, false))
             {
                 tile.SelectCell(HexCell.SELECTION_TYPE.MOVEMENT);
             }
@@ -170,6 +183,13 @@ public class HeroController : MonoBehaviour
         myCanvas.SetActive(false);
         PM = stats.PM;
         PA = stats.PA;
+
+        for(int i = 0; i < grenades.Count; i++)
+        {
+            grenades[i].StartTurn();
+            print("grenadeLoop");
+        }
+
         CombatSystem.instance.NextTurn();
     }
 
@@ -187,7 +207,7 @@ public class HeroController : MonoBehaviour
 
         if(myTile.item != null)
         {
-            myTile.ActionItem();
+            myTile.ActionItem(true);
         }
 
         transform.position = myTile.transform.position;
@@ -217,6 +237,11 @@ public class HeroController : MonoBehaviour
         {
             Death();
         }
+    }
+
+    public void SkipTurns(int turnsToSkip)
+    {
+        nbrTurnsToSkip += turnsToSkip;
     }
 
     private void Death()

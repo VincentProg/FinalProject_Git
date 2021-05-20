@@ -19,6 +19,10 @@ public class StatsEnemy : ScriptableObject
     public int PM;
     public int PA;
 
+    public bool isFlying;
+
+    public int distanceToStayAway = 0;
+
     public enum ENEMY_TYPE { CAC , DISTANCE};
     public ENEMY_TYPE Type;
 

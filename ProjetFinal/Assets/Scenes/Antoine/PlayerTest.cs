@@ -44,7 +44,7 @@ public class PlayerTest : MonoBehaviour
 
                    /* if (Vector2.Distance(gameObject.transform.position, tileTouched.transform.position) < 500)
                     {*/
-                        gameObject.transform.position = tileTouched.gameObject.transform.position;
+/*                        gameObject.transform.position = tileTouched.gameObject.transform.position;
                         RaycastHit2D hitStart = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity);
                         if (hitStart)
                         {
@@ -64,15 +64,10 @@ public class PlayerTest : MonoBehaviour
                         foreach (var item in result[1])
                         {
                             item.gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
-                        }
+                        }*/
                     //}
                 }
             }
-        }
-
-        if (tileTouched)
-        {
-            Debug.DrawLine(gameObject.transform.position, tileTouched.gameObject.transform.position, Color.red);
         }
     }
 }

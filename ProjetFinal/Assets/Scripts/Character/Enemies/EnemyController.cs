@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemyController : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class EnemyController : MonoBehaviour
     // ----
     private string nameEnemy;
     private int health, PM, PA;
+    public GameObject TXT_Damages;
 
+    private bool isMoving;
     private bool isActionDone = true;
   
 
@@ -31,6 +34,19 @@ public class EnemyController : MonoBehaviour
         if (!hasSpawned)
         {
             Initialize();
+        }
+    }
+
+    private void Update()
+    {
+        if (isMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, myTile.transform.position, 50f*Time.deltaTime);
+            if (transform.position == myTile.transform.position)
+            {
+                isMoving = false;
+                ArriveOnCell();
+            }
         }
     }
 
@@ -78,14 +94,23 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        while (PA > 0 && isActionDone)
+        ContinueTurn();
+    }
+
+    public void ContinueTurn()
+    {
+        if(PA > 0 && isActionDone)
         {
+            print("continue turn");
             isActionDone = false;
             CheckAction();
+        } else
+        {
+            print("endTurn");
+            EndTurn();
         }
-
-        EndTurn();
     }
+
     private void EndTurn()
     {
         PM = stats.PM;
@@ -341,19 +366,25 @@ public class EnemyController : MonoBehaviour
             myTile.enemy = null;
             myTile = tile;
             tile.enemy = this;
-            transform.position = myTile.transform.position;
-
-            if (myTile.item != null)
-            {
-                myTile.ActionItem(true);
-            }
-
-            PM -= 1;
-            PA -= 1;
-            isActionDone = true;
-
+            isMoving = true;
             
+        } else
+        {
+            ContinueTurn();
         }
+    }
+
+    private void ArriveOnCell()
+    {
+        if (myTile.item != null)
+        {
+            myTile.ActionItem(true);
+        }
+
+        PM -= 1;
+        PA -= 1;
+        isActionDone = true;
+        ContinueTurn();
     }
 
     private void AttackCAC(HeroController hero, int distanceHero)
@@ -386,7 +417,10 @@ public class EnemyController : MonoBehaviour
             }
             PA -= stats.attacks[0].costPA;
             isActionDone = true;
+            
         }
+
+        ContinueTurn();
     }
     #endregion
 
@@ -395,6 +429,11 @@ public class EnemyController : MonoBehaviour
     {
         health -= damages;
         health = Mathf.Clamp(health, 0, stats.health);
+
+        GameObject txt = Instantiate(TXT_Damages, transform.position, transform.rotation);
+        txt.transform.GetChild(0).GetComponent<TextMeshPro>().text = damages.ToString();
+        txt.transform.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 10;
+        Destroy(txt, 1);
 
         if (health == 0)
         {

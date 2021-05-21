@@ -21,6 +21,8 @@ public class HexCell : MonoBehaviour {
 	public SELECTION_TYPE selectionType = SELECTION_TYPE.NONE;
 
 	private SpriteRenderer sprite;
+	[HideInInspector]
+	public SpriteRenderer myTileSprite;
 	[SerializeField]
 	private List<Color> colors = new List<Color>();
 
@@ -28,12 +30,18 @@ public class HexCell : MonoBehaviour {
 	public TILE_TYPE tileType;
 	public List<Sprite> basicTileSprites;
 	public List<Sprite> SpawnerTileSprites;
+
+	private Animator anim;
 	
 
 	void Awake()
 	{
 		TilesManager.instance.mapTiles.Add(coordinates, this);
 		sprite = GetComponent<SpriteRenderer>();
+		myTileSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+		transform.GetChild(0).parent = transform.parent;
+		anim = GetComponent<Animator>();
+
 
 	}
 
@@ -84,6 +92,8 @@ public class HexCell : MonoBehaviour {
 
 		}
 
+		anim.SetTrigger("Appear");
+
     }
 
 
@@ -96,11 +106,16 @@ public class HexCell : MonoBehaviour {
 
 	public void UpdateTileDatas(TILE_TYPE type)
     {
+		if(myTileSprite == null)
+        {
+			myTileSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        }
+
 		tileType = type;
-		SpriteRenderer myTileSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
 		switch (type)
         {
 			case TILE_TYPE.GROUND:
+				myTileSprite.color = Color.white;
 				int iSprite;
 				int rand = Random.Range(0, 100);
 				if (rand < 50)

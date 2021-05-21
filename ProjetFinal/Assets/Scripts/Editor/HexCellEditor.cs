@@ -16,14 +16,8 @@ public class HexCellEditor : Editor
 
         if (GUILayout.Button("Update Tile (CTRL + S after click)"))
         {
-            foreach (Transform t in tile.transform.parent)
-            {
-                if (t.GetComponent<HexCell>())
-                {
-                    t.GetComponent<HexCell>().UpdateTileDatas(tile.tileType);
-                    EditorUtility.SetDirty(t);
-                }
-            }
+                    tile.GetComponent<HexCell>().UpdateTileDatas(tile.tileType);
+                    EditorUtility.SetDirty(tile);
         }
     }
 }

@@ -23,7 +23,7 @@ public class StatsEnemy : ScriptableObject
 
     public int distanceToStayAway = 0;
 
-    public enum ENEMY_TYPE { CAC , DISTANCE};
+    public enum ENEMY_TYPE { CAC , DISTANCE, KAMIKAZE};
     public ENEMY_TYPE Type;
 
     public List<AttackStats> attacks;

@@ -69,8 +69,7 @@ public class TilesManager : MonoBehaviour
     }
 
 
-    public List<HexCell> GetRadius(HexCoordinates center, int radius, bool passHole, bool passWall, bool passHero, bool passEnemy)
-    {
+    public List<HexCell> GetRadius(HexCoordinates center, int radius, bool passHole, bool passWall, bool passHeroEnemySpawner) { 
         List<HexCell> results = new List<HexCell>();
         HexCell temp;
 
@@ -95,11 +94,8 @@ public class TilesManager : MonoBehaviour
                     if (!passWall)
                         if (temp.tileType.Equals(HexCell.TILE_TYPE.WALL))
                             canPass = false;
-                    if (!passHero)
-                        if (temp.hero != null)
-                            canPass = false;
-                    if (!passEnemy)
-                        if (temp.enemy != null)
+                    if (!passHeroEnemySpawner)
+                        if (temp.isPossessed())
                             canPass = false;
 
                     if (canPass)
@@ -161,7 +157,7 @@ public class TilesManager : MonoBehaviour
         
         return results;
     }
-    public List<HexCell> GetRangeInRadius(HexCoordinates center, int minRadius, int maxRadius, bool passHole, bool passWall, bool passHero, bool passEnemy)
+    public List<HexCell> GetRangeInRadius(HexCoordinates center, int minRadius, int maxRadius, bool passHole, bool passWall, bool passHeroEnemySpawner)
     {
         List<HexCell> result = new List<HexCell>();
 
@@ -174,7 +170,7 @@ public class TilesManager : MonoBehaviour
 
         for (int i = minRadius; i <= maxRadius; i++)
         {
-            result.AddRange(GetRadius(center, i, passHole, passWall, passHero, passEnemy));
+            result.AddRange(GetRadius(center, i, passHole, passWall, passHeroEnemySpawner));
         }
 
         return result;
@@ -378,7 +374,7 @@ public class TilesManager : MonoBehaviour
 
 
             // Get all neighbors of current
-            foreach (HexCell item in GetRadius(current, 1, passHole, passWall, true, true))
+            foreach (HexCell item in GetRadius(current, 1, passHole, passWall, true))
             {
                 neighbors.Add(item.GetComponent<HexCell>().coordinates);
             }

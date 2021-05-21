@@ -69,6 +69,7 @@ public class EnemyController : MonoBehaviour
         hero1 = CombatSystem.instance.heros[0];
         hero2 = CombatSystem.instance.heros[1];
 
+
         SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
         mySprite.sprite = stats.sprite;
         nameEnemy = stats.enemyName;
@@ -113,12 +114,6 @@ public class EnemyController : MonoBehaviour
 
     private void EndTurn()
     {
-
-        if (gameObject.name.Equals("aaa"))
-        {
-            print("wola");
-        }
-
         PM = stats.PM;
         PA = stats.PA;
         isActionDone = true;
@@ -226,30 +221,18 @@ public class EnemyController : MonoBehaviour
 
             case StatsEnemy.ENEMY_TYPE.KAMIKAZE:
                 #region KAMIKAZE_CheckAction
-                dist1 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero1.coordinates);
-                dist2 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero2.coordinates);
-                hero = null;
+                dist1 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero1.myTile.coordinates);
+                dist2 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero2.myTile.coordinates);
+                print("dist1 = " + dist1);
+                print("dist2 = " + dist2);
 
-                if (dist1 == 1 && dist2 == 1)
+                if (dist1 == 1 || dist2 == 1)
                 {
-                    if (hero1.health < hero2.health)
-                    {
-                        hero = hero1;
-                    }
-                    else
-                    {
-                        hero = hero2;
-                    }
-
-                }
-                else if (dist1 == 1) { hero = hero1; distHero = dist1; }
-                else if (dist2 == 1) { hero = hero2; distHero = dist2; }
-
-                if (hero != null)
-                {
+                    print("PA = " + PA + "statsPA = " + stats.attacks[0].costPA);
                     if (PA >= stats.attacks[0].costPA)
                         Death(true);
                     else ContinueTurn();
+
                 }
                 else
                 {
@@ -346,7 +329,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            tiles = TilesManager.instance.GetRadius(myTile.coordinates, 1, stats.isFlying, false, false, false);
+            tiles = TilesManager.instance.GetRadius(myTile.coordinates, 1, stats.isFlying, false, false);
             foreach (var item in tiles)
             {
                 // Can move here
@@ -400,7 +383,6 @@ public class EnemyController : MonoBehaviour
 
     private void AttackDistance()
     {
-        Debug.Log("attack " + myTile.coordinates);
     }
     #endregion
 
@@ -420,7 +402,7 @@ public class EnemyController : MonoBehaviour
 
                 if (tile)
                 {
-                    if (!(tile.coordinates.X == 0 && tile.coordinates.Y == 0 && tile.coordinates.Z == 0))
+                    if (!(path[1].X == 0 && path[1].Z == 0))
                     {
 
                         tile.enemy = this;
@@ -428,19 +410,8 @@ public class EnemyController : MonoBehaviour
                         myTile = tile;
                         isMoving = true;
 
-
-                        PM -= 1;
-                        PA -= 1;
-
-
-                        if (gameObject.name.Equals("aaa"))
-                        {
-                            print(tile.coordinates);
-                            print(PM);
-                        }
-
-                        ContinueTurn();
                         return;
+                        
                     }
                 }
             }
@@ -457,32 +428,22 @@ public class EnemyController : MonoBehaviour
                 TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out tile);
                 if (tile)
                 {
-                    if(!(tile.coordinates.X == 0 && tile.coordinates.Y == 0 && tile.coordinates.Z == 0))
+                    if (!(path[1].X == 0 && path[1].Z == 0))
                     {
                         tile.enemy = this;
                         myTile.enemy = null;
                         myTile = tile;
                         isMoving = true;
 
-                        isActionDone = true;
-
-
-                        PM -= 1;
-                        PA -= 1;
-
-                        if (gameObject.name.Equals("aaa"))
-                        {
-                            print(tile.coordinates);
-                            print(PM);
-                        }
-
-                        ContinueTurn();
                         return;
+
                     }
                 }
             }
-            EndTurn();
+            
         }
+        ContinueTurn();
+
     }
 
     private void ArriveOnCell()
@@ -492,8 +453,14 @@ public class EnemyController : MonoBehaviour
             myTile.ActionItem(true);
         }
 
+        PM -= 1;
+        PA -= 1;
         isActionDone = true;
+
         ContinueTurn();
+        return;
+
+        
     }
 
     private void AttackCAC(HeroController hero, int distanceHero)
@@ -567,12 +534,10 @@ public class EnemyController : MonoBehaviour
 
         CombatSystem.instance.enemies.Remove(this);
         Destroy(gameObject);
-        print("Death");
     }
 
     private void Explode()
     {
-        print("BOOM");
         foreach (HexCell tile in TilesManager.instance.GetRange(myTile.coordinates, stats.attacks[0].range, true, true))
         {
             if (tile != myTile)

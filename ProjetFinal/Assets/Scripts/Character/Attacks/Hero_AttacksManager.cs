@@ -360,9 +360,4 @@ public class Hero_AttacksManager : MonoBehaviour
     }
 
 
-    private void RangeVision()
-    {
-
-    }
-
 }

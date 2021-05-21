@@ -119,7 +119,8 @@ public class CombatSystem : MonoBehaviour
     {
         if (index < enemies.Count)
         {
-            
+            if (index == 1)
+                print("non");
             enemies[index].StartTurn();
            
         }

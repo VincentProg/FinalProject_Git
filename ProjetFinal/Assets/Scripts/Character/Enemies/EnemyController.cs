@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemyController : MonoBehaviour
 {
     public bool hasSpawned;
-    private bool isFirstTurn = true;
+    public bool SkipFirstTurn = true;
     private int nbrTurnToSkip;
     // STATISTIQUES
     public StatsEnemy stats;
     // ----
     private string nameEnemy;
     private int health, PM, PA;
+    public GameObject TXT_Damages;
 
+    private bool isMoving;
     private bool isActionDone = true;
   
 
@@ -31,6 +34,19 @@ public class EnemyController : MonoBehaviour
         if (!hasSpawned)
         {
             Initialize();
+        }
+    }
+
+    private void Update()
+    {
+        if (isMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, myTile.transform.position, 50f*Time.deltaTime);
+            if (transform.position == myTile.transform.position)
+            {
+                isMoving = false;
+                ArriveOnCell();
+            }
         }
     }
 
@@ -60,6 +76,7 @@ public class EnemyController : MonoBehaviour
         PM = stats.PM;
         PA = stats.PA;
 
+
     }
 
     public void StartTurn()
@@ -71,27 +88,42 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        if (isFirstTurn)
+        if (SkipFirstTurn)
         {
-            isFirstTurn = false;
+            SkipFirstTurn = false;
             CombatSystem.instance.NextTurn();
+
             return;
         }
 
-        while (PA > 0 && isActionDone)
+        ContinueTurn();
+    }
+
+    public void ContinueTurn()
+    {
+        if(PA > 0 && isActionDone)
         {
             isActionDone = false;
             CheckAction();
+        } else
+        {
+            EndTurn();
         }
-
-        EndTurn();
     }
+
     private void EndTurn()
     {
+
+        if (gameObject.name.Equals("aaa"))
+        {
+            print("wola");
+        }
+
         PM = stats.PM;
         PA = stats.PA;
         isActionDone = true;
         CombatSystem.instance.NextTurn();
+
     }
 
     private void CheckAction()
@@ -140,13 +172,13 @@ public class EnemyController : MonoBehaviour
                         else hero = hero2;
                     }
                     else hero = hero2;
-
                     MoveCAC(hero);
                 }
                 #endregion
                 break;
 
             case StatsEnemy.ENEMY_TYPE.DISTANCE:
+                #region DISTANCE.CheckAction
                 dist1 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero1.myTile.coordinates);
                 dist2 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero2.myTile.coordinates);
 
@@ -189,7 +221,52 @@ public class EnemyController : MonoBehaviour
                         MoveClosestDiag(fov[0]);
                     }
                 }
+                #endregion
+                break;
 
+            case StatsEnemy.ENEMY_TYPE.KAMIKAZE:
+                #region KAMIKAZE_CheckAction
+                dist1 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero1.coordinates);
+                dist2 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero2.coordinates);
+                hero = null;
+
+                if (dist1 == 1 && dist2 == 1)
+                {
+                    if (hero1.health < hero2.health)
+                    {
+                        hero = hero1;
+                    }
+                    else
+                    {
+                        hero = hero2;
+                    }
+
+                }
+                else if (dist1 == 1) { hero = hero1; distHero = dist1; }
+                else if (dist2 == 1) { hero = hero2; distHero = dist2; }
+
+                if (hero != null)
+                {
+                    if (PA >= stats.attacks[0].costPA)
+                        Death(true);
+                    else ContinueTurn();
+                }
+                else
+                {
+                    if (dist1 < dist2)
+                        hero = hero1;
+                    else if (dist1 == dist2)
+                    {
+                        if (hero1.health < hero2.health)
+                        {
+                            hero = hero1;
+                        }
+                        else hero = hero2;
+                    }
+                    else hero = hero2;
+                    MoveCAC(hero);
+                }
+                #endregion
                 break;
         }
     }
@@ -335,25 +412,88 @@ public class EnemyController : MonoBehaviour
         {
             List<HexCoordinates> path = new List<HexCoordinates>();
             path = TilesManager.instance.GetPath(myTile.coordinates, hero.myTile.coordinates, stats.isFlying, false);
-            HexCell tile;
-            TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out tile);
 
-            myTile.enemy = null;
-            myTile = tile;
-            tile.enemy = this;
-            transform.position = myTile.transform.position;
-
-            if (myTile.item != null)
+            if (path.Count > 1)
             {
-                myTile.ActionItem(true);
+                HexCell tile;
+                TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out tile);
+
+                if (tile)
+                {
+                    if (!(tile.coordinates.X == 0 && tile.coordinates.Y == 0 && tile.coordinates.Z == 0))
+                    {
+
+                        tile.enemy = this;
+                        myTile.enemy = null;
+                        myTile = tile;
+                        isMoving = true;
+
+
+                        PM -= 1;
+                        PA -= 1;
+
+
+                        if (gameObject.name.Equals("aaa"))
+                        {
+                            print(tile.coordinates);
+                            print(PM);
+                        }
+
+                        ContinueTurn();
+                        return;
+                    }
+                }
             }
 
-            PM -= 1;
-            PA -= 1;
-            isActionDone = true;
 
-            
+            if (hero == hero1)
+                hero = hero2;
+            else
+                hero = hero1;
+            path = TilesManager.instance.GetPath(myTile.coordinates, hero.myTile.coordinates, stats.isFlying, false);
+            if (path.Count > 1)
+            {
+                HexCell tile;
+                TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out tile);
+                if (tile)
+                {
+                    if(!(tile.coordinates.X == 0 && tile.coordinates.Y == 0 && tile.coordinates.Z == 0))
+                    {
+                        tile.enemy = this;
+                        myTile.enemy = null;
+                        myTile = tile;
+                        isMoving = true;
+
+                        isActionDone = true;
+
+
+                        PM -= 1;
+                        PA -= 1;
+
+                        if (gameObject.name.Equals("aaa"))
+                        {
+                            print(tile.coordinates);
+                            print(PM);
+                        }
+
+                        ContinueTurn();
+                        return;
+                    }
+                }
+            }
+            EndTurn();
         }
+    }
+
+    private void ArriveOnCell()
+    {
+        if (myTile.item != null)
+        {
+            myTile.ActionItem(true);
+        }
+
+        isActionDone = true;
+        ContinueTurn();
     }
 
     private void AttackCAC(HeroController hero, int distanceHero)
@@ -386,7 +526,10 @@ public class EnemyController : MonoBehaviour
             }
             PA -= stats.attacks[0].costPA;
             isActionDone = true;
+            
         }
+
+        ContinueTurn();
     }
     #endregion
 
@@ -396,9 +539,14 @@ public class EnemyController : MonoBehaviour
         health -= damages;
         health = Mathf.Clamp(health, 0, stats.health);
 
+        GameObject txt = Instantiate(TXT_Damages, transform.position, transform.rotation);
+        txt.transform.GetChild(0).GetComponent<TextMeshPro>().text = damages.ToString();
+        txt.transform.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 10;
+        Destroy(txt, 1);
+
         if (health == 0)
         {
-            Death();
+            Death(false);
         }
     }
 
@@ -407,10 +555,37 @@ public class EnemyController : MonoBehaviour
         nbrTurnToSkip += turnsToSkip;
     }
 
-    private void Death()
+    private void Death(bool isMyTurn)
     {
+        if(stats.Type == StatsEnemy.ENEMY_TYPE.KAMIKAZE && isMyTurn)
+        {
+            Explode();
+            GetComponent<SpriteRenderer>().enabled = false;
+            CombatSystem.instance.NextTurn();
+        }
+
+
         CombatSystem.instance.enemies.Remove(this);
         Destroy(gameObject);
         print("Death");
+    }
+
+    private void Explode()
+    {
+        print("BOOM");
+        foreach (HexCell tile in TilesManager.instance.GetRange(myTile.coordinates, stats.attacks[0].range, true, true))
+        {
+            if (tile != myTile)
+            {
+                if (tile.hero)
+                {
+                    tile.hero.TakeDamages(stats.attacks[0].damages);
+                }
+                else if (tile.enemy)
+                {
+                    tile.enemy.TakeDamages(stats.attacks[0].damages);
+                }
+            }
+        }
     }
 }

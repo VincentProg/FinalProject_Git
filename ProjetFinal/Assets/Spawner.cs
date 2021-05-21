@@ -62,7 +62,7 @@ public class Spawner : MonoBehaviour
                     bool hasSpawned = false;
                     for (int i = 0; i < adjacentCells.Count; i++)
                     {
-                        if (!adjacentCells[i].isPossessed() && nbEntityLeft > 0)
+                        if (!adjacentCells[i].isPossessed() && adjacentCells[i].tileType == HexCell.TILE_TYPE.GROUND && nbEntityLeft > 0)
                         {
                             GameObject enemy = Instantiate(enemyList[Random.Range(0, enemyList.Count)], adjacentCells[i].gameObject.transform.position, transform.rotation);
                             EnemyController enemyScript = enemy.GetComponent<EnemyController>();

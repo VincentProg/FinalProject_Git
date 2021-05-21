@@ -198,10 +198,14 @@ public class HeroController : MonoBehaviour
         PM = stats.PM;
         PA = stats.PA;
 
-        for(int i = 0; i < grenades.Count; i++)
+        TilesManager.instance.ClearTiles(false);
+
+        for (int i = 0; i < grenades.Count; i++)
         {
             grenades[i].StartTurn();
         }
+
+        
 
         CombatSystem.instance.NextTurn();
     }

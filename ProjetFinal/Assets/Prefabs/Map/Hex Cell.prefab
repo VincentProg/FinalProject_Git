@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 11422220}
   - component: {fileID: 9172664526708501547}
   - component: {fileID: 2430463736847990133}
+  - component: {fileID: 4073062975770140473}
   m_Layer: 0
   m_Name: Hex Cell
   m_TagString: Untagged
@@ -54,6 +55,7 @@ MonoBehaviour:
   enemy: {fileID: 0}
   item: {fileID: 0}
   selectionType: 0
+  myTileSprite: {fileID: 0}
   colors:
   - {r: 1, g: 1, b: 1, a: 0}
   - {r: 0.8154278, g: 1, b: 0.759434, a: 1}
@@ -155,6 +157,25 @@ PolygonCollider2D:
       - {x: 0.27826086, y: -0.48260868}
       - {x: 0.5565217, y: 0}
       - {x: 0.27826086, y: 0.48260868}
+--- !u!95 &4073062975770140473
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157666}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb9338cfd1558794792b5660b96e9634, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8993971953053540813
 GameObject:
   m_ObjectHideFlags: 0

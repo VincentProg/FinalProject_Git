@@ -13,10 +13,14 @@ public class HeroController : MonoBehaviour
     [HideInInspector]
     public int health, PM, PA;
 
+    public GameObject TXT_Damages;
+    private bool canShowDamages = true;
+
     // ATTACKS
     public List<Attack> attacks = new List<Attack>();
     public GameObject myCanvas;
     TextMeshProUGUI PAtxt, PMtxt, PVtxt;
+    private bool isMoving;
 
     public List<Grenade> grenades = new List<Grenade>();
     
@@ -24,6 +28,8 @@ public class HeroController : MonoBehaviour
     // VARIABLES GRID
     [HideInInspector]
     public HexCell myTile;
+
+    public HexCoordinates coordinates;
 
 
     bool isMyTurn = false;
@@ -43,6 +49,7 @@ public class HeroController : MonoBehaviour
 
 
         #region GET MY START TILE()
+       
         // AJOUT TUILE DEPART
         RaycastHit2D hitStart = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity);
         if (hitStart)
@@ -54,6 +61,7 @@ public class HeroController : MonoBehaviour
             }
         }
         #endregion
+        coordinates = myTile.coordinates;
 
     }
 
@@ -101,6 +109,16 @@ public class HeroController : MonoBehaviour
                         }
                     }
                 }
+            }
+        }
+
+        if (isMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, myTile.transform.position, 100f*Time.deltaTime);
+            if(transform.position == myTile.transform.position)
+            {
+                isMoving = false;
+                ArriveOnCell();
             }
         }
     }
@@ -183,7 +201,6 @@ public class HeroController : MonoBehaviour
         for(int i = 0; i < grenades.Count; i++)
         {
             grenades[i].StartTurn();
-            print("grenadeLoop");
         }
 
         CombatSystem.instance.NextTurn();
@@ -194,19 +211,23 @@ public class HeroController : MonoBehaviour
         PM -= TilesManager.instance.HeuristicDistance(myTile.coordinates, tile.coordinates);
         PA--;
         SetUI_PA_PM();
-        
+
 
 
         myTile.hero = null;
         myTile = tile;
         myTile.hero = this;
 
-        if(myTile.item != null)
+        isMoving = true;
+    }
+    
+    private void ArriveOnCell() { 
+
+        if (myTile.item != null)
         {
             myTile.ActionItem(true);
         }
 
-        transform.position = myTile.transform.position;
         
 
         if (PA > 0)
@@ -219,9 +240,6 @@ public class HeroController : MonoBehaviour
 
     public void SetUI_PA_PM()
     {
-
-        print(PMtxt.text);
-
         PMtxt.text = PM.ToString();
         PAtxt.text = PA.ToString();
     }
@@ -232,7 +250,12 @@ public class HeroController : MonoBehaviour
         health = Mathf.Clamp(health, 0, stats.health);
         PVtxt.text = health.ToString();
 
-        if(health == 0)
+        GameObject txt = Instantiate(TXT_Damages, transform.position, transform.rotation);
+        txt.transform.GetChild(0).GetComponent<TextMeshPro>().text = damages.ToString();
+        txt.transform.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 10;
+        Destroy(txt, 1);
+
+        if (health == 0)
         {
             Death();
         }
@@ -247,4 +270,5 @@ public class HeroController : MonoBehaviour
     {
         print("Death");
     }
+
 }

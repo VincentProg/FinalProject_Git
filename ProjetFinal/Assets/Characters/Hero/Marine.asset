@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b52f95a3323f1a4885661338b191d20, type: 3}
   m_Name: Marine
   m_EditorClassIdentifier: 
-  sprite: {fileID: -9095717837082945937, guid: 9ae343ac378fd3a4abc0c57f56be5247, type: 3}
+  sprite: {fileID: 21300000, guid: e537ce2bb5fc22d469afac670890b6c2, type: 3}
   heroName: Marine
   health: 20
   PM: 3

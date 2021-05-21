@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemyController : MonoBehaviour
 {
@@ -12,12 +13,17 @@ public class EnemyController : MonoBehaviour
     // ----
     private string nameEnemy;
     private int health, PM, PA;
+    public GameObject TXT_Damages;
 
+    private bool isMoving;
     private bool isActionDone = true;
   
 
     // VARIABLES GRID
     HexCell myTile;
+    HexCell moveTo;
+
+    HexCell targetCell;
 
     HeroController hero1;
     HeroController hero2;
@@ -28,10 +34,21 @@ public class EnemyController : MonoBehaviour
         if (!hasSpawned)
         {
             Initialize();
-
         }
     }
 
+    private void Update()
+    {
+        if (isMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, myTile.transform.position, 50f*Time.deltaTime);
+            if (transform.position == myTile.transform.position)
+            {
+                isMoving = false;
+                ArriveOnCell();
+            }
+        }
+    }
 
     public void Initialize()
     {
@@ -77,14 +94,23 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        while (PA > 0 && isActionDone)
+        ContinueTurn();
+    }
+
+    public void ContinueTurn()
+    {
+        if(PA > 0 && isActionDone)
         {
+            print("continue turn");
             isActionDone = false;
             CheckAction();
+        } else
+        {
+            print("endTurn");
+            EndTurn();
         }
-
-        EndTurn();
     }
+
     private void EndTurn()
     {
         PM = stats.PM;
@@ -146,41 +172,219 @@ public class EnemyController : MonoBehaviour
                 break;
 
             case StatsEnemy.ENEMY_TYPE.DISTANCE:
+                dist1 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero1.myTile.coordinates);
+                dist2 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero2.myTile.coordinates);
+
+                if(dist1 <= dist2)
+                    targetCell = hero1.myTile;
+                else
+                    targetCell = hero2.myTile;
+
+                // If player already in line of sight 
+                List<List<HexCell>> diagonals = TilesManager.instance.GetDiagonals(myTile.coordinates, stats.attacks[0].range, true, false, TilesManager.instance.GetDirection(myTile.coordinates, targetCell.coordinates));
+                List<List<HexCell>> fov = TilesManager.instance.GetFOV(myTile, TilesManager.instance.HeuristicDistance(myTile.coordinates, targetCell.coordinates) + 1, true);
+
+                bool inRange = false;
+                foreach (var diagonal in diagonals)
+                {
+                    foreach (var item in diagonal)
+                    {
+                        if (item.isHero())
+                        {
+                            inRange = true;
+                            break;
+                        }
+                    }
+                }
+
+                // If too close
+                if (TilesManager.instance.HeuristicDistance(myTile.coordinates, targetCell.coordinates) <= stats.distanceToStayAway && fov[0].Contains(targetCell))
+                {
+                    MoveAway();
+
+                }
+                else
+                {
+                    if (inRange)
+                    {
+                        AttackDistance();
+                    }
+                    else
+                    {
+                        MoveClosestDiag(fov[0]);
+                    }
+                }
 
                 break;
-        
         }
-        
-        
-
     }
 
+    #region Distance Methods
+    private void MoveClosestDiag(List<HexCell> fov)
+    {
+        // Try and get nearest diagonals
+        moveTo = TilesManager.instance.GetClosestDiagonal(myTile.coordinates, targetCell.coordinates, fov, stats.distanceToStayAway);
+        if (moveTo)
+        {
+            if (!moveTo.isPossessed())
+            {
+
+
+            int direction = TilesManager.instance.GetDirection(myTile.coordinates, moveTo.coordinates);
+            HexCoordinates newCoords = TilesManager.instance.GetNeighboor(myTile.coordinates, direction);
+
+            TilesManager.instance.mapTiles.TryGetValue(newCoords, out moveTo);
+            if (moveTo)
+                MoveDistance();
+            }
+            else
+            {
+                MovePath(fov);
+            }
+        }
+        else
+        {
+            MovePath(fov);
+        }
+    }
+
+    private void MovePath(List<HexCell> fov)
+    {
+        List<HexCoordinates> newCoords = TilesManager.instance.GetPath(myTile.coordinates, targetCell.coordinates, false, false);
+        if (newCoords.Count > 2)
+        {
+            TilesManager.instance.mapTiles.TryGetValue(newCoords[newCoords.Count - 1], out moveTo);
+
+            if (moveTo)
+            {
+                if (TilesManager.instance.HeuristicDistance(myTile.coordinates, targetCell.coordinates) <= stats.distanceToStayAway && fov.Contains(targetCell))
+                {
+                    MoveAway();
+                }
+                else
+                {
+                    MoveDistance();
+                }
+            }
+        }
+    }
+
+    private void MoveAway()
+    {
+
+        int direct = TilesManager.instance.GetDirection(targetCell.coordinates, myTile.coordinates);
+
+        List<HexCell> tiles = TilesManager.instance.GetImpactArc(myTile.coordinates, TilesManager.instance.GetNeighboor(myTile.coordinates, direct), false, false);
+        moveTo = tiles[0];
+        bool canMove = false;
+        foreach (var item in tiles)
+        {
+            // Can move here
+            if ((item.tileType.Equals(HexCell.TILE_TYPE.GROUND) || (item.tileType.Equals(HexCell.TILE_TYPE.HOLE) && stats.isFlying)) && !item.isPossessed() && !item.tileType.Equals(HexCell.TILE_TYPE.WALL))
+            {
+                moveTo = item;
+                canMove = true;
+                break;
+            }
+        }
+
+        if (canMove)
+        {
+            MoveDistance();
+        }
+        else
+        {
+            tiles = TilesManager.instance.GetRadius(myTile.coordinates, 1, stats.isFlying, false, false, false);
+            foreach (var item in tiles)
+            {
+                // Can move here
+                if ((item.tileType.Equals(HexCell.TILE_TYPE.GROUND) || (item.tileType.Equals(HexCell.TILE_TYPE.HOLE) && stats.isFlying)) && !item.isPossessed() && !item.tileType.Equals(HexCell.TILE_TYPE.WALL))
+                {
+                    moveTo = item;
+                    canMove = true;
+                    break;
+
+                }
+            }
+        }
+
+        if (canMove)
+        {
+            MoveDistance();
+
+        }
+        else
+        {
+            int distance = TilesManager.instance.HeuristicDistance(myTile.coordinates, targetCell.coordinates);
+            if (distance <= stats.attacks[0].range && TilesManager.instance.GetFOV(myTile, distance, true)[0].Contains(targetCell))
+            {
+                AttackDistance();
+
+            }
+            Debug.Log("couldn't find path out of here");
+        }
+    }
+
+    private void MoveDistance()
+    {
+
+        if (PM > 0 && PA > 0)
+        {
+            myTile.enemy = null;
+            myTile = moveTo;
+            myTile.enemy = this;
+            transform.position = myTile.transform.position;
+
+            if (myTile.item != null)
+            {
+                myTile.ActionItem(false);
+            }
+
+            PM -= 1;
+            PA -= 1;
+            isActionDone = true;
+        }
+    }
+
+    private void AttackDistance()
+    {
+        Debug.Log("attack " + myTile.coordinates);
+    }
+    #endregion
+
+    #region CAC Methods
     private void MoveCAC(HeroController hero)
     {
 
         if (PM > 0 && PA > 0)
         {
             List<HexCoordinates> path = new List<HexCoordinates>();
-            path = TilesManager.instance.GetPath(myTile.coordinates, hero.myTile.coordinates, false, false);
+            path = TilesManager.instance.GetPath(myTile.coordinates, hero.myTile.coordinates, stats.isFlying, false);
             HexCell tile;
             TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out tile);
 
             myTile.enemy = null;
             myTile = tile;
             tile.enemy = this;
-            transform.position = myTile.transform.position;
-
-            if (myTile.item != null)
-            {
-                myTile.ActionItem(true);
-            }
-
-            PM -= 1;
-            PA -= 1;
-            isActionDone = true;
-
+            isMoving = true;
             
+        } else
+        {
+            ContinueTurn();
         }
+    }
+
+    private void ArriveOnCell()
+    {
+        if (myTile.item != null)
+        {
+            myTile.ActionItem(true);
+        }
+
+        PM -= 1;
+        PA -= 1;
+        isActionDone = true;
+        ContinueTurn();
     }
 
     private void AttackCAC(HeroController hero, int distanceHero)
@@ -213,15 +417,23 @@ public class EnemyController : MonoBehaviour
             }
             PA -= stats.attacks[0].costPA;
             isActionDone = true;
+            
         }
-    }
 
+        ContinueTurn();
+    }
+    #endregion
 
 
     public void TakeDamages(int damages)
     {
         health -= damages;
         health = Mathf.Clamp(health, 0, stats.health);
+
+        GameObject txt = Instantiate(TXT_Damages, transform.position, transform.rotation);
+        txt.transform.GetChild(0).GetComponent<TextMeshPro>().text = damages.ToString();
+        txt.transform.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 10;
+        Destroy(txt, 1);
 
         if (health == 0)
         {

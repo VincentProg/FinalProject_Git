@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
             {
                 myTile = hitStart.transform.GetComponent<HexCell>();
                 myTile.item = gameObject;
-                myTile.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = spawnerSprite;
+                myTile.myTileSprite.sprite = spawnerSprite;
                 GetComponent<SpriteRenderer>().enabled = false;
             }
         }
@@ -45,7 +45,7 @@ public class Spawner : MonoBehaviour
         adjacentCells = TilesManager.instance.GetRadius(myTile.coordinates, 1, false, false, false, false);
         foreach(HexCell tile in adjacentCells)
         {
-            tile.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = adjacentSprites[TilesManager.instance.GetDirection(myTile.coordinates, tile.coordinates)];
+            tile.myTileSprite.sprite = adjacentSprites[TilesManager.instance.GetDirection(myTile.coordinates, tile.coordinates)];
         }
     }
 

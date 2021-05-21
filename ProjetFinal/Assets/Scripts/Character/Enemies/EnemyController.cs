@@ -76,6 +76,7 @@ public class EnemyController : MonoBehaviour
         PM = stats.PM;
         PA = stats.PA;
 
+
     }
 
     public void StartTurn()
@@ -91,6 +92,7 @@ public class EnemyController : MonoBehaviour
         {
             SkipFirstTurn = false;
             CombatSystem.instance.NextTurn();
+
             return;
         }
 
@@ -111,10 +113,17 @@ public class EnemyController : MonoBehaviour
 
     private void EndTurn()
     {
+
+        if (gameObject.name.Equals("aaa"))
+        {
+            print("wola");
+        }
+
         PM = stats.PM;
         PA = stats.PA;
         isActionDone = true;
         CombatSystem.instance.NextTurn();
+
     }
 
     private void CheckAction()
@@ -163,7 +172,6 @@ public class EnemyController : MonoBehaviour
                         else hero = hero2;
                     }
                     else hero = hero2;
-
                     MoveCAC(hero);
                 }
                 #endregion
@@ -256,7 +264,6 @@ public class EnemyController : MonoBehaviour
                         else hero = hero2;
                     }
                     else hero = hero2;
-
                     MoveCAC(hero);
                 }
                 #endregion
@@ -405,21 +412,76 @@ public class EnemyController : MonoBehaviour
         {
             List<HexCoordinates> path = new List<HexCoordinates>();
             path = TilesManager.instance.GetPath(myTile.coordinates, hero.myTile.coordinates, stats.isFlying, false);
-            if(path.Count > 1)
+
+            if (path.Count > 1)
             {
-                bool validTile = true;
                 HexCell tile;
                 TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out tile);
-                myTile.enemy = null;
-                myTile = tile;
-                tile.enemy = this;
-                isMoving = true;
-                
+
+                if (tile)
+                {
+                    if (!(tile.coordinates.X == 0 && tile.coordinates.Y == 0 && tile.coordinates.Z == 0))
+                    {
+
+                        tile.enemy = this;
+                        myTile.enemy = null;
+                        myTile = tile;
+                        isMoving = true;
+
+
+                        PM -= 1;
+                        PA -= 1;
+
+
+                        if (gameObject.name.Equals("aaa"))
+                        {
+                            print(tile.coordinates);
+                            print(PM);
+                        }
+
+                        ContinueTurn();
+                        return;
+                    }
+                }
             }
-            
-        } else
-        {
-            ContinueTurn();
+
+
+            if (hero == hero1)
+                hero = hero2;
+            else
+                hero = hero1;
+            path = TilesManager.instance.GetPath(myTile.coordinates, hero.myTile.coordinates, stats.isFlying, false);
+            if (path.Count > 1)
+            {
+                HexCell tile;
+                TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out tile);
+                if (tile)
+                {
+                    if(!(tile.coordinates.X == 0 && tile.coordinates.Y == 0 && tile.coordinates.Z == 0))
+                    {
+                        tile.enemy = this;
+                        myTile.enemy = null;
+                        myTile = tile;
+                        isMoving = true;
+
+                        isActionDone = true;
+
+
+                        PM -= 1;
+                        PA -= 1;
+
+                        if (gameObject.name.Equals("aaa"))
+                        {
+                            print(tile.coordinates);
+                            print(PM);
+                        }
+
+                        ContinueTurn();
+                        return;
+                    }
+                }
+            }
+            EndTurn();
         }
     }
 
@@ -430,8 +492,6 @@ public class EnemyController : MonoBehaviour
             myTile.ActionItem(true);
         }
 
-        PM -= 1;
-        PA -= 1;
         isActionDone = true;
         ContinueTurn();
     }

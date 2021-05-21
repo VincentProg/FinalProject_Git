@@ -411,11 +411,6 @@ public class TilesManager : MonoBehaviour
                     {
                         canPass = false;
                     }
-                    else if(temp.item)
-                    {
-                        if (temp.GetComponent<Spawner>())
-                            canPass = false;
-                    }
                     else
                     {
 

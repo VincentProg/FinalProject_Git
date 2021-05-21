@@ -42,7 +42,6 @@ public class HeroController : MonoBehaviour
         PAtxt = myCanvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
         PMtxt = myCanvas.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
         PVtxt = myCanvas.transform.GetChild(5).GetComponent<TextMeshProUGUI>();
-        print(PMtxt.text);
 
         SetMyStats();
         SetUIAttacks();

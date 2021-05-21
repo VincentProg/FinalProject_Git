@@ -405,13 +405,17 @@ public class EnemyController : MonoBehaviour
         {
             List<HexCoordinates> path = new List<HexCoordinates>();
             path = TilesManager.instance.GetPath(myTile.coordinates, hero.myTile.coordinates, stats.isFlying, false);
-            HexCell tile;
-            TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out tile);
-
-            myTile.enemy = null;
-            myTile = tile;
-            tile.enemy = this;
-            isMoving = true;
+            if(path.Count > 1)
+            {
+                bool validTile = true;
+                HexCell tile;
+                TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out tile);
+                myTile.enemy = null;
+                myTile = tile;
+                tile.enemy = this;
+                isMoving = true;
+                
+            }
             
         } else
         {

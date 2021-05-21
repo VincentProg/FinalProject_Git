@@ -30,6 +30,8 @@ public class HexCell : MonoBehaviour {
 	public TILE_TYPE tileType;
 	public List<Sprite> basicTileSprites;
 	public List<Sprite> SpawnerTileSprites;
+
+	private Animator anim;
 	
 
 	void Awake()
@@ -38,6 +40,7 @@ public class HexCell : MonoBehaviour {
 		sprite = GetComponent<SpriteRenderer>();
 		myTileSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
 		transform.GetChild(0).parent = transform.parent;
+		anim = GetComponent<Animator>();
 
 
 	}
@@ -88,6 +91,8 @@ public class HexCell : MonoBehaviour {
 
 
 		}
+
+		anim.SetTrigger("Appear");
 
     }
 

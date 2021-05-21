@@ -6,7 +6,7 @@ using TMPro;
 public class EnemyController : MonoBehaviour
 {
     public bool hasSpawned;
-    private bool isFirstTurn = true;
+    public bool SkipFirstTurn = true;
     private int nbrTurnToSkip;
     // STATISTIQUES
     public StatsEnemy stats;
@@ -87,9 +87,9 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        if (isFirstTurn)
+        if (SkipFirstTurn)
         {
-            isFirstTurn = false;
+            SkipFirstTurn = false;
             CombatSystem.instance.NextTurn();
             return;
         }
@@ -101,12 +101,10 @@ public class EnemyController : MonoBehaviour
     {
         if(PA > 0 && isActionDone)
         {
-            print("continue turn");
             isActionDone = false;
             CheckAction();
         } else
         {
-            print("endTurn");
             EndTurn();
         }
     }
@@ -172,6 +170,7 @@ public class EnemyController : MonoBehaviour
                 break;
 
             case StatsEnemy.ENEMY_TYPE.DISTANCE:
+                #region DISTANCE.CheckAction
                 dist1 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero1.myTile.coordinates);
                 dist2 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero2.myTile.coordinates);
 
@@ -214,7 +213,53 @@ public class EnemyController : MonoBehaviour
                         MoveClosestDiag(fov[0]);
                     }
                 }
+                #endregion
+                break;
 
+            case StatsEnemy.ENEMY_TYPE.KAMIKAZE:
+                #region KAMIKAZE_CheckAction
+                dist1 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero1.coordinates);
+                dist2 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero2.coordinates);
+                hero = null;
+
+                if (dist1 == 1 && dist2 == 1)
+                {
+                    if (hero1.health < hero2.health)
+                    {
+                        hero = hero1;
+                    }
+                    else
+                    {
+                        hero = hero2;
+                    }
+
+                }
+                else if (dist1 == 1) { hero = hero1; distHero = dist1; }
+                else if (dist2 == 1) { hero = hero2; distHero = dist2; }
+
+                if (hero != null)
+                {
+                    if (PA >= stats.attacks[0].costPA)
+                        Death(true);
+                    else ContinueTurn();
+                }
+                else
+                {
+                    if (dist1 < dist2)
+                        hero = hero1;
+                    else if (dist1 == dist2)
+                    {
+                        if (hero1.health < hero2.health)
+                        {
+                            hero = hero1;
+                        }
+                        else hero = hero2;
+                    }
+                    else hero = hero2;
+
+                    MoveCAC(hero);
+                }
+                #endregion
                 break;
         }
     }
@@ -437,7 +482,7 @@ public class EnemyController : MonoBehaviour
 
         if (health == 0)
         {
-            Death();
+            Death(false);
         }
     }
 
@@ -446,10 +491,37 @@ public class EnemyController : MonoBehaviour
         nbrTurnToSkip += turnsToSkip;
     }
 
-    private void Death()
+    private void Death(bool isMyTurn)
     {
+        if(stats.Type == StatsEnemy.ENEMY_TYPE.KAMIKAZE && isMyTurn)
+        {
+            Explode();
+            GetComponent<SpriteRenderer>().enabled = false;
+            CombatSystem.instance.NextTurn();
+        }
+
+
         CombatSystem.instance.enemies.Remove(this);
         Destroy(gameObject);
         print("Death");
+    }
+
+    private void Explode()
+    {
+        print("BOOM");
+        foreach (HexCell tile in TilesManager.instance.GetRange(myTile.coordinates, stats.attacks[0].range, true, true))
+        {
+            if (tile != myTile)
+            {
+                if (tile.hero)
+                {
+                    tile.hero.TakeDamages(stats.attacks[0].damages);
+                }
+                else if (tile.enemy)
+                {
+                    tile.enemy.TakeDamages(stats.attacks[0].damages);
+                }
+            }
+        }
     }
 }

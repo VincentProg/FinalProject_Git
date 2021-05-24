@@ -42,7 +42,7 @@ public class Spawner : MonoBehaviour
             }
         }
         #endregion
-        adjacentCells = TilesManager.instance.GetRadius(myTile.coordinates, 1, false, false, false, false);
+        adjacentCells = TilesManager.instance.GetRadius(myTile.coordinates, 1, false, false, false);
         foreach(HexCell tile in adjacentCells)
         {
             tile.myTileSprite.sprite = adjacentSprites[TilesManager.instance.GetDirection(myTile.coordinates, tile.coordinates)];

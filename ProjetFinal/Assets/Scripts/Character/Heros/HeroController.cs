@@ -29,7 +29,6 @@ public class HeroController : MonoBehaviour
     [HideInInspector]
     public HexCell myTile;
 
-    public HexCoordinates coordinates;
 
 
     bool isMyTurn = false;
@@ -60,7 +59,7 @@ public class HeroController : MonoBehaviour
             }
         }
         #endregion
-        coordinates = myTile.coordinates;
+
 
     }
 
@@ -180,7 +179,7 @@ public class HeroController : MonoBehaviour
 
         if (PM >= 1)
         {
-            foreach( HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, rangePM, false, false, false, false))
+            foreach( HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, rangePM, false, false, false))
             {
                 tile.SelectCell(HexCell.SELECTION_TYPE.MOVEMENT);
             }
@@ -220,6 +219,7 @@ public class HeroController : MonoBehaviour
         myTile.hero = null;
         myTile = tile;
         myTile.hero = this;
+
 
         isMoving = true;
     }

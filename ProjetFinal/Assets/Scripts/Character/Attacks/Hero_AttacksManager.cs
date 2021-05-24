@@ -93,7 +93,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 else
                 {
 
-                    foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, attack.canSelectHole, false, true, true))
+                    foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, attack.canSelectHole, false, true))
                     {
                         bool isInRange = false;
                         for (int i = 0; i < TilesInRange[0].Count; i++)
@@ -254,7 +254,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 break;
             case Attack.IMPACT_TYPE.RADIUS:
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
-                foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableImpact, attack.rangeImpact, true, true, true, true))
+                foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableImpact, attack.rangeImpact, true, true, true))
                 {
                     bool isInRange = false;
                     for (int i = 0; i < TilesInRange[0].Count; i++)

@@ -17,4 +17,4 @@ MonoBehaviour:
   health: 3
   PM: 1
   PA: 2
-  isDofusPM: 1
+  isDofusPM: 0

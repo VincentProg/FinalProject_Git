@@ -17,8 +17,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] List<HexCell> adjacentCells = new List<HexCell>();
     private HexCell myTile;
 
-    public Sprite spawnerSprite;
-    public List<Sprite> adjacentSprites = new List<Sprite>();
+
 
     void Start()
     {
@@ -37,16 +36,11 @@ public class Spawner : MonoBehaviour
             {
                 myTile = hitStart.transform.GetComponent<HexCell>();
                 myTile.item = gameObject;
-                myTile.myTileSprite.sprite = spawnerSprite;
-                GetComponent<SpriteRenderer>().enabled = false;
+
+                adjacentCells = TilesManager.instance.GetRadius(myTile.coordinates, 1, false, false, true);
             }
         }
         #endregion
-        adjacentCells = TilesManager.instance.GetRadius(myTile.coordinates, 1, false, false, false);
-        foreach(HexCell tile in adjacentCells)
-        {
-            tile.myTileSprite.sprite = adjacentSprites[TilesManager.instance.GetDirection(myTile.coordinates, tile.coordinates)];
-        }
     }
 
 

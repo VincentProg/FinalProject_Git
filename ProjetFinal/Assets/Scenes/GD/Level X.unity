@@ -753,9 +753,6 @@ MonoBehaviour:
   myCanvas: {fileID: 608937638}
   grenades: []
   myTile: {fileID: 0}
-  coordinates:
-    x: 0
-    z: 0
 --- !u!212 &94283988
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20208,9 +20205,6 @@ MonoBehaviour:
   myCanvas: {fileID: 1546747052}
   grenades: []
   myTile: {fileID: 0}
-  coordinates:
-    x: 0
-    z: 0
 --- !u!212 &1878796610
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21816,7 +21810,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.28, y: 0.8}
   m_AnchorMax: {x: 0.53, y: 1}
-  m_AnchoredPosition: {x: -22, y: 6.5999756}
+  m_AnchoredPosition: {x: -22, y: 6.599991}
   m_SizeDelta: {x: -54.923584, y: -16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2116334726

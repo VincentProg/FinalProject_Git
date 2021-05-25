@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4720378665319830148}
   - component: {fileID: 8079578729787815160}
   m_Layer: 0
-  m_Name: Zuworg
+  m_Name: Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 92122e4c51708394ba2f04ea7990e993, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 686e4d3a7c165a041bb537397e89648e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,5 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasSpawned: 0
+  SkipFirstTurn: 1
   stats: {fileID: 11400000, guid: 1b7f3543f18452f4a84ddde0c1fd6123, type: 2}
   TXT_Damages: {fileID: 6266669382385152773, guid: 4bfe2c1cf56a6704f9f95b27aba90243, type: 3}

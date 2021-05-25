@@ -116,36 +116,17 @@ public class HexCell : MonoBehaviour {
         {
 			case TILE_TYPE.GROUND:
 				myTileSprite.color = Color.white;
-				int iSprite;
-				int rand = Random.Range(0, 100);
-				if (rand < 50)
-				{
-					iSprite = 0;
-				}
-				else if (rand < 65)
-				{
-					iSprite = 1;
-				}
-				else if (rand < 80)
-				{
-					iSprite = 2;
-				}
-				else if (rand < 98)
-				{
-					iSprite = 3;
-				}
-				else iSprite = 4;
-				myTileSprite.sprite = basicTileSprites[iSprite];
+				myTileSprite.sprite = basicTileSprites[0];
 				break;
 
 			case TILE_TYPE.WALL:
-				myTileSprite.sprite = basicTileSprites[2];
-				myTileSprite.color = Color.gray;
+				myTileSprite.sprite = basicTileSprites[1];
+				myTileSprite.color = Color.white;
 				break;
 
 			case TILE_TYPE.HOLE:
-				myTileSprite.sprite = basicTileSprites[3];
-				myTileSprite.color = Color.black;
+				myTileSprite.sprite = basicTileSprites[2];
+				myTileSprite.color = Color.white;
 				break;
         }
     }

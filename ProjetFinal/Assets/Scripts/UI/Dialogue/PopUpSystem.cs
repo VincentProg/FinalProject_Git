@@ -27,18 +27,20 @@ public class PopUpSystem : MonoBehaviour
         popUpBox = transform.GetChild(0).gameObject;
         anim = popUpBox.GetComponent<Animator>();
         popUpText = popUpBox.transform.GetChild(0).GetComponent<TextMeshPro>();
+        popUpBox.transform.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 9;
+
     }
 
     public void PopUp(string text, HeroController hero)
     {
-        
+
         if (!isActive)
         {
             Cut();
             isActive = true;
             popUpText.text = "";
             popUpBox.SetActive(true);
-            transform.position = hero.transform.position + new Vector3(0,20);
+            transform.position = hero.transform.position + new Vector3(0, 20);
             StartCoroutine(TypeSentence(text));
         }
     }

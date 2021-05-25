@@ -19,7 +19,6 @@ public class HeroController : MonoBehaviour
     // ATTACKS
     public List<Attack> attacks = new List<Attack>();
     public GameObject myCanvas;
-    TextMeshProUGUI PAtxt, PMtxt, PVtxt;
     private bool isMoving;
 
     public List<Grenade> grenades = new List<Grenade>();
@@ -38,9 +37,6 @@ public class HeroController : MonoBehaviour
     void Start()
     {
         
-        PAtxt = myCanvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
-        PMtxt = myCanvas.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
-        PVtxt = myCanvas.transform.GetChild(5).GetComponent<TextMeshProUGUI>();
 
         SetMyStats();
         SetUIAttacks();
@@ -125,12 +121,12 @@ public class HeroController : MonoBehaviour
     {
         for (int i = 0; i < attacks.Count; i++)
         {
-            if(myCanvas.transform.GetChild(0).transform.childCount - 1 < i)
+            if(myCanvas.transform.GetChild(3).transform.childCount - 1 < i)
             {
                 print("NOT ENOUGH SLOTS");
                 return;
             }
-            UI_Attack UIAttack = myCanvas.transform.GetChild(0).transform.GetChild(i).GetComponent<UI_Attack>();
+            UI_Attack UIAttack = myCanvas.transform.GetChild(3).transform.GetChild(i).GetComponent<UI_Attack>();
             UIAttack.attack = attacks[i];
             UIAttack.UpdateUI();
 
@@ -144,8 +140,6 @@ public class HeroController : MonoBehaviour
         health = stats.health;
         PM = stats.PM;
         PA = stats.PA;
-        SetUI_PA_PM();
-        PVtxt.text = health.ToString();
     }
 
     public void StartTurn()
@@ -160,7 +154,6 @@ public class HeroController : MonoBehaviour
         isMyTurn = true;
         //print("StartTurn");
         myCanvas.SetActive(true);
-        SetUI_PA_PM();
         foreach (Transform UI_AttackBtn in myCanvas.transform.GetChild(0).transform)
         {
             UI_AttackBtn.GetComponent<UI_Attack>().StartTurn();
@@ -214,8 +207,6 @@ public class HeroController : MonoBehaviour
     {
         PM -= TilesManager.instance.HeuristicDistance(myTile.coordinates, tile.coordinates);
         PA--;
-        SetUI_PA_PM();
-
 
 
         myTile.hero = null;
@@ -233,7 +224,7 @@ public class HeroController : MonoBehaviour
             myTile.ActionItem(true);
         }
 
-        PopUpSystem.instance.PopUp("Hopla petit move", this);
+        PopUpSystem.instance.Cut();
 
         if (PA > 0)
         ShowMovements();
@@ -243,17 +234,10 @@ public class HeroController : MonoBehaviour
         }
     }
 
-    public void SetUI_PA_PM()
-    {
-        PMtxt.text = PM.ToString();
-        PAtxt.text = PA.ToString();
-    }
-
     public void TakeDamages(int damages)
     {
         health -= damages;
         health = Mathf.Clamp(health, 0, stats.health);
-        PVtxt.text = health.ToString();
 
         GameObject txt = Instantiate(TXT_Damages, transform.position, transform.rotation);
         txt.transform.GetChild(0).GetComponent<TextMeshPro>().text = damages.ToString();

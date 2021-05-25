@@ -73,7 +73,7 @@ public class CombatSystem : MonoBehaviour
                 TurnPlayer();
                 break;
                 
-            case CombatState.Spawner:
+            case CombatState.Spawner:     
                 TurnSpawner();
                 break;
 
@@ -118,9 +118,7 @@ public class CombatSystem : MonoBehaviour
     private void TurnEnemy()
     {
         if (index < enemies.Count)
-        {
-            if (index == 1)
-                print("non");
+        {   
             enemies[index].StartTurn();
            
         }

@@ -9,12 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b52f95a3323f1a4885661338b191d20, type: 3}
-  m_Name: Cowboy
+  m_Script: {fileID: 11500000, guid: 61b492e189e8f21498de18680d62a00f, type: 3}
+  m_Name: enemyfly
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: f34e04fbfd42ff14a9b6db4467d3c011, type: 3}
-  heroName: CowBoy
-  health: 3
+  sprite: {fileID: 21300000, guid: 99db083a9fb351f489917fee421753f5, type: 3}
+  enemyName: 
+  health: 1
   PM: 1
   PA: 2
-  isDofusPM: 1
+  isFlying: 0
+  distanceToStayAway: 0
+  Type: 0
+  attacks:
+  - damages: 1
+    costPA: 1
+    range: 1

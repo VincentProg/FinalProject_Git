@@ -137,16 +137,19 @@ public class CombatSystem : MonoBehaviour
     public void Win()
     {
         state = CombatState.Win;
+        ButtonManager.instance.ShowWin();
         print("WIN");
     }
 
     public void Loose()
     {
         state = CombatState.Lose;
+        ButtonManager.instance.ShowLose();
     }
 
     public void DestroySpawner(Spawner spawner)
     {
+        print("spawner remaining : " + spawners.Count);
         spawners.Remove(spawner);
         if(spawners.Count == 0)
         {

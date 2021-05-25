@@ -39,6 +39,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 originTile.SelectCell(HexCell.SELECTION_TYPE.AIM);
                 break;
             case Attack.RANGE_TYPE.LINE:
+                
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
                 if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
                 {
@@ -49,6 +50,7 @@ public class Hero_AttacksManager : MonoBehaviour
                             item.SelectCell(HexCell.SELECTION_TYPE.AIM);
                         }
                     }
+                    print("showAttack");
                 }
                 else
                 {
@@ -68,6 +70,7 @@ public class Hero_AttacksManager : MonoBehaviour
                             if (isInRange)
                             {
                                 tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+
                             }
                             else
                             {

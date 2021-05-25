@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9172664526708501547}
   - component: {fileID: 2430463736847990133}
   - component: {fileID: 4073062975770140473}
+  - component: {fileID: 7990509522128747301}
   m_Layer: 0
   m_Name: Hex Cell
   m_TagString: Untagged
@@ -68,11 +69,9 @@ MonoBehaviour:
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
   basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
+  - {fileID: 21300000, guid: 838b6e14b30cae446b5635b82a6bccd5, type: 3}
+  - {fileID: 21300000, guid: 1c8e2edb972d4d549b1285983ea1d543, type: 3}
+  - {fileID: 21300000, guid: d1462a17f8ca78b4693e9a33ca5bcce1, type: 3}
   SpawnerTileSprites: []
 --- !u!212 &9172664526708501547
 SpriteRenderer:
@@ -176,6 +175,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7990509522128747301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8721517c9520d04b99237d7d27c8114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coordinates:
+    x: 0
+    z: 0
+  type: 0
 --- !u!1 &8993971953053540813
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +263,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -100
-  m_Sprite: {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 838b6e14b30cae446b5635b82a6bccd5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

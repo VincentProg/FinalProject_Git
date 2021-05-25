@@ -258,12 +258,9 @@ public class EnemyController : MonoBehaviour
                 #region KAMIKAZE_CheckAction
                 dist1 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero1.myTile.coordinates);
                 dist2 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero2.myTile.coordinates);
-                print("dist1 = " + dist1);
-                print("dist2 = " + dist2);
 
                 if (dist1 == 1 || dist2 == 1)
                 {
-                    print("PA = " + PA + "statsPA = " + stats.attacks[0].costPA);
                     if (PA >= stats.attacks[0].costPA)
                         Death(true);
                     else ContinueTurn();

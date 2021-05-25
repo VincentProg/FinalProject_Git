@@ -24,6 +24,7 @@ EditorUserSettings:
       value: 22424703114646680e0b0227036c7834593b1d3c292466326d785326ece92021
       flags: 0
     RecentlyUsedScenePath-6:
+<<<<<<< HEAD
       value: 22424703114646680e0b0227036c7834593b1d3c29246632633c133af6f9
       flags: 0
     RecentlyUsedScenePath-7:
@@ -34,6 +35,12 @@ EditorUserSettings:
       flags: 0
     RecentlyUsedScenePath-9:
       value: 22424703114646680e0b0227036c7834593b1d3c29246633633c133af6f9
+=======
+      value: 22424703114646680e0b0227036c7e1e02181124296712353e3d3f12acf53a31f6fe
+      flags: 0
+    RecentlyUsedScenePath-7:
+      value: 22424703114646680e0b0227036c691918141d2438671039232a183df6ae2136ebf32f
+>>>>>>> Vincent
       flags: 0
     UnityRemoteDevice:
       value: 225f4d46245b0d4902070862342649191512

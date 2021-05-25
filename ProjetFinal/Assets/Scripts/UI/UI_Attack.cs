@@ -103,6 +103,7 @@ public class UI_Attack : MonoBehaviour
 
     private void TryShowAttack()
     {
+
         if (hero.PA >= attack.costPA)
         {    
                 Hero_AttacksManager.instance.ShowAttackRange(this, attack);
@@ -114,7 +115,6 @@ public class UI_Attack : MonoBehaviour
     {
         cooldown = attack.cooldown;
         hero.PA -= attack.costPA;
-        hero.SetUI_PA_PM();
         if(cooldown > 0)
         {
             isDisabled = true;

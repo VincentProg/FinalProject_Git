@@ -197,6 +197,7 @@ public class HeroController : MonoBehaviour
         PA = stats.PA;
 
         TilesManager.instance.ClearTiles(false);
+        PopUpSystem.instance.Cut();
 
         for (int i = 0; i < grenades.Count; i++)
         {
@@ -206,6 +207,7 @@ public class HeroController : MonoBehaviour
         
 
         CombatSystem.instance.NextTurn();
+        return;
     }
 
     private void Move(HexCell tile)
@@ -220,7 +222,7 @@ public class HeroController : MonoBehaviour
         myTile = tile;
         myTile.hero = this;
 
-
+       
         isMoving = true;
     }
     
@@ -231,7 +233,7 @@ public class HeroController : MonoBehaviour
             myTile.ActionItem(true);
         }
 
-        
+        PopUpSystem.instance.PopUp("Hopla petit move", this);
 
         if (PA > 0)
         ShowMovements();
@@ -257,6 +259,8 @@ public class HeroController : MonoBehaviour
         txt.transform.GetChild(0).GetComponent<TextMeshPro>().text = damages.ToString();
         txt.transform.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 10;
         Destroy(txt, 1);
+
+        PopUpSystem.instance.PopUp("Petit test avec un plus long text salut les gens", this);
 
         if (health == 0)
         {

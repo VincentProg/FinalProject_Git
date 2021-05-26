@@ -57,8 +57,6 @@ public class CombatSystem : MonoBehaviour
     public void StartFight()
     {
         state = CombatState.PlayerTurn;
-        Timeline._instance.Enlarge(Timeline._instance.h1);
-        Timeline._instance.ResetHeroBoxToDefaultSize(Timeline._instance.h2);
         heros[0].StartTurn();
     }
 
@@ -88,11 +86,6 @@ public class CombatSystem : MonoBehaviour
     {
         if (index < heros.Count)
         {
-            if (index == 1)
-            {
-                Timeline._instance.Enlarge(Timeline._instance.h2);
-                Timeline._instance.ResetHeroBoxToDefaultSize(Timeline._instance.h1);
-            }
             heros[index].StartTurn();
         }
         else
@@ -128,8 +121,6 @@ public class CombatSystem : MonoBehaviour
             index = 0; // reset de l'index 
             nbrRound++;
             nbrRoundTXT.text = nbrRound.ToString();
-            Timeline._instance.Enlarge(Timeline._instance.h1);
-            Timeline._instance.ResetHeroBoxToDefaultSize(Timeline._instance.h2);
             heros[index].StartTurn();
         }
     }

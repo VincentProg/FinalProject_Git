@@ -351,6 +351,13 @@ public class Hero_AttacksManager : MonoBehaviour
                         {
                             tile.enemy.TakeDamages(attack.damages);
                         }
+                        else if(tile.item != null && tile.item.GetComponent<Spawner>())
+                        {
+                            if(TilesManager.instance.HeuristicDistance(playerTile.coordinates, tile.coordinates) == 1)
+                            {
+                                tile.item.GetComponent<Spawner>().Death();
+                            }
+                        }
                     }
                 }
                 break;

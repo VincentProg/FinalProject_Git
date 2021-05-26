@@ -22,6 +22,7 @@ MonoBehaviour:
   rangeAttack: 3
   radiusUnattackableAttack: 0
   canSelectHole: 0
+  canSelectHeroEnemySpawner: 0
   visionType: 0
   impactType: 6
   damages: 10

@@ -43,7 +43,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
                 if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
                 {
-                    foreach (List<HexCell> diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.radiusUnattackableAttack,attack.rangeAttack, attack.canSelectHole, attack.canSelectHeroEnemySpawner, false))
+                    foreach (List<HexCell> diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.radiusUnattackableAttack,attack.rangeAttack, attack.canSelectHole, false, attack.canSelectHeroEnemySpawner))
                     {
                         foreach (var item in diagonal)
                         {
@@ -54,7 +54,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 }
                 else
                 {
-                    foreach (List<HexCell> diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, attack.canSelectHole, attack.canSelectHeroEnemySpawner, true))
+                    foreach (List<HexCell> diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, attack.canSelectHole, false, attack.canSelectHeroEnemySpawner))
                     {
                         foreach (var tile in diagonal)
                         {

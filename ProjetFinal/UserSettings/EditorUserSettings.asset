@@ -8,6 +8,7 @@ EditorUserSettings:
 <<<<<<< HEAD
 =======
     RecentlyUsedScenePath-0:
+<<<<<<< Updated upstream
       value: 22424703114646680e0b0227036c783459391d3d6c1b2535232c5326ece92021
       flags: 0
     RecentlyUsedScenePath-1:
@@ -73,6 +74,36 @@ EditorUserSettings:
 >>>>>>> Game-design-Robin
 =======
 >>>>>>> Vincent
+=======
+      value: 22424703114646680e0b0227036c7834593b1d3c2924660a633c133af6f9
+      flags: 0
+    RecentlyUsedScenePath-1:
+      value: 22424703114646680e0b0227036c7834593b1d3c29246608633c133af6f9
+      flags: 0
+    RecentlyUsedScenePath-2:
+      value: 22424703114646680e0b0227036c7834593b1d3c29246634633c133af6f9
+      flags: 0
+    RecentlyUsedScenePath-3:
+      value: 22424703114646680e0b0227036c7834593b1d3c29246635633c133af6f9
+      flags: 0
+    RecentlyUsedScenePath-4:
+      value: 22424703114646680e0b0227036c783459231d273c2427242867083debf42d
+      flags: 0
+    RecentlyUsedScenePath-5:
+      value: 22424703114646680e0b0227036c783459231d273c24272428694c7df7ee3d2cfb
+      flags: 0
+    RecentlyUsedScenePath-6:
+      value: 22424703114646680e0b0227036c7834593b1d3c29246636633c133af6f9
+      flags: 0
+    RecentlyUsedScenePath-7:
+      value: 22424703114646680e0b0227036c7834593b1d3c2924661624271c3facf53a31f6fe
+      flags: 0
+    RecentlyUsedScenePath-8:
+      value: 22424703114646680e0b0227036c7834593b1d3c29246624383d1273e0e12731f3f233a7f234362820
+      flags: 0
+    RecentlyUsedScenePath-9:
+      value: 22424703114646680e0b0227036c7834593b1d3c29246637633c133af6f9
+>>>>>>> Stashed changes
       flags: 0
     UnityRemoteDevice:
       value: 225f4d46245b0d4902070862342649191512

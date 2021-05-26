@@ -49,7 +49,7 @@ public class CombatSystem : MonoBehaviour
 
     private void Start()
     {
-        nbrRoundTXT.text = nbrRound.ToString(); ;
+        ///nbrRoundTXT.text = nbrRound.ToString(); ;
         StartFight();
     }
 

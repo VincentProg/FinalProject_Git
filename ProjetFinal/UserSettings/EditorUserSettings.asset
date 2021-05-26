@@ -6,6 +6,7 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedScenePath-0:
+<<<<<<< HEAD
 <<<<<<< main
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -72,6 +73,36 @@ EditorUserSettings:
     RecentlyUsedScenePath-3:
       value: 22424703114646680e0b0227036c7834593b1d3c29246636633c133af6f9
 >>>>>>> Fin modifs anciens levels
+=======
+      value: 22424703114646680e0b0227036c7834593b1d3c2924663a633c133af6f9
+      flags: 0
+    RecentlyUsedScenePath-1:
+      value: 22424703114646680e0b0227036c7834593b1d3c2924663b633c133af6f9
+      flags: 0
+    RecentlyUsedScenePath-2:
+      value: 22424703114646680e0b0227036c7834593b1d3c2924663c633c133af6f9
+      flags: 0
+    RecentlyUsedScenePath-3:
+      value: 22424703114646680e0b0227036c7834593b1d3c29246636633c133af6f9
+      flags: 0
+    RecentlyUsedScenePath-4:
+      value: 22424703114646680e0b0227036c7834593b1d3c29246637633c133af6f9
+      flags: 0
+    RecentlyUsedScenePath-5:
+      value: 22424703114646680e0b0227036c7834593b1d3c29246638633c133af6f9
+      flags: 0
+    RecentlyUsedScenePath-6:
+      value: 22424703114646680e0b0227036c7834593b1d3c292466397f67083debf42d
+      flags: 0
+    RecentlyUsedScenePath-7:
+      value: 22424703114646680e0b0227036c7834593b1d3c2924663a7f67083debf42d
+      flags: 0
+    RecentlyUsedScenePath-8:
+      value: 22424703114646680e0b0227036c7834593b1d3c2924663b7f67083debf42d
+      flags: 0
+    RecentlyUsedScenePath-9:
+      value: 22424703114646680e0b0227036c783459231d273c2427242867083debf42d
+>>>>>>> Alex
       flags: 0
     RecentlyUsedScenePath-4:
       value: 22424703114646680e0b0227036c7834593b1d3c29246637633c133af6f9

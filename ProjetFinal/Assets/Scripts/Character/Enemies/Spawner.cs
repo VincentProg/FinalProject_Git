@@ -9,8 +9,6 @@ public class Spawner : MonoBehaviour
     [SerializeField] private int nbEntityLeft;
     public int turnDelay;
     int nbOfTurnBeforeSpawning;
-    public int maxHp;
-    public int hp;
 
     private bool isDead;
 
@@ -23,7 +21,6 @@ public class Spawner : MonoBehaviour
     {
         nbEntityLeft = nbOfEntityToSpawn;
         nbOfTurnBeforeSpawning = 0;
-        hp = maxHp;
 
         CombatSystem.instance.spawners.Add(this);
         
@@ -81,21 +78,11 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public void TakeDamages(int damages)
-    {
-        hp -= damages;
-        hp = Mathf.Clamp(hp, 0, maxHp);
-
-        if (hp == 0)
-        {
-            Death();
-        }
-    }
 
     public void Death()
     {
         isDead = true;
         CombatSystem.instance.DestroySpawner(this);
-        print("ta ded sa chakal");
+        Destroy(gameObject);
     }
 }

@@ -15,9 +15,9 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 99db083a9fb351f489917fee421753f5, type: 3}
   enemyName: 
   health: 1
-  PM: 1
+  PM: 2
   PA: 2
-  isFlying: 0
+  isFlying: 1
   distanceToStayAway: 0
   Type: 0
   attacks:

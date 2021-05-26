@@ -85,13 +85,11 @@ public class Hero_AttacksManager : MonoBehaviour
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
                 if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
                 {
-                    foreach (var diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, false, false))
+                    foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, false, false, false))
                     {
-                        foreach (HexCell tile in diagonal)
-                        {
-                            tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
-                        }
+                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
                     }
+                
                 }
                 else
                 {
@@ -350,6 +348,13 @@ public class Hero_AttacksManager : MonoBehaviour
                         else if (tile.enemy != null)
                         {
                             tile.enemy.TakeDamages(attack.damages);
+                        }
+                        else if(tile.item != null && tile.item.GetComponent<Spawner>())
+                        {
+                            if(TilesManager.instance.HeuristicDistance(playerTile.coordinates, tile.coordinates) == 1)
+                            {
+                                tile.item.GetComponent<Spawner>().Death();
+                            }
                         }
                     }
                 }

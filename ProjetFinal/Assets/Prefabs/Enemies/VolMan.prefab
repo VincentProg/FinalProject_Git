@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4720378665319830148}
   - component: {fileID: 8079578729787815160}
   m_Layer: 0
-  m_Name: Zborg
+  m_Name: VolMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4030915596351684975}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 29d8865803a38964eb7b658268ab7aa7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 99db083a9fb351f489917fee421753f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,5 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasSpawned: 0
-  stats: {fileID: 11400000, guid: 8640c24d68959c342be93939f449f8b9, type: 2}
+  SkipFirstTurn: 1
+  stats: {fileID: 11400000, guid: d0f0acf9d2839bd4f908cd6044be7998, type: 2}
   TXT_Damages: {fileID: 6266669382385152773, guid: 4bfe2c1cf56a6704f9f95b27aba90243, type: 3}

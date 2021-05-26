@@ -19,7 +19,7 @@ MonoBehaviour:
   nbrUsePerTurn: 0
   nbrUseTotal: 0
   rangeType: 1
-  rangeAttack: 4
+  rangeAttack: 3
   radiusUnattackableAttack: 0
   canSelectHole: 0
   visionType: 0

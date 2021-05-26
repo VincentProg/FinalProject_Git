@@ -127,7 +127,7 @@ public class CombatSystem : MonoBehaviour
             state = CombatState.PlayerTurn; // --> tour des players
             index = 0; // reset de l'index 
             nbrRound++;
-            nbrRoundTXT.text = nbrRound.ToString();
+            ///nbrRoundTXT.text = nbrRound.ToString();
             Timeline._instance.Enlarge(Timeline._instance.h1);
             Timeline._instance.ResetHeroBoxToDefaultSize(Timeline._instance.h2);
             heros[index].StartTurn();

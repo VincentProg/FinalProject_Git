@@ -99,7 +99,6 @@ public class HeroController : MonoBehaviour
                                 break;
                             default:
                                 ShowMovements();
-                                print("fdp");
                                 break;
                         }
                     }

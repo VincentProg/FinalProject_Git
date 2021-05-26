@@ -125,6 +125,11 @@ public class CombatSystem : MonoBehaviour
         }
     }
 
+    private void NewRound()
+    {
+
+    }
+
     public void Win()
     {
         state = CombatState.Win;

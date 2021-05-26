@@ -58,6 +58,7 @@ public class AttackEditor : Editor
             attack.radiusUnattackableAttack = EditorGUILayout.IntField("Range Unattackable", attack.radiusUnattackableAttack);
             attack.visionType = (Attack.VISION_TYPE)EditorGUILayout.EnumPopup("Vision Type", attack.visionType);
             attack.canSelectHole = EditorGUILayout.Toggle("Can Select Hole", attack.canSelectHole);
+            attack.canSelectHeroEnemySpawner = EditorGUILayout.Toggle("Can Select Hero-Enemy-Spawner", attack.canSelectHeroEnemySpawner);
 
 
 
@@ -96,6 +97,7 @@ public class AttackEditor : Editor
             attack.radiusUnattackableAttack = EditorGUILayout.IntField("Range Unattackable", attack.radiusUnattackableAttack);
             attack.visionType = (Attack.VISION_TYPE)EditorGUILayout.EnumPopup("Vision Type", attack.visionType);
             attack.canSelectHole = EditorGUILayout.Toggle("Can Select Hole", attack.canSelectHole);
+            attack.canSelectHeroEnemySpawner = EditorGUILayout.Toggle("Can Select Hero-Enemy-Spawner", attack.canSelectHeroEnemySpawner);
 
             GUILayout.Label("\n IMPACT DATAS");
             switch (attack.impactType)

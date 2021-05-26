@@ -20,6 +20,7 @@ public class Attack : ScriptableObject
     public int rangeAttack;
     public int radiusUnattackableAttack;
     public bool canSelectHole;
+    public bool canSelectHeroEnemySpawner = true;
     public enum VISION_TYPE { SEE_EVERYTHING, WALLS_BLOCK, WALLSHUMANS_BLOCK }
     public VISION_TYPE visionType;
 

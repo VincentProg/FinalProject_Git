@@ -222,7 +222,7 @@ public class EnemyController : MonoBehaviour
                     targetCell = hero2.myTile;
 
                 // If player already in line of sight 
-                List<List<HexCell>> diagonals = TilesManager.instance.GetDiagonals(myTile.coordinates, stats.attacks[0].range, true, false, TilesManager.instance.GetDirection(myTile.coordinates, targetCell.coordinates));
+                List<List<HexCell>> diagonals = TilesManager.instance.GetDiagonals(myTile.coordinates, 0, stats.attacks[0].range, true, false, true, TilesManager.instance.GetDirection(myTile.coordinates, targetCell.coordinates));
                 List<List<HexCell>> fov = TilesManager.instance.GetFOV(myTile, TilesManager.instance.HeuristicDistance(myTile.coordinates, targetCell.coordinates) + 1, true);
 
                 bool inRange = false;

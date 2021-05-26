@@ -180,7 +180,7 @@ public class TilesManager : MonoBehaviour
 
 
 
-    public List<List<HexCell>> GetDiagonals(HexCoordinates center, int radius, bool passHole, bool passWall, int side = -1)
+    public List<List<HexCell>> GetDiagonals(HexCoordinates center,int minRadius, int maxRadius, bool passHole, bool passWall, bool passHeroEnemySpawner, int side = -1)
     {
         List<List<HexCell>> results = new List<List<HexCell>>();
         List<int> directions = new List<int>() { 0, 1, 2, 3, 4, 5 };
@@ -218,24 +218,34 @@ public class TilesManager : MonoBehaviour
             List<HexCell> diagonalDirection = new List<HexCell>();
             HexCoordinates tempCenter = center;
 
-            for (int j = 0; j < radius; j++)
+            for (int j = 0; j < maxRadius; j++)
             {
                 HexCell temp;
 
                 HexCoordinates testCoords = GetNeighboor(tempCenter, direction);
-
+                bool addTile = true;
 
                 mapTiles.TryGetValue(testCoords, out temp);
                 if (temp)
                 {
+                    if (HeuristicDistance(center, temp.coordinates) < minRadius)
+
+
                     if (!passHole)
                         if (temp.tileType.Equals(HexCell.TILE_TYPE.HOLE))
-                            break;
+                            addTile = false;
 
                     if (!passWall)
                         if (temp.tileType.Equals(HexCell.TILE_TYPE.WALL))
-                            break;
+                            addTile = false;
 
+                    if (!passHeroEnemySpawner)
+                    {
+                        if (temp.isPossessed())
+                            addTile = false;
+
+                    }
+                    if(addTile)
                     diagonalDirection.Add(temp);
                 }
                 tempCenter = testCoords;
@@ -243,6 +253,8 @@ public class TilesManager : MonoBehaviour
             }
             results.Add(diagonalDirection);
         }
+
+
 
         return results;
     }
@@ -658,7 +670,7 @@ public class TilesManager : MonoBehaviour
         int side = GetDirection(target, center);
         if(side < 6)
         {
-            List<List<HexCell>> diagonals = GetDiagonals(target, HeuristicDistance(center, target) + 5, true, false, side);
+            List<List<HexCell>> diagonals = GetDiagonals(target,0, HeuristicDistance(center, target) + 5, true, false, true, side);
 
             if (diagonals[0].Count > 0 || diagonals[1].Count > 0)
             {

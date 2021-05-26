@@ -53,8 +53,12 @@ public class UI_Attack : MonoBehaviour
 
     public void OnClick()
     {
-        print(nbrUsePerTurn);
-        if (!isDisabled && hero.PA > 0)
+        if(hero.PA == 0)
+        {
+            PopUpSystem.instance.PopUp("No more energy for this turn", hero);
+        }
+
+        if (!isDisabled)
         {
             if (isNbrTotal)
             {
@@ -68,7 +72,7 @@ public class UI_Attack : MonoBehaviour
                             TryShowAttack();
                         } else
                         {
-                            print("No more use possible for this turn");
+                            PopUpSystem.instance.PopUp("No more use possible for this turn", hero);
                         }
                     } else
                     {
@@ -76,7 +80,7 @@ public class UI_Attack : MonoBehaviour
                     }
                 } else
                 {
-                    print("No more actions left");
+                    PopUpSystem.instance.PopUp("No more utilisations left", hero);
                 }
             } else
             {
@@ -88,7 +92,7 @@ public class UI_Attack : MonoBehaviour
                     }
                     else
                     {
-                        print("No more use possible for this turn");
+                        PopUpSystem.instance.PopUp("No more use possible for this turn", hero);
                     }
                 } else
                 {
@@ -98,7 +102,7 @@ public class UI_Attack : MonoBehaviour
         }
         else
         {
-            print("Attack not ready");
+            PopUpSystem.instance.PopUp("I can't realize this attack yet", hero);
         }
     }
 
@@ -109,7 +113,7 @@ public class UI_Attack : MonoBehaviour
         {    
                 Hero_AttacksManager.instance.ShowAttackRange(this, attack);
         }
-        else print("Not enough PA!");
+        else PopUpSystem.instance.PopUp("Not enough energy", hero);
     }
 
     public void ActivateAttack()
@@ -137,7 +141,6 @@ public class UI_Attack : MonoBehaviour
 
     public void StartTurn()
     {
-        print("Ui_StartTurn");
         if(cooldown > 0)
         {
             cooldown--;

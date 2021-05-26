@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   name: Flash
-  costPA: 1
+  costPA: 2
   cooldown: 3
   nbrUsePerTurn: 1
   nbrUseTotal: 0

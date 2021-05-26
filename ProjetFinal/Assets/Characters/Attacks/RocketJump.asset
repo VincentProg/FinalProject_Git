@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 0f721b9409fb9694491ee46644f7e6c5, type: 3}
   name: 
-  costPA: 1
+  costPA: 2
   cooldown: 0
-  nbrUsePerTurn: 0
+  nbrUsePerTurn: 1
   nbrUseTotal: 0
   rangeType: 1
   rangeAttack: 3
   radiusUnattackableAttack: 0
   canSelectHole: 0
+  canSelectHeroEnemySpawner: 0
   visionType: 0
   impactType: 6
   damages: 10

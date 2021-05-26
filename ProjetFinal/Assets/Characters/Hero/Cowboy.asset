@@ -16,5 +16,5 @@ MonoBehaviour:
   heroName: CowBoy
   health: 3
   PM: 1
-  PA: 2
+  PA: 3
   isDofusPM: 0

@@ -25,7 +25,7 @@ public class Grenade : MonoBehaviour
     public void StartTurn()
     {
         delay--;
-        if(delay <= 0)
+        if(delay < 0)
         {
             Explode();
         }

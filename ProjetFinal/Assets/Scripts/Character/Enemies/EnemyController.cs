@@ -17,6 +17,9 @@ public class EnemyController : MonoBehaviour
 
     private bool isMoving;
     private bool isActionDone = true;
+
+    [SerializeField]
+    Color myTileColor;
   
 
     // VARIABLES GRID
@@ -64,6 +67,7 @@ public class EnemyController : MonoBehaviour
             }
         }
         #endregion
+        myTile.myTileSprite.color = myTileColor;
 
         CombatSystem.instance.enemies.Add(this);
         hero1 = CombatSystem.instance.heros[0];
@@ -218,7 +222,7 @@ public class EnemyController : MonoBehaviour
                     targetCell = hero2.myTile;
 
                 // If player already in line of sight 
-                List<List<HexCell>> diagonals = TilesManager.instance.GetDiagonals(myTile.coordinates, stats.attacks[0].range, true, false, TilesManager.instance.GetDirection(myTile.coordinates, targetCell.coordinates));
+                List<List<HexCell>> diagonals = TilesManager.instance.GetDiagonals(myTile.coordinates, 0, stats.attacks[0].range, true, false, true, TilesManager.instance.GetDirection(myTile.coordinates, targetCell.coordinates));
                 List<List<HexCell>> fov = TilesManager.instance.GetFOV(myTile, TilesManager.instance.HeuristicDistance(myTile.coordinates, targetCell.coordinates) + 1, true);
 
                 bool inRange = false;
@@ -438,8 +442,10 @@ public class EnemyController : MonoBehaviour
                     {
 
                         tile.enemy = this;
+                        myTile.myTileSprite.color = TilesManager.instance.classicColor;
                         myTile.enemy = null;
                         myTile = tile;
+                        myTile.myTileSprite.color = myTileColor;
                         isMoving = true;
 
                         return;
@@ -463,8 +469,10 @@ public class EnemyController : MonoBehaviour
                     if (!(path[1].X == 0 && path[1].Z == 0))
                     {
                         tile.enemy = this;
+                        myTile.myTileSprite.color = TilesManager.instance.classicColor;
                         myTile.enemy = null;
                         myTile = tile;
+                        myTile.myTileSprite.color = myTileColor;
                         isMoving = true;
 
                         return;
@@ -566,6 +574,8 @@ public class EnemyController : MonoBehaviour
 
 
         CombatSystem.instance.enemies.Remove(this);
+        myTile.myTileSprite.color = TilesManager.instance.classicColor;
+        myTile.enemy = null;
         Destroy(gameObject);
     }
 

@@ -67,7 +67,6 @@ public class PopUpSystem : MonoBehaviour
 
     public IEnumerator iDisappear()
     {
-        print("disappear");
         anim.SetTrigger("Disappear");
         yield return new WaitForSeconds(0.2f);
         popUpBox.SetActive(false);

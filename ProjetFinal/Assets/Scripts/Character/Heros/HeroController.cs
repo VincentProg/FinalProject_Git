@@ -99,7 +99,45 @@ public class HeroController : MonoBehaviour
                                 break;
                             default:
                                 ShowMovements();
-                                print("fdp");
+                                break;
+                        }
+                    }
+                }
+            }
+
+            if (PA > 0 && Input.GetMouseButtonDown(0))
+            {
+                Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+
+                Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
+                RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
+                if (hitInformation)
+                {
+                    if (hitInformation.transform.GetComponent<HexCell>() != null)
+                    {
+                        HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
+
+
+                        switch (tileTouched.selectionType)
+                        {
+                            case HexCell.SELECTION_TYPE.MOVEMENT:
+                                Move(tileTouched);
+                                break;
+
+                            case HexCell.SELECTION_TYPE.AIM:
+                                Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                break;
+                            case HexCell.SELECTION_TYPE.AIM_IMPACT:
+                                Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                break;
+                            case HexCell.SELECTION_TYPE.ORIGIN_AIM:
+                                Hero_AttacksManager.instance.LaunchAttack();
+                                break;
+                            case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
+                                Hero_AttacksManager.instance.LaunchAttack();
+                                break;
+                            default:
+                                ShowMovements();
                                 break;
                         }
                     }

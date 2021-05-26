@@ -148,6 +148,7 @@ public class CombatSystem : MonoBehaviour
     public void DestroySpawner(Spawner spawner)
     {
         spawners.Remove(spawner);
+
         if(spawners.Count == 0)
         {
             Win();

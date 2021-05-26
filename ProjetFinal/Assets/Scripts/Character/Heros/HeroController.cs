@@ -300,6 +300,8 @@ public class HeroController : MonoBehaviour
     private void Death()
     {
         print("Death");
+        CombatSystem.instance.state = CombatSystem.CombatState.Lose;
+        ButtonManager.instance.ShowLose();
     }
 
 }

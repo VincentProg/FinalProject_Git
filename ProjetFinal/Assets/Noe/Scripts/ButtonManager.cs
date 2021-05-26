@@ -6,11 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    public static ButtonManager instance { get; private set; }
     public GameObject pauseMenu;
     public GameObject optionMenu;
+    public GameObject pause_button;
+    public GameObject LoseMenu;
+    public GameObject WinMenu;
+
     //in game manager
     bool isGamePaused;
 
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
+    }
 
     private void Start()
     {
@@ -32,28 +42,26 @@ public class ButtonManager : MonoBehaviour
             isGamePaused = true;
             Time.timeScale = 0;
             pauseMenu.SetActive(true);
+            pause_button.SetActive(false);
         }
         else
         {
             pauseMenu.SetActive(false);
             Time.timeScale = 1;
             isGamePaused = false;
+            pause_button.SetActive(true);
         }
-    }
-    public void Resume()
-    {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1;
-        isGamePaused = false;
     }
     public void BackToMenu()
     {
-        //SceneManager.LoadScene("MainMenu");
+        print(SceneManager.GetActiveScene().buildIndex -1);
+        PlayerPrefs.SetInt("levelReached", SceneManager.GetActiveScene().buildIndex -1);
+        SceneManager.LoadScene("LevelMenu");
         print("Going Back To MainMenu . . .");
     }
     public void QuitApplication()
     {
-        //Application.Quit();
+        Application.Quit();
         print("Quitting Game . . .");
     }
     public void OptionMenu()
@@ -69,6 +77,42 @@ public class ButtonManager : MonoBehaviour
         
         pauseMenu.SetActive(true);
         optionMenu.SetActive(false);
+    }
+
+    public void NextLevel()
+    {
+        PlayerPrefs.SetInt("levelReached", SceneManager.GetActiveScene().buildIndex+1 - 2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void RestartLevel()
+    {
+        print("reloading this level");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ShowWin()
+    {
+        optionMenu.SetActive(false);
+        pauseMenu.SetActive(false);
+        LoseMenu.SetActive(false);
+        pause_button.SetActive(false);
+        WinMenu.SetActive(true);
+
+    }
+
+    public void ShowLose()
+    {
+        optionMenu.SetActive(false);
+        pauseMenu.SetActive(false);
+        LoseMenu.SetActive(true);
+        pause_button.SetActive(false);
+        WinMenu.SetActive(false);
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }

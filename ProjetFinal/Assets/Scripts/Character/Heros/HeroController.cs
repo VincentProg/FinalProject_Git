@@ -29,6 +29,7 @@ public class HeroController : MonoBehaviour
     public HexCell myTile;
 
     public Color myTileColor;
+    SpriteRenderer myHeroSprite;
 
 
     bool isMyTurn = false;
@@ -37,11 +38,6 @@ public class HeroController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-
-        SetMyStats();
-        SetUIAttacks();
-
 
         #region GET MY START TILE()
        
@@ -57,6 +53,9 @@ public class HeroController : MonoBehaviour
         }
         #endregion
         myTile.myTileSprite.color = myTileColor;
+
+        SetMyStats();
+        SetUIAttacks();
 
     }
 
@@ -178,7 +177,9 @@ public class HeroController : MonoBehaviour
 
     private void SetMyStats()
     {
-        GetComponent<SpriteRenderer>().sprite = stats.sprite;
+        myHeroSprite = GetComponent<SpriteRenderer>();
+        myHeroSprite.sprite = stats.sprite;
+        myHeroSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
         nameHero = stats.heroName;
         health = stats.health;
         PM = stats.PM;
@@ -257,6 +258,9 @@ public class HeroController : MonoBehaviour
         myTile = tile;
         myTile.hero = this;
         myTile.myTileSprite.color = myTileColor;
+        myHeroSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
+        print("helo");
+
 
 
         isMoving = true;

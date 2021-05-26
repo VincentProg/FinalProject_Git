@@ -20,7 +20,8 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     Color myTileColor;
-  
+
+    SpriteRenderer myAlienSprite;
 
     // VARIABLES GRID
     HexCell myTile;
@@ -73,9 +74,9 @@ public class EnemyController : MonoBehaviour
         hero1 = CombatSystem.instance.heros[0];
         hero2 = CombatSystem.instance.heros[1];
 
-
-        SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-        mySprite.sprite = stats.sprite;
+        myAlienSprite = GetComponent<SpriteRenderer>();
+        myAlienSprite.sprite = stats.sprite;
+        myAlienSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
         nameEnemy = stats.enemyName;
         health = stats.health;
         PM = stats.PM;
@@ -446,6 +447,8 @@ public class EnemyController : MonoBehaviour
                         myTile.enemy = null;
                         myTile = tile;
                         myTile.myTileSprite.color = myTileColor;
+                        myAlienSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
+
                         isMoving = true;
 
                         return;
@@ -473,6 +476,8 @@ public class EnemyController : MonoBehaviour
                         myTile.enemy = null;
                         myTile = tile;
                         myTile.myTileSprite.color = myTileColor;
+                        myAlienSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
+
                         isMoving = true;
 
                         return;

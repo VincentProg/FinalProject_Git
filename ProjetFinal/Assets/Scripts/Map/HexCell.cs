@@ -28,8 +28,8 @@ public class HexCell : MonoBehaviour {
 
 	public enum TILE_TYPE {GROUND, WALL, HOLE}
 	public TILE_TYPE tileType;
-	public List<Sprite> basicTileSprites;
-	public List<Sprite> SpawnerTileSprites;
+	[SerializeField]
+	List<Color> myTileSpriteColors;
 
 	private Animator anim;
 	
@@ -115,18 +115,15 @@ public class HexCell : MonoBehaviour {
 		switch (type)
         {
 			case TILE_TYPE.GROUND:
-				//myTileSprite.color = Color.white;
-				myTileSprite.sprite = basicTileSprites[0];
+				myTileSprite.color = myTileSpriteColors[0];
 				break;
 
 			case TILE_TYPE.WALL:
-				myTileSprite.sprite = basicTileSprites[1];
-				myTileSprite.color = Color.white;
+				myTileSprite.color = myTileSpriteColors[1];
 				break;
 
 			case TILE_TYPE.HOLE:
-				myTileSprite.sprite = basicTileSprites[2];
-				myTileSprite.color = Color.white;
+				myTileSprite.color = myTileSpriteColors[2];
 				break;
         }
     }

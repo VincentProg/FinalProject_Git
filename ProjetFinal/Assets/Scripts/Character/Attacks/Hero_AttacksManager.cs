@@ -43,7 +43,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
                 if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
                 {
-                    foreach (List<HexCell> diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, attack.canSelectHole, true))
+                    foreach (List<HexCell> diagonal in TilesManager.instance.GetDiagonals(originTile.coordinates, attack.rangeAttack, attack.canSelectHole, false))
                     {
                         foreach (var item in diagonal)
                         {
@@ -83,9 +83,17 @@ public class Hero_AttacksManager : MonoBehaviour
             case Attack.RANGE_TYPE.RADIUS:
 
                 // SELECTION DES TILES EN FONCTION DE LEUR VISIBILITE
-                if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
+                if(attack.impactType == Attack.IMPACT_TYPE.SPAWNOBJECT)
                 {
                     foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, false, false, false))
+                    {
+                        tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
+                    }return;
+                }
+
+                if (attack.visionType == Attack.VISION_TYPE.SEE_EVERYTHING)
+                {
+                    foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(originTile.coordinates, attack.radiusUnattackableAttack, attack.rangeAttack, false, false, true))
                     {
                         tile.SelectCell(HexCell.SELECTION_TYPE.AIM);
                     }
@@ -332,9 +340,11 @@ public class Hero_AttacksManager : MonoBehaviour
                 break;
             case Attack.IMPACT_TYPE.TELEPORT:
                 originTile.hero = playerTile.hero;
+                playerTile.myTileSprite.color = TilesManager.instance.classicColor;
                 playerTile.hero = null;
                 originTile.hero.myTile = originTile;
                 originTile.hero.transform.position = originTile.transform.position;
+                originTile.myTileSprite.color = originTile.hero.myTileColor;
                 break;
             default:
                 foreach (HexCell tile in TilesManager.instance._selectedTiles)

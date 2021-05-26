@@ -14,6 +14,8 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] List<HexCell> adjacentCells = new List<HexCell>();
     private HexCell myTile;
+    [SerializeField]
+    Color colorSprite;
 
 
 
@@ -23,6 +25,7 @@ public class Spawner : MonoBehaviour
         nbOfTurnBeforeSpawning = 0;
 
         CombatSystem.instance.spawners.Add(this);
+
         
         #region GET MY START TILE()
         // AJOUT TUILE DEPART
@@ -38,6 +41,8 @@ public class Spawner : MonoBehaviour
             }
         }
         #endregion
+
+        myTile.myTileSprite.color = colorSprite;
     }
 
 
@@ -82,6 +87,7 @@ public class Spawner : MonoBehaviour
     public void Death()
     {
         isDead = true;
+        myTile.myTileSprite.color = TilesManager.instance.classicColor;
         CombatSystem.instance.DestroySpawner(this);
         Destroy(gameObject);
     }

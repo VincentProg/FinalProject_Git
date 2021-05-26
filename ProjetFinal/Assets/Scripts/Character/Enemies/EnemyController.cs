@@ -17,6 +17,9 @@ public class EnemyController : MonoBehaviour
 
     private bool isMoving;
     private bool isActionDone = true;
+
+    [SerializeField]
+    Color myTileColor;
   
 
     // VARIABLES GRID
@@ -64,6 +67,7 @@ public class EnemyController : MonoBehaviour
             }
         }
         #endregion
+        myTile.myTileSprite.color = myTileColor;
 
         CombatSystem.instance.enemies.Add(this);
         hero1 = CombatSystem.instance.heros[0];
@@ -438,8 +442,10 @@ public class EnemyController : MonoBehaviour
                     {
 
                         tile.enemy = this;
+                        myTile.myTileSprite.color = TilesManager.instance.classicColor;
                         myTile.enemy = null;
                         myTile = tile;
+                        myTile.myTileSprite.color = myTileColor;
                         isMoving = true;
 
                         return;
@@ -463,8 +469,10 @@ public class EnemyController : MonoBehaviour
                     if (!(path[1].X == 0 && path[1].Z == 0))
                     {
                         tile.enemy = this;
+                        myTile.myTileSprite.color = TilesManager.instance.classicColor;
                         myTile.enemy = null;
                         myTile = tile;
+                        myTile.myTileSprite.color = myTileColor;
                         isMoving = true;
 
                         return;
@@ -566,6 +574,8 @@ public class EnemyController : MonoBehaviour
 
 
         CombatSystem.instance.enemies.Remove(this);
+        myTile.myTileSprite.color = TilesManager.instance.classicColor;
+        myTile.enemy = null;
         Destroy(gameObject);
     }
 

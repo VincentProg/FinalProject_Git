@@ -28,6 +28,7 @@ public class HeroController : MonoBehaviour
     [HideInInspector]
     public HexCell myTile;
 
+    public Color myTileColor;
 
 
     bool isMyTurn = false;
@@ -55,7 +56,7 @@ public class HeroController : MonoBehaviour
             }
         }
         #endregion
-
+        myTile.myTileSprite.color = myTileColor;
 
     }
 
@@ -105,41 +106,43 @@ public class HeroController : MonoBehaviour
                 }
             }
 
-            else if (PA > 0 && Input.GetMouseButtonDown(0))
+            else
             {
-                print("mouse");
-                Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
-
-                Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
-                RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
-                if (hitInformation)
+                if (PA > 0 && Input.GetMouseButtonDown(0))
                 {
-                    if (hitInformation.transform.GetComponent<HexCell>() != null)
+                    Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+
+                    Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
+                    RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
+                    if (hitInformation)
                     {
-                        HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
-
-
-                        switch (tileTouched.selectionType)
+                        if (hitInformation.transform.GetComponent<HexCell>() != null)
                         {
-                            case HexCell.SELECTION_TYPE.MOVEMENT:
-                                Move(tileTouched);
-                                break;
+                            HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
 
-                            case HexCell.SELECTION_TYPE.AIM:
-                                Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                break;
-                            case HexCell.SELECTION_TYPE.AIM_IMPACT:
-                                Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                break;
-                            case HexCell.SELECTION_TYPE.ORIGIN_AIM:
-                                Hero_AttacksManager.instance.LaunchAttack();
-                                break;
-                            case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
-                                Hero_AttacksManager.instance.LaunchAttack();
-                                break;
-                            default:
-                                ShowMovements();
-                                break;
+
+                            switch (tileTouched.selectionType)
+                            {
+                                case HexCell.SELECTION_TYPE.MOVEMENT:
+                                    Move(tileTouched);
+                                    break;
+
+                                case HexCell.SELECTION_TYPE.AIM:
+                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                    break;
+                                case HexCell.SELECTION_TYPE.AIM_IMPACT:
+                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                    break;
+                                case HexCell.SELECTION_TYPE.ORIGIN_AIM:
+                                    Hero_AttacksManager.instance.LaunchAttack();
+                                    break;
+                                case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
+                                    Hero_AttacksManager.instance.LaunchAttack();
+                                    break;
+                                default:
+                                    ShowMovements();
+                                    break;
+                            }
                         }
                     }
                 }
@@ -250,10 +253,12 @@ public class HeroController : MonoBehaviour
 
 
         myTile.hero = null;
+        myTile.myTileSprite.color = TilesManager.instance.classicColor;
         myTile = tile;
         myTile.hero = this;
+        myTile.myTileSprite.color = myTileColor;
 
-       
+
         isMoving = true;
     }
     
@@ -284,7 +289,7 @@ public class HeroController : MonoBehaviour
         txt.transform.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 10;
         Destroy(txt, 1);
 
-        PopUpSystem.instance.PopUp("Petit test avec un plus long text salut les gens", this);
+        PopUpSystem.instance.PopUp("OUCH", this);
 
         if (health == 0)
         {

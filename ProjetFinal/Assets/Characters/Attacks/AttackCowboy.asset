@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b6e9324ed81c6434baa479a60909c31c, type: 3}
   name: 
-  costPA: 1
+  costPA: 2
   cooldown: 0
   nbrUsePerTurn: 1
   nbrUseTotal: 0

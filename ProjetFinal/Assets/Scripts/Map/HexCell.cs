@@ -115,7 +115,7 @@ public class HexCell : MonoBehaviour {
 		switch (type)
         {
 			case TILE_TYPE.GROUND:
-				myTileSprite.color = Color.white;
+				//myTileSprite.color = Color.white;
 				myTileSprite.sprite = basicTileSprites[0];
 				break;
 

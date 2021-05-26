@@ -17,6 +17,8 @@ public class TilesManager : MonoBehaviour
 
     public HexCoordinates target;
 
+    public Color classicColor;
+
 
     private void Awake()
     {

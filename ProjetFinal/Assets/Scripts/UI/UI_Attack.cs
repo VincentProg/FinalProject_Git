@@ -54,7 +54,7 @@ public class UI_Attack : MonoBehaviour
 
     public void OnClick()
     {
-        if (!isDisabled)
+        if (!isDisabled && hero.PA > 0)
         {
             if (isNbrTotal)
             {

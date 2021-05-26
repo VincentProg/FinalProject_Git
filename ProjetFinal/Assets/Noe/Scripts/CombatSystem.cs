@@ -117,16 +117,35 @@ public class CombatSystem : MonoBehaviour
         }
         else
         {
-            state = CombatState.PlayerTurn; // --> tour des players
-            index = 0; // reset de l'index 
-            nbrRound++;
-            nbrRoundTXT.text = nbrRound.ToString();
-            heros[index].StartTurn();
+            NewRound();
         }
     }
 
     private void NewRound()
     {
+        state = CombatState.PlayerTurn; // --> tour des players
+        index = 0; // reset de l'index 
+        nbrRound++;
+        nbrRoundTXT.text = nbrRound.ToString();
+        heros[index].StartTurn();
+
+        if (AchievementsManager.CgkImpif4cQQEAIQBA_temp_ok)
+        {
+            AchievementsManager.CgkImpif4cQQEAIQBA_temp_ok = false;
+            AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQBA");
+        } else
+        {
+            AchievementsManager.ResetProgress("CgkImpif4cQQEAIQBA");
+        }
+        if (AchievementsManager.CgkImpif4cQQEAIQDg_temp_ok)
+        {
+            AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQDg");
+        }
+        else
+        {
+            AchievementsManager.CgkImpif4cQQEAIQDg_temp_ok = true;
+            AchievementsManager.ResetProgress("CgkImpif4cQQEAIQDg");
+        }
 
     }
 
@@ -135,6 +154,21 @@ public class CombatSystem : MonoBehaviour
         state = CombatState.Win;
         ButtonManager.instance.ShowWin();
         print("WIN");
+
+        if (AchievementsManager.CgkImpif4cQQEAIQCQ_temp_ok)
+            AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQCQ");
+
+        bool pvOk = true;
+        for (int i = 0; i < heros.Count; i++)
+        {
+            if(heros[i].health != 1)
+            {
+                pvOk = false;
+            }
+        }
+        if(pvOk)
+            AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQDQ");
+
     }
 
     public void Loose()

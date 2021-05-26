@@ -40,7 +40,6 @@ public class UI_Attack : MonoBehaviour
 
         nbrUsePerTurn = attack.nbrUsePerTurn;
         nbrUseTotal = attack.nbrUseTotal;
-
         if (nbrUsePerTurn > 0) isNbrPerTurn = true;
         if (nbrUseTotal > 0)
         {
@@ -54,6 +53,7 @@ public class UI_Attack : MonoBehaviour
 
     public void OnClick()
     {
+        print(nbrUsePerTurn);
         if (!isDisabled && hero.PA > 0)
         {
             if (isNbrTotal)
@@ -62,6 +62,7 @@ public class UI_Attack : MonoBehaviour
                 {
                     if (isNbrPerTurn)
                     {
+                        
                         if (nbrUsePerTurn > 0)
                         {
                             TryShowAttack();
@@ -136,6 +137,7 @@ public class UI_Attack : MonoBehaviour
 
     public void StartTurn()
     {
+        print("Ui_StartTurn");
         if(cooldown > 0)
         {
             cooldown--;

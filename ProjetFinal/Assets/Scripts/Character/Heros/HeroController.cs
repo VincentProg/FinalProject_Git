@@ -105,8 +105,9 @@ public class HeroController : MonoBehaviour
                 }
             }
 
-            if (PA > 0 && Input.GetMouseButtonDown(0))
+            else if (PA > 0 && Input.GetMouseButtonDown(0))
             {
+                print("mouse");
                 Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
 
                 Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
@@ -193,7 +194,7 @@ public class HeroController : MonoBehaviour
         isMyTurn = true;
         //print("StartTurn");
         myCanvas.SetActive(true);
-        foreach (Transform UI_AttackBtn in myCanvas.transform.GetChild(0).transform)
+        foreach (Transform UI_AttackBtn in myCanvas.transform.GetChild(3).transform)
         {
             UI_AttackBtn.GetComponent<UI_Attack>().StartTurn();
         }

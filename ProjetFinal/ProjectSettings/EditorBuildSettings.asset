@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Noe/Scenes/nono_test.unity
     guid: 11e63dc30fca66649ad6536a994367d8
-  - enabled: 1
-    path: Assets/Scenes/GD/Level a.unity
-    guid: 3573241509d88434b9750508de0602b2
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

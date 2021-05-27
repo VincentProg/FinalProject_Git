@@ -87,6 +87,7 @@ public class EnemyController : MonoBehaviour
 
     public void StartTurn()
     {
+
         if (nbrTurnToSkip > 0)
         {
             nbrTurnToSkip--;
@@ -107,7 +108,8 @@ public class EnemyController : MonoBehaviour
 
     public void ContinueTurn()
     {
-        if(PA > 0 && isActionDone)
+
+        if (PA > 0 && isActionDone)
         {
             isActionDone = false;
             CheckAction();
@@ -132,8 +134,8 @@ public class EnemyController : MonoBehaviour
 
             case StatsEnemy.ENEMY_TYPE.CAC:
                 #region CAC_CheckAction
-                List<HexCoordinates> path1 = TilesManager.instance.GetPath(myTile.coordinates, hero1.myTile.coordinates, false, false);
-                List<HexCoordinates> path2 = TilesManager.instance.GetPath(myTile.coordinates, hero2.myTile.coordinates, false, false);
+                List<HexCoordinates> path1 = TilesManager.instance.GetPath(myTile.coordinates, hero1.myTile.coordinates, stats.isFlying, false);
+                List<HexCoordinates> path2 = TilesManager.instance.GetPath(myTile.coordinates, hero2.myTile.coordinates, stats.isFlying, false);
                 int dist1 = 100;
                 int dist2 = 100;
 
@@ -151,7 +153,6 @@ public class EnemyController : MonoBehaviour
                 if(hero != null)
                 {
                     AttackCAC(hero);
-                    print(gameObject.name + '2');
                     return;
                 }
                 
@@ -190,8 +191,6 @@ public class EnemyController : MonoBehaviour
 
                 if (hero != null)
                 {
-                    print(dist1); print(dist2);
-                    print(gameObject.name + '2');
                     AttackCAC(hero);
                 }
                 else

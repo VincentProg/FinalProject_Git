@@ -99,9 +99,6 @@ public class TilesManager : MonoBehaviour
                     if (!passHeroEnemySpawner)
                         if (temp.isPossessed())
                             canPass = false;
-
-                    if (passHole)
-                        print(canPass);
                     if (canPass)
                     {
                         //temp.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;

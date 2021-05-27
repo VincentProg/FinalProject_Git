@@ -49,7 +49,7 @@ public class Grenade : MonoBehaviour
                         tile.hero.TakeDamages(damagesExplose);
                     } else if(tile.enemy != null)
                     {
-                        tile.enemy.TakeDamages(damagesExplose);
+                        tile.enemy.TakeDamages(damagesExplose, "grendade", "explosion");
                     }
                 }
 

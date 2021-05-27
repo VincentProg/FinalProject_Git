@@ -266,7 +266,7 @@ public class EnemyController : MonoBehaviour
                 if (dist1 == 1 || dist2 == 1)
                 {
                     if (PA >= stats.attacks[0].costPA)
-                        Death(true);
+                        Death(true, "self", "explosion");
                     else ContinueTurn();
 
                 }
@@ -531,7 +531,7 @@ public class EnemyController : MonoBehaviour
                             tile.hero.TakeDamages(stats.attacks[0].damages);
                         } else if (tile.enemy)
                         {
-                            tile.enemy.TakeDamages(stats.attacks[0].damages);
+                            tile.enemy.TakeDamages(stats.attacks[0].damages, "enemy", "melee");
                         }
                     } 
                 }
@@ -546,7 +546,7 @@ public class EnemyController : MonoBehaviour
     #endregion
 
 
-    public void TakeDamages(int damages)
+    public void TakeDamages(int damages, string characterType, string attackSource)
     {
         health -= damages;
         health = Mathf.Clamp(health, 0, stats.health);
@@ -556,9 +556,10 @@ public class EnemyController : MonoBehaviour
         txt.transform.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 10;
         Destroy(txt, 1);
 
+
         if (health == 0)
         {
-            Death(false);
+            Death(false, characterType, attackSource);
         }
     }
 
@@ -567,7 +568,7 @@ public class EnemyController : MonoBehaviour
         nbrTurnToSkip += turnsToSkip;
     }
 
-    private void Death(bool isMyTurn)
+    private void Death(bool isMyTurn, string characterType, string attackSource)
     {
         if(stats.Type == StatsEnemy.ENEMY_TYPE.KAMIKAZE && isMyTurn)
         {
@@ -576,6 +577,16 @@ public class EnemyController : MonoBehaviour
             CombatSystem.instance.NextTurn();
         }
 
+        if (characterType.Equals("cowboy"))
+        {
+            AchievementsManager.CgkImpif4cQQEAIQBA_temp_ok = true;
+
+            AchievementsManager.CgkImpif4cQQEAIQCQ_temp_ok = false;
+        }
+        else if (characterType.Equals("soldier"))
+        {
+            AchievementsManager.CgkImpif4cQQEAIQCQ_temp_ok = false;
+        }
 
         CombatSystem.instance.enemies.Remove(this);
         myTile.myTileSprite.color = TilesManager.instance.classicColor;
@@ -595,7 +606,7 @@ public class EnemyController : MonoBehaviour
                 }
                 else if (tile.enemy)
                 {
-                    tile.enemy.TakeDamages(stats.attacks[0].damages);
+                    tile.enemy.TakeDamages(stats.attacks[0].damages, "ennemy", "explosion");
                 }
             }
         }

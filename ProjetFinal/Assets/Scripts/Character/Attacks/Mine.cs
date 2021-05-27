@@ -21,7 +21,7 @@ public class Mine : MonoBehaviour
                 tile.hero.TakeDamages(damages);
             } else if (tile.enemy != null)
             {
-                tile.enemy.TakeDamages(damages);
+                tile.enemy.TakeDamages(damages, "mine", "explosion");
             }
 
         }

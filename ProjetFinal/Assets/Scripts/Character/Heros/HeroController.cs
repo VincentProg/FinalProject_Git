@@ -22,7 +22,14 @@ public class HeroController : MonoBehaviour
     private bool isMoving;
 
     public List<Grenade> grenades = new List<Grenade>();
-    
+
+    public HERO_TYPE heroType;
+
+    public enum HERO_TYPE
+    {
+        SOLDIER,
+        COWBOY
+    }
 
     // VARIABLES GRID
     [HideInInspector]
@@ -92,10 +99,10 @@ public class HeroController : MonoBehaviour
                                 Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
                                 break;
                             case HexCell.SELECTION_TYPE.ORIGIN_AIM:
-                                Hero_AttacksManager.instance.LaunchAttack();
+                                Hero_AttacksManager.instance.LaunchAttack(this);
                                 break;
                             case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
-                                Hero_AttacksManager.instance.LaunchAttack();
+                                Hero_AttacksManager.instance.LaunchAttack(this);
                                 break;
                             default:
                                 ShowMovements();
@@ -126,22 +133,21 @@ public class HeroController : MonoBehaviour
                                     Move(tileTouched);
                                     break;
 
-                                case HexCell.SELECTION_TYPE.AIM:
-                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                    break;
-                                case HexCell.SELECTION_TYPE.AIM_IMPACT:
-                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                    break;
-                                case HexCell.SELECTION_TYPE.ORIGIN_AIM:
-                                    Hero_AttacksManager.instance.LaunchAttack();
-                                    break;
-                                case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
-                                    Hero_AttacksManager.instance.LaunchAttack();
-                                    break;
-                                default:
-                                    ShowMovements();
-                                    break;
-                            }
+                            case HexCell.SELECTION_TYPE.AIM:
+                                Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                break;
+                            case HexCell.SELECTION_TYPE.AIM_IMPACT:
+                                Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                break;
+                            case HexCell.SELECTION_TYPE.ORIGIN_AIM:
+                                Hero_AttacksManager.instance.LaunchAttack(this);
+                                break;
+                            case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
+                                Hero_AttacksManager.instance.LaunchAttack(this);
+                                break;
+                            default:
+                                ShowMovements();
+                                break;
                         }
                     }
                 }
@@ -249,6 +255,9 @@ public class HeroController : MonoBehaviour
 
     private void Move(HexCell tile)
     {
+        if(heroType.Equals(HERO_TYPE.SOLDIER))
+            AchievementsManager.CgkImpif4cQQEAIQDg_temp_ok = false;
+
         PM -= TilesManager.instance.HeuristicDistance(myTile.coordinates, tile.coordinates);
         PA--;
 

@@ -318,7 +318,7 @@ public class Hero_AttacksManager : MonoBehaviour
 
     }
 
-    public void LaunchAttack()
+    public void LaunchAttack(HeroController heroController)
     {
         switch (attack.impactType)
         {
@@ -357,7 +357,19 @@ public class Hero_AttacksManager : MonoBehaviour
                         }
                         else if (tile.enemy != null)
                         {
-                            tile.enemy.TakeDamages(attack.damages);
+                            if (heroController.heroType.Equals(HeroController.HERO_TYPE.COWBOY))
+                            {
+                                tile.enemy.TakeDamages(attack.damages, "cowboy", "attack");
+
+                            }
+                            else if (heroController.heroType.Equals(HeroController.HERO_TYPE.SOLDIER))
+                            {
+                                tile.enemy.TakeDamages(attack.damages, "soldier", "attack");
+                            } else
+                            {
+                                tile.enemy.TakeDamages(attack.damages, "enemy", "attack");
+                            }
+
                         }
                         else if(tile.item != null && tile.item.GetComponent<Spawner>())
                         {

@@ -17,6 +17,9 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     Color colorSprite;
 
+    [SerializeField]
+    Sprite spriteDead;
+
 
 
     void Start()
@@ -89,7 +92,7 @@ public class Spawner : MonoBehaviour
     {
         isDead = true;
         myTile.myTileSprite.color = TilesManager.instance.classicColor;
+        GetComponent<SpriteRenderer>().sprite = spriteDead;
         CombatSystem.instance.DestroySpawner(this);
-        Destroy(gameObject);
     }
 }

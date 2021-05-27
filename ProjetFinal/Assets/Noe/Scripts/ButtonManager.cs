@@ -14,7 +14,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject WinMenu;
 
     //in game manager
-    bool isGamePaused;
+    public bool isGamePaused;
 
     private void Awake()
     {

@@ -104,9 +104,10 @@ MonoBehaviour:
   TXT_Damages: {fileID: 6266669382385152773, guid: 4bfe2c1cf56a6704f9f95b27aba90243, type: 3}
   attacks:
   - {fileID: 11400000, guid: 5e4b1ae1f7625c04ea3417a7be310ea2, type: 2}
-  - {fileID: 11400000, guid: 3243f996da0c04a41aee1a8eb6baf7fd, type: 2}
   - {fileID: 11400000, guid: 5400636be17d3f2468963c32d8a9df33, type: 2}
+  - {fileID: 11400000, guid: 3be217af95bd3674cafa9821464e7f2d, type: 2}
   myCanvas: {fileID: 0}
   grenades: []
+  heroType: 0
   myTile: {fileID: 0}
   myTileColor: {r: 1, g: 1, b: 1, a: 1}

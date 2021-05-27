@@ -69,98 +69,112 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (isMyTurn)
+        if (!ButtonManager.instance.isGamePaused)
         {
 
-            if (PA > 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+            if (isMyTurn)
             {
-                Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
 
-                Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
-                RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
-                if (hitInformation)
-                {
-                    if (hitInformation.transform.GetComponent<HexCell>() != null)
+                    if (DialogueRobot.instance.isActive)
                     {
-                        HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
-
-
-                        switch (tileTouched.selectionType)
-                        {
-                            case HexCell.SELECTION_TYPE.MOVEMENT:
-                                Move(tileTouched);
-                                break;
-
-                            case HexCell.SELECTION_TYPE.AIM:
-                                Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                break;
-                            case HexCell.SELECTION_TYPE.AIM_IMPACT:
-                                Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                break;
-                            case HexCell.SELECTION_TYPE.ORIGIN_AIM:
-                                Hero_AttacksManager.instance.LaunchAttack(this);
-                                break;
-                            case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
-                                Hero_AttacksManager.instance.LaunchAttack(this);
-                                break;
-                            default:
-                                ShowMovements();
-                                break;
-                        }
+                        StartCoroutine(DialogueRobot.instance.iDisappear());
+                        print("yo");
+                        return;
                     }
-                }
-            }
 
-            else
-            {
-                if (PA > 0 && Input.GetMouseButtonDown(0))
-                {
-                    Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
-
-                    Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
-                    RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
-                    if (hitInformation)
+                    if (PA > 0)
                     {
-                        if (hitInformation.transform.GetComponent<HexCell>() != null)
+                        Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+
+                        Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
+                        RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
+                        if (hitInformation)
                         {
-                            HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
-
-
-                            switch (tileTouched.selectionType)
+                            if (hitInformation.transform.GetComponent<HexCell>() != null)
                             {
-                                case HexCell.SELECTION_TYPE.MOVEMENT:
-                                    Move(tileTouched);
-                                    break;
+                                HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
 
-                                case HexCell.SELECTION_TYPE.AIM:
-                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                    break;
-                                case HexCell.SELECTION_TYPE.AIM_IMPACT:
-                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                    break;
-                                case HexCell.SELECTION_TYPE.ORIGIN_AIM:
-                                    Hero_AttacksManager.instance.LaunchAttack(this);
-                                    break;
-                                case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
-                                    Hero_AttacksManager.instance.LaunchAttack(this);
-                                    break;
-                                default:
-                                    ShowMovements();
-                                    break;
+
+                                switch (tileTouched.selectionType)
+                                {
+                                    case HexCell.SELECTION_TYPE.MOVEMENT:
+                                        Move(tileTouched);
+                                        break;
+
+                                    case HexCell.SELECTION_TYPE.AIM:
+                                        Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                        break;
+                                    case HexCell.SELECTION_TYPE.AIM_IMPACT:
+                                        Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                        break;
+                                    case HexCell.SELECTION_TYPE.ORIGIN_AIM:
+                                        Hero_AttacksManager.instance.LaunchAttack(this);
+                                        break;
+                                    case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
+                                        Hero_AttacksManager.instance.LaunchAttack(this);
+                                        break;
+                                    default:
+                                        ShowMovements();
+                                        break;
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            if (isMoving)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, myTile.transform.position, 100f * Time.deltaTime);
-                if (transform.position == myTile.transform.position)
+                else
                 {
-                    isMoving = false;
-                    ArriveOnCell();
+                    if (PA > 0 && Input.GetMouseButtonDown(0))
+                    {
+                        Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+
+                        Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
+                        RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
+                        if (hitInformation)
+                        {
+                            if (hitInformation.transform.GetComponent<HexCell>() != null)
+                            {
+                                HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
+
+
+                                switch (tileTouched.selectionType)
+                                {
+                                    case HexCell.SELECTION_TYPE.MOVEMENT:
+                                        Move(tileTouched);
+                                        break;
+
+                                    case HexCell.SELECTION_TYPE.AIM:
+                                        Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                        break;
+                                    case HexCell.SELECTION_TYPE.AIM_IMPACT:
+                                        Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                        break;
+                                    case HexCell.SELECTION_TYPE.ORIGIN_AIM:
+                                        Hero_AttacksManager.instance.LaunchAttack(this);
+                                        break;
+                                    case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
+                                        Hero_AttacksManager.instance.LaunchAttack(this);
+                                        ShowMovements();
+                                        break;
+                                    default:
+                                        ShowMovements();
+                                        break;
+                                }
+                               
+                            }
+                        }
+                    }
+                }
+
+                if (isMoving)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, myTile.transform.position, 100f * Time.deltaTime);
+                    if (transform.position == myTile.transform.position)
+                    {
+                        isMoving = false;
+                        ArriveOnCell();
+                    }
                 }
             }
         }
@@ -214,13 +228,14 @@ public class HeroController : MonoBehaviour
 
     public void ShowMovements()
     {
+        print("showww");
         TilesManager.instance.ClearTiles(false);
   
         int rangePM;
         if (stats.isDofusPM) rangePM = PM;
         else rangePM = 1;
 
-        if (PM >= 1)
+        if (PM >= 1 && PA > 0)
         {
             foreach( HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, rangePM, false, false, false))
             {
@@ -268,7 +283,6 @@ public class HeroController : MonoBehaviour
         myTile.hero = this;
         myTile.myTileSprite.color = myTileColor;
         myHeroSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
-        print("helo");
 
 
 
@@ -283,6 +297,7 @@ public class HeroController : MonoBehaviour
         }
 
         PopUpSystem.instance.Cut();
+        //DialogueRobot.instance.RobotSpeak("Bonjour, petit test du Robot, voici quelques petits mots qui, agencés les uns aux autres, n'ont aucun intérêt");
 
         if (PA > 0)
         ShowMovements();

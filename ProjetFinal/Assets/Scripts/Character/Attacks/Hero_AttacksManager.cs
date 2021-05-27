@@ -384,7 +384,6 @@ public class Hero_AttacksManager : MonoBehaviour
         }
 
         UI_Caller.ActivateAttack();
-
         TilesManager.instance.ClearTiles(false);
 
     }

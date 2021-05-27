@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcb10621537e4d438ca0700f7b53a21, type: 3}
   m_Name: Mine
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 309cca25939a25140900b9faad06ba10, type: 3}
+  sprite: {fileID: 21300000, guid: b0fc9ccdf3e2e6c499af32826cf6b6a3, type: 3}
   name: Mine
   costPA: 1
   cooldown: 3
@@ -22,6 +22,7 @@ MonoBehaviour:
   rangeAttack: 1
   radiusUnattackableAttack: 0
   canSelectHole: 1
+  canSelectHeroEnemySpawner: 1
   visionType: 2
   impactType: 5
   damages: 3

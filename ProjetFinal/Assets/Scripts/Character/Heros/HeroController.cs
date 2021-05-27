@@ -183,12 +183,12 @@ public class HeroController : MonoBehaviour
     {
         for (int i = 0; i < attacks.Count; i++)
         {
-            if(myCanvas.transform.GetChild(3).transform.childCount - 1 < i)
+            if(myCanvas.transform.GetChild(0).transform.childCount - 1 < i)
             {
                 print("NOT ENOUGH SLOTS");
                 return;
             }
-            UI_Attack UIAttack = myCanvas.transform.GetChild(3).transform.GetChild(i).GetComponent<UI_Attack>();
+            UI_Attack UIAttack = myCanvas.transform.GetChild(0).transform.GetChild(i).GetComponent<UI_Attack>();
             UIAttack.attack = attacks[i];
             UIAttack.UpdateUI();
 
@@ -218,7 +218,7 @@ public class HeroController : MonoBehaviour
         isMyTurn = true;
         //print("StartTurn");
         myCanvas.SetActive(true);
-        foreach (Transform UI_AttackBtn in myCanvas.transform.GetChild(3).transform)
+        foreach (Transform UI_AttackBtn in myCanvas.transform.GetChild(0).transform)
         {
             UI_AttackBtn.GetComponent<UI_Attack>().StartTurn();
         }

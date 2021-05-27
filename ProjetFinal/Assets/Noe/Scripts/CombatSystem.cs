@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class CombatSystem : MonoBehaviour
 {
@@ -29,7 +28,7 @@ public class CombatSystem : MonoBehaviour
     bool heroesTurn;
 
     int nbrRound = 1;
-    public TextMeshProUGUI nbrRoundTXT;
+    public UnityEngine.UI.Text nbrRoundTXT;
 
     // auto turn
 /*    private void FixedUpdate()

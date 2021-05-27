@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class PopUpSystem : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class PopUpSystem : MonoBehaviour
     [HideInInspector]
     public GameObject popUpBox;
     private Animator anim;
-    private TMP_Text popUpText;
+    private Text popUpText;
     private bool isActive;
 
     private void Awake()
@@ -26,8 +26,7 @@ public class PopUpSystem : MonoBehaviour
     {
         popUpBox = transform.GetChild(0).gameObject;
         anim = popUpBox.GetComponent<Animator>();
-        popUpText = popUpBox.transform.GetChild(0).GetComponent<TextMeshPro>();
-        popUpBox.transform.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 9;
+        popUpText = popUpBox.transform.GetChild(1).transform.GetChild(0).GetComponent<Text>();
 
     }
 

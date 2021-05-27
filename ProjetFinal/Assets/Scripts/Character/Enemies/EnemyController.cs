@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -551,9 +551,10 @@ public class EnemyController : MonoBehaviour
         health -= damages;
         health = Mathf.Clamp(health, 0, stats.health);
 
-        GameObject txt = Instantiate(TXT_Damages, transform.position, transform.rotation);
-        txt.transform.GetChild(0).GetComponent<TextMeshPro>().text = damages.ToString();
-        txt.transform.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 10;
+        GameObject txt = Instantiate(TXT_Damages, transform.position + new Vector3(0,50), transform.rotation);
+        txt.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = damages.ToString();
+        txt.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = damages.ToString();
+
         Destroy(txt, 1);
 
 

@@ -100,6 +100,8 @@ public class TilesManager : MonoBehaviour
                         if (temp.isPossessed())
                             canPass = false;
 
+                    if (passHole)
+                        print(canPass);
                     if (canPass)
                     {
                         //temp.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
@@ -425,12 +427,16 @@ public class TilesManager : MonoBehaviour
                     {
 
                         if (!passHole)
+                        {
                             if (temp.tileType.Equals(HexCell.TILE_TYPE.HOLE))
                                 canPass = false;
+                        }
 
-                            else if (!passWall)
-                                if (temp.tileType.Equals(HexCell.TILE_TYPE.WALL))
-                                    canPass = false;
+                        if (!passWall)
+                        {
+                            if (temp.tileType.Equals(HexCell.TILE_TYPE.WALL))
+                                canPass = false;
+                        }
                     }
 
                     if (canPass)

@@ -292,13 +292,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &22580398
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,13 +628,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &32122964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,13 +1047,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &79011029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,13 +1357,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &106564952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,13 +1602,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &123500651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1847,13 +1817,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &133034402
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,13 +2145,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 1
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &151595531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2357,13 +2315,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &174832885
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,13 +2485,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &206911028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,13 +2735,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 2
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &214238490
 GameObject:
   m_ObjectHideFlags: 0
@@ -3048,13 +2988,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 1
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1001 &364594216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3410,13 +3344,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &402023302
 GameObject:
   m_ObjectHideFlags: 0
@@ -3862,13 +3790,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &498425674
 GameObject:
   m_ObjectHideFlags: 0
@@ -4121,13 +4043,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &526425517
 GameObject:
   m_ObjectHideFlags: 0
@@ -4380,13 +4296,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &535851402
 GameObject:
   m_ObjectHideFlags: 0
@@ -4663,13 +4573,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &542825820
 GameObject:
   m_ObjectHideFlags: 0
@@ -4914,13 +4818,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 2
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &571348194
 GameObject:
   m_ObjectHideFlags: 0
@@ -5090,13 +4988,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &597199592
 GameObject:
   m_ObjectHideFlags: 0
@@ -5266,13 +5158,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &599348271
 GameObject:
   m_ObjectHideFlags: 0
@@ -5697,13 +5583,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &658186588
 GameObject:
   m_ObjectHideFlags: 0
@@ -5873,13 +5753,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 2
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &664876788
 GameObject:
   m_ObjectHideFlags: 0
@@ -6049,13 +5923,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &671076593
 GameObject:
   m_ObjectHideFlags: 0
@@ -6225,13 +6093,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &695161206
 GameObject:
   m_ObjectHideFlags: 0
@@ -6401,13 +6263,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &709818068
 GameObject:
   m_ObjectHideFlags: 0
@@ -6785,13 +6641,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &765329595
 GameObject:
   m_ObjectHideFlags: 0
@@ -7127,13 +6977,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &832597161
 GameObject:
   m_ObjectHideFlags: 0
@@ -7469,13 +7313,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &875686445
 GameObject:
   m_ObjectHideFlags: 0
@@ -7645,13 +7483,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &894939709
 GameObject:
   m_ObjectHideFlags: 0
@@ -8250,13 +8082,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &938023729
 GameObject:
   m_ObjectHideFlags: 0
@@ -8667,13 +8493,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &959467246
 GameObject:
   m_ObjectHideFlags: 0
@@ -9224,13 +9044,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 2
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1038925243
 GameObject:
   m_ObjectHideFlags: 0
@@ -9550,13 +9364,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1073471293
 GameObject:
   m_ObjectHideFlags: 0
@@ -9643,6 +9451,7 @@ MonoBehaviour:
   myCanvas: {fileID: 206911028}
   grenades: []
   myTile: {fileID: 0}
+  myTileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1077229242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10037,13 +9846,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1111310350
 GameObject:
   m_ObjectHideFlags: 0
@@ -10379,13 +10182,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 2
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1149609221
 GameObject:
   m_ObjectHideFlags: 0
@@ -10555,13 +10352,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1158585449
 GameObject:
   m_ObjectHideFlags: 0
@@ -10731,13 +10522,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1163021371
 GameObject:
   m_ObjectHideFlags: 0
@@ -10907,13 +10692,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1178151401
 GameObject:
   m_ObjectHideFlags: 0
@@ -11458,13 +11237,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 1
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1216312300
 GameObject:
   m_ObjectHideFlags: 0
@@ -11634,13 +11407,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1248858012
 GameObject:
   m_ObjectHideFlags: 0
@@ -12411,13 +12178,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 2
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1361576825
 GameObject:
   m_ObjectHideFlags: 0
@@ -12587,13 +12348,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1368574017
 GameObject:
   m_ObjectHideFlags: 0
@@ -12929,13 +12684,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1388752431
 GameObject:
   m_ObjectHideFlags: 0
@@ -13105,13 +12854,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 2
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1398952651
 GameObject:
   m_ObjectHideFlags: 0
@@ -13582,13 +13325,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1446716592
 GameObject:
   m_ObjectHideFlags: 0
@@ -13841,13 +13578,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1477402871
 GameObject:
   m_ObjectHideFlags: 0
@@ -14100,13 +13831,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1485554930
 GameObject:
   m_ObjectHideFlags: 0
@@ -14760,13 +14485,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1570696927
 GameObject:
   m_ObjectHideFlags: 0
@@ -14936,13 +14655,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 2
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1576261051
 GameObject:
   m_ObjectHideFlags: 0
@@ -15426,13 +15139,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1633529851
 GameObject:
   m_ObjectHideFlags: 0
@@ -15730,6 +15437,7 @@ MonoBehaviour:
   myCanvas: {fileID: 709818068}
   grenades: []
   myTile: {fileID: 0}
+  myTileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1673301840
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16158,13 +15866,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1742634171
 GameObject:
   m_ObjectHideFlags: 0
@@ -16500,13 +16202,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1788563498
 GameObject:
   m_ObjectHideFlags: 0
@@ -16676,13 +16372,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1790624485
 GameObject:
   m_ObjectHideFlags: 0
@@ -17001,13 +16691,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1813481673
 GameObject:
   m_ObjectHideFlags: 0
@@ -17260,13 +16944,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1839483166
 GameObject:
   m_ObjectHideFlags: 0
@@ -17768,13 +17446,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1910367265
 GameObject:
   m_ObjectHideFlags: 0
@@ -18324,13 +17996,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &1966585123
 GameObject:
   m_ObjectHideFlags: 0
@@ -18717,13 +18383,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &2009828916
 GameObject:
   m_ObjectHideFlags: 0
@@ -18893,13 +18553,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &2010660566
 GameObject:
   m_ObjectHideFlags: 0
@@ -19252,7 +18906,7 @@ MonoBehaviour:
   - {fileID: 1673301839}
   enemies: []
   spawners: []
-  nbrRoundTXT: {fileID: 0}
+  nbrRoundTXT: {fileID: 1416716869}
 --- !u!4 &2043390905
 Transform:
   m_ObjectHideFlags: 0
@@ -19602,13 +19256,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &2078765097
 GameObject:
   m_ObjectHideFlags: 0
@@ -19778,13 +19426,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &2083369514
 GameObject:
   m_ObjectHideFlags: 0
@@ -20155,13 +19797,7 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 0
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []
 --- !u!1 &2107527954
 GameObject:
   m_ObjectHideFlags: 0
@@ -20457,10 +20093,4 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   - {r: 0.7169812, g: 0.5149341, b: 0.47009614, a: 1}
   tileType: 1
-  basicTileSprites:
-  - {fileID: 21300000, guid: b53a7b89bbe073f40a91a304164a95d0, type: 3}
-  - {fileID: 21300000, guid: 0e622235e6b86f344b9e27ad8f334d6a, type: 3}
-  - {fileID: 21300000, guid: 534c067013c7ccd4da3155170d0a7a58, type: 3}
-  - {fileID: 21300000, guid: 6246a3f3f58fb9b488b24edaf3ab711d, type: 3}
-  - {fileID: 21300000, guid: 94556c64d0b21e840842b815ce675969, type: 3}
-  SpawnerTileSprites: []
+  myTileSpriteColors: []

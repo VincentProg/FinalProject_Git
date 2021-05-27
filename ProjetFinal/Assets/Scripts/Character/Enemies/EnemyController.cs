@@ -20,7 +20,8 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     Color myTileColor;
-  
+
+    SpriteRenderer myAlienSprite;
 
     // VARIABLES GRID
     HexCell myTile;
@@ -73,9 +74,9 @@ public class EnemyController : MonoBehaviour
         hero1 = CombatSystem.instance.heros[0];
         hero2 = CombatSystem.instance.heros[1];
 
-
-        SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-        mySprite.sprite = stats.sprite;
+        myAlienSprite = GetComponent<SpriteRenderer>();
+        myAlienSprite.sprite = stats.sprite;
+        myAlienSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
         nameEnemy = stats.enemyName;
         health = stats.health;
         PM = stats.PM;
@@ -86,6 +87,7 @@ public class EnemyController : MonoBehaviour
 
     public void StartTurn()
     {
+
         if (nbrTurnToSkip > 0)
         {
             nbrTurnToSkip--;
@@ -106,7 +108,8 @@ public class EnemyController : MonoBehaviour
 
     public void ContinueTurn()
     {
-        if(PA > 0 && isActionDone)
+
+        if (PA > 0 && isActionDone)
         {
             isActionDone = false;
             CheckAction();
@@ -131,8 +134,8 @@ public class EnemyController : MonoBehaviour
 
             case StatsEnemy.ENEMY_TYPE.CAC:
                 #region CAC_CheckAction
-                List<HexCoordinates> path1 = TilesManager.instance.GetPath(myTile.coordinates, hero1.myTile.coordinates, false, false);
-                List<HexCoordinates> path2 = TilesManager.instance.GetPath(myTile.coordinates, hero2.myTile.coordinates, false, false);
+                List<HexCoordinates> path1 = TilesManager.instance.GetPath(myTile.coordinates, hero1.myTile.coordinates, stats.isFlying, false);
+                List<HexCoordinates> path2 = TilesManager.instance.GetPath(myTile.coordinates, hero2.myTile.coordinates, stats.isFlying, false);
                 int dist1 = 100;
                 int dist2 = 100;
 
@@ -150,7 +153,6 @@ public class EnemyController : MonoBehaviour
                 if(hero != null)
                 {
                     AttackCAC(hero);
-                    print(gameObject.name + '2');
                     return;
                 }
                 
@@ -189,8 +191,6 @@ public class EnemyController : MonoBehaviour
 
                 if (hero != null)
                 {
-                    print(dist1); print(dist2);
-                    print(gameObject.name + '2');
                     AttackCAC(hero);
                 }
                 else
@@ -446,6 +446,8 @@ public class EnemyController : MonoBehaviour
                         myTile.enemy = null;
                         myTile = tile;
                         myTile.myTileSprite.color = myTileColor;
+                        myAlienSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
+
                         isMoving = true;
 
                         return;
@@ -473,6 +475,8 @@ public class EnemyController : MonoBehaviour
                         myTile.enemy = null;
                         myTile = tile;
                         myTile.myTileSprite.color = myTileColor;
+                        myAlienSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
+
                         isMoving = true;
 
                         return;

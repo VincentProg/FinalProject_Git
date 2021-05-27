@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcb10621537e4d438ca0700f7b53a21, type: 3}
   m_Name: RocketJump
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 0f721b9409fb9694491ee46644f7e6c5, type: 3}
+  sprite: {fileID: 21300000, guid: 4d263167df2755446bca2eaa7ef847be, type: 3}
   name: 
   costPA: 2
   cooldown: 0

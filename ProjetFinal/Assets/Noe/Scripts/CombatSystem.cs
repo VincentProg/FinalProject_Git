@@ -129,7 +129,7 @@ public class CombatSystem : MonoBehaviour
         nbrRoundTXT.text = nbrRound.ToString();
         heros[index].StartTurn();
 
-/*        if (AchievementsManager.CgkImpif4cQQEAIQBA_temp_ok)
+        if (AchievementsManager.CgkImpif4cQQEAIQBA_temp_ok)
         {
             AchievementsManager.CgkImpif4cQQEAIQBA_temp_ok = false;
             AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQBA");
@@ -145,7 +145,7 @@ public class CombatSystem : MonoBehaviour
         {
             AchievementsManager.CgkImpif4cQQEAIQDg_temp_ok = true;
             AchievementsManager.ResetProgress("CgkImpif4cQQEAIQDg");
-        }*/
+        }
 
     }
 
@@ -154,10 +154,10 @@ public class CombatSystem : MonoBehaviour
         state = CombatState.Win;
         ButtonManager.instance.ShowWin();
         print("WIN");
-/*
+
         if (AchievementsManager.CgkImpif4cQQEAIQCQ_temp_ok)
             AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQCQ");
-*/
+
         bool pvOk = true;
         for (int i = 0; i < heros.Count; i++)
         {
@@ -166,9 +166,9 @@ public class CombatSystem : MonoBehaviour
                 pvOk = false;
             }
         }
-/*        if(pvOk)
+        if(pvOk)
             AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQDQ");
-*/
+
     }
 
     public void Loose()

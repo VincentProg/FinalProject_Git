@@ -22,7 +22,14 @@ public class HeroController : MonoBehaviour
     private bool isMoving;
 
     public List<Grenade> grenades = new List<Grenade>();
-    
+
+    public HERO_TYPE heroType;
+
+    public enum HERO_TYPE
+    {
+        SOLDIER,
+        COWBOY
+    }
 
     // VARIABLES GRID
     [HideInInspector]
@@ -92,10 +99,10 @@ public class HeroController : MonoBehaviour
                                 Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
                                 break;
                             case HexCell.SELECTION_TYPE.ORIGIN_AIM:
-                                Hero_AttacksManager.instance.LaunchAttack();
+                                Hero_AttacksManager.instance.LaunchAttack(this);
                                 break;
                             case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
-                                Hero_AttacksManager.instance.LaunchAttack();
+                                Hero_AttacksManager.instance.LaunchAttack(this);
                                 break;
                             default:
                                 ShowMovements();
@@ -133,10 +140,10 @@ public class HeroController : MonoBehaviour
                                     Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
                                     break;
                                 case HexCell.SELECTION_TYPE.ORIGIN_AIM:
-                                    Hero_AttacksManager.instance.LaunchAttack();
+                                    Hero_AttacksManager.instance.LaunchAttack(this);
                                     break;
                                 case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
-                                    Hero_AttacksManager.instance.LaunchAttack();
+                                    Hero_AttacksManager.instance.LaunchAttack(this);
                                     break;
                                 default:
                                     ShowMovements();
@@ -146,19 +153,18 @@ public class HeroController : MonoBehaviour
                     }
                 }
             }
-        }
 
-        if (isMoving)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, myTile.transform.position, 100f*Time.deltaTime);
-            if(transform.position == myTile.transform.position)
+            if (isMoving)
             {
-                isMoving = false;
-                ArriveOnCell();
+                transform.position = Vector3.MoveTowards(transform.position, myTile.transform.position, 100f * Time.deltaTime);
+                if (transform.position == myTile.transform.position)
+                {
+                    isMoving = false;
+                    ArriveOnCell();
+                }
             }
         }
     }
-
     private void SetUIAttacks()
     {
         for (int i = 0; i < attacks.Count; i++)
@@ -249,6 +255,9 @@ public class HeroController : MonoBehaviour
 
     private void Move(HexCell tile)
     {
+        if(heroType.Equals(HERO_TYPE.SOLDIER))
+            AchievementsManager.CgkImpif4cQQEAIQDg_temp_ok = false;
+
         PM -= TilesManager.instance.HeuristicDistance(myTile.coordinates, tile.coordinates);
         PA--;
 

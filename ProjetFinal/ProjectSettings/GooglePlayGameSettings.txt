@@ -1,0 +1,9 @@
+lastUpgrade=01012
+proj.pluginVersion=0.10.12
+proj.AppId=568213359642
+and.BundleId=com.iimjv24T1.xenosHeresy
+proj.classDir=Assets
+proj.ConstantsClassName=GPGSIds
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--Google+Play+game+services+IDs.+Save+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.--%3e%0d%0a%3cresources%3e%0d%0a++%3c%21--app_id--%3e%0d%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e568213359642%3c%2fstring%3e%0d%0a++%3c%21--package_name--%3e%0d%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3ecom.iimjv24T1.xenosHeresy%3c%2fstring%3e%0d%0a++%3c%21--achievement+Tuer+un+ennemi--%3e%0d%0a++%3cstring+name%3d%22achievement_tuer_un_ennemi%22+translatable%3d%22false%22%3eCgkImpif4cQQEAIQAQ%3c%2fstring%3e%0d%0a%3c%2fresources%3e
+and.ClientId=
+android.SetupDone=true

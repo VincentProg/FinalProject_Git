@@ -8614,7 +8614,7 @@ PrefabInstance:
       objectReference: {fileID: 4030915596351684975, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
     - target: {fileID: 280400244402115812, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 280400244402115812, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8705,6 +8705,7 @@ MonoBehaviour:
   myCanvas: {fileID: 675955473}
   grenades: []
   myTile: {fileID: 0}
+  myTileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &897182952
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11038,7 +11039,7 @@ PrefabInstance:
       objectReference: {fileID: 4030915596351684975, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
     - target: {fileID: 280400244402115812, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 280400244402115812, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11381,6 +11382,7 @@ MonoBehaviour:
   myCanvas: {fileID: 636771255}
   grenades: []
   myTile: {fileID: 0}
+  myTileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1263851542
 SpriteRenderer:
   m_ObjectHideFlags: 0

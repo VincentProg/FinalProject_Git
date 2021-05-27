@@ -135,6 +135,7 @@ public class UI_Attack : MonoBehaviour
         {
             nbrUsePerTurn--;
         }
+
     }
 
     public void StartTurn()

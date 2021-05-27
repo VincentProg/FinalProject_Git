@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4563539126374548544}
   - component: {fileID: 5689885843157113}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: SpawnerMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1637470482114129612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -162.9, y: 150.4, z: 0}
-  m_LocalScale: {x: 14, y: 14, z: 14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: f382fbf82816bf445aeb2da6333b495f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 97ba5cb70b4f5b9468454abab684ae52, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,3 +109,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   colorSprite: {r: 0.51575696, g: 0, b: 0.9339623, a: 0.50980395}
+  spriteDead: {fileID: 21300000, guid: 4e0abb5425e37ab4e850261121ca50ac, type: 3}

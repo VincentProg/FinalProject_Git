@@ -43,6 +43,7 @@ public class Spawner : MonoBehaviour
         #endregion
 
         myTile.myTileSprite.color = colorSprite;
+        GetComponent<SpriteRenderer>().sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
     }
 
 

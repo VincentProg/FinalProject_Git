@@ -133,38 +133,38 @@ public class HeroController : MonoBehaviour
                                     Move(tileTouched);
                                     break;
 
-                            case HexCell.SELECTION_TYPE.AIM:
-                                Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                break;
-                            case HexCell.SELECTION_TYPE.AIM_IMPACT:
-                                Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                break;
-                            case HexCell.SELECTION_TYPE.ORIGIN_AIM:
-                                Hero_AttacksManager.instance.LaunchAttack(this);
-                                break;
-                            case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
-                                Hero_AttacksManager.instance.LaunchAttack(this);
-                                break;
-                            default:
-                                ShowMovements();
-                                break;
+                                case HexCell.SELECTION_TYPE.AIM:
+                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                    break;
+                                case HexCell.SELECTION_TYPE.AIM_IMPACT:
+                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                    break;
+                                case HexCell.SELECTION_TYPE.ORIGIN_AIM:
+                                    Hero_AttacksManager.instance.LaunchAttack(this);
+                                    break;
+                                case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
+                                    Hero_AttacksManager.instance.LaunchAttack(this);
+                                    break;
+                                default:
+                                    ShowMovements();
+                                    break;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        if (isMoving)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, myTile.transform.position, 100f*Time.deltaTime);
-            if(transform.position == myTile.transform.position)
+            if (isMoving)
             {
-                isMoving = false;
-                ArriveOnCell();
+                transform.position = Vector3.MoveTowards(transform.position, myTile.transform.position, 100f * Time.deltaTime);
+                if (transform.position == myTile.transform.position)
+                {
+                    isMoving = false;
+                    ArriveOnCell();
+                }
             }
         }
     }
-
     private void SetUIAttacks()
     {
         for (int i = 0; i < attacks.Count; i++)

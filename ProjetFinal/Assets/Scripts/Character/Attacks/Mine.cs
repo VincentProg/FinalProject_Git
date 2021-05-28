@@ -18,7 +18,7 @@ public class Mine : MonoBehaviour
             
             if(isFriendlyFire && tile.hero != null)
             {
-                tile.hero.TakeDamages(damages);
+                tile.hero.TakeDamages(damages, "mine", "explosion");
             } else if (tile.enemy != null)
             {
                 tile.enemy.TakeDamages(damages, "mine", "explosion");

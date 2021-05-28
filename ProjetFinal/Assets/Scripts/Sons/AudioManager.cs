@@ -38,6 +38,9 @@ public class AudioManager : MonoBehaviour
         MSlider.value = 1f;
         ESlider.value = 1f;
 
+        print(MSlider);
+        print(ESlider);
+
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();

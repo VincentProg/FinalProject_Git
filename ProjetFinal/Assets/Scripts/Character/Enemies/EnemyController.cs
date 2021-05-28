@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -14,6 +14,8 @@ public class EnemyController : MonoBehaviour
     private string nameEnemy;
     private int health, PM, PA;
     public GameObject TXT_Damages;
+
+    public bool isStun = false;
 
     private bool isMoving;
     private bool isActionDone = true;
@@ -87,6 +89,7 @@ public class EnemyController : MonoBehaviour
 
     public void StartTurn()
     {
+
         if (nbrTurnToSkip > 0)
         {
             nbrTurnToSkip--;
@@ -102,12 +105,16 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
+        if (isStun)
+            isStun = false;
+
         ContinueTurn();
     }
 
     public void ContinueTurn()
     {
-        if(PA > 0 && isActionDone)
+
+        if (PA > 0 && isActionDone)
         {
             isActionDone = false;
             CheckAction();
@@ -132,8 +139,8 @@ public class EnemyController : MonoBehaviour
 
             case StatsEnemy.ENEMY_TYPE.CAC:
                 #region CAC_CheckAction
-                List<HexCoordinates> path1 = TilesManager.instance.GetPath(myTile.coordinates, hero1.myTile.coordinates, false, false);
-                List<HexCoordinates> path2 = TilesManager.instance.GetPath(myTile.coordinates, hero2.myTile.coordinates, false, false);
+                List<HexCoordinates> path1 = TilesManager.instance.GetPath(myTile.coordinates, hero1.myTile.coordinates, stats.isFlying, false);
+                List<HexCoordinates> path2 = TilesManager.instance.GetPath(myTile.coordinates, hero2.myTile.coordinates, stats.isFlying, false);
                 int dist1 = 100;
                 int dist2 = 100;
 
@@ -151,7 +158,6 @@ public class EnemyController : MonoBehaviour
                 if(hero != null)
                 {
                     AttackCAC(hero);
-                    print(gameObject.name + '2');
                     return;
                 }
                 
@@ -190,8 +196,6 @@ public class EnemyController : MonoBehaviour
 
                 if (hero != null)
                 {
-                    print(dist1); print(dist2);
-                    print(gameObject.name + '2');
                     AttackCAC(hero);
                 }
                 else
@@ -515,7 +519,7 @@ public class EnemyController : MonoBehaviour
         {
             if (stats.attacks[0].range <= 1)
             {
-                hero.TakeDamages(stats.attacks[0].damages);  
+                hero.TakeDamages(stats.attacks[0].damages, "enemy", "melee");  
             } else
             {
                 List<HexCoordinates> path = new List<HexCoordinates>();
@@ -529,7 +533,7 @@ public class EnemyController : MonoBehaviour
                     {
                         if (tile.hero)
                         {
-                            tile.hero.TakeDamages(stats.attacks[0].damages);
+                            tile.hero.TakeDamages(stats.attacks[0].damages, "enemy", "melee");
                         } else if (tile.enemy)
                         {
                             tile.enemy.TakeDamages(stats.attacks[0].damages, "enemy", "melee");
@@ -552,9 +556,10 @@ public class EnemyController : MonoBehaviour
         health -= damages;
         health = Mathf.Clamp(health, 0, stats.health);
 
-        GameObject txt = Instantiate(TXT_Damages, transform.position, transform.rotation);
-        txt.transform.GetChild(0).GetComponent<TextMeshPro>().text = damages.ToString();
-        txt.transform.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 10;
+        GameObject txt = Instantiate(TXT_Damages, transform.position + new Vector3(0, 16), transform.rotation);
+        txt.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = damages.ToString();
+        txt.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = damages.ToString();
+
         Destroy(txt, 1);
 
 
@@ -580,14 +585,30 @@ public class EnemyController : MonoBehaviour
 
         if (characterType.Equals("cowboy"))
         {
-            AchievementsManager.CgkImpif4cQQEAIQBA_temp_ok = true;
-
-            AchievementsManager.CgkImpif4cQQEAIQCQ_temp_ok = false;
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBA");
+            CombatSystem.instance.killsCowboy++;
         }
         else if (characterType.Equals("soldier"))
         {
-            AchievementsManager.CgkImpif4cQQEAIQCQ_temp_ok = false;
+            CombatSystem.instance.killsSoldier++;
+
         }
+
+        if (characterType.Equals("grenade") && attackSource.Equals("explosion"))
+        {
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBg");
+        }
+
+        if (isStun)
+        {
+            Debug.LogWarning("killed stunned");
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCg");
+
+        }
+
+
+        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCQ");
+        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDw");
 
         CombatSystem.instance.enemies.Remove(this);
         myTile.myTileSprite.color = TilesManager.instance.classicColor;
@@ -603,11 +624,11 @@ public class EnemyController : MonoBehaviour
             {
                 if (tile.hero)
                 {
-                    tile.hero.TakeDamages(stats.attacks[0].damages);
+                    tile.hero.TakeDamages(stats.attacks[0].damages, "enemy", "explosion");
                 }
                 else if (tile.enemy)
                 {
-                    tile.enemy.TakeDamages(stats.attacks[0].damages, "ennemy", "explosion");
+                    tile.enemy.TakeDamages(stats.attacks[0].damages, "enemy", "explosion");
                 }
             }
         }

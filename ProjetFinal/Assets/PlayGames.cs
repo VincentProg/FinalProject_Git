@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
@@ -19,17 +20,27 @@ public class PlayGames : MonoBehaviour
 
     void Start()
     {
-        try
+        SignInOrOut();
+    }
+
+    public void initAchievements()
+    {
+        if (Social.localUser.authenticated)
         {
-            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
-            PlayGamesPlatform.InitializeInstance(config);
-            PlayGamesPlatform.DebugLogEnabled = true;
-            PlayGamesPlatform.Activate();
-            Social.localUser.Authenticate((bool success) => { });
-        }
-        catch (Exception exception)
-        {
-            Debug.Log(exception);
+            AchievementsManager.achievement_progress.Clear();
+            AchievementsManager.achievement_lastupdate.Clear();
+
+            Social.LoadAchievements(achievements =>
+            {
+                foreach (var item in achievements)
+                {
+                    if (!item.completed)
+                    {
+                        AchievementsManager.achievement_progress.Add(item.id, 0);
+                        AchievementsManager.achievement_lastupdate.Add(item.id, -1);
+                    }
+                }
+            });
         }
     }
 
@@ -57,29 +68,40 @@ public class PlayGames : MonoBehaviour
         {
             Social.ShowAchievementsUI();
         }
+        else
+        {
+            SignInOrOut();
+        }
     }
 
     public void UnlockAchievement(string id)
     {
         if (Social.localUser.authenticated)
         {
-            
             Social.ReportProgress(id, 100f, success => { });
-        }
+        } 
     }
 
     public void SignInOrOut()
     {
+        Debug.LogError("login");
         if (Social.localUser.authenticated)
         {
             PlayGamesPlatform.Instance.SignOut();
         } else
         {
             PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+
             PlayGamesPlatform.InitializeInstance(config);
             PlayGamesPlatform.DebugLogEnabled = true;
             PlayGamesPlatform.Activate();
-            Social.localUser.Authenticate((bool success) => { });
+
+            Social.localUser.Authenticate((bool success) => {
+                if (success)
+                {
+                    initAchievements();
+                }
+            });
         }
     }
 }

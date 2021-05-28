@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 22d9c44b4b4e446478654f7bd3d42ccd, type: 3}
   enemyName: Boomer
-  health: 2
+  health: 1
   PM: 1
   PA: 2
   isFlying: 0

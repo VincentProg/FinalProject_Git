@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcb10621537e4d438ca0700f7b53a21, type: 3}
   m_Name: BigExplosion
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: bc14c775198ed924d932a63faf64222c, type: 3}
+  sprite: {fileID: 21300000, guid: 636c42247580650498dcc7067957811a, type: 3}
   name: 
   costPA: 1
   cooldown: 4
@@ -22,6 +22,7 @@ MonoBehaviour:
   rangeAttack: 4
   radiusUnattackableAttack: 2
   canSelectHole: 0
+  canSelectHeroEnemySpawner: 1
   visionType: 1
   impactType: 5
   damages: 5

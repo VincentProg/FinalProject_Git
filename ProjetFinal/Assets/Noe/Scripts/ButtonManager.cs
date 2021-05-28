@@ -14,7 +14,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject WinMenu;
 
     //in game manager
-    bool isGamePaused;
+    public bool isGamePaused;
 
     private void Awake()
     {
@@ -27,6 +27,8 @@ public class ButtonManager : MonoBehaviour
         isGamePaused = false;
         pauseMenu.SetActive(false);
         optionMenu.SetActive(false);
+        LoseMenu.SetActive(false);
+        WinMenu.SetActive(false);
     }
 
     public void ReloadScene()
@@ -113,6 +115,16 @@ public class ButtonManager : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void LoginGooglePlay()
+    {
+        PlayGames.instance.SignInOrOut();
+    }
+
+    public void ShowAchievements()
+    {
+        PlayGames.instance.ShowAchievements();
     }
 
 }

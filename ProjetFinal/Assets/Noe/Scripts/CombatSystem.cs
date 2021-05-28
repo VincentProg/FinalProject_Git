@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 
 public class CombatSystem : MonoBehaviour
 {
+    public GameManager gameManager;
     float cooldown = .05f;
     float next;
+
+    public int killsSoldier;
+    public int killsCowboy;
 
     public static CombatSystem instance { get; private set; }
     public enum CombatState
@@ -28,8 +33,8 @@ public class CombatSystem : MonoBehaviour
     int index = 0;
     bool heroesTurn;
 
-    int nbrRound = 1;
-    public TextMeshProUGUI nbrRoundTXT;
+    public int nbrRound = 1;
+    public UnityEngine.UI.Text nbrRoundTXT;
 
     // auto turn
 /*    private void FixedUpdate()
@@ -56,6 +61,7 @@ public class CombatSystem : MonoBehaviour
 
     public void StartFight()
     {
+        PlayGames.instance.initAchievements();
         state = CombatState.PlayerTurn;
         heros[0].StartTurn();
     }
@@ -129,24 +135,10 @@ public class CombatSystem : MonoBehaviour
         nbrRoundTXT.text = nbrRound.ToString();
         heros[index].StartTurn();
 
-        if (AchievementsManager.CgkImpif4cQQEAIQBA_temp_ok)
-        {
-            AchievementsManager.CgkImpif4cQQEAIQBA_temp_ok = false;
-            AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQBA");
-        } else
-        {
-            AchievementsManager.ResetProgress("CgkImpif4cQQEAIQBA");
-        }
-        if (AchievementsManager.CgkImpif4cQQEAIQDg_temp_ok)
-        {
-            AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQDg");
-        }
-        else
-        {
-            AchievementsManager.CgkImpif4cQQEAIQDg_temp_ok = true;
-            AchievementsManager.ResetProgress("CgkImpif4cQQEAIQDg");
-        }
+        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDg");
 
+        if (nbrRound > 1)
+            AchievementsManager.DeactivateAchievement("CgkImpif4cQQEAIQDA");
     }
 
     public void Win()
@@ -155,19 +147,31 @@ public class CombatSystem : MonoBehaviour
         ButtonManager.instance.ShowWin();
         print("WIN");
 
-        if (AchievementsManager.CgkImpif4cQQEAIQCQ_temp_ok)
-            AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQCQ");
+        if (gameManager.levelNumber == 1)
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQAg");
 
-        bool pvOk = true;
-        for (int i = 0; i < heros.Count; i++)
+        if (gameManager.isLastLevel)
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQAg");
+
+        if (killsCowboy == 0 || killsSoldier == 0)
         {
-            if(heros[i].health != 1)
+            if(killsCowboy == 0 && killsSoldier == 0)
             {
-                pvOk = false;
+                AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCQ");
+
+            }
+            else
+            {
+                AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCA");
+
             }
         }
-        if(pvOk)
-            AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQDQ");
+
+        foreach (var item in heros)
+        {
+            if (item.health == 1)
+                AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDQ");
+        }
 
     }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4720378665319830148}
   - component: {fileID: 8079578729787815160}
   m_Layer: 0
-  m_Name: Explose
+  m_Name: ExploseMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

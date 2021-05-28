@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class UI_Attack : MonoBehaviour
 {
@@ -17,11 +16,11 @@ public class UI_Attack : MonoBehaviour
     private bool isDisabled = false;
     private int cooldown;
     GameObject cooldownGO;
-    private TextMeshProUGUI textCD;
+    private Text textCD;
 
     private bool isNbrPerTurn;
     private int nbrUsePerTurn;
-    private TextMeshProUGUI Txt_NbrUse;
+    private Text Txt_NbrUse;
 
     private bool isNbrTotal;
     private int nbrUseTotal;
@@ -33,10 +32,9 @@ public class UI_Attack : MonoBehaviour
     public void UpdateUI()
     {
         GetComponent<Image>().sprite = attack.sprite;
-        textCD = transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         cooldownGO = transform.GetChild(0).gameObject;
+        textCD = cooldownGO.transform.GetChild(0).GetComponent<Text>();
         cooldownGO.SetActive(false);
-        transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = attack.costPA.ToString();
 
         nbrUsePerTurn = attack.nbrUsePerTurn;
         nbrUseTotal = attack.nbrUseTotal;
@@ -44,11 +42,11 @@ public class UI_Attack : MonoBehaviour
         if (nbrUseTotal > 0)
         {
             isNbrTotal = true;
-            Txt_NbrUse = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+            Txt_NbrUse = transform.GetChild(1).GetComponent<Text>();
             Txt_NbrUse.text = nbrUseTotal.ToString();
 
         }
-        else transform.GetChild(2).gameObject.SetActive(false);
+        else transform.GetChild(1).gameObject.SetActive(false);
     }
 
     public void OnClick()
@@ -137,6 +135,7 @@ public class UI_Attack : MonoBehaviour
         {
             nbrUsePerTurn--;
         }
+
     }
 
     public void StartTurn()

@@ -339,6 +339,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 }
                 break;
             case Attack.IMPACT_TYPE.TELEPORT:
+                AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBw", playerTile.coordinates);
                 originTile.hero = playerTile.hero;
                 playerTile.myTileSprite.color = TilesManager.instance.classicColor;
                 playerTile.hero = null;
@@ -353,7 +354,19 @@ public class Hero_AttacksManager : MonoBehaviour
                     {
                         if (tile.hero != null)
                         {
-                            tile.hero.TakeDamages(attack.damages);
+                            if (heroController.heroType.Equals(HeroController.HERO_TYPE.COWBOY))
+                            {
+                                tile.hero.TakeDamages(attack.damages, "cowboy", "attack");
+
+                            }
+                            else if (heroController.heroType.Equals(HeroController.HERO_TYPE.SOLDIER))
+                            {
+                                tile.hero.TakeDamages(attack.damages, "soldier", "attack");
+                            }
+                            else
+                            {
+                                tile.hero.TakeDamages(attack.damages, "enemy", "attack");
+                            }
                         }
                         else if (tile.enemy != null)
                         {
@@ -384,7 +397,6 @@ public class Hero_AttacksManager : MonoBehaviour
         }
 
         UI_Caller.ActivateAttack();
-
         TilesManager.instance.ClearTiles(false);
 
     }

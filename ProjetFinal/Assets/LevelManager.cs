@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
     private int DEBUG_nbOfButtonAccessible;
     void Start()
     {
-        for (int i = 0; i < buttons.Length; i++)
+/*        for (int i = 0; i < buttons.Length; i++)
         {
             int levelReached = PlayerPrefs.GetInt("levelReached", 1);
 
@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
                 DEBUG_nbOfButtonAccessible++;
 
         }
-        print("nb Of button: " + DEBUG_nbOfButtonAccessible);
+        print("nb Of button: " + DEBUG_nbOfButtonAccessible);*/
     }
 
     public void StartLevel(string name)

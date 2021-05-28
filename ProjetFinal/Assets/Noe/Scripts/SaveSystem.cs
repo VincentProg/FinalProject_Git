@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 public static class SaveSystem
 {
-
+    private static int isPlayingForFirstTime = PlayerPrefs.GetInt("ftp", 1);
     public static void SaveOptions(AudioManager audioManager)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -16,6 +16,13 @@ public static class SaveSystem
 
     public static OptionsData LoadOptions()
     {
+        if(isPlayingForFirstTime == 1)
+        {
+            SaveOptions(AudioManager.instance);
+            Debug.Log("playing for the first time");
+            PlayerPrefs.SetInt("ftp", 0);
+
+        }
         string path = Application.persistentDataPath + "/option.yeet";
         
         if (File.Exists(path))
@@ -28,6 +35,7 @@ public static class SaveSystem
         }
         else
         {
+            Debug.Log(path.ToString());
             Debug.LogError("ERROR - Options Data File Was Not Found in "+ path);
             return null;
         }

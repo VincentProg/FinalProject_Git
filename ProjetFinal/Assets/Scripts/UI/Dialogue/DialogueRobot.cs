@@ -13,6 +13,8 @@ public class DialogueRobot : MonoBehaviour
     private Text Text;
     public bool isActive;
 
+    public bool textEnded;
+
     private void Awake()
     {
         if (instance == null)
@@ -36,6 +38,7 @@ public class DialogueRobot : MonoBehaviour
         if (!isActive)
         {
             isActive = true;
+            textEnded = false;
             Text.text = "";
             popUpBox.SetActive(true);
             StartCoroutine(TypeSentence(text));
@@ -50,6 +53,8 @@ public class DialogueRobot : MonoBehaviour
             Text.text += letter;
             yield return null;
         }
+
+        textEnded = true;
     }
 
     public IEnumerator iDisappear()

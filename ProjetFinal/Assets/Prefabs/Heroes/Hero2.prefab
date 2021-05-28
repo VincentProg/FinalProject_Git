@@ -103,8 +103,8 @@ MonoBehaviour:
   PA: 0
   TXT_Damages: {fileID: 6266669382385152773, guid: 4bfe2c1cf56a6704f9f95b27aba90243, type: 3}
   attacks:
-  - {fileID: 11400000, guid: a3ded48857c5f0f49afa429db37ce5e1, type: 2}
   - {fileID: 11400000, guid: 3243f996da0c04a41aee1a8eb6baf7fd, type: 2}
+  - {fileID: 11400000, guid: a3ded48857c5f0f49afa429db37ce5e1, type: 2}
   - {fileID: 11400000, guid: 91e61e489292e4647b1f206d56184805, type: 2}
   myCanvas: {fileID: 0}
   grenades: []

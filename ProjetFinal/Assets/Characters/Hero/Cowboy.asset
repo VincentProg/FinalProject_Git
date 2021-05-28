@@ -15,6 +15,6 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: f34e04fbfd42ff14a9b6db4467d3c011, type: 3}
   heroName: CowBoy
   health: 10
-  PM: 10
-  PA: 10
+  PM: 1
+  PA: 3
   isDofusPM: 0

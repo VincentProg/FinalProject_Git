@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasSpawned: 0
-  SkipFirstTurn: 1
+  SkipFirstTurn: 0
   stats: {fileID: 11400000, guid: d0f0acf9d2839bd4f908cd6044be7998, type: 2}
   TXT_Damages: {fileID: 6266669382385152773, guid: 4bfe2c1cf56a6704f9f95b27aba90243, type: 3}
   myTileColor: {r: 1, g: 0, b: 0, a: 0.8627451}

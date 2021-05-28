@@ -15,6 +15,6 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: e537ce2bb5fc22d469afac670890b6c2, type: 3}
   heroName: Marine
   health: 10
-  PM: 10
-  PA: 10
+  PM: 1
+  PA: 1
   isDofusPM: 0

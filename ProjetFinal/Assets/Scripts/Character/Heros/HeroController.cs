@@ -123,9 +123,13 @@ public class HeroController : MonoBehaviour
                 }
 
 
-                else
+                
+            }
+            else
+            {
+                if (isMyTurn && Input.GetMouseButtonDown(0))
                 {
-                    if (PA > 0 && Input.GetMouseButtonDown(0))
+                    if (PA > 0)
                     {
                         Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
 

@@ -48,16 +48,8 @@ public class AchievementsManager
     */
 
 
-    public static Dictionary<string, int> achievement_progress = new Dictionary<string, int>()
-    {
-        { "CgkImpif4cQQEAIQAw", 0 },
-        { "CgkImpif4cQQEAIQDw", 0 },
-    };
-    public static Dictionary<string, int> achievement_lastupdate = new Dictionary<string, int>()
-    {
-        { "CgkImpif4cQQEAIQAw", -1 },
-        { "CgkImpif4cQQEAIQDw", -1 },
-    };
+    public static Dictionary<string, int> achievement_progress = new Dictionary<string, int>();
+    public static Dictionary<string, int> achievement_lastupdate = new Dictionary<string, int>();
 
     public static bool IsInteresting(string id)
     {

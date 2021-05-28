@@ -34,7 +34,6 @@ public class PlayGames : MonoBehaviour
                     {
                         foreach (var item in achievements)
                         {
-                            Social.ReportProgress(item.id, -1f, success => { });
                             if (!item.completed)
                             {
                                 AchievementsManager.achievement_progress.Add(item.id, 0);

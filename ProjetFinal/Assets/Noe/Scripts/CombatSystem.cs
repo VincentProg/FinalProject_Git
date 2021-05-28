@@ -10,6 +10,9 @@ public class CombatSystem : MonoBehaviour
     float cooldown = .05f;
     float next;
 
+    public int killsSoldier;
+    public int killsCowboy;
+
     public static CombatSystem instance { get; private set; }
     public enum CombatState
     {
@@ -133,8 +136,8 @@ public class CombatSystem : MonoBehaviour
 
         AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDg");
 
-        PlayGamesPlatform.Instance.IncrementAchievement("CgkImpif4cQQEAIQEA", 11, success => { });
-
+        if (nbrRound > 1)
+            AchievementsManager.DeactivateAchievement("CgkImpif4cQQEAIQDA");
     }
 
     public void Win()
@@ -143,11 +146,31 @@ public class CombatSystem : MonoBehaviour
         ButtonManager.instance.ShowWin();
         print("WIN");
 
-        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDQ");
-
-        if(gameManager.levelNumber == 1)
+        if (gameManager.levelNumber == 1)
             AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQAg");
 
+        if (gameManager.isLastLevel)
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQAg");
+
+        if (killsCowboy == 0 || killsSoldier == 0)
+        {
+            if(killsCowboy == 0 && killsSoldier == 0)
+            {
+                AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCQ");
+
+            }
+            else
+            {
+                AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCA");
+
+            }
+        }
+
+        foreach (var item in heros)
+        {
+            if (item.health == 1)
+                AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDQ");
+        }
 
     }
 

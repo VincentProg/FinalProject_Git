@@ -14,6 +14,7 @@ public class Grenade : MonoBehaviour
     public int damagesExplose;
     public int nbrTurnSkipFlash;
 
+
     public bool isFriendlyFire;
 
     [HideInInspector]
@@ -41,17 +42,17 @@ public class Grenade : MonoBehaviour
         {
 
             case TYPE_GRENADE.EXPLOSE:
-
                 foreach(HexCell tile in listTiles)
                 {
                     if(isFriendlyFire && tile.hero != null)
                     {
-                        tile.hero.TakeDamages(damagesExplose);
+                        tile.hero.TakeDamages(damagesExplose, "grenade", "explosion");
                     } else if(tile.enemy != null)
                     {
                         tile.enemy.TakeDamages(damagesExplose, "grenade", "explosion");
                     }
                 }
+
 
                 break;
 
@@ -66,7 +67,8 @@ public class Grenade : MonoBehaviour
                     else if (tile.enemy != null)
                     {
                         tile.enemy.SkipTurns(nbrTurnSkipFlash);
-                        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBQ");
+                        tile.enemy.isStun = true;
+                        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBQ", myTile.coordinates);
                     }
                 }
 
@@ -80,7 +82,6 @@ public class Grenade : MonoBehaviour
 
     private void Death()
     {
-        print(hero.gameObject.name);
         hero.grenades.Remove(this);
         Destroy(gameObject);
     }

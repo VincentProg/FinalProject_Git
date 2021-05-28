@@ -15,6 +15,8 @@ public class EnemyController : MonoBehaviour
     private int health, PM, PA;
     public GameObject TXT_Damages;
 
+    public bool isStun = false;
+
     private bool isMoving;
     private bool isActionDone = true;
 
@@ -102,6 +104,9 @@ public class EnemyController : MonoBehaviour
 
             return;
         }
+
+        if (isStun)
+            isStun = false;
 
         ContinueTurn();
     }
@@ -514,7 +519,7 @@ public class EnemyController : MonoBehaviour
         {
             if (stats.attacks[0].range <= 1)
             {
-                hero.TakeDamages(stats.attacks[0].damages);  
+                hero.TakeDamages(stats.attacks[0].damages, "enemy", "melee");  
             } else
             {
                 List<HexCoordinates> path = new List<HexCoordinates>();
@@ -528,7 +533,7 @@ public class EnemyController : MonoBehaviour
                     {
                         if (tile.hero)
                         {
-                            tile.hero.TakeDamages(stats.attacks[0].damages);
+                            tile.hero.TakeDamages(stats.attacks[0].damages, "enemy", "melee");
                         } else if (tile.enemy)
                         {
                             tile.enemy.TakeDamages(stats.attacks[0].damages, "enemy", "melee");
@@ -581,12 +586,29 @@ public class EnemyController : MonoBehaviour
         if (characterType.Equals("cowboy"))
         {
             AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBA");
-
+            CombatSystem.instance.killsCowboy++;
         }
         else if (characterType.Equals("soldier"))
         {
+            CombatSystem.instance.killsSoldier++;
+
         }
+
+        if (characterType.Equals("grenade") && attackSource.Equals("explosion"))
+        {
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBg");
+        }
+
+        if (isStun)
+        {
+            Debug.LogWarning("killed stunned");
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCg");
+
+        }
+
+
         AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCQ");
+        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDw");
 
         CombatSystem.instance.enemies.Remove(this);
         myTile.myTileSprite.color = TilesManager.instance.classicColor;
@@ -602,11 +624,11 @@ public class EnemyController : MonoBehaviour
             {
                 if (tile.hero)
                 {
-                    tile.hero.TakeDamages(stats.attacks[0].damages);
+                    tile.hero.TakeDamages(stats.attacks[0].damages, "enemy", "explosion");
                 }
                 else if (tile.enemy)
                 {
-                    tile.enemy.TakeDamages(stats.attacks[0].damages, "ennemy", "explosion");
+                    tile.enemy.TakeDamages(stats.attacks[0].damages, "enemy", "explosion");
                 }
             }
         }

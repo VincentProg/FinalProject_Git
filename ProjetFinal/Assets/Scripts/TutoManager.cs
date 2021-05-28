@@ -28,6 +28,13 @@ public class TutoManager : MonoBehaviour
         hero2.canPlay = false;
         TilesManager.instance.ClearTiles(false);
 
+
+
+        foreach (Transform child in canvasHero1.GetChild(0))
+        {
+            child.GetComponent<Button>().onClick.AddListener(TouchButtonPassTurnHero1);
+        }
+
         ManipulateCanvas(canvasHero1, false, false);
         ManipulateCanvas(canvasHero2, false, false);
 
@@ -115,7 +122,6 @@ public class TutoManager : MonoBehaviour
             {
                 if (hitInformation.transform.GetComponent<HexCell>() != null)
                 {
-                    print("touchetile");
                     if (hitInformation.transform.GetComponent<HexCell>() == tile) return true;
                 }
             }
@@ -123,24 +129,9 @@ public class TutoManager : MonoBehaviour
         return false;
     }
 
-    bool TouchButton(Button button)
+    void TouchButtonPassTurnHero1()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-        {
-            Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-
-            Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
-            RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
-            if (hitInformation)
-            {
-                if (hitInformation.transform.GetComponent<HexCell>() != null)
-                {
-                    print("touchetile");
-                    //if (hitInformation.transform.GetComponent<HexCell>() == tile) return true;
-                }
-            }
-        }
-        return false;
+        
     }
 
     IEnumerator RobotSpeakDelay(string sentence, float delay)

@@ -49,7 +49,7 @@ public class Grenade : MonoBehaviour
                         tile.hero.TakeDamages(damagesExplose);
                     } else if(tile.enemy != null)
                     {
-                        tile.enemy.TakeDamages(damagesExplose, "grendade", "explosion");
+                        tile.enemy.TakeDamages(damagesExplose, "grenade", "explosion");
                     }
                 }
 
@@ -66,6 +66,7 @@ public class Grenade : MonoBehaviour
                     else if (tile.enemy != null)
                     {
                         tile.enemy.SkipTurns(nbrTurnSkipFlash);
+                        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBQ");
                     }
                 }
 

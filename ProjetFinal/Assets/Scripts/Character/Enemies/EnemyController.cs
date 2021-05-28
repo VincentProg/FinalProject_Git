@@ -580,14 +580,13 @@ public class EnemyController : MonoBehaviour
 
         if (characterType.Equals("cowboy"))
         {
-            AchievementsManager.CgkImpif4cQQEAIQBA_temp_ok = true;
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBA");
 
-            AchievementsManager.CgkImpif4cQQEAIQCQ_temp_ok = false;
         }
         else if (characterType.Equals("soldier"))
         {
-            AchievementsManager.CgkImpif4cQQEAIQCQ_temp_ok = false;
         }
+        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCQ");
 
         CombatSystem.instance.enemies.Remove(this);
         myTile.myTileSprite.color = TilesManager.instance.classicColor;

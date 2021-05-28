@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 
 public class CombatSystem : MonoBehaviour
 {
+    public GameManager gameManager;
     float cooldown = .05f;
     float next;
 
@@ -27,7 +30,7 @@ public class CombatSystem : MonoBehaviour
     int index = 0;
     bool heroesTurn;
 
-    int nbrRound = 1;
+    public int nbrRound = 1;
     public UnityEngine.UI.Text nbrRoundTXT;
 
     // auto turn
@@ -128,23 +131,9 @@ public class CombatSystem : MonoBehaviour
         nbrRoundTXT.text = nbrRound.ToString();
         heros[index].StartTurn();
 
-        if (AchievementsManager.CgkImpif4cQQEAIQBA_temp_ok)
-        {
-            AchievementsManager.CgkImpif4cQQEAIQBA_temp_ok = false;
-            AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQBA");
-        } else
-        {
-            AchievementsManager.ResetProgress("CgkImpif4cQQEAIQBA");
-        }
-        if (AchievementsManager.CgkImpif4cQQEAIQDg_temp_ok)
-        {
-            AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQDg");
-        }
-        else
-        {
-            AchievementsManager.CgkImpif4cQQEAIQDg_temp_ok = true;
-            AchievementsManager.ResetProgress("CgkImpif4cQQEAIQDg");
-        }
+        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDg");
+
+        PlayGamesPlatform.Instance.IncrementAchievement("CgkImpif4cQQEAIQEA", 11, success => { });
 
     }
 
@@ -154,19 +143,11 @@ public class CombatSystem : MonoBehaviour
         ButtonManager.instance.ShowWin();
         print("WIN");
 
-        if (AchievementsManager.CgkImpif4cQQEAIQCQ_temp_ok)
-            AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQCQ");
+        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDQ");
 
-        bool pvOk = true;
-        for (int i = 0; i < heros.Count; i++)
-        {
-            if(heros[i].health != 1)
-            {
-                pvOk = false;
-            }
-        }
-        if(pvOk)
-            AchievementsManager.IncrementProgress("CgkImpif4cQQEAIQDQ");
+        if(gameManager.levelNumber == 1)
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQAg");
+
 
     }
 

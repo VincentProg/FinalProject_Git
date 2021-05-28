@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
@@ -25,7 +26,25 @@ public class PlayGames : MonoBehaviour
             PlayGamesPlatform.InitializeInstance(config);
             PlayGamesPlatform.DebugLogEnabled = true;
             PlayGamesPlatform.Activate();
-            Social.localUser.Authenticate((bool success) => { });
+
+            Social.localUser.Authenticate((bool success) => {
+                if (success)
+                {
+                    Social.LoadAchievements(achievements =>
+                    {
+                        foreach (var item in achievements)
+                        {
+                            Social.ReportProgress(item.id, -1f, success => { });
+                            if (!item.completed)
+                            {
+                                AchievementsManager.achievement_progress.Add(item.id, 0);
+                                AchievementsManager.achievement_lastupdate.Add(item.id, -1);
+                            }
+                        }
+                    });
+                }
+            });
+
         }
         catch (Exception exception)
         {
@@ -56,6 +75,7 @@ public class PlayGames : MonoBehaviour
         if (Social.localUser.authenticated)
         {
             Social.ShowAchievementsUI();
+            
         }
     }
 
@@ -80,6 +100,8 @@ public class PlayGames : MonoBehaviour
             PlayGamesPlatform.DebugLogEnabled = true;
             PlayGamesPlatform.Activate();
             Social.localUser.Authenticate((bool success) => { });
+
+            
         }
     }
 }

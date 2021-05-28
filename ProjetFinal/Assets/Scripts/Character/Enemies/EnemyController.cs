@@ -551,7 +551,7 @@ public class EnemyController : MonoBehaviour
         health -= damages;
         health = Mathf.Clamp(health, 0, stats.health);
 
-        GameObject txt = Instantiate(TXT_Damages, transform.position + new Vector3(0,50), transform.rotation);
+        GameObject txt = Instantiate(TXT_Damages, transform.position + new Vector3(0, 16), transform.rotation);
         txt.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = damages.ToString();
         txt.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = damages.ToString();
 
@@ -580,14 +580,13 @@ public class EnemyController : MonoBehaviour
 
         if (characterType.Equals("cowboy"))
         {
-            AchievementsManager.CgkImpif4cQQEAIQBA_temp_ok = true;
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBA");
 
-            AchievementsManager.CgkImpif4cQQEAIQCQ_temp_ok = false;
         }
         else if (characterType.Equals("soldier"))
         {
-            AchievementsManager.CgkImpif4cQQEAIQCQ_temp_ok = false;
         }
+        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCQ");
 
         CombatSystem.instance.enemies.Remove(this);
         myTile.myTileSprite.color = TilesManager.instance.classicColor;

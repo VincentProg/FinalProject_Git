@@ -339,6 +339,7 @@ public class Hero_AttacksManager : MonoBehaviour
                 }
                 break;
             case Attack.IMPACT_TYPE.TELEPORT:
+                AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBw", playerTile.coordinates);
                 originTile.hero = playerTile.hero;
                 playerTile.myTileSprite.color = TilesManager.instance.classicColor;
                 playerTile.hero = null;
@@ -384,7 +385,6 @@ public class Hero_AttacksManager : MonoBehaviour
         }
 
         UI_Caller.ActivateAttack();
-
         TilesManager.instance.ClearTiles(false);
 
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4720378665319830148}
   - component: {fileID: 8079578729787815160}
   m_Layer: 0
-  m_Name: Big
+  m_Name: BigMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasSpawned: 0
-  SkipFirstTurn: 1
+  SkipFirstTurn: 0
   stats: {fileID: 11400000, guid: 1b7f3543f18452f4a84ddde0c1fd6123, type: 2}
   TXT_Damages: {fileID: 6266669382385152773, guid: 4bfe2c1cf56a6704f9f95b27aba90243, type: 3}
   myTileColor: {r: 1, g: 0, b: 0, a: 0.8627451}

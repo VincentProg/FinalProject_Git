@@ -91,7 +91,6 @@ public class TutoManager : MonoBehaviour
                 }
             }
 
-            if()
         }
 
 
@@ -137,7 +136,7 @@ public class TutoManager : MonoBehaviour
                 if (hitInformation.transform.GetComponent<HexCell>() != null)
                 {
                     print("touchetile");
-                    if (hitInformation.transform.GetComponent<HexCell>() == tile) return true;
+                    //if (hitInformation.transform.GetComponent<HexCell>() == tile) return true;
                 }
             }
         }

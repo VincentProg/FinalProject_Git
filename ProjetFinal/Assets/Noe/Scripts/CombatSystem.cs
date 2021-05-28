@@ -61,7 +61,7 @@ public class CombatSystem : MonoBehaviour
 
     public void StartFight()
     {
-        PlayGames.initAchievements();
+        PlayGames.instance.initAchievements();
         state = CombatState.PlayerTurn;
         heros[0].StartTurn();
     }

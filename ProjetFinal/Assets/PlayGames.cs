@@ -20,28 +20,10 @@ public class PlayGames : MonoBehaviour
 
     void Start()
     {
-        try
-        {
-            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
-            PlayGamesPlatform.InitializeInstance(config);
-            PlayGamesPlatform.DebugLogEnabled = true;
-            PlayGamesPlatform.Activate();
-
-            Social.localUser.Authenticate((bool success) => {
-                if (success)
-                {
-                    initAchievements();
-                }
-            });
-
-        }
-        catch (Exception exception)
-        {
-            Debug.Log(exception);
-        }
+        SignInOrOut();
     }
 
-    public static void initAchievements()
+    public void initAchievements()
     {
         if (Social.localUser.authenticated)
         {
@@ -85,7 +67,10 @@ public class PlayGames : MonoBehaviour
         if (Social.localUser.authenticated)
         {
             Social.ShowAchievementsUI();
-            
+        }
+        else
+        {
+            SignInOrOut();
         }
     }
 
@@ -93,25 +78,30 @@ public class PlayGames : MonoBehaviour
     {
         if (Social.localUser.authenticated)
         {
-            
             Social.ReportProgress(id, 100f, success => { });
-        }
+        } 
     }
 
     public void SignInOrOut()
     {
+        Debug.LogError("login");
         if (Social.localUser.authenticated)
         {
             PlayGamesPlatform.Instance.SignOut();
         } else
         {
             PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+
             PlayGamesPlatform.InitializeInstance(config);
             PlayGamesPlatform.DebugLogEnabled = true;
             PlayGamesPlatform.Activate();
-            Social.localUser.Authenticate((bool success) => { });
 
-            
+            Social.localUser.Authenticate((bool success) => {
+                if (success)
+                {
+                    initAchievements();
+                }
+            });
         }
     }
 }

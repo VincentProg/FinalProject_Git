@@ -117,4 +117,14 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void LoginGooglePlay()
+    {
+        PlayGames.instance.SignInOrOut();
+    }
+
+    public void ShowAchievements()
+    {
+        PlayGames.instance.ShowAchievements();
+    }
+
 }

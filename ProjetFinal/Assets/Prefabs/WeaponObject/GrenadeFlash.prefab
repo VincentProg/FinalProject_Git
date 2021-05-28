@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  delay: 1
+  delay: 0
   range: 2
   damagesExplose: 0
   nbrTurnSkipFlash: 1

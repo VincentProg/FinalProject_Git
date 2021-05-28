@@ -40,6 +40,7 @@ public class HeroController : MonoBehaviour
 
 
     bool isMyTurn = false;
+    public bool canPlay = true;
     int nbrTurnsToSkip = 0;
 
     // Start is called before the first frame update
@@ -69,115 +70,116 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!ButtonManager.instance.isGamePaused)
+        if (canPlay && !ButtonManager.instance.isGamePaused)
         {
 
-            if (isMyTurn)
+            if (isMyTurn && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
             {
-                if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
 
-                    if (DialogueRobot.instance.isActive)
+                if (DialogueRobot.instance.isActive)
+                {
+                    StartCoroutine(DialogueRobot.instance.iDisappear());
+                    print("yo");
+                    return;
+                }
+
+                if (PA > 0)
+                {
+                    Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+
+                    Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
+                    RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
+                    if (hitInformation)
                     {
-                        StartCoroutine(DialogueRobot.instance.iDisappear());
-                        print("yo");
-                        return;
-                    }
-
-                    if (PA > 0)
-                    {
-                        Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-
-                        Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
-                        RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
-                        if (hitInformation)
+                        if (hitInformation.transform.GetComponent<HexCell>() != null)
                         {
-                            if (hitInformation.transform.GetComponent<HexCell>() != null)
+                            HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
+
+
+                            switch (tileTouched.selectionType)
                             {
-                                HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
+                                case HexCell.SELECTION_TYPE.MOVEMENT:
+                                    Move(tileTouched);
+                                    break;
 
-
-                                switch (tileTouched.selectionType)
-                                {
-                                    case HexCell.SELECTION_TYPE.MOVEMENT:
-                                        Move(tileTouched);
-                                        break;
-
-                                    case HexCell.SELECTION_TYPE.AIM:
-                                        Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                        break;
-                                    case HexCell.SELECTION_TYPE.AIM_IMPACT:
-                                        Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                        break;
-                                    case HexCell.SELECTION_TYPE.ORIGIN_AIM:
-                                        Hero_AttacksManager.instance.LaunchAttack(this);
-                                        break;
-                                    case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
-                                        Hero_AttacksManager.instance.LaunchAttack(this);
-                                        break;
-                                    default:
-                                        ShowMovements();
-                                        break;
-                                }
+                                case HexCell.SELECTION_TYPE.AIM:
+                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                    break;
+                                case HexCell.SELECTION_TYPE.AIM_IMPACT:
+                                    Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                                    break;
+                                case HexCell.SELECTION_TYPE.ORIGIN_AIM:
+                                    Hero_AttacksManager.instance.LaunchAttack(this);
+                                    break;
+                                case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
+                                    Hero_AttacksManager.instance.LaunchAttack(this);
+                                    break;
+                                default:
+                                    ShowMovements();
+                                    break;
                             }
                         }
                     }
                 }
 
-                else
-                {
-                    if (PA > 0 && Input.GetMouseButtonDown(0))
-                    {
-                        Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
 
-                        Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
-                        RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
-                        if (hitInformation)
-                        {
-                            if (hitInformation.transform.GetComponent<HexCell>() != null)
-                            {
-                                HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
+                //else
+                //{
+                //    if (PA > 0 && Input.GetMouseButtonDown(0))
+                //    {
+                //        Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+
+                //        Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
+                //        RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
+                //        if (hitInformation)
+                //        {
+                //            if (hitInformation.transform.GetComponent<HexCell>() != null)
+                //            {
+                //                HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
 
 
-                                switch (tileTouched.selectionType)
-                                {
-                                    case HexCell.SELECTION_TYPE.MOVEMENT:
-                                        Move(tileTouched);
-                                        break;
+                //                switch (tileTouched.selectionType)
+                //                {
+                //                    case HexCell.SELECTION_TYPE.MOVEMENT:
+                //                        Move(tileTouched);
+                //                        break;
 
-                                    case HexCell.SELECTION_TYPE.AIM:
-                                        Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                        break;
-                                    case HexCell.SELECTION_TYPE.AIM_IMPACT:
-                                        Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                        break;
-                                    case HexCell.SELECTION_TYPE.ORIGIN_AIM:
-                                        Hero_AttacksManager.instance.LaunchAttack(this);
-                                        break;
-                                    case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
-                                        Hero_AttacksManager.instance.LaunchAttack(this);
-                                        ShowMovements();
-                                        break;
-                                    default:
-                                        ShowMovements();
-                                        break;
-                                }
-                               
-                            }
-                        }
-                    }
-                }
+                //                    case HexCell.SELECTION_TYPE.AIM:
+                //                        Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                //                        break;
+                //                    case HexCell.SELECTION_TYPE.AIM_IMPACT:
+                //                        Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+                //                        break;
+                //                    case HexCell.SELECTION_TYPE.ORIGIN_AIM:
+                //                        Hero_AttacksManager.instance.LaunchAttack(this);
+                //                        break;
+                //                    case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
+                //                        Hero_AttacksManager.instance.LaunchAttack(this);
+                //                        ShowMovements();
+                //                        break;
+                //                    default:
+                //                        ShowMovements();
+                //                        break;
+                //                }
 
-                if (isMoving)
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, myTile.transform.position, 100f * Time.deltaTime);
-                    if (transform.position == myTile.transform.position)
-                    {
-                        isMoving = false;
-                        ArriveOnCell();
-                    }
-                }
+                //            }
+                //        }
+                //    }
+                //}
             }
         }
+
+        if (isMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, myTile.transform.position, 100f * Time.deltaTime);
+            if (transform.position == myTile.transform.position)
+            {
+                isMoving = false;
+                ArriveOnCell();
+            }
+        }
+            
+        
     }
     private void SetUIAttacks()
     {
@@ -208,7 +210,8 @@ public class HeroController : MonoBehaviour
 
     public void StartTurn()
     {
-        if(nbrTurnsToSkip > 0)
+
+        if (nbrTurnsToSkip > 0)
         {
             nbrTurnsToSkip--;
             EndTurn();
@@ -222,7 +225,10 @@ public class HeroController : MonoBehaviour
         {
             UI_AttackBtn.GetComponent<UI_Attack>().StartTurn();
         }
+
+        if(canPlay)
         ShowMovements();
+        
 
     }
 
@@ -268,7 +274,7 @@ public class HeroController : MonoBehaviour
         return;
     }
 
-    private void Move(HexCell tile)
+    public void Move(HexCell tile)
     {
         if(heroType.Equals(HERO_TYPE.SOLDIER))
             if(AchievementsManager.IsInteresting("CgkImpif4cQQEAIQDg"))

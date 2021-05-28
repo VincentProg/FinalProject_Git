@@ -26,7 +26,7 @@ public class PopUpSystem : MonoBehaviour
     {
         popUpBox = transform.GetChild(0).gameObject;
         anim = popUpBox.GetComponent<Animator>();
-        popUpText = popUpBox.transform.GetChild(1).transform.GetChild(0).GetComponent<Text>();
+        popUpText = popUpBox.transform.GetChild(0).GetComponent<Text>();
 
     }
 

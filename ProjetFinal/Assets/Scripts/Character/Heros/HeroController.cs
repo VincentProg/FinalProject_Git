@@ -256,7 +256,8 @@ public class HeroController : MonoBehaviour
     private void Move(HexCell tile)
     {
         if(heroType.Equals(HERO_TYPE.SOLDIER))
-            AchievementsManager.CgkImpif4cQQEAIQDg_temp_ok = false;
+            if(AchievementsManager.IsInteresting("CgkImpif4cQQEAIQDg"))
+                AchievementsManager.ResetProgress("CgkImpif4cQQEAIQDg");
 
         PM -= TilesManager.instance.HeuristicDistance(myTile.coordinates, tile.coordinates);
         PA--;

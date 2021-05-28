@@ -30,17 +30,7 @@ public class PlayGames : MonoBehaviour
             Social.localUser.Authenticate((bool success) => {
                 if (success)
                 {
-                    Social.LoadAchievements(achievements =>
-                    {
-                        foreach (var item in achievements)
-                        {
-                            if (!item.completed)
-                            {
-                                AchievementsManager.achievement_progress.Add(item.id, 0);
-                                AchievementsManager.achievement_lastupdate.Add(item.id, -1);
-                            }
-                        }
-                    });
+                    initAchievements();
                 }
             });
 
@@ -48,6 +38,27 @@ public class PlayGames : MonoBehaviour
         catch (Exception exception)
         {
             Debug.Log(exception);
+        }
+    }
+
+    public static void initAchievements()
+    {
+        if (Social.localUser.authenticated)
+        {
+            AchievementsManager.achievement_progress.Clear();
+            AchievementsManager.achievement_lastupdate.Clear();
+
+            Social.LoadAchievements(achievements =>
+            {
+                foreach (var item in achievements)
+                {
+                    if (!item.completed)
+                    {
+                        AchievementsManager.achievement_progress.Add(item.id, 0);
+                        AchievementsManager.achievement_lastupdate.Add(item.id, -1);
+                    }
+                }
+            });
         }
     }
 

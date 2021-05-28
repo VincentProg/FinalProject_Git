@@ -2008,12 +2008,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: turnDelay
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: enemyList.Array.data[0]
       value: 
-      objectReference: {fileID: 4030915596351684975, guid: a9fbadf7e93a5524aa2e5ad05d804792, type: 3}
+      objectReference: {fileID: 4030915596351684975, guid: 44742f257fa754a4f9424008923d7fb1, type: 3}
     - target: {fileID: 280400244402115812, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: m_RootOrder
       value: 0

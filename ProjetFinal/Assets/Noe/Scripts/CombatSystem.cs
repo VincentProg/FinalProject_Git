@@ -27,7 +27,7 @@ public class CombatSystem : MonoBehaviour
     int index = 0;
     bool heroesTurn;
 
-    int nbrRound = 1;
+    public int nbrRound = 1;
     public UnityEngine.UI.Text nbrRoundTXT;
 
     // auto turn

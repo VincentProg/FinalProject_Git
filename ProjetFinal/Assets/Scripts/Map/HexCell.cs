@@ -42,7 +42,7 @@ public class HexCell : MonoBehaviour {
 		transform.GetChild(0).parent = transform.parent;
 		anim = GetComponent<Animator>();
 
-		GetComponent<SpriteRenderer>().sortingOrder = -coordinates.X;
+		GetComponent<SpriteRenderer>().sortingOrder = -100;
 
 	}
 

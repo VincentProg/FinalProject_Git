@@ -16,7 +16,7 @@ MonoBehaviour:
   enemyName: 
   health: 2
   PM: 1
-  PA: 2
+  PA: 1
   isFlying: 0
   distanceToStayAway: 0
   Type: 0

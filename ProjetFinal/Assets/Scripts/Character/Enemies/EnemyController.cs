@@ -533,13 +533,15 @@ public class EnemyController : MonoBehaviour
         {
             if (stats.attacks[0].range <= 1)
             {
-                hero.TakeDamages(stats.attacks[0].damages, "enemy", "melee");  
-            } else
+                hero.TakeDamages(stats.attacks[0].damages, "enemy", "melee");
+                StartCoroutine(GiveDamageEffectSequence(hero.myTile.transform.position));
+
+
+            }
+            else
             {
-                List<HexCoordinates> path = new List<HexCoordinates>();
-                path = TilesManager.instance.GetPath(myTile.coordinates, hero.myTile.coordinates, false, false);
+                List<HexCoordinates> path = TilesManager.instance.GetPath(myTile.coordinates, hero.myTile.coordinates, false, false);
                 HexCell tileAimed;
-                print(path[path.Count-1]);
                 TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out tileAimed);
                 foreach (HexCell tile in TilesManager.instance.GetRange(tileAimed.coordinates, stats.attacks[0].range-1, false, false))
                 {
@@ -559,11 +561,37 @@ public class EnemyController : MonoBehaviour
             isActionDone = true;
             
         }
-
         ContinueTurn();
     }
     #endregion
 
+
+    IEnumerator GiveDamageEffectSequence(Vector2 targetPos)
+    {
+        float duration = .1f;
+        float time = 0;
+        Vector2 startPosition = transform.position;
+
+        while (time < duration)
+        {
+            transform.position = Vector2.Lerp(startPosition, targetPos, time / duration / 2);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        time = 0;
+        Vector2 tempPosition = transform.position;
+
+        while (time < duration)
+        {
+            transform.position = Vector2.Lerp(tempPosition, startPosition, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return null;
+
+
+    }
 
     public void TakeDamages(int damages, string characterType, string attackSource)
     {

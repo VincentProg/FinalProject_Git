@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 
@@ -37,14 +38,15 @@ public class CombatSystem : MonoBehaviour
     public UnityEngine.UI.Text nbrRoundTXT;
 
     // auto turn
-/*    private void FixedUpdate()
-    {
-        if(Time.time > next)
+    /*    private void FixedUpdate()
         {
-            next = Time.time + cooldown;
-            heros[0].EndTurn();
-        }
-    }*/
+            if(Time.time > next)
+            {
+                next = Time.time + cooldown;
+                heros[0].EndTurn();
+            }
+        }*/
+
 
     private void Awake()
     {
@@ -56,6 +58,8 @@ public class CombatSystem : MonoBehaviour
     {
         ///nbrRoundTXT.text = nbrRound.ToString(); ;
         StartFight();
+        print(SceneManager.GetActiveScene().buildIndex);
+        print(PlayerPrefs.GetInt("levelReached"));
     }
 
 
@@ -146,6 +150,12 @@ public class CombatSystem : MonoBehaviour
         state = CombatState.Win;
         ButtonManager.instance.ShowWin();
         print("WIN");
+        if(PlayerPrefs.GetInt("levelReached") <= SceneManager.GetActiveScene().buildIndex)
+        {
+            PlayerPrefs.SetInt("levelReached", SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        print ("levelReached"+ SceneManager.GetActiveScene().buildIndex);
+        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDQ");
 
         if (gameManager.levelNumber == 1)
             AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQAg");

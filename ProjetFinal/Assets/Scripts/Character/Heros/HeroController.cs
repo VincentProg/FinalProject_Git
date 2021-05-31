@@ -59,6 +59,7 @@ public class HeroController : MonoBehaviour
             {
                 myTile = hitStart.transform.GetComponent<HexCell>();
                 myTile.hero = this;
+                transform.position = myTile.transform.position;
             }
         }
         #endregion

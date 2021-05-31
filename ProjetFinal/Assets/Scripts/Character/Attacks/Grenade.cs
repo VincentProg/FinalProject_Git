@@ -23,6 +23,7 @@ public class Grenade : MonoBehaviour
     [HideInInspector]
     public HeroController hero;
 
+
     public void StartTurn()
     {
         delay--;
@@ -42,15 +43,29 @@ public class Grenade : MonoBehaviour
         {
 
             case TYPE_GRENADE.EXPLOSE:
+                bool playedFirst = false;
                 foreach(HexCell tile in listTiles)
                 {
-                    if(isFriendlyFire && tile.hero != null)
+
+                    GameObject particle = Instantiate(hero.grenadeExplosionParticle, tile.transform);
+                    particle.transform.localScale = new Vector3(.2f, .2f, .2f);
+
+                    if (playedFirst)
+                    {
+                        particle.GetComponent<AudioSource>().mute = true;
+                    } else
+                    {
+                        playedFirst = true;
+                    }
+
+                    if (isFriendlyFire && tile.hero != null)
                     {
                         tile.hero.TakeDamages(damagesExplose, "grenade", "explosion");
                     } else if(tile.enemy != null)
                     {
                         tile.enemy.TakeDamages(damagesExplose, "grenade", "explosion");
                     }
+
                 }
 
 
@@ -60,6 +75,12 @@ public class Grenade : MonoBehaviour
 
                 foreach (HexCell tile in listTiles)
                 {
+                    GameObject particle = Instantiate(hero.flashParticle, tile.transform);
+                    particle.transform.localScale = new Vector3(.4f, .4f, .4f);
+
+                    var main = particle.GetComponent<ParticleSystem>().main;
+                    main.simulationSpeed = 0.5f;
+
                     if (!isFriendlyFire && tile.hero != null)
                     {
                         tile.hero.SkipTurns(nbrTurnSkipFlash);

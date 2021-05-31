@@ -37,6 +37,11 @@ public class CombatSystem : MonoBehaviour
     public int nbrRound = 1;
     public UnityEngine.UI.Text nbrRoundTXT;
 
+
+    [Header("Particles prefabs")]
+    public GameObject mineParticle;
+    public GameObject spawnParticle;
+
     // auto turn
     /*    private void FixedUpdate()
         {

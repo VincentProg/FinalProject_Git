@@ -328,6 +328,8 @@ public class Hero_AttacksManager : MonoBehaviour
                 if (newObject.GetComponent<Mine>())
                 {
                     newObject.GetComponent<Mine>().myTile = originTile;
+                    newObject.transform.localScale = new Vector3(.7f, .7f, .7f);
+                    newObject.GetComponent<Mine>().explosionObject = CombatSystem.instance.mineParticle;
                 }
                 else if (newObject.GetComponent<Grenade>())
                 {
@@ -346,12 +348,24 @@ public class Hero_AttacksManager : MonoBehaviour
                 originTile.hero.myTile = originTile;
                 originTile.hero.transform.position = originTile.transform.position;
                 originTile.myTileSprite.color = originTile.hero.myTileColor;
+
+                GameObject particle = Instantiate(originTile.hero.teleportParticle, originTile.transform);
+                particle.transform.localScale = new Vector3(.5f, .5f, .5f);
+                particle.transform.localPosition = new Vector2(0, -.2f);
+
                 break;
             default:
                 foreach (HexCell tile in TilesManager.instance._selectedTiles)
                 {
                     if (tile.selectionType == HexCell.SELECTION_TYPE.IMPACT || tile.selectionType == HexCell.SELECTION_TYPE.ORIGIN_IMPACT)
                     {
+
+                        GameObject bullet = Instantiate(heroController.shootParticle, heroController.transform);
+
+                        bullet.GetComponent<Bullet>().target = tile.transform;
+                        bullet.GetComponent<Bullet>().impactParticle = heroController.bulletImpactParticle;
+
+
                         if (tile.hero != null)
                         {
                             if (heroController.heroType.Equals(HeroController.HERO_TYPE.COWBOY))
@@ -378,9 +392,12 @@ public class Hero_AttacksManager : MonoBehaviour
                             else if (heroController.heroType.Equals(HeroController.HERO_TYPE.SOLDIER))
                             {
                                 tile.enemy.TakeDamages(attack.damages, "soldier", "attack");
-                            } else
+
+                            }
+                            else
                             {
                                 tile.enemy.TakeDamages(attack.damages, "enemy", "attack");
+
                             }
 
                         }

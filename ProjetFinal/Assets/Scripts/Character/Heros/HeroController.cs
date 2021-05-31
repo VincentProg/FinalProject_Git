@@ -41,6 +41,15 @@ public class HeroController : MonoBehaviour
     SpriteRenderer myHeroSprite;
 
 
+    [Header("Particles prefabs")]
+    public GameObject flashParticle;
+    public GameObject grenadeExplosionParticle;
+    public GameObject TakeDamageParticle;
+    public GameObject teleportParticle;
+    public GameObject shootParticle;
+    public GameObject bulletImpactParticle;
+
+
     bool isMyTurn = false;
     public bool canPlay = true;
     int nbrTurnsToSkip = 0;
@@ -207,7 +216,7 @@ public class HeroController : MonoBehaviour
     {
         myHeroSprite = GetComponent<SpriteRenderer>();
         myHeroSprite.sprite = stats.sprite;
-        myHeroSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
+        myHeroSprite.sortingOrder = -myTile.coordinates.X;
         nameHero = stats.heroName;
         health = stats.health;
         PM = stats.PM;
@@ -298,7 +307,7 @@ public class HeroController : MonoBehaviour
         myTile = tile;
         myTile.hero = this;
         myTile.myTileSprite.color = myTileColor;
-        myHeroSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
+        myHeroSprite.sortingOrder = -myTile.coordinates.X;
 
 
 
@@ -331,9 +340,25 @@ public class HeroController : MonoBehaviour
         GameObject txt = Instantiate(TXT_Damages, transform.position + new Vector3(0, 16), transform.rotation) ;
         txt.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = damages.ToString();
         txt.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = damages.ToString();
-        Destroy(txt, 1);
 
         PopUpSystem.instance.PopUp("OUCH", this);
+
+        StartCoroutine(DamageEffectSequence(gameObject.GetComponent<SpriteRenderer>(), characterType, attackSource, txt));
+
+    }
+
+
+    IEnumerator DamageEffectSequence(SpriteRenderer sr, string characterType, string attackSource, GameObject txt)
+    {
+        sr.color = Color.red;
+
+        yield return new WaitForSeconds(1.2f);
+
+        yield return null;
+
+        // restore origin color
+        sr.color = Color.white;
+        Destroy(txt, 1);
 
 
         if (health == 0)

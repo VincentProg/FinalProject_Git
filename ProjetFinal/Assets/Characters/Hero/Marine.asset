@@ -16,5 +16,5 @@ MonoBehaviour:
   heroName: Marine
   health: 3
   PM: 1
-  PA: 1
+  PA: 3
   isDofusPM: 0

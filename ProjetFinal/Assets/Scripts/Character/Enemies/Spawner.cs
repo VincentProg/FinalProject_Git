@@ -20,6 +20,7 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     Sprite spriteDead;
 
+    public int nbrTurnSkipStart;
 
 
     void Start()
@@ -52,6 +53,13 @@ public class Spawner : MonoBehaviour
 
     public void SpawnEnemies()
     {
+        if (nbrTurnSkipStart > 0)
+        {
+            nbrTurnSkipStart--;
+            CombatSystem.instance.NextTurn();
+            return;
+        }
+
         if (!isDead)
         {
             nbEntityLeft = nbOfEntityToSpawn;
@@ -84,6 +92,7 @@ public class Spawner : MonoBehaviour
                
 
             CombatSystem.instance.NextTurn();
+            return;
         }
     }
 

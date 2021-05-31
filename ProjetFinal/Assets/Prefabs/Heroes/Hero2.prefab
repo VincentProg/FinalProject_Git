@@ -108,6 +108,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 91e61e489292e4647b1f206d56184805, type: 2}
   myCanvas: {fileID: 0}
   grenades: []
-  heroType: 0
+  heroType: 1
   myTile: {fileID: 0}
   myTileColor: {r: 1, g: 1, b: 1, a: 1}
+  flashParticle: {fileID: 184316, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
+  grenadeExplosionParticle: {fileID: 105310, guid: e6ea0c2b13012484ba2f5dc1054e6d75, type: 3}
+  TakeDamageParticle: {fileID: 0}
+  teleportParticle: {fileID: 165672, guid: 146d2ff25be0f824fa285b16b2915ff3, type: 3}
+  shootParticle: {fileID: 193226, guid: ea6d6080399cf144a81b994393da88d8, type: 3}
+  bulletImpactParticle: {fileID: 102696, guid: 185035e4680c4b344b62bf5ace4674b8, type: 3}
+  canPlay: 1

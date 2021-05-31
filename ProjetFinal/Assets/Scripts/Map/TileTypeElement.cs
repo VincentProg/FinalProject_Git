@@ -28,8 +28,8 @@ public class TileTypeElement : MonoBehaviour
 
         myTile.UpdateTileDatas(type);
         transform.position = myTile.transform.position;
-        GetComponent<SpriteRenderer>().sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
-
+        //GetComponent<SpriteRenderer>().sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
+        GetComponent<SpriteRenderer>().sortingOrder = -myTile.coordinates.X;
     }
 
 }

@@ -37,6 +37,11 @@ public class CombatSystem : MonoBehaviour
     public int nbrRound = 1;
     public UnityEngine.UI.Text nbrRoundTXT;
 
+
+    [Header("Particles prefabs")]
+    public GameObject mineParticle;
+    public GameObject spawnParticle;
+
     // auto turn
     /*    private void FixedUpdate()
         {
@@ -56,8 +61,7 @@ public class CombatSystem : MonoBehaviour
 
     private void Start()
     {
-        ///nbrRoundTXT.text = nbrRound.ToString(); ;
-        StartFight();
+        ///nbrRoundTXT.text = nbrRound.ToString(); 
         print(SceneManager.GetActiveScene().buildIndex);
         print(PlayerPrefs.GetInt("levelReached"));
     }

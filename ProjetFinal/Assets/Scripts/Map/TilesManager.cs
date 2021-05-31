@@ -478,8 +478,8 @@ public class TilesManager : MonoBehaviour
 
             if (temp)
             {
-                Color pathColor = new Color(0.8f, 0.95f, 0.82f);
-                temp.gameObject.GetComponent<SpriteRenderer>().color = pathColor;
+                // Color pathColor = new Color(0.8f, 0.95f, 0.82f);
+                // temp.gameObject.GetComponent<SpriteRenderer>().color = pathColor;
                 _selectedTiles.Add(temp);
             }
 
@@ -702,8 +702,8 @@ public class TilesManager : MonoBehaviour
                         }
                     }
                 }
-                if(bestCell)
-                    bestCell.transform.GetComponent<SpriteRenderer>().color = new Color(.54f, .95f, .9f);
+/*                if(bestCell)
+                    bestCell.transform.GetComponent<SpriteRenderer>().color = new Color(.54f, .95f, .9f);*/
 
 
                 return bestCell;

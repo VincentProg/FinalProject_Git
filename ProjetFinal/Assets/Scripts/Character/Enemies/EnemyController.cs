@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
 
     private bool isMoving;
     private bool isActionDone = true;
+    private bool moved;
 
     [SerializeField]
     Color myTileColor;
@@ -33,6 +34,13 @@ public class EnemyController : MonoBehaviour
 
     HeroController hero1;
     HeroController hero2;
+
+
+    [Header("Particles prefabs")]
+    public GameObject stunnedParticle;
+
+
+    private GameObject currentStunnedObject;
 
 
     private void Start()
@@ -78,7 +86,7 @@ public class EnemyController : MonoBehaviour
 
         myAlienSprite = GetComponent<SpriteRenderer>();
         myAlienSprite.sprite = stats.sprite;
-        myAlienSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
+        myAlienSprite.sortingOrder = -myTile.coordinates.X;
         nameEnemy = stats.enemyName;
         health = stats.health;
         PM = stats.PM;
@@ -89,7 +97,7 @@ public class EnemyController : MonoBehaviour
 
     public void StartTurn()
     {
-
+        moved = false;
         if (nbrTurnToSkip > 0)
         {
             nbrTurnToSkip--;
@@ -106,7 +114,12 @@ public class EnemyController : MonoBehaviour
         }
 
         if (isStun)
+        {
             isStun = false;
+            Destroy(currentStunnedObject);
+            currentStunnedObject = null;
+
+        }
 
         ContinueTurn();
     }
@@ -451,7 +464,7 @@ public class EnemyController : MonoBehaviour
                         myTile.enemy = null;
                         myTile = tile;
                         myTile.myTileSprite.color = myTileColor;
-                        myAlienSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
+                        myAlienSprite.sortingOrder = -myTile.coordinates.X;
 
                         isMoving = true;
 
@@ -480,7 +493,7 @@ public class EnemyController : MonoBehaviour
                         myTile.enemy = null;
                         myTile = tile;
                         myTile.myTileSprite.color = myTileColor;
-                        myAlienSprite.sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
+                        myAlienSprite.sortingOrder = -myTile.coordinates.X;
 
                         isMoving = true;
 
@@ -505,6 +518,7 @@ public class EnemyController : MonoBehaviour
         PM -= 1;
         PA -= 1;
         isActionDone = true;
+        moved = true;
 
         ContinueTurn();
         return;
@@ -515,7 +529,7 @@ public class EnemyController : MonoBehaviour
     private void AttackCAC(HeroController hero)
     {
 
-        if (PA >= stats.attacks[0].costPA)
+        if (PA >= stats.attacks[0].costPA && !moved)
         {
             if (stats.attacks[0].range <= 1)
             {
@@ -560,6 +574,25 @@ public class EnemyController : MonoBehaviour
         txt.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = damages.ToString();
         txt.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = damages.ToString();
 
+        StartCoroutine(DamageEffectSequence(gameObject.GetComponent<SpriteRenderer>(), characterType, attackSource, txt));
+
+    }
+
+
+    IEnumerator DamageEffectSequence(SpriteRenderer sr, string characterType, string attackSource, GameObject txt)
+    {
+        Color originColor = sr.color;
+
+        yield return new WaitForSeconds(.2f);
+
+        sr.color = Color.red;
+
+        yield return new WaitForSeconds(1f);
+
+        yield return null;
+
+        // restore origin color
+        sr.color = originColor;
         Destroy(txt, 1);
 
 
@@ -568,10 +601,17 @@ public class EnemyController : MonoBehaviour
             Death(false, characterType, attackSource);
         }
     }
+    
 
     public void SkipTurns(int turnsToSkip)
     {
         nbrTurnToSkip += turnsToSkip;
+        if (currentStunnedObject == null)
+        {
+            currentStunnedObject = Instantiate(stunnedParticle, transform);
+            currentStunnedObject.transform.localScale = new Vector3(10, 10, 10);
+            currentStunnedObject.transform.localPosition = new Vector3(0, 5, 0);
+        }
     }
 
     private void Death(bool isMyTurn, string characterType, string attackSource)

@@ -46,7 +46,7 @@ public class TutoManager : MonoBehaviour
             // Dialogue et disparition dialogue
             if (!isStepDone)
             {
-                DialogueRobot.instance.RobotSpeak("Salut cher ami, bienvenu dans ta mission d'éradication d'aliens");
+                DialogueRobot.instance.RobotSpeak("Welcome friends, it's been a long time since we worked together... Let's check the basis first.");
                 isStepDone = true;
             }
             else if (TouchScreen() && DialogueRobot.instance.textEnded)
@@ -62,7 +62,7 @@ public class TutoManager : MonoBehaviour
             // Selection 1 case
             if (!isStepDone && !DialogueRobot.instance.isActive)
             {
-                DialogueRobot.instance.RobotSpeak("Appui sur une case sélectionnée verte pour y déplacer ton héro.");
+                DialogueRobot.instance.RobotSpeak("I hope you at least remember how to move? If not, simply click on one of the available hexagones around you.");
                     
                 HexCoordinates coordinates = new HexCoordinates(hero1.myTile.coordinates.X + 1, hero1.myTile.coordinates.Z);
                 TilesManager.instance.mapTiles.TryGetValue(coordinates, out tileAimed);
@@ -87,7 +87,7 @@ public class TutoManager : MonoBehaviour
                 // Fin du tour
                 if (!DialogueRobot.instance.isActive)
                 {
-                    StartCoroutine(RobotSpeakDelay("Parfait. Ton marine n'a désormais plus aucune action possible. Appuie sur ce bouton pour finir ton tour ", 0.5f));
+                    StartCoroutine(RobotSpeakDelay("Perfect! But as you are heavily armed, Angelos, you cannot move and shoot on the same turn, so you might as well just press the end turn button.", 0.5f));
                     ManipulateCanvas(canvasHero1, true, false);
                     arrow.SetActive(true);
                     step++;
@@ -100,7 +100,7 @@ public class TutoManager : MonoBehaviour
             {
                 if (!DialogueRobot.instance.isActive)
                 {
-                    DialogueRobot.instance.RobotSpeak("Déplace à présent ton second héro sur la case verte.");
+                    DialogueRobot.instance.RobotSpeak("Now Spike, you can try to move on the green hexagone.");
                     step++;
                 }
             return;
@@ -124,7 +124,7 @@ public class TutoManager : MonoBehaviour
         {
             if (!DialogueRobot.instance.isActive)
             {
-                DialogueRobot.instance.RobotSpeak("Contrairement au marine, le cowboy peut effectuer 1 action + 1 déplacement durant son tour ! Profites en pour attaquer l'ennemi situé derrière les rochers");
+                DialogueRobot.instance.RobotSpeak("Contrary to this poor Angelos, you can attack and move on the same turn Spike! Blow this xeno hiding behind the rocks in front of you.");
                 ManipulateCanvas(canvasHero2, false, true,1);
                 step++;
             }
@@ -148,7 +148,7 @@ public class TutoManager : MonoBehaviour
         {
             if (!DialogueRobot.instance.isActive)
             {
-                DialogueRobot.instance.RobotSpeak("Le cowboy n'a plus aucune action possible, il peut finir son tour.");
+                DialogueRobot.instance.RobotSpeak("Now that you have nothing left to do, you can simply pass your turn.");
                 step++;
             }
             return;
@@ -162,7 +162,7 @@ public class TutoManager : MonoBehaviour
             if (!DialogueRobot.instance.isActive)
             {
                 boolean = false;
-                DialogueRobot.instance.RobotSpeak("Les ennemis ont joué leur tour. Un ennemi est désormais à portée de ton marine, attaque le!");
+                DialogueRobot.instance.RobotSpeak("Now that these filthy xenos have played their turn, one of them just got in your range Angelos. Shoot him at will!");
                 ManipulateCanvas(canvasHero1, false, true, 1);
 
             }
@@ -185,7 +185,7 @@ public class TutoManager : MonoBehaviour
         {
             if (!DialogueRobot.instance.isActive)
             {
-                DialogueRobot.instance.RobotSpeak("A presént tue le second ennemi avec le cowboy!");
+                DialogueRobot.instance.RobotSpeak("Now it's your turn to eradicate this filth Spike!");
                 ManipulateCanvas(canvasHero1, true, false, 1);
 
             }
@@ -221,7 +221,7 @@ public class TutoManager : MonoBehaviour
         {
             if (!DialogueRobot.instance.isActive)
             {
-                DialogueRobot.instance.RobotSpeak("BIEN JOUE! A présent ton objectif est de détruire le spawner! Pour ce faire, attaque le au corps à corps!");
+                DialogueRobot.instance.RobotSpeak("Nice! All that's left is their nest bursting babies. They are protected from distant attacks, so you will need to get close and attack them to destroy it. A mission will not be over until all of these are destroyed. Good luck! You are on your own now.");
                 ManipulateCanvas(canvasHero1, true, true, 1);
                 ManipulateCanvas(canvasHero2, true, true, 1);
                 hero1.canPlay = true;

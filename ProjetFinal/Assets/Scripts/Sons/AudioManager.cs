@@ -61,11 +61,6 @@ public class AudioManager : MonoBehaviour
             MSlider.value = musicVolume;
             ESlider.value = effectVolume;
         }
-        
-
-        Play("Theme");
-        Play("bell");
-        Play("foot");
     }
     public void Play(string name)
     {

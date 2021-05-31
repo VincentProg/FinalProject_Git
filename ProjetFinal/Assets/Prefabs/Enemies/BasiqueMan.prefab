@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4030915596351684975}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -97,7 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasSpawned: 0
-  SkipFirstTurn: 1
+  SkipFirstTurn: 0
   stats: {fileID: 11400000, guid: 9d52bd903d6c9fb448ccad308a94beb3, type: 2}
   TXT_Damages: {fileID: 6266669382385152773, guid: 4bfe2c1cf56a6704f9f95b27aba90243, type: 3}
+  isStun: 0
   myTileColor: {r: 1, g: 0, b: 0, a: 0.8627451}
+  stunnedParticle: {fileID: 1846532664448058, guid: 20980e90dd2e73b419275714d5c124c4, type: 3}

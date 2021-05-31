@@ -15,6 +15,12 @@ public class DialogueRobot : MonoBehaviour
 
     public bool textEnded;
 
+    public List<string> startSentences = new List<string>();
+
+    int indexStart = 0;
+
+    bool isFightStarted = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -30,6 +36,44 @@ public class DialogueRobot : MonoBehaviour
         anim = popUpBox.GetComponent<Animator>();
         Text = popUpBox.transform.GetChild(1).GetComponent<Text>();
 
+        if(startSentences.Count == 0)
+        {
+            isFightStarted = true;
+            CombatSystem.instance.StartFight();
+            print("salutation");
+        }
+    }
+
+    private void Update()
+    {
+        if (!isFightStarted)
+        {
+
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+            {
+
+                if (isActive)
+                {
+                    StartCoroutine(iDisappear());
+                    if(indexStart >= startSentences.Count)
+                    {
+                        isFightStarted = true;
+                        CombatSystem.instance.StartFight();
+                        print("wtf");
+                    }
+                    return;
+                }
+            }
+
+            if (!isActive)
+            {
+                if (startSentences.Count > indexStart)
+                {
+                    RobotSpeak(startSentences[indexStart]);
+                    indexStart++;
+                }
+            }
+        }
     }
 
     public void RobotSpeak(string text)
@@ -63,5 +107,11 @@ public class DialogueRobot : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         popUpBox.SetActive(false);
         isActive = false;
+    }
+
+    private IEnumerator StartSpeak()
+    {
+        yield return new WaitForSeconds(1.5f);
+        RobotSpeak(startSentences[0]);
     }
 }

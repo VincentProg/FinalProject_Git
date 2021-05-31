@@ -47,7 +47,7 @@ public class Spawner : MonoBehaviour
         #endregion
 
         myTile.myTileSprite.color = colorSprite;
-        GetComponent<SpriteRenderer>().sortingOrder = myTile.coordinates.Y - myTile.coordinates.X;
+        GetComponent<SpriteRenderer>().sortingOrder = -myTile.coordinates.X;
     }
 
 
@@ -79,6 +79,9 @@ public class Spawner : MonoBehaviour
                             nbEntityLeft--;
                             adjacentCells[i].enemy = enemy.GetComponent<EnemyController>();
                             hasSpawned = true;
+
+                            GameObject particle = Instantiate(CombatSystem.instance.spawnParticle, enemy.transform);
+                            particle.transform.localScale = new Vector3(10, 10, 10);
                         }
                     }
                     if (!hasSpawned)

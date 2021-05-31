@@ -2470,6 +2470,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836078642196669652, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
+      propertyPath: startSentences.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836078642196669652, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
+      propertyPath: startSentences.Array.data[0]
+      value: creeve
+      objectReference: {fileID: 0}
     - target: {fileID: 2836078642196669655, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
       propertyPath: m_LocalPosition.x
       value: -246

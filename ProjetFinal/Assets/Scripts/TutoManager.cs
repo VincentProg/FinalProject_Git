@@ -10,7 +10,6 @@ public class TutoManager : MonoBehaviour
     bool wait = false;
     HexCell tileToClick;
 
-    int oldroundCount = 0;
     int step = 0;
 
     [SerializeField]
@@ -24,6 +23,8 @@ public class TutoManager : MonoBehaviour
 
     int nbrPassTurnHero1 = 0;
     int nbrPassTurnHero2 = 0;
+
+    bool boolean = false;
 
     private void Start()
     {
@@ -40,53 +41,48 @@ public class TutoManager : MonoBehaviour
     private void Update()
     {
 
-        if (CombatSystem.instance.nbrRound != oldroundCount)
+        if (step == 0)
         {
-            oldroundCount = CombatSystem.instance.nbrRound;
+            // Dialogue et disparition dialogue
+            if (!isStepDone)
+            {
+                DialogueRobot.instance.RobotSpeak("Salut cher ami, bienvenu dans ta mission d'éradication d'aliens");
+                isStepDone = true;
+            }
+            else if (TouchScreen() && DialogueRobot.instance.textEnded)
+            {
+                StartCoroutine(DialogueRobot.instance.iDisappear());
+                step++;
+                isStepDone = false;
+            }
+        return;
+                
+        } if(step == 1)
+        {
+            // Selection 1 case
+            if (!isStepDone && !DialogueRobot.instance.isActive)
+            {
+                DialogueRobot.instance.RobotSpeak("Appui sur une case sélectionnée verte pour y déplacer ton héro.");
+                    
+                HexCoordinates coordinates = new HexCoordinates(hero1.myTile.coordinates.X + 1, hero1.myTile.coordinates.Z);
+                TilesManager.instance.mapTiles.TryGetValue(coordinates, out tileAimed);
+                tileAimed.SelectCell(HexCell.SELECTION_TYPE.MOVEMENT);
+                isStepDone = true;
+            }
+                
+            else if (TouchTile(tileAimed) && DialogueRobot.instance.textEnded)
+            {
+                    
+                StartCoroutine(DialogueRobot.instance.iDisappear());
+                hero1.Move(tileAimed);
+                step++;
+                isStepDone = false;
+            }
+              return;
         }
 
-        if(oldroundCount == 1)
+        if(step == 2)
         {
-            if (step == 0)
-            {
-                // Dialogue et disparition dialogue
-                if (!isStepDone)
-                {
-                    DialogueRobot.instance.RobotSpeak("Salut cher ami, bienvenu dans ta mission d'éradication d'aliens");
-                    isStepDone = true;
-                }
-                else if (TouchScreen() && DialogueRobot.instance.textEnded)
-                {
-                    StartCoroutine(DialogueRobot.instance.iDisappear());
-                    step++;
-                    isStepDone = false;
-                }
-                
-            } else if(step == 1)
-            {
-                // Selection 1 case
-                if (!isStepDone && !DialogueRobot.instance.isActive)
-                {
-                    DialogueRobot.instance.RobotSpeak("Appui sur une case sélectionnée verte pour y déplacer ton héro.");
-                    
-                    HexCoordinates coordinates = new HexCoordinates(hero1.myTile.coordinates.X + 1, hero1.myTile.coordinates.Z);
-                    TilesManager.instance.mapTiles.TryGetValue(coordinates, out tileAimed);
-                    tileAimed.SelectCell(HexCell.SELECTION_TYPE.MOVEMENT);
-                    isStepDone = true;
-                }
-                
-                else if (TouchTile(tileAimed) && DialogueRobot.instance.textEnded)
-                {
-                    
-                    StartCoroutine(DialogueRobot.instance.iDisappear());
-                    hero1.Move(tileAimed);
-                    step++;
-                    isStepDone = false;
-                }
-            }
-
-            if(step == 2)
-            {
 
                 // Fin du tour
                 if (!DialogueRobot.instance.isActive)
@@ -96,61 +92,143 @@ public class TutoManager : MonoBehaviour
                     arrow.SetActive(true);
                     step++;
                 }
-            }
+            return;
 
-            if(step == 4)
+        }
+
+        if (step == 4)
             {
                 if (!DialogueRobot.instance.isActive)
                 {
                     DialogueRobot.instance.RobotSpeak("Déplace à présent ton second héro sur la case verte.");
                     step++;
                 }
-            }
-
-            if(step == 5)
-            {
-                if (TouchTile(tileAimed) && DialogueRobot.instance.textEnded)
-                {
-                    hero2.Move(tileAimed);
-                   
-                    step++;
-                    StartCoroutine(DialogueRobot.instance.iDisappear());
-                }
-            }
-
-            if(step == 6)
-            {
-                if (!DialogueRobot.instance.isActive)
-                {
-                    DialogueRobot.instance.RobotSpeak("Contrairement au marine, le cowboy peut effectuer 1 action + 1 déplacement durant son tour ! Profites en pour attaquer l'ennemi situé derrière les rochers");
-                    ManipulateCanvas(canvasHero2, false, true,1);
-                    step++;
-                }
-
-            }
-            if(step == 7)
-            {
-                bool isTileGet = false;
-                if (!isTileGet)
-                {
-                    HexCoordinates coordinates = new HexCoordinates(3, 5);
-                    TilesManager.instance.mapTiles.TryGetValue(coordinates, out tileAimed);
-                    isTileGet = true;
-                }
-                TouchAimedTile(tileAimed, hero2);
-            }
-            if(step == 8)
-            {
-                if (!DialogueRobot.instance.isActive)
-                {
-                    DialogueRobot.instance.RobotSpeak("Le cowboy n'a plus aucune action possible, il peut finir son tour.");;
-                    step++;
-                }
-            }
-
+            return;
 
         }
 
+        if (step == 5)
+        {
+            if (TouchTile(tileAimed) && DialogueRobot.instance.textEnded)
+            {
+                hero2.Move(tileAimed);
+                   
+                step++;
+                StartCoroutine(DialogueRobot.instance.iDisappear());
+            }
+            return;
+
+        }
+
+        if (step == 6)
+        {
+            if (!DialogueRobot.instance.isActive)
+            {
+                DialogueRobot.instance.RobotSpeak("Contrairement au marine, le cowboy peut effectuer 1 action + 1 déplacement durant son tour ! Profites en pour attaquer l'ennemi situé derrière les rochers");
+                ManipulateCanvas(canvasHero2, false, true,1);
+                step++;
+            }
+            return;
+
+        }
+        if (step == 7)
+        {
+            if (!boolean)
+            {
+                HexCoordinates coordinates = new HexCoordinates(3, 5);
+                TilesManager.instance.mapTiles.TryGetValue(coordinates, out tileAimed);
+                boolean = true;
+            }
+
+            TouchAimedTile(tileAimed, hero2);
+            return;
+
+        }
+        if (step == 8)
+        {
+            if (!DialogueRobot.instance.isActive)
+            {
+                DialogueRobot.instance.RobotSpeak("Le cowboy n'a plus aucune action possible, il peut finir son tour.");
+                step++;
+            }
+            return;
+
+        }
+
+        // --------------------------------------------------------------------------------------------------------------------  NEW ROUND
+
+        if (step == 10)
+        {
+            if (!DialogueRobot.instance.isActive)
+            {
+                boolean = false;
+                DialogueRobot.instance.RobotSpeak("Les ennemis ont joué leur tour. Un ennemi est désormais à portée de ton marine, attaque le!");
+                ManipulateCanvas(canvasHero1, false, true, 1);
+
+            }
+            else {
+                if (!boolean)
+                {
+                    HexCoordinates coordinates = new HexCoordinates(4, 3);
+                    TilesManager.instance.mapTiles.TryGetValue(coordinates, out tileAimed);
+                    boolean = true;
+                }
+                    
+                TouchAimedTile(tileAimed, hero1);
+                   
+            }
+            return;
+
+        }
+
+        if (step == 11)
+        {
+            if (!DialogueRobot.instance.isActive)
+            {
+                DialogueRobot.instance.RobotSpeak("A presént tue le second ennemi avec le cowboy!");
+                ManipulateCanvas(canvasHero1, true, false, 1);
+
+            }
+            return;
+
+        }
+
+        if (step == 12)
+        {
+            if (TouchTile(tileAimed))
+            {
+                hero2.Move(tileAimed);
+                boolean = false;
+                step++;
+            }
+            return;
+
+        }
+
+        if (step == 13)
+        {
+            if (!boolean)
+            {
+                boolean = true;
+                HexCoordinates coordinates = new HexCoordinates(3, 4);
+                TilesManager.instance.mapTiles.TryGetValue(coordinates, out tileAimed);
+                ManipulateCanvas(canvasHero2, false, true, 1);
+            }
+            TouchAimedTile(tileAimed, hero2);
+            return;
+        }
+        if(step == 14)
+        {
+            if (!DialogueRobot.instance.isActive)
+            {
+                DialogueRobot.instance.RobotSpeak("BIEN JOUE! A présent ton objectif est de détruire le spawner! Pour ce faire, attaque le au corps à corps!");
+                ManipulateCanvas(canvasHero1, true, true, 1);
+                ManipulateCanvas(canvasHero2, true, true, 1);
+                hero1.canPlay = true;
+                hero2.canPlay = true;
+                step++;
+            }
+        }
 
     }
 
@@ -219,6 +297,7 @@ public class TutoManager : MonoBehaviour
     {
         if (nbrPassTurnHero1 == 0)
         {
+            nbrPassTurnHero1++;
             arrow.SetActive(false);
             StartCoroutine(DialogueRobot.instance.iDisappear());
 
@@ -226,8 +305,18 @@ public class TutoManager : MonoBehaviour
             HexCoordinates coordinates = new HexCoordinates(hero2.myTile.coordinates.X + 1, hero2.myTile.coordinates.Z);
             TilesManager.instance.mapTiles.TryGetValue(coordinates, out tileAimed);
             tileAimed.SelectCell(HexCell.SELECTION_TYPE.MOVEMENT);
+            ManipulateCanvas(canvasHero1, false);
             step++;
 
+        }
+        else if(nbrPassTurnHero1 == 1)
+        {
+            nbrPassTurnHero1++;
+            HexCoordinates coordinates = new HexCoordinates(hero2.myTile.coordinates.X+1, hero2.myTile.coordinates.Z-1);
+            TilesManager.instance.mapTiles.TryGetValue(coordinates, out tileAimed);
+            tileAimed.SelectCell(HexCell.SELECTION_TYPE.MOVEMENT);
+            ManipulateCanvas(canvasHero1, false);
+            step++;
         }
     }
 
@@ -236,8 +325,7 @@ public class TutoManager : MonoBehaviour
         if (nbrPassTurnHero2 == 0)
         {
             StartCoroutine(DialogueRobot.instance.iDisappear());
-
-
+            step++;
 
         }
     }

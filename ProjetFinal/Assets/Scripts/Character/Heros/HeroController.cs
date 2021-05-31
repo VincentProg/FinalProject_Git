@@ -285,7 +285,8 @@ public class HeroController : MonoBehaviour
 
     public void Move(HexCell tile)
     {
-        if(heroType.Equals(HERO_TYPE.SOLDIER))
+        print(PA);
+        if (heroType.Equals(HERO_TYPE.SOLDIER))
             if(AchievementsManager.IsInteresting("CgkImpif4cQQEAIQDg"))
                 AchievementsManager.ResetProgress("CgkImpif4cQQEAIQDg");
 
@@ -321,6 +322,7 @@ public class HeroController : MonoBehaviour
         {
             TilesManager.instance.ClearTiles(false);
         }
+        print(PA);
     }
 
     public void TakeDamages(int damages, string characterType, string attackSource)

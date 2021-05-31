@@ -8,15 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Noe/Scenes/LevelMenu.unity
     guid: cdeec0f5c2ff6044a979c45f0034b818
-  - enabled: 1
-    path: Assets/Scenes/GD/Level 11.unity
-    guid: e72534d8b3785c94a9779b2e716c42f8
-  - enabled: 1
-    path: Assets/Scenes/GD/Level 12.unity
-    guid: a4783c018e68c0e478f5e65dc56c1a32
-  - enabled: 1
-    path: Assets/Scenes/GD/Level 23.unity
-    guid: d90f0d2dacc3f5c479883d41f60b960d
   - enabled: 0
     path: Assets/Scenes/Vincent/Vincent.unity
     guid: 2cda990e2423bbf4892e6590ba056729
@@ -59,4 +50,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GD/Level 10.unity
     guid: 5179b0c41224a8042bb989867e81bb4d
+  - enabled: 1
+    path: Assets/Scenes/GD/Level 11.unity
+    guid: e72534d8b3785c94a9779b2e716c42f8
+  - enabled: 1
+    path: Assets/Scenes/GD/Level 12.unity
+    guid: a4783c018e68c0e478f5e65dc56c1a32
+  - enabled: 1
+    path: Assets/Scenes/GD/Level 23.unity
+    guid: d90f0d2dacc3f5c479883d41f60b960d
   m_configObjects: {}

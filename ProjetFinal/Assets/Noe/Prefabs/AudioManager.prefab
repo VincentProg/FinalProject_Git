@@ -44,12 +44,102 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    loop: 0
+  - name: music_menu
+    clip: {fileID: 8300000, guid: 9dbb4536fbd260b4eb6862057356c92f, type: 3}
+    volume: 1
+    loop: 1
     source: {fileID: 0}
     type: 0
+  - name: music_level
+    clip: {fileID: 8300000, guid: 593a2b74019725646935a38b6232a605, type: 3}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+    type: 0
+  - name: alien_death
+    clip: {fileID: 8300000, guid: 933b09d72a6170a4f9ce2fca0493ff70, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
+  - name: alien_death_big
+    clip: {fileID: 8300000, guid: b678c49856b93e54e9d9624dbf3fc9ec, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
+  - name: alien_death_medium
+    clip: {fileID: 8300000, guid: fde3ebf1f56985545873221308e1f13c, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
+  - name: bio_explosion
+    clip: {fileID: 8300000, guid: 47b782200ae0b7d45b621544ba127fb1, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
+  - name: bomb_beep
+    clip: {fileID: 8300000, guid: c3b4d6dae5d9e7c4b9533ca226920f87, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
+  - name: claw
+    clip: {fileID: 8300000, guid: 6f11816a266e993429718d7694ef67c5, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
+  - name: bowboy_death
+    clip: {fileID: 8300000, guid: 17f46e35d831a354f9030ebea2a64ef4, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
+  - name: dynamite
+    clip: {fileID: 8300000, guid: 7a4ad99f7d4fb4745903baf2a92edb70, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
+  - name: flashbang
+    clip: {fileID: 8300000, guid: 46171ff66997713408c3850d9023e26b, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
+  - name: rocket_boots
+    clip: {fileID: 8300000, guid: 534f6f30f73ef3142872f72f5f80d4b1, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
+  - name: soldier_death
+    clip: {fileID: 8300000, guid: e96e108513f32444da832651e1586b01, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
+  - name: space_gun_01
+    clip: {fileID: 8300000, guid: 9768bd99afbdfac49b39725815c7ef8d, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
+  - name: space_gun_06
+    clip: {fileID: 8300000, guid: 6e1a8e282f14fab4a8ed81027cbfc4c7, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
+  - name: spawner_broken
+    clip: {fileID: 8300000, guid: 55643e616869c564e89a994098a5c330, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
   musicVolume: 1
   effectVolume: 1
   MSlider: {fileID: 0}

@@ -253,11 +253,14 @@ public class HeroController : MonoBehaviour
 
         if (PM >= 1 && PA > 0)
         {
-            foreach( HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, rangePM, false, false, false))
+            foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, rangePM, false, false, false))
             {
                 tile.SelectCell(HexCell.SELECTION_TYPE.MOVEMENT);
             }
-            
+
+        } else if (PM == 0 && PA == 0)
+        {
+            GameManager.instance.HighlightEnd();
         }
 
     }

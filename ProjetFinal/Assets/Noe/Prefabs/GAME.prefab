@@ -2779,6 +2779,7 @@ MonoBehaviour:
   popUpBox: {fileID: 0}
   isActive: 0
   textEnded: 0
+  startSentences: []
 --- !u!1 &4018592601999425938
 GameObject:
   m_ObjectHideFlags: 0
@@ -3681,6 +3682,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelNumber: 0
   isLastLevel: 0
+  endButtonUICowboy: {fileID: 3477094385396328922}
+  endButtonUISoldier: {fileID: 3477094384440975532}
+  endButtonImage: {fileID: 21300000, guid: bf9a059f21442c847bf23e126af1ee68, type: 3}
+  endButtonImageLit: {fileID: 21300000, guid: 9b6a74368c538484cb993336dfeea141, type: 3}
 --- !u!114 &2481958780195239480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7459,6 +7464,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3555c373c973bf4883c4684fd2397d6, type: 3}
+--- !u!4 &8258300009620008032 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7956928292068375731, guid: e3555c373c973bf4883c4684fd2397d6, type: 3}
+  m_PrefabInstance: {fileID: 2087365672303382739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8258300009620008038 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7956928292068375733, guid: e3555c373c973bf4883c4684fd2397d6, type: 3}
@@ -7470,11 +7480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd13615df3c5e42408b783c2e664d8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &8258300009620008032 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7956928292068375731, guid: e3555c373c973bf4883c4684fd2397d6, type: 3}
-  m_PrefabInstance: {fileID: 2087365672303382739}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4066280400893978836
 PrefabInstance:
   m_ObjectHideFlags: 0

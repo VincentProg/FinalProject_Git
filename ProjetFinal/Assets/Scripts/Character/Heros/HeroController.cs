@@ -89,11 +89,8 @@ public class HeroController : MonoBehaviour
     {
         if (canPlay && !ButtonManager.instance.isGamePaused && isMyTurn)
         {
-
             if(PA > 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
             {
-
-
                 Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
                 Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
@@ -130,16 +127,13 @@ public class HeroController : MonoBehaviour
                     }
                 }
             }
-
-
-                
-            
             else
             {
                 if (isMyTurn && Input.GetMouseButtonDown(0))
                 {
                     if (PA > 0)
                     {
+
                         Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
 
                         Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
@@ -271,7 +265,6 @@ public class HeroController : MonoBehaviour
     public void EndTurn()
     {
         blurr.SetActive(true);
-        print(this.name);
         if (AchievementsManager.IsInteresting("CgkImpif4cQQEAIQDA"))
             if (PM == stats.PM)
                 AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDA");
@@ -300,7 +293,6 @@ public class HeroController : MonoBehaviour
 
     public void Move(HexCell tile)
     {
-        print(PA);
         if (heroType.Equals(HERO_TYPE.SOLDIER))
             if(AchievementsManager.IsInteresting("CgkImpif4cQQEAIQDg"))
                 AchievementsManager.ResetProgress("CgkImpif4cQQEAIQDg");

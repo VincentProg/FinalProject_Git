@@ -20,12 +20,16 @@ public class HeroController : MonoBehaviour
     // ATTACKS
     public List<Attack> attacks = new List<Attack>();
     public GameObject myCanvas;
+    public GameObject blurr;
     private bool isMoving;
 
 
     public List<Grenade> grenades = new List<Grenade>();
 
     public HERO_TYPE heroType;
+
+    
+
 
     public enum HERO_TYPE
     {
@@ -68,6 +72,7 @@ public class HeroController : MonoBehaviour
         SetMyStats();
         SetUIAttacks();
 
+        
     }
 
     // Update is called once per frame
@@ -173,6 +178,8 @@ public class HeroController : MonoBehaviour
                     }
                 }
             }
+
+
         }
 
         if (isMoving)
@@ -216,7 +223,8 @@ public class HeroController : MonoBehaviour
 
     public void StartTurn()
     {
-
+        blurr.SetActive(false);
+        print(gameObject.name);
         if (nbrTurnsToSkip > 0)
         {
             nbrTurnsToSkip--;
@@ -229,11 +237,12 @@ public class HeroController : MonoBehaviour
         myCanvas.SetActive(true);
         foreach (Transform UI_AttackBtn in myCanvas.transform.GetChild(0).transform)
         {
-            UI_AttackBtn.GetComponent<UI_Attack>().StartTurn();
+            if(UI_AttackBtn.GetComponent<UI_Attack>())
+                UI_AttackBtn.GetComponent<UI_Attack>().StartTurn();
         }
 
         if(canPlay)
-        ShowMovements();
+            ShowMovements();
         
 
     }
@@ -259,13 +268,17 @@ public class HeroController : MonoBehaviour
 
     public void EndTurn()
     {
+        blurr.SetActive(true);
+        print(this.name);
         if (AchievementsManager.IsInteresting("CgkImpif4cQQEAIQDA"))
             if (PM == stats.PM)
                 AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDA");
-            
+
 
         //print("endturn");
+        
         isMyTurn = false;
+        
         myCanvas.SetActive(false);
         PM = stats.PM;
         PA = stats.PA;

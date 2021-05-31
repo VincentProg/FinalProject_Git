@@ -47,6 +47,8 @@ public class UI_Attack : MonoBehaviour
 
         }
         else transform.GetChild(1).gameObject.SetActive(false);
+
+
     }
 
     public void OnClick()

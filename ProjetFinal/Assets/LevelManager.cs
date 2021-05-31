@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     public Button[] buttons;
+    public GameObject OptionMenu;
     private int DEBUG_nbOfButtonAccessible;
     void Start()
     {
@@ -46,5 +47,14 @@ public class LevelManager : MonoBehaviour
         }
         print("nb Of button: " + DEBUG_nbOfButtonAccessible);
         DEBUG_nbOfButtonAccessible = 0;
+    }
+
+    public void ExitOptions()
+    {
+        OptionMenu.SetActive(false);
+    }
+    public void OpenOptions()
+    {
+        OptionMenu.SetActive(true);
     }
 }

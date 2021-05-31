@@ -233,7 +233,6 @@ public class HeroController : MonoBehaviour
     public void StartTurn()
     {
         blurr.SetActive(false);
-        print(gameObject.name);
         if (nbrTurnsToSkip > 0)
         {
             nbrTurnsToSkip--;
@@ -344,7 +343,6 @@ public class HeroController : MonoBehaviour
         {
             TilesManager.instance.ClearTiles(false);
         }
-        print(PA);
     }
 
     public void TakeDamages(int damages, string characterType, string attackSource)
@@ -389,7 +387,6 @@ public class HeroController : MonoBehaviour
 
     private void Death(string characterType, string attackSource)
     {
-        print("Death");
         CombatSystem.instance.state = CombatSystem.CombatState.Lose;
         ButtonManager.instance.ShowLose();
 

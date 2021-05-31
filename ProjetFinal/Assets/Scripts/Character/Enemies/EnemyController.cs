@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
 
     private bool isMoving;
     private bool isActionDone = true;
+    private bool moved;
 
     [SerializeField]
     Color myTileColor;
@@ -96,7 +97,7 @@ public class EnemyController : MonoBehaviour
 
     public void StartTurn()
     {
-
+        moved = false;
         if (nbrTurnToSkip > 0)
         {
             nbrTurnToSkip--;
@@ -517,6 +518,7 @@ public class EnemyController : MonoBehaviour
         PM -= 1;
         PA -= 1;
         isActionDone = true;
+        moved = true;
 
         ContinueTurn();
         return;
@@ -527,7 +529,7 @@ public class EnemyController : MonoBehaviour
     private void AttackCAC(HeroController hero)
     {
 
-        if (PA >= stats.attacks[0].costPA)
+        if (PA >= stats.attacks[0].costPA && !moved)
         {
             if (stats.attacks[0].range <= 1)
             {

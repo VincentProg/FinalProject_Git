@@ -8,43 +8,43 @@ public class AchievementsManager
             CgkImpif4cQQEAIQAg //
 
             // Finir le jeu
-            CgkImpif4cQQEAIQAw
+            CgkImpif4cQQEAIQAw //
 
             // Vaincre 3 ennemis d’affilés avec le cowboy
             CgkImpif4cQQEAIQBA //
 
-            // Toucher 3 ennemis d’affilés avec la flash
+            // Toucher 3 ennemis en même temps avec la flash
             CgkImpif4cQQEAIQBQ //
 
-            // Tuer 3 ennemis d’affilés avec la charge explosive
+            // Tuer 3 ennemis en même temps avec la charge explosive
             CgkImpif4cQQEAIQBg //
 
             // Utiliser les rocket boots lorsque deux ennemis sont à côté du cowboy
-            CgkImpif4cQQEAIQBw
+            CgkImpif4cQQEAIQBw //
 
             // Terminer un niveau sans tuer personne avec l’un des deux héros
-            CgkImpif4cQQEAIQCA
+            CgkImpif4cQQEAIQCA //
 
             // Finir un niveau sans tuer personne
-            CgkImpif4cQQEAIQCQ
+            CgkImpif4cQQEAIQCQ //
 
             // Tuer au moins 4 ennemis stuns par le grenade flash avec la grenade du soldat
-            CgkImpif4cQQEAIQCg
+            CgkImpif4cQQEAIQCg //
 
             // Tuer son allié avec une grenade
-            CgkImpif4cQQEAIQCw
+            CgkImpif4cQQEAIQCw //
 
             // Passer son premier tour sur les deux personnage
-            CgkImpif4cQQEAIQDA
+            CgkImpif4cQQEAIQDA //
 
             // Finir un niveau avec seulement 1pv restant sur les 2 persos
-            CgkImpif4cQQEAIQDQ
+            CgkImpif4cQQEAIQDQ //
 
             // Ne pas bouger pendant 3 tours avec le soldat
-            CgkImpif4cQQEAIQDg
+            CgkImpif4cQQEAIQDg //
 
             // Réussir à tuer 5 ennemis ou + en un seul tour global
-            CgkImpif4cQQEAIQDw
+            CgkImpif4cQQEAIQDw //
     */
 
 
@@ -62,11 +62,11 @@ public class AchievementsManager
 
         if (achievement_progress.ContainsKey(id))
         {
-            if (id.Equals("CgkImpif4cQQEAIQCQ"))
+            if (id.Equals("CgkImpif4cQQEAIQCQ") || id.Equals("CgkImpif4cQQEAIQCA") || id.Equals("CgkImpif4cQQEAIQAg") || id.Equals("CgkImpif4cQQEAIQAw") || id.Equals("CgkImpif4cQQEAIQDQ"))
             {
                 IncrementProgress(id);
-            }
-            if (id.Equals("CgkImpif4cQQEAIQDQ"))
+            } 
+            else if (id.Equals("CgkImpif4cQQEAIQDQ"))
             {
 
                 bool pvOk = true;
@@ -80,9 +80,20 @@ public class AchievementsManager
                 if (pvOk)
                     IncrementProgress(id);
             }
-            else if (id.Equals("CgkImpif4cQQEAIQAg"))
+            else if (id.Equals("CgkImpif4cQQEAIQBg") || id.Equals("CgkImpif4cQQEAIQDA") || id.Equals("CgkImpif4cQQEAIQDw"))
             {
-                IncrementProgress(id);
+
+                int value;
+                achievement_lastupdate.TryGetValue(id, out value);
+
+                if(CombatSystem.instance.nbrRound == value)
+                {
+                    IncrementProgress(id);
+                } else
+                {
+                    ResetProgress(id);
+                    IncrementProgress(id);
+                }
 
             }
             else
@@ -109,18 +120,33 @@ public class AchievementsManager
         {
             if (achievement_progress.ContainsKey(id))
             {
+                int amount = 0;
                 List<HexCell> list = TilesManager.instance.GetRadius(coords, 1, true, true, true);
                 foreach (var item in list)
                 {
                     if(item.enemy != null)
                     {
-                        Debug.Log("yes");
-                    } else
-                    {
-                        Debug.Log("nop");
-
+                        amount++;
                     }
                 }
+                if (amount >= 2)
+                    IncrementProgress("CgkImpif4cQQEAIQBw");
+            }
+        } else if (id.Equals("CgkImpif4cQQEAIQBQ"))
+        {
+            if (achievement_progress.ContainsKey(id))
+            {
+                int amount = 0;
+                List<HexCell> list = TilesManager.instance.GetRadius(coords, 1, true, true, true);
+                foreach (var item in list)
+                {
+                    if(item.enemy != null)
+                    {
+                        amount++;
+                    }
+                }
+                if (amount >= 3)
+                    IncrementProgress(id);
             }
         }
     }
@@ -165,7 +191,6 @@ public class AchievementsManager
         {
             int score;
             achievement_progress.TryGetValue(id, out score);
-            Debug.Log(id + " " + score);
             switch (id)
             {
                 case "CgkImpif4cQQEAIQAg":
@@ -195,7 +220,7 @@ public class AchievementsManager
                     break;
 
                 case "CgkImpif4cQQEAIQBQ":
-                    if (score >= 3)
+                    if (score >= 1)
                     {
                         Debug.LogWarning(id + " ok");
                         PlayGames.instance.UnlockAchievement(id);
@@ -252,7 +277,8 @@ public class AchievementsManager
                     break;
 
                 case "CgkImpif4cQQEAIQDA":
-                    if (score >= 2)
+                    Debug.Log(score);
+                    if (score >= CombatSystem.instance.heros.Count)
                     {
                         Debug.LogWarning(id + " ok");
                         PlayGames.instance.UnlockAchievement(id);
@@ -260,7 +286,7 @@ public class AchievementsManager
                     break;
 
                 case "CgkImpif4cQQEAIQDQ":
-                    if (score >= 1)
+                    if (score >= CombatSystem.instance.heros.Count)
                     {
                         Debug.LogWarning(id + " ok");
                         PlayGames.instance.UnlockAchievement(id);
@@ -291,5 +317,12 @@ public class AchievementsManager
         }
     }
 
-
+    public static void DeactivateAchievement(string id)
+    {
+        if (achievement_progress.ContainsKey(id))
+        {
+            achievement_progress.Remove(id);
+            achievement_lastupdate.Remove(id);
+        }
+    }
 }

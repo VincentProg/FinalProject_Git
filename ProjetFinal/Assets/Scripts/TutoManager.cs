@@ -131,7 +131,7 @@ public class TutoManager : MonoBehaviour
 
     void TouchButtonPassTurnHero1()
     {
-        
+        arrow.SetActive(false);
     }
 
     IEnumerator RobotSpeakDelay(string sentence, float delay)

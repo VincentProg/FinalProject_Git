@@ -56,8 +56,7 @@ public class ButtonManager : MonoBehaviour
     }
     public void BackToMenu()
     {
-        print(SceneManager.GetActiveScene().buildIndex -1);
-        PlayerPrefs.SetInt("levelReached", SceneManager.GetActiveScene().buildIndex -1);
+        CombatSystem.instance.state = CombatSystem.CombatState.Lose;
         SceneManager.LoadScene("LevelMenu");
         print("Going Back To MainMenu . . .");
     }
@@ -83,7 +82,6 @@ public class ButtonManager : MonoBehaviour
 
     public void NextLevel()
     {
-        PlayerPrefs.SetInt("levelReached", SceneManager.GetActiveScene().buildIndex+1 - 2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -115,6 +113,16 @@ public class ButtonManager : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void LoginGooglePlay()
+    {
+        PlayGames.instance.SignInOrOut();
+    }
+
+    public void ShowAchievements()
+    {
+        PlayGames.instance.ShowAchievements();
     }
 
 }

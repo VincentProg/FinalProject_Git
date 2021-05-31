@@ -13,6 +13,7 @@ public class HeroController : MonoBehaviour
     [HideInInspector]
     public int health, PM, PA;
 
+
     public GameObject TXT_Damages;
     private bool canShowDamages = true;
 
@@ -20,6 +21,7 @@ public class HeroController : MonoBehaviour
     public List<Attack> attacks = new List<Attack>();
     public GameObject myCanvas;
     private bool isMoving;
+
 
     public List<Grenade> grenades = new List<Grenade>();
 
@@ -57,6 +59,7 @@ public class HeroController : MonoBehaviour
             {
                 myTile = hitStart.transform.GetComponent<HexCell>();
                 myTile.hero = this;
+                transform.position = myTile.transform.position;
             }
         }
         #endregion
@@ -79,7 +82,6 @@ public class HeroController : MonoBehaviour
                 if (DialogueRobot.instance.isActive)
                 {
                     StartCoroutine(DialogueRobot.instance.iDisappear());
-                    print("yo");
                     return;
                 }
 
@@ -238,7 +240,6 @@ public class HeroController : MonoBehaviour
 
     public void ShowMovements()
     {
-        print("showww");
         TilesManager.instance.ClearTiles(false);
   
         int rangePM;
@@ -258,6 +259,11 @@ public class HeroController : MonoBehaviour
 
     public void EndTurn()
     {
+        if (AchievementsManager.IsInteresting("CgkImpif4cQQEAIQDA"))
+            if (PM == stats.PM)
+                AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDA");
+            
+
         //print("endturn");
         isMyTurn = false;
         myCanvas.SetActive(false);
@@ -267,12 +273,11 @@ public class HeroController : MonoBehaviour
         TilesManager.instance.ClearTiles(false);
         PopUpSystem.instance.Cut();
 
-        for (int i = 0; i < grenades.Count; i++)
+        for (int i = grenades.Count - 1; i >= 0; i--)
         {
+            Debug.Log(grenades[i]);
             grenades[i].StartTurn();
         }
-
-        
 
         CombatSystem.instance.NextTurn();
         return;
@@ -318,7 +323,7 @@ public class HeroController : MonoBehaviour
         }
     }
 
-    public void TakeDamages(int damages)
+    public void TakeDamages(int damages, string characterType, string attackSource)
     {
         health -= damages;
         health = Mathf.Clamp(health, 0, stats.health);
@@ -330,9 +335,10 @@ public class HeroController : MonoBehaviour
 
         PopUpSystem.instance.PopUp("OUCH", this);
 
+
         if (health == 0)
         {
-            Death();
+            Death(characterType, attackSource);
         }
     }
 
@@ -341,11 +347,16 @@ public class HeroController : MonoBehaviour
         nbrTurnsToSkip += turnsToSkip;
     }
 
-    private void Death()
+    private void Death(string characterType, string attackSource)
     {
         print("Death");
         CombatSystem.instance.state = CombatSystem.CombatState.Lose;
         ButtonManager.instance.ShowLose();
+
+
+        if (characterType.Equals("grenade") && attackSource.Equals("explosion"))
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCw");
+        
     }
 
 }

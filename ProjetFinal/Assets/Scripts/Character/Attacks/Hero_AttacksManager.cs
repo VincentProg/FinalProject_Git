@@ -354,7 +354,19 @@ public class Hero_AttacksManager : MonoBehaviour
                     {
                         if (tile.hero != null)
                         {
-                            tile.hero.TakeDamages(attack.damages);
+                            if (heroController.heroType.Equals(HeroController.HERO_TYPE.COWBOY))
+                            {
+                                tile.hero.TakeDamages(attack.damages, "cowboy", "attack");
+
+                            }
+                            else if (heroController.heroType.Equals(HeroController.HERO_TYPE.SOLDIER))
+                            {
+                                tile.hero.TakeDamages(attack.damages, "soldier", "attack");
+                            }
+                            else
+                            {
+                                tile.hero.TakeDamages(attack.damages, "enemy", "attack");
+                            }
                         }
                         else if (tile.enemy != null)
                         {

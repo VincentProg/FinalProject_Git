@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            print("hello");
+/*            print("hello");*/
         }
 
         else
@@ -110,5 +110,6 @@ public class AudioManager : MonoBehaviour
         }
         SaveSystem.SaveOptions(this);
     }
+
 }
 

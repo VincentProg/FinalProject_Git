@@ -11,12 +11,10 @@ public class Mine : MonoBehaviour
 
     public HexCell myTile;
 
-    public GameObject explosionObject;
-
 
     public void Attack()
     {
-        GameObject particles = Instantiate(explosionObject, transform);
+        GameObject particles = Instantiate(CombatSystem.instance.mineParticle, transform);
         particles.transform.SetParent(null);
         particles.transform.localScale = new Vector3(9, 9, 9);
         particles.transform.eulerAngles = new Vector3(-90f, 0, 0);

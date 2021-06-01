@@ -712,6 +712,12 @@ public class EnemyController : MonoBehaviour
 
     private void Explode()
     {
+
+        GameObject particles = Instantiate(CombatSystem.instance.kamikazeParticle, transform);
+        particles.transform.SetParent(null);
+        particles.transform.localScale = new Vector3(9, 9, 9);
+        particles.transform.eulerAngles = new Vector3(-90f, 0, 0);
+
         AudioManager.instance.Play("bio_explosion");
         foreach (HexCell tile in TilesManager.instance.GetRange(myTile.coordinates, stats.attacks[0].range, true, true))
         {

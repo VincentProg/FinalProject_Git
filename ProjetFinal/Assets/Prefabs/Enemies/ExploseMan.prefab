@@ -100,4 +100,6 @@ MonoBehaviour:
   SkipFirstTurn: 1
   stats: {fileID: 11400000, guid: d27cafa8f4b39734bb4196712acf6021, type: 2}
   TXT_Damages: {fileID: 6266669382385152773, guid: 4bfe2c1cf56a6704f9f95b27aba90243, type: 3}
+  isStun: 0
   myTileColor: {r: 1, g: 0, b: 0, a: 0.8627451}
+  stunnedParticle: {fileID: 1846532664448058, guid: 20980e90dd2e73b419275714d5c124c4, type: 3}

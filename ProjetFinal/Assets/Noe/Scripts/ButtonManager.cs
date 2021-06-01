@@ -29,6 +29,7 @@ public class ButtonManager : MonoBehaviour
        // optionMenu.SetActive(false);
         LoseMenu.SetActive(false);
         WinMenu.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void ReloadScene()
@@ -57,6 +58,7 @@ public class ButtonManager : MonoBehaviour
     }
     public void BackToMenu()
     {
+        AudioManager.instance.ApplyChanges();
         AudioManager.instance.Play("click_sci_fi");
         CombatSystem.instance.state = CombatSystem.CombatState.Lose;
         SceneManager.LoadScene("LevelMenu");

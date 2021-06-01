@@ -12,14 +12,17 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         updateLevelAvailable();
+        AudioManager.instance.StopPlayAll();
         AudioManager.instance.Play("music_menu");
     }
 
     public void StartLevel(string name)
     {
+        AudioManager.instance.ApplyChanges();
         AudioManager.instance.Play("click_sci_fi");
         print("starting level called : " + name);
         SceneManager.LoadScene(name);
+        Time.timeScale = 1;
     }
 
     private void Update()

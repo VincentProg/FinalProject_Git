@@ -41,6 +41,7 @@ public class CombatSystem : MonoBehaviour
     [Header("Particles prefabs")]
     public GameObject mineParticle;
     public GameObject spawnParticle;
+    public GameObject kamikazeParticle;
 
     // auto turn
     /*    private void FixedUpdate()

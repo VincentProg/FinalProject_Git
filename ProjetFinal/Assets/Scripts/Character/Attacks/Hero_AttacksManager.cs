@@ -329,7 +329,6 @@ public class Hero_AttacksManager : MonoBehaviour
                 {
                     newObject.GetComponent<Mine>().myTile = originTile;
                     newObject.transform.localScale = new Vector3(.7f, .7f, .7f);
-                    newObject.GetComponent<Mine>().explosionObject = CombatSystem.instance.mineParticle;
                     AudioManager.instance.Play("bomb_beep");
                 }
                 else if (newObject.GetComponent<Grenade>())

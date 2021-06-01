@@ -1336,6 +1336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigMan
       objectReference: {fileID: 0}
+    - target: {fileID: 8079578729787815160, guid: 44742f257fa754a4f9424008923d7fb1, type: 3}
+      propertyPath: SkipFirstTurn
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44742f257fa754a4f9424008923d7fb1, type: 3}
 --- !u!1 &338331318
@@ -9937,6 +9941,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4578216963983852510, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216963983852510, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -35.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216964511966708, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216964511966708, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -34.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4578216966033541446, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_Name
       value: GAME 1

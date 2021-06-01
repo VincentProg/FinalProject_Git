@@ -80,7 +80,7 @@ public class HeroController : MonoBehaviour
 
         SetMyStats();
         SetUIAttacks();
-
+        
         
     }
 
@@ -219,6 +219,7 @@ public class HeroController : MonoBehaviour
 
     public void StartTurn()
     {
+        print("StartTurn");
         blurr.SetActive(false);
         if (nbrTurnsToSkip > 0)
         {

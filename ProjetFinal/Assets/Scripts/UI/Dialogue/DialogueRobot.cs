@@ -35,7 +35,7 @@ public class DialogueRobot : MonoBehaviour
         popUpBox = transform.GetChild(0).gameObject;
         anim = popUpBox.GetComponent<Animator>();
         Text = popUpBox.transform.GetChild(1).GetComponent<Text>();
-
+        print(startSentences.Count);
         if(startSentences.Count == 0)
         {
             isFightStarted = true;

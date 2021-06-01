@@ -140,6 +140,12 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
     type: 1
+  - name: click_sci_fi
+    clip: {fileID: 8300000, guid: 90dccc540c27f5047af92e450a22a7bf, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
   musicVolume: 1
   effectVolume: 1
   MSlider: {fileID: 0}

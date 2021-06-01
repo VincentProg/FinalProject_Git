@@ -377,10 +377,10 @@ public class HeroController : MonoBehaviour
 
     private void Death(string characterType, string attackSource)
     {
-        if(name == "")
-            AudioManager.instance.Play("");
+        if(name == "Hero1")
+            AudioManager.instance.Play("soldier_death");
         else
-            AudioManager.instance.Play("");
+            AudioManager.instance.Play("cowboy_death");
         CombatSystem.instance.state = CombatSystem.CombatState.Lose;
         ButtonManager.instance.ShowLose();
 

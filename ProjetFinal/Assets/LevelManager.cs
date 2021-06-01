@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         updateLevelAvailable();
+        AudioManager.instance.Play("music_menu");
     }
 
     public void StartLevel(string name)
@@ -25,7 +26,12 @@ public class LevelManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             PlayerPrefs.SetInt("levelReached", 1);
-            print("player pref reset");
+            updateLevelAvailable();
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            PlayerPrefs.SetInt("levelReached", 100);
+            print("onkefnokjegrfanj");
             updateLevelAvailable();
         }
     }
@@ -42,10 +48,9 @@ public class LevelManager : MonoBehaviour
             if (i + 1 > levelReached && buttons[i] != null)
                 buttons[i].interactable = false;
             else
-                DEBUG_nbOfButtonAccessible++;
+                buttons[i].interactable = true;
 
         }
-        print("nb Of button: " + DEBUG_nbOfButtonAccessible);
         DEBUG_nbOfButtonAccessible = 0;
     }
 

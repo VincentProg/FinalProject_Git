@@ -62,8 +62,8 @@ public class CombatSystem : MonoBehaviour
     private void Start()
     {
         ///nbrRoundTXT.text = nbrRound.ToString(); 
-        print(SceneManager.GetActiveScene().buildIndex);
-        print(PlayerPrefs.GetInt("levelReached"));
+        AudioManager.instance.StopPlayAll();
+        AudioManager.instance.Play("music_level");
     }
 
 

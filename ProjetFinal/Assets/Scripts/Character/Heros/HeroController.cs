@@ -80,6 +80,7 @@ public class HeroController : MonoBehaviour
 
         SetMyStats();
         SetUIAttacks();
+        print(name);
 
         
     }
@@ -376,6 +377,10 @@ public class HeroController : MonoBehaviour
 
     private void Death(string characterType, string attackSource)
     {
+        if(name == "")
+            AudioManager.instance.Play("");
+        else
+            AudioManager.instance.Play("");
         CombatSystem.instance.state = CombatSystem.CombatState.Lose;
         ButtonManager.instance.ShowLose();
 

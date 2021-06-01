@@ -92,6 +92,14 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
+    public void StopPlayAll()
+    {
+        for (int i =0; i< sounds.Length; i++)
+        {
+            StopPlaying(sounds[i].name);
+        }
+    }
+
     public void ApplyChanges()
     {
         musicVolume = MSlider.value;

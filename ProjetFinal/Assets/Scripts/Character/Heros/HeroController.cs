@@ -80,8 +80,7 @@ public class HeroController : MonoBehaviour
 
         SetMyStats();
         SetUIAttacks();
-        print(name);
-
+        
         
     }
 
@@ -220,6 +219,7 @@ public class HeroController : MonoBehaviour
 
     public void StartTurn()
     {
+        print("StartTurn");
         blurr.SetActive(false);
         if (nbrTurnsToSkip > 0)
         {
@@ -325,7 +325,7 @@ public class HeroController : MonoBehaviour
         }
 
         PopUpSystem.instance.Cut();
-        //DialogueRobot.instance.RobotSpeak("Bonjour, petit test du Robot, voici quelques petits mots qui, agencés les uns aux autres, n'ont aucun intérêt");
+        //DialogueRobot.instance.RobotSpeak("Bonjour, petit test du Robot, voici quelques petits mots qui, agencï¿½s les uns aux autres, n'ont aucun intï¿½rï¿½t");
 
         if (PA > 0)
         ShowMovements();

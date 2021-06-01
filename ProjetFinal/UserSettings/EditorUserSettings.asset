@@ -22,6 +22,12 @@ EditorUserSettings:
       flags: 0
     RecentlyUsedScenePath-5:
       value: 2242470311464675020b43111326511505582c2f21382a31392c2200e1e53a3da2b678fce9332b25
+<<<<<<< HEAD
+=======
+      flags: 0
+    UnityRemoteDevice:
+      value: 225f4d46245b0d4902070862342649191512
+>>>>>>> Vincent
       flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650

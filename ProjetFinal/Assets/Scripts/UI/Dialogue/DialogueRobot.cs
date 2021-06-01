@@ -21,6 +21,8 @@ public class DialogueRobot : MonoBehaviour
 
     bool isFightStarted = false;
 
+    public bool isTuto;
+
     private void Awake()
     {
         if (instance == null)
@@ -46,10 +48,10 @@ public class DialogueRobot : MonoBehaviour
 
     private void Update()
     {
-        if (!isFightStarted)
+        if (!isTuto && !isFightStarted)
         {
 
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+            if ( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
             {
 
                 if (isActive)
@@ -107,11 +109,5 @@ public class DialogueRobot : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         popUpBox.SetActive(false);
         isActive = false;
-    }
-
-    private IEnumerator StartSpeak()
-    {
-        yield return new WaitForSeconds(1.5f);
-        RobotSpeak(startSentences[0]);
     }
 }

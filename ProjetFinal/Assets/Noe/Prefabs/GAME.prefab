@@ -6082,7 +6082,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 4066280402171595893}
+<<<<<<< HEAD
   optionMenu: {fileID: 3668589495777347055}
+=======
+  optionMenu: {fileID: 0}
+>>>>>>> Vincent
   pause_button: {fileID: 8409078942931579566}
   LoseMenu: {fileID: 1880335313571185118}
   WinMenu: {fileID: 587228298055504510}
@@ -7577,15 +7581,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2029283100252093504, guid: 9353d7193d7202843b1cff187e323ba6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 255.66878
+      value: -265
       objectReference: {fileID: 0}
     - target: {fileID: 2029283100252093504, guid: 9353d7193d7202843b1cff187e323ba6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -796.9187
+      value: 340
       objectReference: {fileID: 0}
     - target: {fileID: 2029283100252093504, guid: 9353d7193d7202843b1cff187e323ba6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -401.77133
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2029283100252093504, guid: 9353d7193d7202843b1cff187e323ba6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7621,7 +7625,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2029283100312775113, guid: 9353d7193d7202843b1cff187e323ba6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029283100312775118, guid: 9353d7193d7202843b1cff187e323ba6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029283100312775118, guid: 9353d7193d7202843b1cff187e323ba6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9353d7193d7202843b1cff187e323ba6, type: 3}
@@ -7640,11 +7652,19 @@ PrefabInstance:
     - target: {fileID: 5438215375135734400, guid: a91a8c84e6c17f64c8b67a53f0951272, type: 3}
       propertyPath: ESlider
       value: 
+<<<<<<< HEAD
       objectReference: {fileID: 3668589496199243013}
     - target: {fileID: 5438215375135734400, guid: a91a8c84e6c17f64c8b67a53f0951272, type: 3}
       propertyPath: MSlider
       value: 
       objectReference: {fileID: 3668589496432300665}
+=======
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438215375135734400, guid: a91a8c84e6c17f64c8b67a53f0951272, type: 3}
+      propertyPath: MSlider
+      value: 
+      objectReference: {fileID: 0}
+>>>>>>> Vincent
     - target: {fileID: 5438215375135734400, guid: a91a8c84e6c17f64c8b67a53f0951272, type: 3}
       propertyPath: sounds.Array.data[4].volume
       value: 1
@@ -7704,17 +7724,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6823940605204509512, guid: a91a8c84e6c17f64c8b67a53f0951272, type: 3}
   m_PrefabInstance: {fileID: 6623567977898302227}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1194526928154894739 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5438215375135734400, guid: a91a8c84e6c17f64c8b67a53f0951272, type: 3}
-  m_PrefabInstance: {fileID: 6623567977898302227}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06b55df778772204187e07d3f17b5806, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6784053406987533673
 PrefabInstance:
   m_ObjectHideFlags: 0

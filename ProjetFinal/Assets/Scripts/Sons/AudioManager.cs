@@ -35,8 +35,12 @@ public class AudioManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 
-        MSlider.value = 1f;
-        ESlider.value = 1f;
+        if (MSlider != null && ESlider != null)
+        {
+            MSlider.value = 1f;
+            ESlider.value = 1f;
+        }
+        else Debug.Log("Slider problems");
 
         print(MSlider);
         print(ESlider);
@@ -58,8 +62,11 @@ public class AudioManager : MonoBehaviour
         {
             musicVolume = data.musicVolume;
             effectVolume = data.effectVolume;
-            MSlider.value = musicVolume;
-            ESlider.value = effectVolume;
+            if (MSlider != null && ESlider != null)
+            {
+                MSlider.value = musicVolume;
+                ESlider.value = effectVolume;
+            }
         }
     }
     public void Play(string name)

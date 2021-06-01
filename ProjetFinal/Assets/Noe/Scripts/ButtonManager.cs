@@ -26,7 +26,7 @@ public class ButtonManager : MonoBehaviour
     {
         isGamePaused = false;
         pauseMenu.SetActive(false);
-        optionMenu.SetActive(false);
+       // optionMenu.SetActive(false);
         LoseMenu.SetActive(false);
         WinMenu.SetActive(false);
     }

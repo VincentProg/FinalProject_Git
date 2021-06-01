@@ -6544,79 +6544,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &804156293
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4066280401945394686, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4066280401945394686, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -130.97081
-      objectReference: {fileID: 0}
-    - target: {fileID: 4066280401945394686, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 53.275715
-      objectReference: {fileID: 0}
-    - target: {fileID: 4066280401945394686, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -85.93442
-      objectReference: {fileID: 0}
-    - target: {fileID: 4066280401945394686, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4066280401945394686, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4066280401945394686, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4066280401945394686, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4066280401945394686, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4066280401945394686, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4066280401945394686, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4066280401945394687, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_Name
-      value: GAME
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873608436856987016, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873608436856987016, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8258300009620008032, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -13.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 8258300009620008032, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.55
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9ff8fe24e57b59f458c2547f85cf9309, type: 3}
 --- !u!1 &807486205
 GameObject:
   m_ObjectHideFlags: 0
@@ -7584,7 +7511,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &877102578
 GameObject:
@@ -8153,7 +8080,7 @@ PrefabInstance:
       objectReference: {fileID: 4030915596351684975, guid: ecda04a53cb26b34fbafb67d43d0996a, type: 3}
     - target: {fileID: 280400244402115812, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 280400244402115812, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: m_LocalScale.x

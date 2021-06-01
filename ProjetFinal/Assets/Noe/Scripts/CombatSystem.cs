@@ -77,6 +77,8 @@ public class CombatSystem : MonoBehaviour
 
     public void NextTurn()
     {
+        GameManager.instance.UnlitEnd();
+
         index++;
 
         switch (state)

@@ -364,7 +364,7 @@ public class Hero_AttacksManager : MonoBehaviour
 
                         bullet.GetComponent<Bullet>().target = tile.transform;
                         bullet.GetComponent<Bullet>().impactParticle = heroController.bulletImpactParticle;
-
+                        heroController.GetComponent<AudioSource>().Play();
 
                         if (tile.hero != null)
                         {

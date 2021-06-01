@@ -330,6 +330,7 @@ public class Hero_AttacksManager : MonoBehaviour
                     newObject.GetComponent<Mine>().myTile = originTile;
                     newObject.transform.localScale = new Vector3(.7f, .7f, .7f);
                     newObject.GetComponent<Mine>().explosionObject = CombatSystem.instance.mineParticle;
+                    AudioManager.instance.Play("bomb_beep");
                 }
                 else if (newObject.GetComponent<Grenade>())
                 {
@@ -337,6 +338,7 @@ public class Hero_AttacksManager : MonoBehaviour
                     grenadeScript.hero = playerTile.hero;
                     grenadeScript.myTile = originTile;
                     playerTile.hero.grenades.Add(grenadeScript);
+                    AudioManager.instance.Play("dynamite");
 
                 }
                 break;
@@ -359,12 +361,10 @@ public class Hero_AttacksManager : MonoBehaviour
                 {
                     if (tile.selectionType == HexCell.SELECTION_TYPE.IMPACT || tile.selectionType == HexCell.SELECTION_TYPE.ORIGIN_IMPACT)
                     {
-
                         GameObject bullet = Instantiate(heroController.shootParticle, heroController.transform);
 
                         bullet.GetComponent<Bullet>().target = tile.transform;
                         bullet.GetComponent<Bullet>().impactParticle = heroController.bulletImpactParticle;
-                        heroController.GetComponent<AudioSource>().Play();
 
                         if (tile.hero != null)
                         {
@@ -376,6 +376,7 @@ public class Hero_AttacksManager : MonoBehaviour
                             else if (heroController.heroType.Equals(HeroController.HERO_TYPE.SOLDIER))
                             {
                                 tile.hero.TakeDamages(attack.damages, "soldier", "attack");
+                                
                             }
                             else
                             {
@@ -387,11 +388,13 @@ public class Hero_AttacksManager : MonoBehaviour
                             if (heroController.heroType.Equals(HeroController.HERO_TYPE.COWBOY))
                             {
                                 tile.enemy.TakeDamages(attack.damages, "cowboy", "attack");
+                                
 
                             }
                             else if (heroController.heroType.Equals(HeroController.HERO_TYPE.SOLDIER))
                             {
                                 tile.enemy.TakeDamages(attack.damages, "soldier", "attack");
+                                
 
                             }
                             else

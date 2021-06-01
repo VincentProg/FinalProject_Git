@@ -150,7 +150,7 @@ public class EnemyController : MonoBehaviour
     {
         switch (stats.Type) {
 
-            case StatsEnemy.ENEMY_TYPE.CAC:
+            case StatsEnemy.ENEMY_TYPE.CAC: 
                 #region CAC_CheckAction
                 List<HexCoordinates> path1 = TilesManager.instance.GetPath(myTile.coordinates, hero1.myTile.coordinates, stats.isFlying, false);
                 List<HexCoordinates> path2 = TilesManager.instance.GetPath(myTile.coordinates, hero2.myTile.coordinates, stats.isFlying, false);
@@ -229,7 +229,7 @@ public class EnemyController : MonoBehaviour
                 #endregion
                 break;
 
-            case StatsEnemy.ENEMY_TYPE.DISTANCE:
+            case StatsEnemy.ENEMY_TYPE.DISTANCE: //léger
                 #region DISTANCE.CheckAction
                 dist1 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero1.myTile.coordinates);
                 dist2 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero2.myTile.coordinates);
@@ -627,6 +627,7 @@ public class EnemyController : MonoBehaviour
         if (health == 0)
         {
             Death(false, characterType, attackSource);
+
         }
     }
     
@@ -681,11 +682,37 @@ public class EnemyController : MonoBehaviour
         CombatSystem.instance.enemies.Remove(this);
         myTile.myTileSprite.color = TilesManager.instance.classicColor;
         myTile.enemy = null;
+
+
+        switch (stats.name)
+        {
+            case "fly":
+                AudioManager.instance.Play("alien_death");
+                break;
+            case "basic":
+                AudioManager.instance.Play("alien_death_medium");
+                break;
+            case "big":
+                AudioManager.instance.Play("alien_death_big");
+                break;
+            case "explo":
+                AudioManager.instance.Play("bio_explosion");
+                break;
+            case "fast":
+                AudioManager.instance.Play("alien_death");
+                break;
+            default:
+                AudioManager.instance.Play("alien_death_medium");
+                break;
+        }
+
+
         Destroy(gameObject);
     }
 
     private void Explode()
     {
+        AudioManager.instance.Play("bio_explosion");
         foreach (HexCell tile in TilesManager.instance.GetRange(myTile.coordinates, stats.attacks[0].range, true, true))
         {
             if (tile != myTile)

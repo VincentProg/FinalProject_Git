@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
 
     public void StartLevel(string name)
     {
+        AudioManager.instance.Play("click_sci_fi");
         print("starting level called : " + name);
         SceneManager.LoadScene(name);
     }
@@ -57,9 +58,12 @@ public class LevelManager : MonoBehaviour
     public void ExitOptions()
     {
         OptionMenu.SetActive(false);
+        AudioManager.instance.Play("click_sci_fi");
     }
     public void OpenOptions()
     {
         OptionMenu.SetActive(true);
+        AudioManager.instance.Play("click_sci_fi");
     }
+
 }

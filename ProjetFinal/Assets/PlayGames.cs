@@ -84,7 +84,7 @@ public class PlayGames : MonoBehaviour
 
     public void SignInOrOut()
     {
-        Debug.LogError("login");
+        //Debug.LogError("login");
         if (Social.localUser.authenticated)
         {
             PlayGamesPlatform.Instance.SignOut();

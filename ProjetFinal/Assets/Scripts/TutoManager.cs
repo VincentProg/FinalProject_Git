@@ -31,16 +31,18 @@ public class TutoManager : MonoBehaviour
         hero1.canPlay = false;
         hero2.canPlay = false;
         TilesManager.instance.ClearTiles(false);
-
+        DialogueRobot.instance.isTuto = true;
 
         ManipulateCanvas(canvasHero1, false, false, 4);
         ManipulateCanvas(canvasHero2, false, false, 4);
+
+        canvasHero1.gameObject.SetActive(true);
+        canvasHero2.gameObject.SetActive(false);
 
     }
 
     private void Update()
     {
-
         if (step == 0)
         {
             // Dialogue et disparition dialogue
@@ -62,6 +64,7 @@ public class TutoManager : MonoBehaviour
             // Selection 1 case
             if (!isStepDone && !DialogueRobot.instance.isActive)
             {
+              
                 DialogueRobot.instance.RobotSpeak("I hope you at least remember how to move? If not, simply click on one of the available hexagones around you.");
                     
                 HexCoordinates coordinates = new HexCoordinates(hero1.myTile.coordinates.X + 1, hero1.myTile.coordinates.Z);
@@ -87,7 +90,8 @@ public class TutoManager : MonoBehaviour
                 // Fin du tour
                 if (!DialogueRobot.instance.isActive)
                 {
-                    StartCoroutine(RobotSpeakDelay("Perfect! But as you are heavily armed, Angelos, you cannot move and shoot on the same turn, so you might as well just press the end turn button.", 0.5f));
+                print("problem");
+                    DialogueRobot.instance.RobotSpeak("Perfect! But as you are heavily armed, Angelos, you cannot move and shoot on the same turn, so you might as well just press the end turn button.");
                     ManipulateCanvas(canvasHero1, true, false);
                     arrow.SetActive(true);
                     step++;
@@ -221,13 +225,9 @@ public class TutoManager : MonoBehaviour
         {
             if (!DialogueRobot.instance.isActive)
             {
-                DialogueRobot.instance.RobotSpeak("Nice! All that's left is their nest bursting babies. They are protected from distant attacks, so you will need to get close and attack them to destroy it. A mission will not be over until all of these are destroyed. Good luck! You are on your own now.");
-                ManipulateCanvas(canvasHero1, true, true, 1);
-                ManipulateCanvas(canvasHero2, true, true, 1);
-                hero1.canPlay = true;
-                hero2.canPlay = true;
-                step++;
-            }
+                DialogueRobot.instance.RobotSpeak("Nice! All that's left is their nest bursting babies. They are protected from distant attacks, so you will need to get close and attack them to destroy it. A mission will not be over until all of these are destroyed. Good luck! You are on your own now.");                         
+            } 
+            return;
         }
 
     }
@@ -324,17 +324,25 @@ public class TutoManager : MonoBehaviour
     {
         if (nbrPassTurnHero2 == 0)
         {
+            nbrPassTurnHero2++;
             StartCoroutine(DialogueRobot.instance.iDisappear());
+            step++;
+
+        }
+        else if(nbrPassTurnHero2 == 1)
+        {
+            print("hello");
+            nbrPassTurnHero2++;
+            ManipulateCanvas(canvasHero1, true, true, 1);
+            ManipulateCanvas(canvasHero2, true, true, 1);
+            StartCoroutine(DialogueRobot.instance.iDisappear());
+            hero1.canPlay = true;
+            hero2.canPlay = true;
             step++;
 
         }
     }
 
-    IEnumerator RobotSpeakDelay(string sentence, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        DialogueRobot.instance.RobotSpeak(sentence);
-    }
 
     void ManipulateCanvas(Transform canvas, bool isPassTurnInteractable, bool isActionsInteractable = false, int attacks = 0)
     {
@@ -357,9 +365,9 @@ public class TutoManager : MonoBehaviour
             }
         } 
         
-        canvas.GetChild(1).GetComponent<Button>().interactable = isPassTurnInteractable;
+        canvas.GetChild(0).GetChild(3).GetComponent<Button>().interactable = isPassTurnInteractable;
         if(!isPassTurnInteractable)
-        canvas.GetChild(1).GetComponent<Image>().color = Color.gray;
-        else canvas.GetChild(1).GetComponent<Image>().color = Color.white;
+        canvas.GetChild(0).GetChild(3).GetComponent<Image>().color = Color.gray;
+        else canvas.GetChild(0).GetChild(3).GetComponent<Image>().color = Color.white;
     }
 }

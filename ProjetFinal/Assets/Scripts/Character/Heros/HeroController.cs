@@ -325,7 +325,7 @@ public class HeroController : MonoBehaviour
         }
 
         PopUpSystem.instance.Cut();
-        //DialogueRobot.instance.RobotSpeak("Bonjour, petit test du Robot, voici quelques petits mots qui, agencés les uns aux autres, n'ont aucun intérêt");
+        //DialogueRobot.instance.RobotSpeak("Bonjour, petit test du Robot, voici quelques petits mots qui, agencï¿½s les uns aux autres, n'ont aucun intï¿½rï¿½t");
 
         if (PA > 0)
         ShowMovements();
@@ -377,6 +377,10 @@ public class HeroController : MonoBehaviour
 
     private void Death(string characterType, string attackSource)
     {
+        if(name == "")
+            AudioManager.instance.Play("");
+        else
+            AudioManager.instance.Play("");
         CombatSystem.instance.state = CombatSystem.CombatState.Lose;
         ButtonManager.instance.ShowLose();
 

@@ -297,6 +297,7 @@ public class TutoManager : MonoBehaviour
     {
         if (nbrPassTurnHero1 == 0)
         {
+            print("wtf");
             nbrPassTurnHero1++;
             arrow.SetActive(false);
             StartCoroutine(DialogueRobot.instance.iDisappear());

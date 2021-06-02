@@ -338,6 +338,7 @@ public class HeroController : MonoBehaviour
 
     public void TakeDamages(int damages, string characterType, string attackSource)
     {
+        AudioManager.instance.Play("claw");
         health -= damages;
         health = Mathf.Clamp(health, 0, stats.health);
 

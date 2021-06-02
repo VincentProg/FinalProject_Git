@@ -36,6 +36,7 @@ public class Grenade : MonoBehaviour
 
     private void Explode()
     {
+        AudioManager.instance.Play(Hero_AttacksManager.instance.attack.nomDuSon);
         List<HexCell> listTiles = new List<HexCell>();
         listTiles = TilesManager.instance.GetRange(myTile.coordinates, range, true, false);
 
@@ -44,7 +45,6 @@ public class Grenade : MonoBehaviour
 
             case TYPE_GRENADE.EXPLOSE:
                 bool playedFirst = false;
-                AudioManager.instance.Play("dynamite");
                 foreach (HexCell tile in listTiles)
                 {
 
@@ -69,12 +69,10 @@ public class Grenade : MonoBehaviour
 
                 }
 
-
                 break;
 
             case TYPE_GRENADE.FLASH:
 
-                AudioManager.instance.Play("flashbang");
                 foreach (HexCell tile in listTiles)
                 {
                     GameObject particle = Instantiate(hero.flashParticle, tile.transform);

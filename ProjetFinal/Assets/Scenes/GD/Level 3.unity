@@ -12989,6 +12989,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4578216965779947822, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: sounds.Array.data[8].name
+      value: cowboy_death
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216965779947822, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: sounds.Array.data[0].volume
       value: 0.2
       objectReference: {fileID: 0}

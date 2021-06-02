@@ -57,12 +57,10 @@ public class ButtonManager : MonoBehaviour
         }
     }
     public void BackToMenu()
-    {
-        AudioManager.instance.ApplyChanges();
+    {   
         AudioManager.instance.Play("click_sci_fi");
-        //CombatSystem.instance.state = CombatSystem.CombatState.Lose;
         SceneManager.LoadScene("LevelMenu");
-        print("Going Back To MainMenu . . .");
+        print("Going Back To MainMenu . . ." + AudioManager.instance.musicVolume + " / " + AudioManager.instance.effectVolume);
     }
     public void QuitApplication()
     {

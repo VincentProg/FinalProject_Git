@@ -7415,13 +7415,13 @@ MonoBehaviour:
     type: 1
   - name: claw
     clip: {fileID: 8300000, guid: 6f11816a266e993429718d7694ef67c5, type: 3}
-    volume: 1
+    volume: 0.9
     loop: 0
     source: {fileID: 0}
     type: 1
   - name: cowboy_death
     clip: {fileID: 8300000, guid: 17f46e35d831a354f9030ebea2a64ef4, type: 3}
-    volume: 1
+    volume: 0.9
     loop: 0
     source: {fileID: 0}
     type: 1
@@ -7463,7 +7463,7 @@ MonoBehaviour:
     type: 1
   - name: spawner_broken
     clip: {fileID: 8300000, guid: 55643e616869c564e89a994098a5c330, type: 3}
-    volume: 1
+    volume: 0.9
     loop: 0
     source: {fileID: 0}
     type: 1
@@ -8883,11 +8883,6 @@ PrefabInstance:
       objectReference: {fileID: 4578216963992270100}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
---- !u!224 &6217846703521199098 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4121735690372558231, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
-  m_PrefabInstance: {fileID: 8032559608629452397}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6217846704141280355 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4121735689684318734, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
@@ -8913,5 +8908,10 @@ MonoBehaviour:
 --- !u!1 &6217846703521199093 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4121735690372558232, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
+  m_PrefabInstance: {fileID: 8032559608629452397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &6217846703521199098 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4121735690372558231, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
   m_PrefabInstance: {fileID: 8032559608629452397}
   m_PrefabAsset: {fileID: 0}

@@ -56,7 +56,7 @@ public class HeroController : MonoBehaviour
     public GameObject bulletImpactParticle;
 
 
-    bool isMyTurn = false;
+    public bool isMyTurn = false;
     public bool canPlay = true;
     int nbrTurnsToSkip = 0;
 

@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 2029283098718272396}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 36.706467}
-  m_LocalScale: {x: 0.01, y: 0.04, z: 1}
+  m_LocalScale: {x: 0.02, y: 0.08, z: 1}
   m_Children: []
   m_Father: {fileID: 2029283100312775118}
   m_RootOrder: 1
@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1.6, y: -1.1}
-  m_SizeDelta: {x: 9000, y: 2000}
+  m_SizeDelta: {x: 4600, y: 1060}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2029283098718272387
 CanvasRenderer:
@@ -67,7 +67,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 285
+    m_FontSize: 185
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -203,6 +203,7 @@ MonoBehaviour:
   textEnded: 0
   startSentences:
   - Fuck
+  isTuto: 0
 --- !u!1 &2029283100312775113
 GameObject:
   m_ObjectHideFlags: 0

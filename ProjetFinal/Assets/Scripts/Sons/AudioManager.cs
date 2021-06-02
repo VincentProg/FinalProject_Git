@@ -9,10 +9,10 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
 
     [Range(0f, 1f)]
-    public float musicVolume = 1f;
+    public float musicVolume;
 
     [Range(0f, 1f)]
-    public float effectVolume = 1f;
+    public float effectVolume;
 
     public static AudioManager instance;
 
@@ -32,20 +32,13 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        //DontDestroyOnLoad(gameObject);
-/*
-        MSlider = transform.Find("Slider_Music").GetComponent<Slider>();
-        ESlider = transform.Find("Slider_Effect").GetComponent<Slider>();*/
 
-        if (MSlider != null && ESlider != null)
+        /*if (MSlider != null && ESlider != null)
         {
             MSlider.value = 1f;
             ESlider.value = 1f;
         }
-        else Debug.Log("Slider problems");
-
-        print(MSlider);
-        print(ESlider);
+        else Debug.Log("Slider problems");*/
 
         foreach (Sound s in sounds)
         {
@@ -54,39 +47,30 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
         }
 
-
-
     }
     private void Start()
     {
-        OptionsData data = SaveSystem.LoadOptions();
-        if(data != null)
-        {
-            musicVolume = data.musicVolume;
-            effectVolume = data.effectVolume;
-            if (MSlider != null && ESlider != null)
-            {
-                MSlider.value = musicVolume;
-                ESlider.value = effectVolume;
-            }
-        }
+        LoadOptions();
+        ApplyChanges();
+        LoadOptions();
+        print("volume music: " + musicVolume);
+        print("volume effet: " + effectVolume);
+        
     }
 
     public void Play(string name)
     {
+        
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {
             Debug.LogWarning("Sound : " + name + "not found!");
             return;
         }
-
         if (s.type == Sound.Type.Music)
             s.source.volume = s.volume * musicVolume;
         else
-            print(s);
             s.source.volume = s.volume * effectVolume;
-
         s.source.Play();
     }
     public void StopPlaying(string sound)
@@ -113,9 +97,7 @@ public class AudioManager : MonoBehaviour
 
     public void ApplyChanges()
     {
-        print("ùlk,poezgrk,loùegrts,knlmjoegrzt");
-        print("volume music: " + musicVolume);
-        print("volume effet: " + effectVolume);
+        print("all volume updated");
         musicVolume = MSlider.value;
         effectVolume = ESlider.value;
         for (int i = 0; i< sounds.Length; i++)
@@ -126,6 +108,22 @@ public class AudioManager : MonoBehaviour
                 sounds[i].source.volume = sounds[i].volume * effectVolume;
         }
         SaveSystem.SaveOptions(this);
+    }
+
+    public void LoadOptions()
+    {
+        OptionsData data = SaveSystem.LoadOptions();
+
+        if (data != null)
+        {
+            musicVolume = data.musicVolume;
+            effectVolume = data.effectVolume;
+            if (MSlider != null && ESlider != null)
+            {
+                MSlider.value = musicVolume;
+                ESlider.value = effectVolume;
+            }
+        }
     }
 
 }

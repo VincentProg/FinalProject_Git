@@ -373,8 +373,8 @@ MonoBehaviour:
   blurr: {fileID: 4578216964632459196}
   grenades: []
   heroType: 1
-  BTNS_KillSpawnerParent: {fileID: 0}
-  BTN_KillSpawnerPrefab: {fileID: 0}
+  BTNS_KillSpawnerParent: {fileID: 8881067392698630779}
+  BTN_KillSpawnerPrefab: {fileID: 294929069094255332, guid: f9d25631103dd5e46b6e97d3535d5660, type: 3}
   myTile: {fileID: 0}
   myTileColor: {r: 1, g: 1, b: 1, a: 1}
   flashParticle: {fileID: 184316, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
@@ -1719,6 +1719,7 @@ MonoBehaviour:
   attack: {fileID: 0}
   hero: {fileID: 4578216963983852505}
   isClicked: 0
+  canBeClick: 1
 --- !u!114 &3304110959456565152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2608,8 +2609,8 @@ MonoBehaviour:
   blurr: {fileID: 4578216965812778261}
   grenades: []
   heroType: 0
-  BTNS_KillSpawnerParent: {fileID: 0}
-  BTN_KillSpawnerPrefab: {fileID: 0}
+  BTNS_KillSpawnerParent: {fileID: 8881067392698630779}
+  BTN_KillSpawnerPrefab: {fileID: 294929069094255332, guid: f9d25631103dd5e46b6e97d3535d5660, type: 3}
   myTile: {fileID: 0}
   myTileColor: {r: 1, g: 1, b: 1, a: 1}
   flashParticle: {fileID: 184316, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
@@ -2771,6 +2772,7 @@ MonoBehaviour:
   attack: {fileID: 0}
   hero: {fileID: 4578216964511966711}
   isClicked: 0
+  canBeClick: 1
 --- !u!114 &2251092948532779957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3223,6 +3225,7 @@ MonoBehaviour:
   attack: {fileID: 0}
   hero: {fileID: 4578216964511966711}
   isClicked: 0
+  canBeClick: 1
 --- !u!114 &854687810315855438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3934,6 +3937,7 @@ MonoBehaviour:
   attack: {fileID: 0}
   hero: {fileID: 4578216964511966711}
   isClicked: 0
+  canBeClick: 1
 --- !u!114 &1664003067798137583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5635,6 +5639,7 @@ MonoBehaviour:
   attack: {fileID: 0}
   hero: {fileID: 4578216963983852505}
   isClicked: 0
+  canBeClick: 1
 --- !u!114 &7851711230507111793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10100,6 +10105,7 @@ MonoBehaviour:
   attack: {fileID: 0}
   hero: {fileID: 4578216963983852505}
   isClicked: 0
+  canBeClick: 1
 --- !u!114 &6948225438690550984
 MonoBehaviour:
   m_ObjectHideFlags: 0

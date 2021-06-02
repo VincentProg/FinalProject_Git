@@ -8,7 +8,7 @@ public class Hero_AttacksManager : MonoBehaviour
     public static Hero_AttacksManager instance;
     [HideInInspector]
     private UI_Attack UI_Caller;
-    private Attack attack;
+    public Attack attack;
 
     private HexCell originTile;
     private HexCell playerTile;
@@ -320,7 +320,8 @@ public class Hero_AttacksManager : MonoBehaviour
 
     public void LaunchAttack(HeroController heroController)
     {
-        AudioManager.instance.Play(attack.nomDuSon);
+        if(attack.nomDuSon == "bomb_beep" || attack.nomDuSon == "space_gun_01" || attack.nomDuSon == "space_gun_06" || attack.nomDuSon == "rocket_boots")
+            AudioManager.instance.Play(attack.nomDuSon);
         switch (attack.impactType)
         {
             case Attack.IMPACT_TYPE.SPAWNOBJECT:
@@ -351,7 +352,6 @@ public class Hero_AttacksManager : MonoBehaviour
                 GameObject particle = Instantiate(originTile.hero.teleportParticle, originTile.transform);
                 particle.transform.localScale = new Vector3(.5f, .5f, .5f);
                 particle.transform.localPosition = new Vector2(0, -.2f);
-
                 break;
             default:
                 foreach (HexCell tile in TilesManager.instance._selectedTiles)

@@ -65,6 +65,7 @@ public class CombatSystem : MonoBehaviour
         ///nbrRoundTXT.text = nbrRound.ToString(); 
         AudioManager.instance.StopPlayAll();
         AudioManager.instance.Play("music_level");
+            
     }
 
 

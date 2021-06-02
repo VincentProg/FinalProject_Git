@@ -162,6 +162,7 @@ public class HexCell : MonoBehaviour {
 			Mine mine = item.GetComponent<Mine>();
 			if (isHero && !mine.isFriendlyFire) return;
 			mine.Attack();
+			AudioManager.instance.Play("dynamite");
 			item = null;
         } else if (item.GetComponent<Spawner>())
         {

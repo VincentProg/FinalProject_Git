@@ -30,3 +30,4 @@ MonoBehaviour:
   radiusUnattackableImpact: 0
   goThrewWalls: 0
   spawnObject: {fileID: 3438002323572375350, guid: a355284a55ff73f4bbbcad80e548941c, type: 3}
+  nomDuSon: bomb_beep

@@ -44,7 +44,8 @@ public class Grenade : MonoBehaviour
 
             case TYPE_GRENADE.EXPLOSE:
                 bool playedFirst = false;
-                foreach(HexCell tile in listTiles)
+                AudioManager.instance.Play("dynamite");
+                foreach (HexCell tile in listTiles)
                 {
 
                     GameObject particle = Instantiate(hero.grenadeExplosionParticle, tile.transform);
@@ -73,6 +74,7 @@ public class Grenade : MonoBehaviour
 
             case TYPE_GRENADE.FLASH:
 
+                AudioManager.instance.Play("flashbang");
                 foreach (HexCell tile in listTiles)
                 {
                     GameObject particle = Instantiate(hero.flashParticle, tile.transform);

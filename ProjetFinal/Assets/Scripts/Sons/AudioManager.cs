@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 /*
         MSlider = transform.Find("Slider_Music").GetComponent<Slider>();
         ESlider = transform.Find("Slider_Effect").GetComponent<Slider>();*/

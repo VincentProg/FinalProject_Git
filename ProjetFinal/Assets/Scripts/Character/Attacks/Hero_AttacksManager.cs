@@ -337,8 +337,6 @@ public class Hero_AttacksManager : MonoBehaviour
                     grenadeScript.hero = playerTile.hero;
                     grenadeScript.myTile = originTile;
                     playerTile.hero.grenades.Add(grenadeScript);
-                    AudioManager.instance.Play("dynamite");
-
                 }
                 break;
             case Attack.IMPACT_TYPE.TELEPORT:
@@ -353,9 +351,10 @@ public class Hero_AttacksManager : MonoBehaviour
                 GameObject particle = Instantiate(originTile.hero.teleportParticle, originTile.transform);
                 particle.transform.localScale = new Vector3(.5f, .5f, .5f);
                 particle.transform.localPosition = new Vector2(0, -.2f);
-
+                AudioManager.instance.Play("rocket_boots");
                 break;
             default:
+                AudioManager.instance.Play("")
                 foreach (HexCell tile in TilesManager.instance._selectedTiles)
                 {
                     if (tile.selectionType == HexCell.SELECTION_TYPE.IMPACT || tile.selectionType == HexCell.SELECTION_TYPE.ORIGIN_IMPACT)

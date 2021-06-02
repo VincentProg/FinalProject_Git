@@ -18,7 +18,7 @@ public class Mine : MonoBehaviour
         particles.transform.SetParent(null);
         particles.transform.localScale = new Vector3(9, 9, 9);
         particles.transform.eulerAngles = new Vector3(-90f, 0, 0);
-
+        AudioManager.instance.Play("grenade_explosion");
         foreach (HexCell tile in TilesManager.instance.GetRange(myTile.coordinates, range, true, false)){
             if(isFriendlyFire && tile.hero != null)
             {

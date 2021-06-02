@@ -1639,6 +1639,7 @@ MonoBehaviour:
   index: 1
   attack: {fileID: 0}
   hero: {fileID: 4578216963983852505}
+  isClicked: 0
 --- !u!1 &4578216964352346244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2674,6 +2675,7 @@ MonoBehaviour:
   index: 1
   attack: {fileID: 0}
   hero: {fileID: 4578216964511966711}
+  isClicked: 0
 --- !u!1 &4578216964558230563
 GameObject:
   m_ObjectHideFlags: 0
@@ -3111,6 +3113,7 @@ MonoBehaviour:
   index: 2
   attack: {fileID: 0}
   hero: {fileID: 4578216964511966711}
+  isClicked: 0
 --- !u!1 &4578216964632459196
 GameObject:
   m_ObjectHideFlags: 0
@@ -3792,6 +3795,7 @@ MonoBehaviour:
   index: 0
   attack: {fileID: 0}
   hero: {fileID: 4578216964511966711}
+  isClicked: 0
 --- !u!1 &4578216964687980804
 GameObject:
   m_ObjectHideFlags: 0
@@ -5478,6 +5482,7 @@ MonoBehaviour:
   index: 2
   attack: {fileID: 0}
   hero: {fileID: 4578216963983852505}
+  isClicked: 0
 --- !u!1 &4578216965073495283
 GameObject:
   m_ObjectHideFlags: 0
@@ -8473,6 +8478,12 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
     type: 1
+  - name: grenade_explosion
+    clip: {fileID: 8300000, guid: 7af6769fd23879f4da323ebe5311875e, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 1
   musicVolume: 1
   effectVolume: 1
   MSlider: {fileID: 4578216964475372186}
@@ -9906,6 +9917,7 @@ MonoBehaviour:
   index: 0
   attack: {fileID: 0}
   hero: {fileID: 4578216963983852505}
+  isClicked: 0
 --- !u!1 &4578216966080637245
 GameObject:
   m_ObjectHideFlags: 0

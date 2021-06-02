@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
 
     public void StartLevel(string name)
     {
-        AudioManager.instance.ApplyChanges();
+        //AudioManager.instance.ApplyChanges();
         AudioManager.instance.Play("click_sci_fi");
         print("starting level called : " + name);
         SceneManager.LoadScene(name);

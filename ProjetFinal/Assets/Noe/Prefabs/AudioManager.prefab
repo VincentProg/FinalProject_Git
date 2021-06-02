@@ -52,7 +52,7 @@ MonoBehaviour:
     type: 0
   - name: music_level
     clip: {fileID: 8300000, guid: 593a2b74019725646935a38b6232a605, type: 3}
-    volume: 1
+    volume: 0.55
     loop: 1
     source: {fileID: 0}
     type: 0

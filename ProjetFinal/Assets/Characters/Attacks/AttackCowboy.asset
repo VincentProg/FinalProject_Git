@@ -30,4 +30,5 @@ MonoBehaviour:
   radiusUnattackableImpact: 0
   goThrewWalls: 0
   spawnObject: {fileID: 0}
-  nomDuSon: space_gun_01
+  throwingSound: space_gun_06
+  activationSound: 

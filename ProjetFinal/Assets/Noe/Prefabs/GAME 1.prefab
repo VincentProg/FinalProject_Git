@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 4578216964028867842}
-  optionMenu: {fileID: 0}
+  optionMenu: {fileID: 6217846703521199093}
   pause_button: {fileID: 4578216965868824657}
   LoseMenu: {fileID: 4578216965379991104}
   WinMenu: {fileID: 4578216965658706080}
@@ -7419,7 +7419,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
     type: 1
-  - name: bowboy_death
+  - name: cowboy_death
     clip: {fileID: 8300000, guid: 17f46e35d831a354f9030ebea2a64ef4, type: 3}
     volume: 1
     loop: 0
@@ -7481,8 +7481,8 @@ MonoBehaviour:
     type: 1
   musicVolume: 1
   effectVolume: 1
-  MSlider: {fileID: 0}
-  ESlider: {fileID: 0}
+  MSlider: {fileID: 6217846704141280355}
+  ESlider: {fileID: 6217846703904543519}
 --- !u!1 &4578216965789456083
 GameObject:
   m_ObjectHideFlags: 0
@@ -8853,6 +8853,30 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4121735691048276009, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4578216965779947822}
+    - target: {fileID: 4121735691048276009, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4578216963992270100}
+    - target: {fileID: 4121735691048276009, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ApplyChanges
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121735691048276009, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ExitOptions
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121735691048276009, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AudioManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121735691048276009, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ButtonManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7345454112417955270, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -8862,5 +8886,32 @@ PrefabInstance:
 --- !u!224 &6217846703521199098 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4121735690372558231, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
+  m_PrefabInstance: {fileID: 8032559608629452397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6217846704141280355 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4121735689684318734, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
+  m_PrefabInstance: {fileID: 8032559608629452397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6217846703904543519 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4121735691058154866, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
+  m_PrefabInstance: {fileID: 8032559608629452397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6217846703521199093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4121735690372558232, guid: ca877b3db14c74a46be71e0a15e0d4d7, type: 3}
   m_PrefabInstance: {fileID: 8032559608629452397}
   m_PrefabAsset: {fileID: 0}

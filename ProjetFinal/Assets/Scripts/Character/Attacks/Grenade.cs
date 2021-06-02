@@ -36,7 +36,7 @@ public class Grenade : MonoBehaviour
 
     private void Explode()
     {
-        AudioManager.instance.Play(Hero_AttacksManager.instance.attack.nomDuSon);
+        AudioManager.instance.Play(Hero_AttacksManager.instance.attack.activationSound);
         List<HexCell> listTiles = new List<HexCell>();
         listTiles = TilesManager.instance.GetRange(myTile.coordinates, range, true, false);
 

@@ -16,7 +16,8 @@ public class AttackEditor : Editor
         GUILayout.Label("Sprite");
         attack.sprite = (Sprite)EditorGUILayout.ObjectField(attack.sprite, typeof(Sprite), allowSceneObjects: true);
 
-        attack.nomDuSon = EditorGUILayout.TextField("Nom du son", attack.nomDuSon);
+        attack.throwingSound = EditorGUILayout.TextField("Nom du son au lancer", attack.throwingSound);
+        attack.activationSound = EditorGUILayout.TextField("Nom du son a l'activation", attack.activationSound);
 
         GUILayout.Label("\n");
         attack.costPA = EditorGUILayout.IntField("Cost PA", attack.costPA);

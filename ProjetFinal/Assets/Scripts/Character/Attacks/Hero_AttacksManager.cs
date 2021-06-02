@@ -320,8 +320,8 @@ public class Hero_AttacksManager : MonoBehaviour
 
     public void LaunchAttack(HeroController heroController)
     {
-        if(attack.nomDuSon != "")
-        AudioManager.instance.Play(attack.nomDuSon);
+        if(attack.throwingSound != "")
+            AudioManager.instance.Play(attack.throwingSound);
 
         foreach (Transform child in heroController.BTNS_KillSpawnerParent)
         {

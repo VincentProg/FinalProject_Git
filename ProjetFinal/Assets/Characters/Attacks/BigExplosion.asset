@@ -30,4 +30,5 @@ MonoBehaviour:
   radiusUnattackableImpact: 0
   goThrewWalls: 0
   spawnObject: {fileID: 1097986984103252501, guid: 5682e462e72de714b8ee67a7aaac8c7d, type: 3}
-  nomDuSon: grenade_explosion
+  throwingSound: 
+  activationSound: grenade_explosion

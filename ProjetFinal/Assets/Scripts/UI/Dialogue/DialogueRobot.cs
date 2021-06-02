@@ -42,7 +42,6 @@ public class DialogueRobot : MonoBehaviour
         {
             isFightStarted = true;
             CombatSystem.instance.StartFight();
-            print("salutation");
         }
     }
 
@@ -61,7 +60,6 @@ public class DialogueRobot : MonoBehaviour
                     {
                         isFightStarted = true;
                         CombatSystem.instance.StartFight();
-                        print("wtf");
                     }
                     return;
                 }

@@ -36,5 +36,7 @@ public class Attack : ScriptableObject
 
     public GameObject spawnObject;
 
+    public string nomDuSon;
+
 
 }

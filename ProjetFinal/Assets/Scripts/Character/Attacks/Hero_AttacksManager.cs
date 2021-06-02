@@ -320,6 +320,7 @@ public class Hero_AttacksManager : MonoBehaviour
 
     public void LaunchAttack(HeroController heroController)
     {
+        AudioManager.instance.Play(attack.nomDuSon);
         switch (attack.impactType)
         {
             case Attack.IMPACT_TYPE.SPAWNOBJECT:
@@ -329,7 +330,6 @@ public class Hero_AttacksManager : MonoBehaviour
                 {
                     newObject.GetComponent<Mine>().myTile = originTile;
                     newObject.transform.localScale = new Vector3(.7f, .7f, .7f);
-                    AudioManager.instance.Play("bomb_beep");
                 }
                 else if (newObject.GetComponent<Grenade>())
                 {

@@ -14,7 +14,13 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] List<HexCell> adjacentCells = new List<HexCell>();
     private HexCell myTile;
+    [SerializeField]
+    Color colorSprite;
 
+    [SerializeField]
+    Sprite spriteDead;
+
+    public int nbrTurnSkipStart;
 
 
     void Start()
@@ -23,6 +29,7 @@ public class Spawner : MonoBehaviour
         nbOfTurnBeforeSpawning = 0;
 
         CombatSystem.instance.spawners.Add(this);
+
         
         #region GET MY START TILE()
         // AJOUT TUILE DEPART
@@ -38,11 +45,21 @@ public class Spawner : MonoBehaviour
             }
         }
         #endregion
+
+        myTile.myTileSprite.color = colorSprite;
+        GetComponent<SpriteRenderer>().sortingOrder = -myTile.coordinates.X;
     }
 
 
     public void SpawnEnemies()
     {
+        if (nbrTurnSkipStart > 0)
+        {
+            nbrTurnSkipStart--;
+            CombatSystem.instance.NextTurn();
+            return;
+        }
+
         if (!isDead)
         {
             nbEntityLeft = nbOfEntityToSpawn;
@@ -62,6 +79,9 @@ public class Spawner : MonoBehaviour
                             nbEntityLeft--;
                             adjacentCells[i].enemy = enemy.GetComponent<EnemyController>();
                             hasSpawned = true;
+
+                            GameObject particle = Instantiate(CombatSystem.instance.spawnParticle, enemy.transform);
+                            particle.transform.localScale = new Vector3(10, 10, 10);
                         }
                     }
                     if (!hasSpawned)
@@ -75,6 +95,7 @@ public class Spawner : MonoBehaviour
                
 
             CombatSystem.instance.NextTurn();
+            return;
         }
     }
 
@@ -82,7 +103,8 @@ public class Spawner : MonoBehaviour
     public void Death()
     {
         isDead = true;
+        myTile.myTileSprite.color = TilesManager.instance.classicColor;
+        GetComponent<SpriteRenderer>().sprite = spriteDead;
         CombatSystem.instance.DestroySpawner(this);
-        Destroy(gameObject);
     }
 }

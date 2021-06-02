@@ -16,6 +16,8 @@ public class AttackEditor : Editor
         GUILayout.Label("Sprite");
         attack.sprite = (Sprite)EditorGUILayout.ObjectField(attack.sprite, typeof(Sprite), allowSceneObjects: true);
 
+        attack.nomDuSon = EditorGUILayout.TextField("Nom du son", attack.nomDuSon);
+
         GUILayout.Label("\n");
         attack.costPA = EditorGUILayout.IntField("Cost PA", attack.costPA);
         attack.cooldown = EditorGUILayout.IntField("Cooldown", attack.cooldown);
@@ -58,6 +60,7 @@ public class AttackEditor : Editor
             attack.radiusUnattackableAttack = EditorGUILayout.IntField("Range Unattackable", attack.radiusUnattackableAttack);
             attack.visionType = (Attack.VISION_TYPE)EditorGUILayout.EnumPopup("Vision Type", attack.visionType);
             attack.canSelectHole = EditorGUILayout.Toggle("Can Select Hole", attack.canSelectHole);
+            attack.canSelectHeroEnemySpawner = EditorGUILayout.Toggle("Can Select Hero-Enemy-Spawner", attack.canSelectHeroEnemySpawner);
 
 
 
@@ -96,6 +99,7 @@ public class AttackEditor : Editor
             attack.radiusUnattackableAttack = EditorGUILayout.IntField("Range Unattackable", attack.radiusUnattackableAttack);
             attack.visionType = (Attack.VISION_TYPE)EditorGUILayout.EnumPopup("Vision Type", attack.visionType);
             attack.canSelectHole = EditorGUILayout.Toggle("Can Select Hole", attack.canSelectHole);
+            attack.canSelectHeroEnemySpawner = EditorGUILayout.Toggle("Can Select Hero-Enemy-Spawner", attack.canSelectHeroEnemySpawner);
 
             GUILayout.Label("\n IMPACT DATAS");
             switch (attack.impactType)

@@ -14,14 +14,17 @@ public class Mine : MonoBehaviour
 
     public void Attack()
     {
-        foreach(HexCell tile in TilesManager.instance.GetRange(myTile.coordinates, range, true, false)){
-            
+        GameObject particles = Instantiate(CombatSystem.instance.mineParticle, transform);
+        particles.transform.SetParent(null);
+        particles.transform.localScale = new Vector3(9, 9, 9);
+        particles.transform.eulerAngles = new Vector3(-90f, 0, 0);
+        foreach (HexCell tile in TilesManager.instance.GetRange(myTile.coordinates, range, true, false)){
             if(isFriendlyFire && tile.hero != null)
             {
-                tile.hero.TakeDamages(damages);
+                tile.hero.TakeDamages(damages, "mine", "explosion");
             } else if (tile.enemy != null)
             {
-                tile.enemy.TakeDamages(damages);
+                tile.enemy.TakeDamages(damages, "mine", "explosion");
             }
 
         }

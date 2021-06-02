@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class UI_Attack : MonoBehaviour
 {
@@ -17,26 +16,29 @@ public class UI_Attack : MonoBehaviour
     private bool isDisabled = false;
     private int cooldown;
     GameObject cooldownGO;
-    private TextMeshProUGUI textCD;
+    private Text textCD;
 
     private bool isNbrPerTurn;
     private int nbrUsePerTurn;
-    private TextMeshProUGUI Txt_NbrUse;
+    private Text Txt_NbrUse;
 
     private bool isNbrTotal;
     private int nbrUseTotal;
 
+    Image image;
 
+    [HideInInspector]
+    public bool isClicked;
 
 
 
     public void UpdateUI()
     {
-        GetComponent<Image>().sprite = attack.sprite;
-        textCD = transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        image = GetComponent<Image>();
+        image.sprite = attack.sprite;
         cooldownGO = transform.GetChild(0).gameObject;
+        textCD = cooldownGO.transform.GetChild(0).GetComponent<Text>();
         cooldownGO.SetActive(false);
-        transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = attack.costPA.ToString();
 
         nbrUsePerTurn = attack.nbrUsePerTurn;
         nbrUseTotal = attack.nbrUseTotal;
@@ -44,61 +46,80 @@ public class UI_Attack : MonoBehaviour
         if (nbrUseTotal > 0)
         {
             isNbrTotal = true;
-            Txt_NbrUse = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+            Txt_NbrUse = transform.GetChild(1).GetComponent<Text>();
             Txt_NbrUse.text = nbrUseTotal.ToString();
 
         }
-        else transform.GetChild(2).gameObject.SetActive(false);
+        else transform.GetChild(1).gameObject.SetActive(false);
+
+
     }
 
     public void OnClick()
     {
-        print(nbrUsePerTurn);
-        if (!isDisabled && hero.PA > 0)
+       
+        if(hero.PA == 0)
         {
-            if (isNbrTotal)
+            PopUpSystem.instance.PopUp("No more energy for this turn", hero);
+        }
+        if (!isClicked)
+        {
+            if (!isDisabled)
             {
-                if (nbrUseTotal > 0)
+                if (isNbrTotal)
                 {
-                    if (isNbrPerTurn)
+                    if (nbrUseTotal > 0)
                     {
-                        
-                        if (nbrUsePerTurn > 0)
+                        if (isNbrPerTurn)
+                        {
+
+                            if (nbrUsePerTurn > 0)
+                            {
+                                TryShowAttack();
+                            }
+                            else
+                            {
+                                PopUpSystem.instance.PopUp("No more use possible for this turn", hero);
+                            }
+                        }
+                        else
                         {
                             TryShowAttack();
-                        } else
-                        {
-                            print("No more use possible for this turn");
                         }
-                    } else
-                    {
-                        TryShowAttack();
-                    }
-                } else
-                {
-                    print("No more actions left");
-                }
-            } else
-            {
-                if (isNbrPerTurn)
-                {
-                    if (nbrUsePerTurn > 0)
-                    {
-                        TryShowAttack();
                     }
                     else
                     {
-                        print("No more use possible for this turn");
+                        PopUpSystem.instance.PopUp("No more utilisations left", hero);
                     }
-                } else
-                {
-                    TryShowAttack();
                 }
-            } 
-        }
-        else
+                else
+                {
+                    if (isNbrPerTurn)
+                    {
+                        if (nbrUsePerTurn > 0)
+                        {
+                            TryShowAttack();
+                        }
+                        else
+                        {
+                            PopUpSystem.instance.PopUp("No more use possible for this turn", hero);
+                        }
+                    }
+                    else
+                    {
+                        TryShowAttack();
+                    }
+                }
+            }
+            else
+            {
+                PopUpSystem.instance.PopUp("I can't realize this attack yet", hero);
+            }
+        } else
         {
-            print("Attack not ready");
+            isClicked = false;
+            image.color = Color.white;
+            hero.ShowMovements();
         }
     }
 
@@ -107,16 +128,26 @@ public class UI_Attack : MonoBehaviour
 
         if (hero.PA >= attack.costPA)
         {    
-                Hero_AttacksManager.instance.ShowAttackRange(this, attack);
+           Hero_AttacksManager.instance.ShowAttackRange(this, attack);
+           foreach(Transform button in hero.myCanvas.transform.GetChild(0)){
+                if (button.GetComponent<UI_Attack>())
+                {
+                    button.GetComponent<Image>().color = Color.white;
+                    button.GetComponent<UI_Attack>().isClicked = false;
+                }
+           }
+           image.color = Color.grey;
+           isClicked = true;
         }
-        else print("Not enough PA!");
+        else PopUpSystem.instance.PopUp("Not enough energy", hero);
     }
 
     public void ActivateAttack()
     {
         cooldown = attack.cooldown;
         hero.PA -= attack.costPA;
-        if(cooldown > 0)
+        image.color = Color.white;
+        if (cooldown > 0)
         {
             isDisabled = true;
             cooldownGO.SetActive(true);
@@ -133,11 +164,11 @@ public class UI_Attack : MonoBehaviour
         {
             nbrUsePerTurn--;
         }
+
     }
 
     public void StartTurn()
     {
-        print("Ui_StartTurn");
         if(cooldown > 0)
         {
             cooldown--;

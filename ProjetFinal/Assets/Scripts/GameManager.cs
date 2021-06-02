@@ -1,30 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    int _currentRound = 0;
-    public GameObject player;
+    public static GameManager instance;
 
-    public int getRound
+    public int levelNumber;
+    public bool isLastLevel = false;
+
+    public GameObject endButtonUICowboy;
+    public GameObject endButtonUISoldier;
+    public Sprite endButtonImage;
+    public Sprite endButtonImageLit;
+
+
+    private void Awake()
     {
-        get { return _currentRound; }
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else Destroy(gameObject);
     }
 
-    void Start()
+    public void HighlightEnd()
     {
-        
+        endButtonUICowboy.GetComponent<Image>().sprite = endButtonImageLit;
+        endButtonUISoldier.GetComponent<Image>().sprite = endButtonImageLit;
+    }
+    public void UnlitEnd()
+    {
+        endButtonUICowboy.GetComponent<Image>().sprite = endButtonImage;
+        endButtonUISoldier.GetComponent<Image>().sprite = endButtonImage;
     }
 
-    void Update()
-    {
-        
-    }
-
-
-    void StartNewRound()
-    {
-        _currentRound++;
-    }
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -15,9 +15,16 @@ public class EnemyController : MonoBehaviour
     private int health, PM, PA;
     public GameObject TXT_Damages;
 
+    public bool isStun = false;
+
     private bool isMoving;
     private bool isActionDone = true;
-  
+    private bool moved;
+
+    [SerializeField]
+    Color myTileColor;
+
+    SpriteRenderer myAlienSprite;
 
     // VARIABLES GRID
     HexCell myTile;
@@ -27,6 +34,13 @@ public class EnemyController : MonoBehaviour
 
     HeroController hero1;
     HeroController hero2;
+
+
+    [Header("Particles prefabs")]
+    public GameObject stunnedParticle;
+
+
+    private GameObject currentStunnedObject;
 
 
     private void Start()
@@ -64,14 +78,15 @@ public class EnemyController : MonoBehaviour
             }
         }
         #endregion
+        myTile.myTileSprite.color = myTileColor;
 
         CombatSystem.instance.enemies.Add(this);
         hero1 = CombatSystem.instance.heros[0];
         hero2 = CombatSystem.instance.heros[1];
 
-
-        SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-        mySprite.sprite = stats.sprite;
+        myAlienSprite = GetComponent<SpriteRenderer>();
+        myAlienSprite.sprite = stats.sprite;
+        myAlienSprite.sortingOrder = -myTile.coordinates.X;
         nameEnemy = stats.enemyName;
         health = stats.health;
         PM = stats.PM;
@@ -82,6 +97,7 @@ public class EnemyController : MonoBehaviour
 
     public void StartTurn()
     {
+        moved = false;
         if (nbrTurnToSkip > 0)
         {
             nbrTurnToSkip--;
@@ -97,12 +113,21 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
+        if (isStun)
+        {
+            isStun = false;
+            Destroy(currentStunnedObject);
+            currentStunnedObject = null;
+
+        }
+
         ContinueTurn();
     }
 
     public void ContinueTurn()
     {
-        if(PA > 0 && isActionDone)
+
+        if (PA > 0 && isActionDone)
         {
             isActionDone = false;
             CheckAction();
@@ -125,10 +150,10 @@ public class EnemyController : MonoBehaviour
     {
         switch (stats.Type) {
 
-            case StatsEnemy.ENEMY_TYPE.CAC:
+            case StatsEnemy.ENEMY_TYPE.CAC: 
                 #region CAC_CheckAction
-                List<HexCoordinates> path1 = TilesManager.instance.GetPath(myTile.coordinates, hero1.myTile.coordinates, false, false);
-                List<HexCoordinates> path2 = TilesManager.instance.GetPath(myTile.coordinates, hero2.myTile.coordinates, false, false);
+                List<HexCoordinates> path1 = TilesManager.instance.GetPath(myTile.coordinates, hero1.myTile.coordinates, stats.isFlying, false);
+                List<HexCoordinates> path2 = TilesManager.instance.GetPath(myTile.coordinates, hero2.myTile.coordinates, stats.isFlying, false);
                 int dist1 = 100;
                 int dist2 = 100;
 
@@ -146,7 +171,6 @@ public class EnemyController : MonoBehaviour
                 if(hero != null)
                 {
                     AttackCAC(hero);
-                    print(gameObject.name + '2');
                     return;
                 }
                 
@@ -185,8 +209,6 @@ public class EnemyController : MonoBehaviour
 
                 if (hero != null)
                 {
-                    print(dist1); print(dist2);
-                    print(gameObject.name + '2');
                     AttackCAC(hero);
                 }
                 else
@@ -207,7 +229,7 @@ public class EnemyController : MonoBehaviour
                 #endregion
                 break;
 
-            case StatsEnemy.ENEMY_TYPE.DISTANCE:
+            case StatsEnemy.ENEMY_TYPE.DISTANCE: //léger
                 #region DISTANCE.CheckAction
                 dist1 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero1.myTile.coordinates);
                 dist2 = TilesManager.instance.HeuristicDistance(myTile.coordinates, hero2.myTile.coordinates);
@@ -218,7 +240,7 @@ public class EnemyController : MonoBehaviour
                     targetCell = hero2.myTile;
 
                 // If player already in line of sight 
-                List<List<HexCell>> diagonals = TilesManager.instance.GetDiagonals(myTile.coordinates, stats.attacks[0].range, true, false, TilesManager.instance.GetDirection(myTile.coordinates, targetCell.coordinates));
+                List<List<HexCell>> diagonals = TilesManager.instance.GetDiagonals(myTile.coordinates, 0, stats.attacks[0].range, true, false, true, TilesManager.instance.GetDirection(myTile.coordinates, targetCell.coordinates));
                 List<List<HexCell>> fov = TilesManager.instance.GetFOV(myTile, TilesManager.instance.HeuristicDistance(myTile.coordinates, targetCell.coordinates) + 1, true);
 
                 bool inRange = false;
@@ -262,7 +284,7 @@ public class EnemyController : MonoBehaviour
                 if (dist1 == 1 || dist2 == 1)
                 {
                     if (PA >= stats.attacks[0].costPA)
-                        Death(true);
+                        Death(true, "self", "explosion");
                     else ContinueTurn();
 
                 }
@@ -438,8 +460,19 @@ public class EnemyController : MonoBehaviour
                     {
 
                         tile.enemy = this;
+                        if (!stats.isFlying) 
+                        myTile.myTileSprite.color = TilesManager.instance.classicColor;
+                        else
+                        {
+                            if (myTile.tileType == HexCell.TILE_TYPE.GROUND) myTile.UpdateTileDatas(HexCell.TILE_TYPE.GROUND);
+                            else if (myTile.tileType == HexCell.TILE_TYPE.WALL) myTile.UpdateTileDatas(HexCell.TILE_TYPE.WALL);
+                            else myTile.UpdateTileDatas(HexCell.TILE_TYPE.HOLE);
+                        }
                         myTile.enemy = null;
                         myTile = tile;
+                        myTile.myTileSprite.color = myTileColor;
+                        myAlienSprite.sortingOrder = -myTile.coordinates.X;
+
                         isMoving = true;
 
                         return;
@@ -463,8 +496,12 @@ public class EnemyController : MonoBehaviour
                     if (!(path[1].X == 0 && path[1].Z == 0))
                     {
                         tile.enemy = this;
+                        myTile.myTileSprite.color = TilesManager.instance.classicColor;
                         myTile.enemy = null;
                         myTile = tile;
+                        myTile.myTileSprite.color = myTileColor;
+                        myAlienSprite.sortingOrder = -myTile.coordinates.X;
+
                         isMoving = true;
 
                         return;
@@ -488,6 +525,7 @@ public class EnemyController : MonoBehaviour
         PM -= 1;
         PA -= 1;
         isActionDone = true;
+        moved = true;
 
         ContinueTurn();
         return;
@@ -498,17 +536,19 @@ public class EnemyController : MonoBehaviour
     private void AttackCAC(HeroController hero)
     {
 
-        if (PA >= stats.attacks[0].costPA)
+        if (PA >= stats.attacks[0].costPA && !moved)
         {
             if (stats.attacks[0].range <= 1)
             {
-                hero.TakeDamages(stats.attacks[0].damages);  
-            } else
+                hero.TakeDamages(stats.attacks[0].damages, "enemy", "melee");
+                StartCoroutine(GiveDamageEffectSequence(hero.myTile.transform.position));
+
+
+            }
+            else
             {
-                List<HexCoordinates> path = new List<HexCoordinates>();
-                path = TilesManager.instance.GetPath(myTile.coordinates, hero.myTile.coordinates, false, false);
+                List<HexCoordinates> path = TilesManager.instance.GetPath(myTile.coordinates, hero.myTile.coordinates, false, false);
                 HexCell tileAimed;
-                print(path[path.Count-1]);
                 TilesManager.instance.mapTiles.TryGetValue(path[path.Count - 1], out tileAimed);
                 foreach (HexCell tile in TilesManager.instance.GetRange(tileAimed.coordinates, stats.attacks[0].range-1, false, false))
                 {
@@ -516,10 +556,10 @@ public class EnemyController : MonoBehaviour
                     {
                         if (tile.hero)
                         {
-                            tile.hero.TakeDamages(stats.attacks[0].damages);
+                            tile.hero.TakeDamages(stats.attacks[0].damages, "enemy", "melee");
                         } else if (tile.enemy)
                         {
-                            tile.enemy.TakeDamages(stats.attacks[0].damages);
+                            tile.enemy.TakeDamages(stats.attacks[0].damages, "enemy", "melee");
                         }
                     } 
                 }
@@ -528,34 +568,89 @@ public class EnemyController : MonoBehaviour
             isActionDone = true;
             
         }
-
         ContinueTurn();
     }
     #endregion
 
 
-    public void TakeDamages(int damages)
+    IEnumerator GiveDamageEffectSequence(Vector2 targetPos)
+    {
+        float duration = .1f;
+        float time = 0;
+        Vector2 startPosition = transform.position;
+
+        while (time < duration)
+        {
+            transform.position = Vector2.Lerp(startPosition, targetPos, time / duration / 2);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        time = 0;
+        Vector2 tempPosition = transform.position;
+
+        while (time < duration)
+        {
+            transform.position = Vector2.Lerp(tempPosition, startPosition, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return null;
+
+
+    }
+
+    public void TakeDamages(int damages, string characterType, string attackSource)
     {
         health -= damages;
         health = Mathf.Clamp(health, 0, stats.health);
 
-        GameObject txt = Instantiate(TXT_Damages, transform.position, transform.rotation);
-        txt.transform.GetChild(0).GetComponent<TextMeshPro>().text = damages.ToString();
-        txt.transform.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 10;
+        GameObject txt = Instantiate(TXT_Damages, transform.position + new Vector3(0, 16), transform.rotation);
+        txt.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = damages.ToString();
+        txt.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = damages.ToString();
+
+        StartCoroutine(DamageEffectSequence(gameObject.GetComponent<SpriteRenderer>(), characterType, attackSource, txt));
+
+    }
+
+
+    IEnumerator DamageEffectSequence(SpriteRenderer sr, string characterType, string attackSource, GameObject txt)
+    {
+        Color originColor = sr.color;
+
+        yield return new WaitForSeconds(.2f);
+
+        sr.color = Color.red;
+
+        yield return new WaitForSeconds(1f);
+
+        yield return null;
+
+        // restore origin color
+        sr.color = originColor;
         Destroy(txt, 1);
+
 
         if (health == 0)
         {
-            Death(false);
+            Death(false, characterType, attackSource);
+
         }
     }
+    
 
     public void SkipTurns(int turnsToSkip)
     {
         nbrTurnToSkip += turnsToSkip;
+        if (currentStunnedObject == null)
+        {
+            currentStunnedObject = Instantiate(stunnedParticle, transform);
+            currentStunnedObject.transform.localScale = new Vector3(10, 10, 10);
+            currentStunnedObject.transform.localPosition = new Vector3(0, 5, 0);
+        }
     }
 
-    private void Death(bool isMyTurn)
+    private void Death(bool isMyTurn, string characterType, string attackSource)
     {
         if(stats.Type == StatsEnemy.ENEMY_TYPE.KAMIKAZE && isMyTurn)
         {
@@ -564,24 +659,84 @@ public class EnemyController : MonoBehaviour
             CombatSystem.instance.NextTurn();
         }
 
+        if (characterType.Equals("cowboy"))
+        {
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBA");
+            CombatSystem.instance.killsCowboy++;
+        }
+        else if (characterType.Equals("soldier"))
+        {
+            CombatSystem.instance.killsSoldier++;
+
+        }
+
+        if (characterType.Equals("grenade") && attackSource.Equals("explosion"))
+        {
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBg");
+        }
+
+        if (isStun)
+        {
+            Debug.LogWarning("killed stunned");
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCg");
+
+        }
+
+
+        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCQ");
+        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDw");
 
         CombatSystem.instance.enemies.Remove(this);
+        myTile.myTileSprite.color = TilesManager.instance.classicColor;
+        myTile.enemy = null;
+
+
+        switch (stats.name)
+        {
+            case "fly":
+                AudioManager.instance.Play("alien_death");
+                break;
+            case "basic":
+                AudioManager.instance.Play("alien_death_medium");
+                break;
+            case "big":
+                AudioManager.instance.Play("alien_death_big");
+                break;
+            case "explo":
+                AudioManager.instance.Play("bio_explosion");
+                break;
+            case "fast":
+                AudioManager.instance.Play("alien_death");
+                break;
+            default:
+                AudioManager.instance.Play("alien_death_medium");
+                break;
+        }
+
+
         Destroy(gameObject);
     }
 
     private void Explode()
     {
+
+        GameObject particles = Instantiate(CombatSystem.instance.kamikazeParticle, transform);
+        particles.transform.SetParent(null);
+        particles.transform.localScale = new Vector3(9, 9, 9);
+        particles.transform.eulerAngles = new Vector3(-90f, 0, 0);
+
+        AudioManager.instance.Play("bio_explosion");
         foreach (HexCell tile in TilesManager.instance.GetRange(myTile.coordinates, stats.attacks[0].range, true, true))
         {
             if (tile != myTile)
             {
                 if (tile.hero)
                 {
-                    tile.hero.TakeDamages(stats.attacks[0].damages);
+                    tile.hero.TakeDamages(stats.attacks[0].damages, "enemy", "explosion");
                 }
                 else if (tile.enemy)
                 {
-                    tile.enemy.TakeDamages(stats.attacks[0].damages);
+                    tile.enemy.TakeDamages(stats.attacks[0].damages, "enemy", "explosion");
                 }
             }
         }

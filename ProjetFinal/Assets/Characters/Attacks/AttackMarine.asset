@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcb10621537e4d438ca0700f7b53a21, type: 3}
   m_Name: AttackMarine
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 4c56998069e9cbe4798c9716cb7200da, type: 3}
+  sprite: {fileID: 21300000, guid: 030c1bcf0cf6a4946b89b5d5b5ae08c8, type: 3}
   name: 
   costPA: 1
   cooldown: 0
@@ -22,6 +22,7 @@ MonoBehaviour:
   rangeAttack: 4
   radiusUnattackableAttack: 1
   canSelectHole: 0
+  canSelectHeroEnemySpawner: 1
   visionType: 1
   impactType: 0
   damages: 3

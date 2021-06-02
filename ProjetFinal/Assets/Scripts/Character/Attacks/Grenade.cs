@@ -14,6 +14,7 @@ public class Grenade : MonoBehaviour
     public int damagesExplose;
     public int nbrTurnSkipFlash;
 
+
     public bool isFriendlyFire;
 
     [HideInInspector]
@@ -22,10 +23,11 @@ public class Grenade : MonoBehaviour
     [HideInInspector]
     public HeroController hero;
 
+
     public void StartTurn()
     {
         delay--;
-        if(delay <= 0)
+        if(delay < 0)
         {
             Explode();
         }
@@ -34,6 +36,7 @@ public class Grenade : MonoBehaviour
 
     private void Explode()
     {
+        AudioManager.instance.Play(Hero_AttacksManager.instance.attack.nomDuSon);
         List<HexCell> listTiles = new List<HexCell>();
         listTiles = TilesManager.instance.GetRange(myTile.coordinates, range, true, false);
 
@@ -41,16 +44,29 @@ public class Grenade : MonoBehaviour
         {
 
             case TYPE_GRENADE.EXPLOSE:
-
-                foreach(HexCell tile in listTiles)
+                bool playedFirst = false;
+                foreach (HexCell tile in listTiles)
                 {
-                    if(isFriendlyFire && tile.hero != null)
+
+                    GameObject particle = Instantiate(hero.grenadeExplosionParticle, tile.transform);
+                    particle.transform.localScale = new Vector3(.2f, .2f, .2f);
+
+                    if (playedFirst)
                     {
-                        tile.hero.TakeDamages(damagesExplose);
+                        particle.GetComponent<AudioSource>().mute = true;
+                    } else
+                    {
+                        playedFirst = true;
+                    }
+
+                    if (isFriendlyFire && tile.hero != null)
+                    {
+                        tile.hero.TakeDamages(damagesExplose, "grenade", "explosion");
                     } else if(tile.enemy != null)
                     {
-                        tile.enemy.TakeDamages(damagesExplose);
+                        tile.enemy.TakeDamages(damagesExplose, "grenade", "explosion");
                     }
+
                 }
 
                 break;
@@ -59,6 +75,12 @@ public class Grenade : MonoBehaviour
 
                 foreach (HexCell tile in listTiles)
                 {
+                    GameObject particle = Instantiate(hero.flashParticle, tile.transform);
+                    particle.transform.localScale = new Vector3(.4f, .4f, .4f);
+
+                    var main = particle.GetComponent<ParticleSystem>().main;
+                    main.simulationSpeed = 0.5f;
+
                     if (!isFriendlyFire && tile.hero != null)
                     {
                         tile.hero.SkipTurns(nbrTurnSkipFlash);
@@ -66,6 +88,8 @@ public class Grenade : MonoBehaviour
                     else if (tile.enemy != null)
                     {
                         tile.enemy.SkipTurns(nbrTurnSkipFlash);
+                        tile.enemy.isStun = true;
+                        AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQBQ", myTile.coordinates);
                     }
                 }
 
@@ -79,7 +103,6 @@ public class Grenade : MonoBehaviour
 
     private void Death()
     {
-        print(hero.gameObject.name);
         hero.grenades.Remove(this);
         Destroy(gameObject);
     }

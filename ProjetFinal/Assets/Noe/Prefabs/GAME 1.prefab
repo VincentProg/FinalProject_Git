@@ -8558,31 +8558,31 @@ MonoBehaviour:
   sounds:
   - name: music_menu
     clip: {fileID: 8300000, guid: 9dbb4536fbd260b4eb6862057356c92f, type: 3}
-    volume: 1
+    volume: 0.15
     loop: 1
     source: {fileID: 0}
     type: 0
   - name: music_level
     clip: {fileID: 8300000, guid: 593a2b74019725646935a38b6232a605, type: 3}
-    volume: 1
+    volume: 0.15
     loop: 1
     source: {fileID: 0}
     type: 0
   - name: alien_death
     clip: {fileID: 8300000, guid: 933b09d72a6170a4f9ce2fca0493ff70, type: 3}
-    volume: 1
+    volume: 0.9
     loop: 0
     source: {fileID: 0}
     type: 1
   - name: alien_death_big
     clip: {fileID: 8300000, guid: b678c49856b93e54e9d9624dbf3fc9ec, type: 3}
-    volume: 1
+    volume: 0.9
     loop: 0
     source: {fileID: 0}
     type: 1
   - name: alien_death_medium
     clip: {fileID: 8300000, guid: fde3ebf1f56985545873221308e1f13c, type: 3}
-    volume: 1
+    volume: 0.9
     loop: 0
     source: {fileID: 0}
     type: 1
@@ -8594,7 +8594,7 @@ MonoBehaviour:
     type: 1
   - name: bomb_beep
     clip: {fileID: 8300000, guid: c3b4d6dae5d9e7c4b9533ca226920f87, type: 3}
-    volume: 1
+    volume: 0.9
     loop: 0
     source: {fileID: 0}
     type: 1
@@ -8612,37 +8612,37 @@ MonoBehaviour:
     type: 1
   - name: dynamite
     clip: {fileID: 8300000, guid: 7a4ad99f7d4fb4745903baf2a92edb70, type: 3}
-    volume: 1
+    volume: 0.8
     loop: 0
     source: {fileID: 0}
     type: 1
   - name: flashbang
     clip: {fileID: 8300000, guid: 46171ff66997713408c3850d9023e26b, type: 3}
-    volume: 1
+    volume: 0.9
     loop: 0
     source: {fileID: 0}
     type: 1
   - name: rocket_boots
     clip: {fileID: 8300000, guid: 534f6f30f73ef3142872f72f5f80d4b1, type: 3}
-    volume: 1
+    volume: 0.8
     loop: 0
     source: {fileID: 0}
     type: 1
   - name: soldier_death
     clip: {fileID: 8300000, guid: e96e108513f32444da832651e1586b01, type: 3}
-    volume: 1
+    volume: 0.9
     loop: 0
     source: {fileID: 0}
     type: 1
   - name: space_gun_01
     clip: {fileID: 8300000, guid: 9768bd99afbdfac49b39725815c7ef8d, type: 3}
-    volume: 1
+    volume: 0.8
     loop: 0
     source: {fileID: 0}
     type: 1
   - name: space_gun_06
     clip: {fileID: 8300000, guid: 6e1a8e282f14fab4a8ed81027cbfc4c7, type: 3}
-    volume: 1
+    volume: 0.8
     loop: 0
     source: {fileID: 0}
     type: 1
@@ -8654,13 +8654,13 @@ MonoBehaviour:
     type: 1
   - name: click_sci_fi
     clip: {fileID: 8300000, guid: 90dccc540c27f5047af92e450a22a7bf, type: 3}
-    volume: 1
+    volume: 0.9
     loop: 0
     source: {fileID: 0}
     type: 1
   - name: grenade_explosion
     clip: {fileID: 8300000, guid: 7af6769fd23879f4da323ebe5311875e, type: 3}
-    volume: 1
+    volume: 0.8
     loop: 0
     source: {fileID: 0}
     type: 1

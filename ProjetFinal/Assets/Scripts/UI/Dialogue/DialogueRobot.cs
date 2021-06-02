@@ -15,6 +15,11 @@ public class DialogueRobot : MonoBehaviour
 
     public bool textEnded;
 
+    [SerializeField]
+    Animator robotAnim;
+    bool hasToDisappear = false;
+    bool isRobotHere = false;
+
     public List<string> startSentences = new List<string>();
 
     int indexStart = 0;
@@ -22,6 +27,7 @@ public class DialogueRobot : MonoBehaviour
     bool isFightStarted = false;
 
     public bool isTuto;
+    IEnumerator routineRunning = null;
 
     private void Awake()
     {
@@ -37,7 +43,6 @@ public class DialogueRobot : MonoBehaviour
         popUpBox = transform.GetChild(0).gameObject;
         anim = popUpBox.GetComponent<Animator>();
         Text = popUpBox.transform.GetChild(1).GetComponent<Text>();
-        print(startSentences.Count);
         if(startSentences.Count == 0)
         {
             isFightStarted = true;
@@ -55,8 +60,11 @@ public class DialogueRobot : MonoBehaviour
 
                 if (isActive)
                 {
-                    StartCoroutine(iDisappear());
-                    if(indexStart >= startSentences.Count)
+                    routineRunning = iDisappear();
+
+                    StartCoroutine(routineRunning);
+
+                    if (indexStart >= startSentences.Count)
                     {
                         isFightStarted = true;
                         CombatSystem.instance.StartFight();
@@ -69,7 +77,8 @@ public class DialogueRobot : MonoBehaviour
             {
                 if (startSentences.Count > indexStart)
                 {
-                    RobotSpeak(startSentences[indexStart]);
+
+                    RobotSpeak(startSentences[indexStart]);                
                     indexStart++;
                 }
             }
@@ -81,11 +90,18 @@ public class DialogueRobot : MonoBehaviour
 
         if (!isActive)
         {
+            hasToDisappear = false;
+
             isActive = true;
             textEnded = false;
             Text.text = "";
             popUpBox.SetActive(true);
             StartCoroutine(TypeSentence(text));
+            if (!isRobotHere)
+            {
+                robotAnim.SetTrigger("Appear");
+                isRobotHere = true;
+            }
         }
     }
 
@@ -107,5 +123,12 @@ public class DialogueRobot : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         popUpBox.SetActive(false);
         isActive = false;
+        yield return new WaitForSeconds(3);
+        if (hasToDisappear)
+        {
+            robotAnim.SetTrigger("Disappear");
+            isRobotHere = false;
+        }
+
     }
 }

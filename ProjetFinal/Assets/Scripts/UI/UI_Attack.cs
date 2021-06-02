@@ -30,6 +30,8 @@ public class UI_Attack : MonoBehaviour
     [HideInInspector]
     public bool isClicked;
 
+    [HideInInspector]
+    public bool canBeClick = true;
 
 
     public void UpdateUI()
@@ -62,17 +64,42 @@ public class UI_Attack : MonoBehaviour
         {
             PopUpSystem.instance.PopUp("No more energy for this turn", hero);
         }
-        if (!isClicked)
+        if (canBeClick)
         {
-            if (!isDisabled)
+            if (!isClicked)
             {
-                if (isNbrTotal)
+                if (!isDisabled)
                 {
-                    if (nbrUseTotal > 0)
+                    if (isNbrTotal)
+                    {
+                        if (nbrUseTotal > 0)
+                        {
+                            if (isNbrPerTurn)
+                            {
+
+                                if (nbrUsePerTurn > 0)
+                                {
+                                    TryShowAttack();
+                                }
+                                else
+                                {
+                                    PopUpSystem.instance.PopUp("No more use possible for this turn", hero);
+                                }
+                            }
+                            else
+                            {
+                                TryShowAttack();
+                            }
+                        }
+                        else
+                        {
+                            PopUpSystem.instance.PopUp("No more utilisations left", hero);
+                        }
+                    }
+                    else
                     {
                         if (isNbrPerTurn)
                         {
-
                             if (nbrUsePerTurn > 0)
                             {
                                 TryShowAttack();
@@ -87,39 +114,18 @@ public class UI_Attack : MonoBehaviour
                             TryShowAttack();
                         }
                     }
-                    else
-                    {
-                        PopUpSystem.instance.PopUp("No more utilisations left", hero);
-                    }
                 }
                 else
                 {
-                    if (isNbrPerTurn)
-                    {
-                        if (nbrUsePerTurn > 0)
-                        {
-                            TryShowAttack();
-                        }
-                        else
-                        {
-                            PopUpSystem.instance.PopUp("No more use possible for this turn", hero);
-                        }
-                    }
-                    else
-                    {
-                        TryShowAttack();
-                    }
+                    PopUpSystem.instance.PopUp("I can't realize this attack yet", hero);
                 }
             }
             else
             {
-                PopUpSystem.instance.PopUp("I can't realize this attack yet", hero);
+                isClicked = false;
+                image.color = Color.white;
+                hero.ShowMovements();
             }
-        } else
-        {
-            isClicked = false;
-            image.color = Color.white;
-            hero.ShowMovements();
         }
     }
 
@@ -165,11 +171,23 @@ public class UI_Attack : MonoBehaviour
             nbrUsePerTurn--;
         }
 
+        foreach (Transform button in hero.myCanvas.transform.GetChild(0))
+        {
+            if (button.GetComponent<UI_Attack>())
+            {
+                button.GetComponent<Image>().color = Color.grey;
+                button.GetComponent<UI_Attack>().canBeClick = false;
+            }
+        }
+
     }
 
     public void StartTurn()
     {
-        if(cooldown > 0)
+        image.color = Color.white;
+        isClicked = false;
+        canBeClick = true;
+        if (cooldown > 0)
         {
             cooldown--;
             if(cooldown == 0)
@@ -182,4 +200,20 @@ public class UI_Attack : MonoBehaviour
         nbrUsePerTurn = attack.nbrUsePerTurn;
     }
 
+    public void UpdateBtnClickable(bool makeThemClickable)
+    {
+        if (makeThemClickable)
+        {
+            if (canBeClick)
+            {
+                image.color = Color.white;
+                isClicked = false;
+
+            }
+        } else
+        {
+            image.color = Color.grey;
+            canBeClick = false;
+        }
+    }
 }

@@ -228,7 +228,7 @@ public class TilesManager : MonoBehaviour
                 if (temp)
                 {
                     if (HeuristicDistance(center, temp.coordinates) < minRadius)
-
+                        addTile = false;
 
                     if (!passHole)
                         if (temp.tileType.Equals(HexCell.TILE_TYPE.HOLE))

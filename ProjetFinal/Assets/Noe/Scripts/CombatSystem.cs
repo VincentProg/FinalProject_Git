@@ -71,7 +71,7 @@ public class CombatSystem : MonoBehaviour
 
     public void StartFight()
     {
-        PlayGames.instance.initAchievements();
+       // PlayGames.instance.initAchievements();
         state = CombatState.PlayerTurn;
         heros[0].StartTurn();
     }
@@ -169,7 +169,7 @@ public class CombatSystem : MonoBehaviour
             AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQAg");
 
         if (gameManager.isLastLevel)
-            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQAg");
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQAw");
 
         if (killsCowboy == 0 || killsSoldier == 0)
         {

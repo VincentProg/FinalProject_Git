@@ -211,8 +211,7 @@ public class AchievementsManager
                     break;
 
                 case "CgkImpif4cQQEAIQBA":
-                    Debug.LogWarning("CgkImpif4cQQEAIQBA " + score);
-                    if (score >= 2)
+                    if (score >= 3)
                     {
                         Debug.LogWarning(id + " ok");
                         PlayGames.instance.UnlockAchievement(id);

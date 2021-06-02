@@ -2695,7 +2695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: startSentences.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: startSentences.Array.data[0]
@@ -2711,6 +2711,10 @@ PrefabInstance:
         from distant attacks, so you will need to get close and attack them to destroy
         it. A mission will not be over until all of these are destroyed. Good luck!
         You are on your own now.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216966033541444, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: levelNumber
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4578216966033541446, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_Name

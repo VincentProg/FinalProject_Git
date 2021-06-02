@@ -203,8 +203,30 @@ public class CombatSystem : MonoBehaviour
     {
         print("spawner remaining : " + spawners.Count);
         spawners.Remove(spawner);
+        if (heros[0].isMyTurn)
+        {
+            heros[0].PA--;
+            for (int i = 0; i < heros[0].attacks.Count; i++)
+            {
+                UI_Attack UIAttack = heros[0].myCanvas.transform.GetChild(0).transform.GetChild(i).GetComponent<UI_Attack>();
+                UIAttack.UpdateBtnClickable(false);
+            }
+        } else
+        {
+            heros[1].PA -= 2;
+            for (int i = 0; i < heros[1].attacks.Count; i++)
+            {
+                UI_Attack UIAttack = heros[1].myCanvas.transform.GetChild(0).transform.GetChild(i).GetComponent<UI_Attack>();
+                UIAttack.UpdateBtnClickable(false);
+            }
+        }
 
-        if(spawners.Count == 0)
+        foreach (Transform child in heros[0].BTNS_KillSpawnerParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        if (spawners.Count == 0)
         {
             Win();
         }

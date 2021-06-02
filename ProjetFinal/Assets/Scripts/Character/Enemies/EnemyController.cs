@@ -519,7 +519,7 @@ public class EnemyController : MonoBehaviour
     {
         if (myTile.item != null)
         {
-            myTile.ActionItem(true);
+            myTile.ActionItem(false);
         }
 
         PM -= 1;

@@ -460,7 +460,14 @@ public class EnemyController : MonoBehaviour
                     {
 
                         tile.enemy = this;
+                        if (!stats.isFlying) 
                         myTile.myTileSprite.color = TilesManager.instance.classicColor;
+                        else
+                        {
+                            if (myTile.tileType == HexCell.TILE_TYPE.GROUND) myTile.UpdateTileDatas(HexCell.TILE_TYPE.GROUND);
+                            else if (myTile.tileType == HexCell.TILE_TYPE.WALL) myTile.UpdateTileDatas(HexCell.TILE_TYPE.WALL);
+                            else myTile.UpdateTileDatas(HexCell.TILE_TYPE.HOLE);
+                        }
                         myTile.enemy = null;
                         myTile = tile;
                         myTile.myTileSprite.color = myTileColor;

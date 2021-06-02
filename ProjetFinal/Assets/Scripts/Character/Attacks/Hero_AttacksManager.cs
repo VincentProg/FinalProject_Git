@@ -320,8 +320,14 @@ public class Hero_AttacksManager : MonoBehaviour
 
     public void LaunchAttack(HeroController heroController)
     {
-        if(attack.nomDuSon == "bomb_beep" || attack.nomDuSon == "space_gun_01" || attack.nomDuSon == "space_gun_06" || attack.nomDuSon == "rocket_boots")
-            AudioManager.instance.Play(attack.nomDuSon);
+        if(attack.nomDuSon != "")
+        AudioManager.instance.Play(attack.nomDuSon);
+
+        foreach (Transform child in heroController.BTNS_KillSpawnerParent)
+        {
+            Destroy(child.gameObject);
+        }
+
         switch (attack.impactType)
         {
             case Attack.IMPACT_TYPE.SPAWNOBJECT:
@@ -403,10 +409,7 @@ public class Hero_AttacksManager : MonoBehaviour
                         }
                         else if(tile.item != null && tile.item.GetComponent<Spawner>())
                         {
-                            if(TilesManager.instance.HeuristicDistance(playerTile.coordinates, tile.coordinates) == 1)
-                            {
-                                tile.item.GetComponent<Spawner>().Death();
-                            }
+                            //SHOW SHIELD
                         }
                     }
                 }

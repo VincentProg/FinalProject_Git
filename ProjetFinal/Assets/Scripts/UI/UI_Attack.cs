@@ -25,13 +25,17 @@ public class UI_Attack : MonoBehaviour
     private bool isNbrTotal;
     private int nbrUseTotal;
 
+    Image image;
 
+    [HideInInspector]
+    public bool isClicked;
 
 
 
     public void UpdateUI()
     {
-        GetComponent<Image>().sprite = attack.sprite;
+        image = GetComponent<Image>();
+        image.sprite = attack.sprite;
         cooldownGO = transform.GetChild(0).gameObject;
         textCD = cooldownGO.transform.GetChild(0).GetComponent<Text>();
         cooldownGO.SetActive(false);
@@ -53,56 +57,69 @@ public class UI_Attack : MonoBehaviour
 
     public void OnClick()
     {
+       
         if(hero.PA == 0)
         {
             PopUpSystem.instance.PopUp("No more energy for this turn", hero);
         }
-
-        if (!isDisabled)
+        if (!isClicked)
         {
-            if (isNbrTotal)
+            if (!isDisabled)
             {
-                if (nbrUseTotal > 0)
+                if (isNbrTotal)
                 {
-                    if (isNbrPerTurn)
+                    if (nbrUseTotal > 0)
                     {
-                        
-                        if (nbrUsePerTurn > 0)
+                        if (isNbrPerTurn)
+                        {
+
+                            if (nbrUsePerTurn > 0)
+                            {
+                                TryShowAttack();
+                            }
+                            else
+                            {
+                                PopUpSystem.instance.PopUp("No more use possible for this turn", hero);
+                            }
+                        }
+                        else
                         {
                             TryShowAttack();
-                        } else
-                        {
-                            PopUpSystem.instance.PopUp("No more use possible for this turn", hero);
                         }
-                    } else
-                    {
-                        TryShowAttack();
-                    }
-                } else
-                {
-                    PopUpSystem.instance.PopUp("No more utilisations left", hero);
-                }
-            } else
-            {
-                if (isNbrPerTurn)
-                {
-                    if (nbrUsePerTurn > 0)
-                    {
-                        TryShowAttack();
                     }
                     else
                     {
-                        PopUpSystem.instance.PopUp("No more use possible for this turn", hero);
+                        PopUpSystem.instance.PopUp("No more utilisations left", hero);
                     }
-                } else
-                {
-                    TryShowAttack();
                 }
-            } 
-        }
-        else
+                else
+                {
+                    if (isNbrPerTurn)
+                    {
+                        if (nbrUsePerTurn > 0)
+                        {
+                            TryShowAttack();
+                        }
+                        else
+                        {
+                            PopUpSystem.instance.PopUp("No more use possible for this turn", hero);
+                        }
+                    }
+                    else
+                    {
+                        TryShowAttack();
+                    }
+                }
+            }
+            else
+            {
+                PopUpSystem.instance.PopUp("I can't realize this attack yet", hero);
+            }
+        } else
         {
-            PopUpSystem.instance.PopUp("I can't realize this attack yet", hero);
+            isClicked = false;
+            image.color = Color.white;
+            hero.ShowMovements();
         }
     }
 
@@ -111,7 +128,16 @@ public class UI_Attack : MonoBehaviour
 
         if (hero.PA >= attack.costPA)
         {    
-                Hero_AttacksManager.instance.ShowAttackRange(this, attack);
+           Hero_AttacksManager.instance.ShowAttackRange(this, attack);
+           foreach(Transform button in hero.myCanvas.transform.GetChild(0)){
+                if (button.GetComponent<UI_Attack>())
+                {
+                    button.GetComponent<Image>().color = Color.white;
+                    button.GetComponent<UI_Attack>().isClicked = false;
+                }
+           }
+           image.color = Color.grey;
+           isClicked = true;
         }
         else PopUpSystem.instance.PopUp("Not enough energy", hero);
     }
@@ -120,7 +146,8 @@ public class UI_Attack : MonoBehaviour
     {
         cooldown = attack.cooldown;
         hero.PA -= attack.costPA;
-        if(cooldown > 0)
+        image.color = Color.white;
+        if (cooldown > 0)
         {
             isDisabled = true;
             cooldownGO.SetActive(true);

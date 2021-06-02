@@ -25,10 +25,14 @@ public class ButtonManager : MonoBehaviour
     private void Start()
     {
         isGamePaused = false;
-        pauseMenu.SetActive(false);
-        optionMenu.SetActive(false);
-        LoseMenu.SetActive(false);
-        WinMenu.SetActive(false);
+        if(pauseMenu != null)
+            pauseMenu.SetActive(false);
+        if (optionMenu != null)
+            optionMenu.SetActive(false);
+        if (LoseMenu != null)
+            LoseMenu.SetActive(false);
+        if (WinMenu != null)
+            WinMenu.SetActive(false);
         Time.timeScale = 1;
     }
 

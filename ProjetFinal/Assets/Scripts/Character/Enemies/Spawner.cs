@@ -10,7 +10,8 @@ public class Spawner : MonoBehaviour
     public int turnDelay;
     int nbOfTurnBeforeSpawning;
 
-    private bool isDead;
+    [HideInInspector]
+    public bool isDead;
 
     [SerializeField] List<HexCell> adjacentCells = new List<HexCell>();
     private HexCell myTile;
@@ -21,6 +22,8 @@ public class Spawner : MonoBehaviour
     Sprite spriteDead;
 
     public int nbrTurnSkipStart;
+    [HideInInspector]
+    public GameObject myButtonDeath = null;
 
 
     void Start()
@@ -105,6 +108,7 @@ public class Spawner : MonoBehaviour
         isDead = true;
         myTile.myTileSprite.color = TilesManager.instance.classicColor;
         GetComponent<SpriteRenderer>().sprite = spriteDead;
+        Destroy(myButtonDeath);
         CombatSystem.instance.DestroySpawner(this);
     }
 }

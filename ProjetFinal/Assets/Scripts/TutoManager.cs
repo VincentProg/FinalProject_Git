@@ -26,6 +26,8 @@ public class TutoManager : MonoBehaviour
 
     bool boolean = false;
 
+    public GameObject lastOrder;
+
     private void Start()
     {
         hero1.canPlay = false;
@@ -337,6 +339,7 @@ public class TutoManager : MonoBehaviour
             ManipulateCanvas(canvasHero1, true, true, 1);
             ManipulateCanvas(canvasHero2, true, true, 1);
             StartCoroutine(DialogueRobot.instance.iDisappear());
+            lastOrder.SetActive(true);
             hero1.canPlay = true;
             hero2.canPlay = true;
             step++;

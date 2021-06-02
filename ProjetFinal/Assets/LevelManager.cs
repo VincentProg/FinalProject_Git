@@ -8,7 +8,6 @@ public class LevelManager : MonoBehaviour
 {
     public Button[] buttons;
     public GameObject OptionMenu;
-    private int DEBUG_nbOfButtonAccessible;
     void Start()
     {
         updateLevelAvailable();
@@ -18,7 +17,6 @@ public class LevelManager : MonoBehaviour
 
     public void StartLevel(string name)
     {
-        //AudioManager.instance.ApplyChanges();
         AudioManager.instance.Play("click_sci_fi");
         print("starting level called : " + name);
         SceneManager.LoadScene(name);
@@ -55,7 +53,6 @@ public class LevelManager : MonoBehaviour
                 buttons[i].interactable = true;
 
         }
-        DEBUG_nbOfButtonAccessible = 0;
     }
 
     public void ExitOptions()

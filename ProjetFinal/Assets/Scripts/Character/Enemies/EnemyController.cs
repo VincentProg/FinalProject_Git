@@ -616,6 +616,14 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator DamageEffectSequence(SpriteRenderer sr, string characterType, string attackSource, GameObject txt)
     {
+        if(health == 0)
+        {
+            // Normalement dans Death, mais provoque un probleme avec la coroutine
+            CombatSystem.instance.enemies.Remove(this);
+            myTile.myTileSprite.color = TilesManager.instance.classicColor;
+            myTile.enemy = null;
+
+        }
         Color originColor = sr.color;
 
         yield return new WaitForSeconds(.2f);
@@ -685,10 +693,6 @@ public class EnemyController : MonoBehaviour
 
         AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCQ");
         AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDw");
-
-        CombatSystem.instance.enemies.Remove(this);
-        myTile.myTileSprite.color = TilesManager.instance.classicColor;
-        myTile.enemy = null;
 
 
         switch (stats.name)

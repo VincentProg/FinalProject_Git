@@ -9,6 +9,7 @@ public class Mine : MonoBehaviour
    
     public bool isFriendlyFire;
 
+    [HideInInspector]
     public HexCell myTile;
 
 

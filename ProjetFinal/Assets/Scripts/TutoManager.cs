@@ -92,7 +92,6 @@ public class TutoManager : MonoBehaviour
                 // Fin du tour
                 if (!DialogueRobot.instance.isActive)
                 {
-                print("problem");
                     DialogueRobot.instance.RobotSpeak("Perfect! But as you are heavily armed, Angelos, you cannot move and shoot on the same turn, so you might as well just press the end turn button.");
                     ManipulateCanvas(canvasHero1, true, false);
                     arrow.SetActive(true);

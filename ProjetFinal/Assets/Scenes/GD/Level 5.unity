@@ -10599,6 +10599,57 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 18.3
       objectReference: {fileID: 0}
+    - target: {fileID: 4578216964839780824, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216964839780824, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216964839780824, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216964839780824, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216965319505067, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216965319505067, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216965319505067, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216965319505067, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: startSentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: startSentences.Array.data[0]
+      value: Nice! All that's left is their nest bursting babies. They are protected
+        from distant attacks, so you will need to get close and attack them to destroy
+        it. A mission will not be over until all of these are destroyed. Good luck!
+        You are on your own now.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: startSentences.Array.data[1]
+      value: fgbrsgrbsqrgbrgeb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: startSentences.Array.data[2]
+      value: gdhhtfhdtf
+      objectReference: {fileID: 0}
     - target: {fileID: 4578216966033541444, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: levelNumber
       value: 5

@@ -30,4 +30,5 @@ MonoBehaviour:
   radiusUnattackableImpact: 0
   goThrewWalls: 0
   spawnObject: {fileID: 0}
-  nomDuSon: rocket_boots
+  throwingSound: rocket_boots
+  activationSound: 

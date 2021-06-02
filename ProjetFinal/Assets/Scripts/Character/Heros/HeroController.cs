@@ -397,13 +397,14 @@ public class HeroController : MonoBehaviour
 
     public void TakeDamages(int damages, string characterType, string attackSource)
     {
+        
         health -= damages;
         health = Mathf.Clamp(health, 0, stats.health);
 
         GameObject txt = Instantiate(TXT_Damages, transform.position + new Vector3(0, 16), transform.rotation) ;
         txt.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = damages.ToString();
         txt.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = damages.ToString();
-
+        AudioManager.instance.Play("claw");
         PopUpSystem.instance.PopUp("OUCH", this);
 
         StartCoroutine(DamageEffectSequence(gameObject.GetComponent<SpriteRenderer>(), characterType, attackSource, txt));

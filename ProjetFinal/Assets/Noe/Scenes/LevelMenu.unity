@@ -1063,6 +1063,14 @@ PrefabInstance:
       propertyPath: MSlider
       value: 
       objectReference: {fileID: 47559019}
+    - target: {fileID: 5438215375135734400, guid: a91a8c84e6c17f64c8b67a53f0951272, type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438215375135734400, guid: a91a8c84e6c17f64c8b67a53f0951272, type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 6823940605204509512, guid: a91a8c84e6c17f64c8b67a53f0951272, type: 3}
       propertyPath: m_RootOrder
       value: 4

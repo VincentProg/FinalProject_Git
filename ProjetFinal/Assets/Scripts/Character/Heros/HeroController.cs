@@ -28,7 +28,8 @@ public class HeroController : MonoBehaviour
 
     public HERO_TYPE heroType;
 
-    
+    [SerializeField]
+    GameObject BTN_KillSpawner;
 
 
     public enum HERO_TYPE

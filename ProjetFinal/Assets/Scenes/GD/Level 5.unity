@@ -10599,6 +10599,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 18.3
       objectReference: {fileID: 0}
+    - target: {fileID: 4578216966033541444, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: levelNumber
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4578216966033541446, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_Name
       value: GAME 1

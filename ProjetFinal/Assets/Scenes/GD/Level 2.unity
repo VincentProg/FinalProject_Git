@@ -2712,6 +2712,10 @@ PrefabInstance:
         it. A mission will not be over until all of these are destroyed. Good luck!
         You are on your own now.
       objectReference: {fileID: 0}
+    - target: {fileID: 4578216966033541444, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: levelNumber
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4578216966033541446, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_Name
       value: GAME 1

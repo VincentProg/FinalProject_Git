@@ -169,7 +169,7 @@ public class CombatSystem : MonoBehaviour
             AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQAg");
 
         if (gameManager.isLastLevel)
-            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQAg");
+            AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQAw");
 
         if (killsCowboy == 0 || killsSoldier == 0)
         {

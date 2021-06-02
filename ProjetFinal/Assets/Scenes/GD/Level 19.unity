@@ -1497,7 +1497,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: turnDelay
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: enemyList.Array.data[0]
@@ -14082,6 +14082,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
+      propertyPath: turnDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689885843157113, guid: 8a53b09e473b02147980a929527c0bf2, type: 3}
       propertyPath: enemyList.Array.data[0]
       value: 
       objectReference: {fileID: 4030915596351684975, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
@@ -19771,9 +19775,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -35.2
       objectReference: {fileID: 0}
-    - target: {fileID: 4578216966033541444, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
-      propertyPath: levelNumber
-      value: 19
+    - target: {fileID: 4578216964627150971, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216965041713100, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4578216966033541446, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_Name

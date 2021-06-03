@@ -103,3 +103,4 @@ MonoBehaviour:
   isStun: 0
   myTileColor: {r: 1, g: 0, b: 0, a: 0.8627451}
   stunnedParticle: {fileID: 1846532664448058, guid: 20980e90dd2e73b419275714d5c124c4, type: 3}
+  ExplosionParticle: {fileID: 156506, guid: 8cd1104783594d040862e4173af2522a, type: 3}

@@ -41,6 +41,10 @@ public class EnemyController : MonoBehaviour
 
 
     private GameObject currentStunnedObject;
+    [SerializeField]
+    public GameObject ExplosionParticle;
+
+    private bool isDead;
 
 
     private void Start()
@@ -609,6 +613,16 @@ public class EnemyController : MonoBehaviour
         txt.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = damages.ToString();
         txt.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = damages.ToString();
 
+        if (health == 0)
+        {
+            // Normalement dans Death, mais provoque un probleme avec la coroutine
+            isDead = true;
+            CombatSystem.instance.enemies.Remove(this);
+            myTile.myTileSprite.color = TilesManager.instance.classicColor;
+            myTile.enemy = null;
+
+        }
+
         StartCoroutine(DamageEffectSequence(gameObject.GetComponent<SpriteRenderer>(), characterType, attackSource, txt));
 
     }
@@ -616,14 +630,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator DamageEffectSequence(SpriteRenderer sr, string characterType, string attackSource, GameObject txt)
     {
-        if(health == 0)
-        {
-            // Normalement dans Death, mais provoque un probleme avec la coroutine
-            CombatSystem.instance.enemies.Remove(this);
-            myTile.myTileSprite.color = TilesManager.instance.classicColor;
-            myTile.enemy = null;
-
-        }
+      
         Color originColor = sr.color;
 
         yield return new WaitForSeconds(.2f);
@@ -642,7 +649,6 @@ public class EnemyController : MonoBehaviour
         if (health == 0)
         {
             Death(false, characterType, attackSource);
-
         }
     }
     
@@ -660,10 +666,20 @@ public class EnemyController : MonoBehaviour
 
     private void Death(bool isMyTurn, string characterType, string attackSource)
     {
-        if(stats.Type == StatsEnemy.ENEMY_TYPE.KAMIKAZE && isMyTurn)
+        if (!isDead)
+        {            
+            isDead = true;
+            CombatSystem.instance.enemies.Remove(this);
+            myTile.myTileSprite.color = TilesManager.instance.classicColor;
+            myTile.enemy = null;
+
+        }
+
+        if (stats.Type == StatsEnemy.ENEMY_TYPE.KAMIKAZE)
         {
             Explode();
             GetComponent<SpriteRenderer>().enabled = false;
+            CombatSystem.instance.index--;
             CombatSystem.instance.NextTurn();
         }
 
@@ -724,14 +740,16 @@ public class EnemyController : MonoBehaviour
     private void Explode()
     {
 
-        GameObject particles = Instantiate(CombatSystem.instance.kamikazeParticle, transform);
-        particles.transform.SetParent(null);
-        particles.transform.localScale = new Vector3(9, 9, 9);
-        particles.transform.eulerAngles = new Vector3(-90f, 0, 0);
+        //GameObject particles = Instantiate(CombatSystem.instance.kamikazeParticle, transform);
+        //particles.transform.SetParent(null);
+        //particles.transform.localScale = new Vector3(9, 9, 9);
+        //particles.transform.eulerAngles = new Vector3(-90f, 0, 0);
 
         AudioManager.instance.Play("bio_explosion");
         foreach (HexCell tile in TilesManager.instance.GetRange(myTile.coordinates, stats.attacks[0].range, true, true))
         {
+            GameObject particle = Instantiate(ExplosionParticle, tile.transform);
+            particle.transform.localScale = new Vector3(.2f, .2f, .2f);
             if (tile != myTile)
             {
                 if (tile.hero)

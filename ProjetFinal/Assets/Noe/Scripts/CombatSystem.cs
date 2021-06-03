@@ -31,7 +31,7 @@ public class CombatSystem : MonoBehaviour
     [HideInInspector]
     public List<EnemyController> enemies;
     public List<Spawner> spawners;
-    int index = 0;
+    public int index = 0;
     bool heroesTurn;
 
     public int nbrRound = 1;

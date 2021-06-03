@@ -48,12 +48,7 @@ public class HeroController : MonoBehaviour
 
 
     [Header("Particles prefabs")]
-    public GameObject flashParticle;
-    public GameObject grenadeExplosionParticle;
-    public GameObject TakeDamageParticle;
-    public GameObject teleportParticle;
-    public GameObject shootParticle;
-    public GameObject bulletImpactParticle;
+    public GameObject flashParticle, grenadeExplosionParticle, TakeDamageParticle, teleportParticle, shootParticle, bulletImpactParticle;
 
 
     public bool isMyTurn = false;
@@ -242,22 +237,7 @@ public class HeroController : MonoBehaviour
                 UI_AttackBtn.GetComponent<UI_Attack>().StartTurn();
         }
 
-        foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, 1, false, false, true))
-        {
-            if (tile.item != null)
-                if (tile.item.GetComponent<Spawner>())
-                {
-                    Spawner spawner = tile.item.GetComponent<Spawner>();
-                    if (!spawner.isDead)
-                    {
-                        GameObject newBtn = Instantiate(BTN_KillSpawnerPrefab, BTNS_KillSpawnerParent);
-                        newBtn.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(tile.transform.position + new Vector3(3, 5));
-                        spawner.myButtonDeath = newBtn;
-                        newBtn.GetComponent<Button>().onClick.AddListener(spawner.Death);
-                    }
-
-                }
-        }
+        CheckSpawnerNear(false);
 
         if (canPlay)
             ShowMovements();
@@ -366,25 +346,8 @@ public class HeroController : MonoBehaviour
         PopUpSystem.instance.Cut();
         //DialogueRobot.instance.RobotSpeak("Bonjour, petit test du Robot, voici quelques petits mots qui, agenc�s les uns aux autres, n'ont aucun int�r�t");
 
-        if (PA > 0)
-        {
-            foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, 1, false, false, true))
-            {
-                if(tile.item != null)
-                if (tile.item.GetComponent<Spawner>())
-                {
-                    Spawner spawner = tile.item.GetComponent<Spawner>();
-                    if (!spawner.isDead)
-                    {
-                        GameObject newBtn = Instantiate(BTN_KillSpawnerPrefab, BTNS_KillSpawnerParent);
-                        newBtn.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(tile.transform.position + new Vector3(3, 5));
-                        spawner.myButtonDeath = newBtn;
-                        newBtn.GetComponent<Button>().onClick.AddListener(spawner.Death);
-                    }
-                        
-                }
-            }
-        }
+
+        CheckSpawnerNear(true);
 
 
         if (PA > 0)
@@ -392,6 +355,47 @@ public class HeroController : MonoBehaviour
         else
         {
             TilesManager.instance.ClearTiles(false);
+        }
+    }
+
+    public void CheckSpawnerNear(bool destroyOldButtons)
+    {
+        if (destroyOldButtons)
+        {
+            foreach (Transform child in BTNS_KillSpawnerParent)
+            {
+                Destroy(child.gameObject);
+            }
+
+            foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, 1, false, false, true))
+            {
+                if (tile.item != null)
+                    if (tile.item.GetComponent<Spawner>())
+                    {
+                        tile.item.GetComponent<Spawner>().myButtonDeath = null;
+                    }
+            }
+        }
+
+        if (PA > 0)
+        {
+
+            foreach (HexCell tile in TilesManager.instance.GetRangeInRadius(myTile.coordinates, 1, 1, false, false, true))
+            {
+                if (tile.item != null)
+                    if (tile.item.GetComponent<Spawner>())
+                    {
+                        Spawner spawner = tile.item.GetComponent<Spawner>();
+                        if (!spawner.isDead && spawner.myButtonDeath == null)
+                        {
+                            GameObject newBtn = Instantiate(BTN_KillSpawnerPrefab, BTNS_KillSpawnerParent);
+                            newBtn.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(tile.transform.position + new Vector3(3, 5));
+                            spawner.myButtonDeath = newBtn;
+                            newBtn.GetComponent<Button>().onClick.AddListener(spawner.Death);
+                        }
+
+                    }
+            }
         }
     }
 

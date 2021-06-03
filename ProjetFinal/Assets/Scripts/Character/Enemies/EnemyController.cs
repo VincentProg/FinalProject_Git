@@ -19,7 +19,6 @@ public class EnemyController : MonoBehaviour
 
     private bool isMoving;
     private bool isActionDone = true;
-    private bool moved;
 
     [SerializeField]
     Color myTileColor;
@@ -101,7 +100,6 @@ public class EnemyController : MonoBehaviour
 
     public void StartTurn()
     {
-        moved = false;
         if (nbrTurnToSkip > 0)
         {
             nbrTurnToSkip--;
@@ -529,7 +527,6 @@ public class EnemyController : MonoBehaviour
         PM -= 1;
         PA -= 1;
         isActionDone = true;
-        moved = true;
 
         ContinueTurn();
         return;
@@ -540,7 +537,7 @@ public class EnemyController : MonoBehaviour
     private void AttackCAC(HeroController hero)
     {
 
-        if (PA >= stats.attacks[0].costPA && !moved)
+        if (PA >= stats.attacks[0].costPA)
         {
             if (stats.attacks[0].range <= 1)
             {
@@ -618,7 +615,10 @@ public class EnemyController : MonoBehaviour
             // Normalement dans Death, mais provoque un probleme avec la coroutine
             isDead = true;
             CombatSystem.instance.enemies.Remove(this);
-            myTile.myTileSprite.color = TilesManager.instance.classicColor;
+            if (myTile.tileType == HexCell.TILE_TYPE.GROUND)
+                myTile.UpdateTileDatas(HexCell.TILE_TYPE.GROUND);
+            else if (myTile.tileType == HexCell.TILE_TYPE.HOLE)
+                myTile.UpdateTileDatas(HexCell.TILE_TYPE.HOLE);
             myTile.enemy = null;
 
         }
@@ -670,7 +670,10 @@ public class EnemyController : MonoBehaviour
         {            
             isDead = true;
             CombatSystem.instance.enemies.Remove(this);
-            myTile.myTileSprite.color = TilesManager.instance.classicColor;
+            if (myTile.tileType == HexCell.TILE_TYPE.GROUND)
+                myTile.UpdateTileDatas(HexCell.TILE_TYPE.GROUND);
+            else if (myTile.tileType == HexCell.TILE_TYPE.HOLE)
+                myTile.UpdateTileDatas(HexCell.TILE_TYPE.HOLE);
             myTile.enemy = null;
 
         }

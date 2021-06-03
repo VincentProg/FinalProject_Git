@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     public Button[] buttons;
     public GameObject OptionMenu;
     public GameObject welcomeMenu;
-    public Animation animator;
+    public Animator animator;
     void Start()
     {
         updateLevelAvailable();
@@ -72,6 +72,7 @@ public class LevelManager : MonoBehaviour
     {
         //welcomeMenu.GetComponent<RectTransform>().anchorMin = new Vector2(1, 2);
         //animation vers le haut
+        animator.SetBool("move", true);
     }
 
 }

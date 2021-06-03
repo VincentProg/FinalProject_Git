@@ -42,7 +42,7 @@ public class HexCell : MonoBehaviour {
 		transform.GetChild(0).parent = transform.parent;
 		anim = GetComponent<Animator>();
 
-		GetComponent<SpriteRenderer>().sortingOrder = -100;
+		GetComponent<SpriteRenderer>().sortingOrder = 5;
 
 	}
 
@@ -90,9 +90,6 @@ public class HexCell : MonoBehaviour {
 				sprite.color = colors[3];
 				break;
 		}
-
-		GetComponent<SpriteRenderer>().sortingOrder = -coordinates.X;
-
 		anim.SetTrigger("Appear");
 
     }

@@ -55,7 +55,7 @@ public class DialogueRobot : MonoBehaviour
         if (!isTuto && !isFightStarted)
         {
 
-            if ( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+            if ( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && textEnded)
             {
 
                 if (isActive)

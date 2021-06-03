@@ -14494,6 +14494,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -9.1
       objectReference: {fileID: 0}
+    - target: {fileID: 4578216965779947822, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: sounds.Array.data[5].loop
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4578216966033541446, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_Name
       value: GAME 1

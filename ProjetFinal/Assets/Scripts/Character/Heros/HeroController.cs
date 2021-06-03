@@ -126,53 +126,53 @@ public class HeroController : MonoBehaviour
                 }
             }
             #region Mouse Inputs
-            else
-            {
-                if (isMyTurn && Input.GetMouseButtonDown(0))
-                {
-                    if (PA > 0)
-                    {
+            //else
+            //{
+            //    if (isMyTurn && Input.GetMouseButtonDown(0))
+            //    {
+            //        if (PA > 0)
+            //        {
 
-                        Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+            //            Vector3 touchPosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
 
-                        Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
-                        RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
-                        if (hitInformation)
-                        {
-                            if (hitInformation.transform.GetComponent<HexCell>() != null)
-                            {
-                                HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
+            //            Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
+            //            RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
+            //            if (hitInformation)
+            //            {
+            //                if (hitInformation.transform.GetComponent<HexCell>() != null)
+            //                {
+            //                    HexCell tileTouched = hitInformation.transform.GetComponent<HexCell>();
 
 
-                                switch (tileTouched.selectionType)
-                                {
-                                    case HexCell.SELECTION_TYPE.MOVEMENT:
-                                        Move(tileTouched);
-                                        break;
+            //                    switch (tileTouched.selectionType)
+            //                    {
+            //                        case HexCell.SELECTION_TYPE.MOVEMENT:
+            //                            Move(tileTouched);
+            //                            break;
 
-                                    case HexCell.SELECTION_TYPE.AIM:
-                                        Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                        break;
-                                    case HexCell.SELECTION_TYPE.AIM_IMPACT:
-                                        Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
-                                        break;
-                                    case HexCell.SELECTION_TYPE.ORIGIN_AIM:
-                                        Hero_AttacksManager.instance.LaunchAttack(this);
-                                        break;
-                                    case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
-                                        Hero_AttacksManager.instance.LaunchAttack(this);
-                                        ShowMovements();
-                                        break;
-                                    default:
-                                       ShowMovements();
-                                        break;
-                                }
+            //                        case HexCell.SELECTION_TYPE.AIM:
+            //                            Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+            //                            break;
+            //                        case HexCell.SELECTION_TYPE.AIM_IMPACT:
+            //                            Hero_AttacksManager.instance.ShowImpactRange(tileTouched);
+            //                            break;
+            //                        case HexCell.SELECTION_TYPE.ORIGIN_AIM:
+            //                            Hero_AttacksManager.instance.LaunchAttack(this);
+            //                            break;
+            //                        case HexCell.SELECTION_TYPE.ORIGIN_IMPACT:
+            //                            Hero_AttacksManager.instance.LaunchAttack(this);
+            //                            ShowMovements();
+            //                            break;
+            //                        default:
+            //                           ShowMovements();
+            //                            break;
+            //                    }
 
-                            }
-                        }
-                    }
-                }
-            } 
+            //                }
+            //            }
+            //        }
+            //    }
+            //} 
             #endregion
 
 
@@ -409,7 +409,25 @@ public class HeroController : MonoBehaviour
         txt.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = damages.ToString();
         txt.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = damages.ToString();
         AudioManager.instance.Play("claw");
-        PopUpSystem.instance.PopUp("OUCH", this);
+        int rand = Random.Range(0, 10);
+        switch (rand) {
+            case 0:
+                PopUpSystem.instance.PopUp("OUCH", this);
+                break;
+            case 1:
+                PopUpSystem.instance.PopUp("I’m not paid enought for this…", this);
+                break;
+            case 2:
+                PopUpSystem.instance.PopUp("We should have been sneaky", this);
+                break;
+            case 3:
+                PopUpSystem.instance.PopUp("I think it wants to hurt me", this);
+                break;
+            case 4:
+                PopUpSystem.instance.PopUp("MEDIC!!!", this);
+                break;
+
+        }
 
         StartCoroutine(DamageEffectSequence(gameObject.GetComponent<SpriteRenderer>(), characterType, attackSource, txt));
 

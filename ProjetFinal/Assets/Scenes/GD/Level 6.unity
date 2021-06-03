@@ -1576,6 +1576,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasiqueMan (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8079578729787815160, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
+      propertyPath: SkipFirstTurn
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
 --- !u!1 &179520757
@@ -1988,6 +1992,10 @@ PrefabInstance:
     - target: {fileID: 4030915596351684975, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
       propertyPath: m_Name
       value: BasiqueMan (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079578729787815160, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
+      propertyPath: SkipFirstTurn
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
@@ -5105,6 +5113,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasiqueMan (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8079578729787815160, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
+      propertyPath: SkipFirstTurn
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
 --- !u!1 &797467300
@@ -7955,6 +7967,10 @@ PrefabInstance:
     - target: {fileID: 4030915596351684975, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
       propertyPath: m_Name
       value: BasiqueMan
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079578729787815160, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
+      propertyPath: SkipFirstTurn
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
@@ -13150,6 +13166,10 @@ PrefabInstance:
     - target: {fileID: 4030915596351684975, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
       propertyPath: m_Name
       value: BasiqueMan (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079578729787815160, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
+      propertyPath: SkipFirstTurn
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}

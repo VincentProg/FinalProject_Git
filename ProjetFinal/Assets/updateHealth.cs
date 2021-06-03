@@ -16,7 +16,6 @@ public class updateHealth : MonoBehaviour
     void Update()
     {
         img.fillAmount = (float)hero.health / hero.stats.health;
-        print(hero.name);
         if(hero.name == "Hero1")
         {
             if (img.fillAmount >= 0.68f)

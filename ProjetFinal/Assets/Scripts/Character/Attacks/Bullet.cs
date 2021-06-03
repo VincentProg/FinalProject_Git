@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public Transform target;
     public GameObject impactParticle;
     Vector2 director;
-    float lastDistance;
+    float lastDistance = 1000;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,6 @@ public class Bullet : MonoBehaviour
         director = target.position - transform.position;
         director.Normalize();
         gameObject.transform.eulerAngles = director;
-        lastDistance = Vector2.Distance(transform.position, target.position);
 
     }
 
@@ -32,5 +31,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
         lastDistance = Vector2.Distance(transform.position, target.position);
+
+
     }
 }

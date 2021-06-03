@@ -201,7 +201,7 @@ public class CombatSystem : MonoBehaviour
 
     public void DestroySpawner(Spawner spawner)
     {
-        print("spawner remaining : " + spawners.Count);
+        TilesManager.instance.ClearTiles(false);
         spawners.Remove(spawner);
         if (heros[0].isMyTurn)
         {

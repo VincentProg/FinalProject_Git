@@ -77,7 +77,6 @@ public class DialogueRobot : MonoBehaviour
             {
                 if (startSentences.Count > indexStart)
                 {
-
                     RobotSpeak(startSentences[indexStart]);                
                     indexStart++;
                 }
@@ -119,16 +118,16 @@ public class DialogueRobot : MonoBehaviour
 
     public IEnumerator iDisappear()
     {
+        hasToDisappear = true;
         anim.SetTrigger("Disappear");
         yield return new WaitForSeconds(0.2f);
         popUpBox.SetActive(false);
         isActive = false;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         if (hasToDisappear)
         {
             robotAnim.SetTrigger("Disappear");
             isRobotHere = false;
         }
-
     }
 }

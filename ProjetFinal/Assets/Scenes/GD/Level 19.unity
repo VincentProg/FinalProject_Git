@@ -16675,6 +16675,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasiqueMan
       objectReference: {fileID: 0}
+    - target: {fileID: 8079578729787815160, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
+      propertyPath: SkipFirstTurn
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75e12d9a5269737458ad2411de8930f4, type: 3}
 --- !u!1 &1730697726

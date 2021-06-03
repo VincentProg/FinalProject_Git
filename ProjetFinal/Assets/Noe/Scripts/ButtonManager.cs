@@ -92,7 +92,11 @@ public class ButtonManager : MonoBehaviour
     public void NextLevel()
     {
         if (SceneManager.GetActiveScene().buildIndex + 1 != 24)
+        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            AudioManager.instance.ApplyChanges();
+        }
+            
         else
             BackToMainMenu();
         AudioManager.instance.Play("click_sci_fi");

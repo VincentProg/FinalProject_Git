@@ -91,7 +91,10 @@ public class ButtonManager : MonoBehaviour
 
     public void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().buildIndex + 1 != 24)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        else
+            BackToMainMenu();
         AudioManager.instance.Play("click_sci_fi");
     }
 
@@ -123,8 +126,7 @@ public class ButtonManager : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        SceneManager.LoadScene(0);
-        AudioManager.instance.Play("click_sci_fi");
+        BackToMainMenu();
     }
 
     public void LoginGooglePlay()

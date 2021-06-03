@@ -7214,6 +7214,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 243598618345036459, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: nbOfTileHeight
+      value: 6.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4578216963983852510, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.3
@@ -7306,6 +7310,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4578216965366402018, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216965366402018, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -13.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216965366402022, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: orthographic size
+      value: 91.43
+      objectReference: {fileID: 0}
     - target: {fileID: 4578216965394851793, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -7349,6 +7365,18 @@ PrefabInstance:
     - target: {fileID: 4578216965394851798, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216965924633520, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216965924633520, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216965924633520, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: startSentences.Array.size

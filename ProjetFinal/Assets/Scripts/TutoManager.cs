@@ -262,7 +262,7 @@ public class TutoManager : MonoBehaviour
     void TouchAimedTile(HexCell aimed, HeroController hero)
     {
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && DialogueRobot.instance.textEnded)
         {
             
 

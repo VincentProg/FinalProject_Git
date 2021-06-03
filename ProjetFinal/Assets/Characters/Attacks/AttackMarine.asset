@@ -21,7 +21,7 @@ MonoBehaviour:
   rangeType: 1
   rangeAttack: 4
   radiusUnattackableAttack: 1
-  canSelectHole: 0
+  canSelectHole: 1
   canSelectHeroEnemySpawner: 1
   visionType: 1
   impactType: 0

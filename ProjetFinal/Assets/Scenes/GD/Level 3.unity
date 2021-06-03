@@ -12968,10 +12968,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4578216965924633527, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 8342c16cde4069b44b517c4eeb73325f, type: 3}
+    - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: startSentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: startSentences.Array.data[0]
+      value: 'Oh ! Sorry, I forgot to tell you that you had new stuff of the army.
+        Oh ! Sorry, I forgot to tell you that you had new stuff of the army. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: startSentences.Array.data[1]
+      value: ' You can use them when you want, but becarefull, you cannot use them
+        at all turn, they need time to reload.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: startSentences.Array.data[2]
+      value: Spyke got rocketboots to go far and faster and for Angelos, we have
+        a mine to protect position and himself. Have fun with xenos !
+      objectReference: {fileID: 0}
     - target: {fileID: 4578216966033541446, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_Name
       value: GAME 1

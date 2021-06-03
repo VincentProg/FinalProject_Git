@@ -62,7 +62,27 @@ public class UI_Attack : MonoBehaviour
        
         if(hero.PA == 0)
         {
-            PopUpSystem.instance.PopUp("No more energy for this turn", hero);
+            int rand = Random.Range(0, 10);
+            switch (rand)
+            {
+                case 0:
+                    PopUpSystem.instance.PopUp("Not enought ammo!", hero);
+                    break;
+                case 1:
+                    PopUpSystem.instance.PopUp("I don’t do overtime.", hero);
+                    break;
+                case 2:
+                    PopUpSystem.instance.PopUp("Reloading!", hero);
+                    break;
+                case 3:
+                    PopUpSystem.instance.PopUp("Need to reload!", hero);
+
+                    break;
+                case 4:
+                    PopUpSystem.instance.PopUp("Sorry, it's my break.", hero);
+                    break;
+
+            }
         }
         if (canBeClick)
         {
@@ -83,7 +103,7 @@ public class UI_Attack : MonoBehaviour
                                 }
                                 else
                                 {
-                                    PopUpSystem.instance.PopUp("No more use possible for this turn", hero);
+                                    PopUpSystem.instance.PopUp("Can't use this at the moment.", hero);
                                 }
                             }
                             else
@@ -93,7 +113,7 @@ public class UI_Attack : MonoBehaviour
                         }
                         else
                         {
-                            PopUpSystem.instance.PopUp("No more utilisations left", hero);
+                           
                         }
                     }
                     else
@@ -117,7 +137,16 @@ public class UI_Attack : MonoBehaviour
                 }
                 else
                 {
-                    PopUpSystem.instance.PopUp("I can't realize this attack yet", hero);
+                    int rand = Random.Range(0, 5);
+                    switch (rand)
+                    {
+                        case 0:
+                            PopUpSystem.instance.PopUp("WAIT FOR THE F****** COOLDOWN!", hero);
+                            break;
+                        default:
+                            PopUpSystem.instance.PopUp("Not ready yet.", hero);
+                            break;
+                    }
                 }
             }
             else

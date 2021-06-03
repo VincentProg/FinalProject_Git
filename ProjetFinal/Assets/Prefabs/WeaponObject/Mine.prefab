@@ -98,5 +98,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damages: 3
   range: 1
-  isFriendlyFire: 1
+  isFriendlyFire: 0
   myTile: {fileID: 0}

@@ -109,6 +109,12 @@ public class CombatSystem : MonoBehaviour
         }
         else
         {
+            foreach (EnemyController enemy in enemiesToKill)
+            {
+                enemies.Remove(enemy);
+            }
+            enemiesToKill.Clear();
+
             state = CombatState.Spawner;
             index = 0;
             TurnSpawner();
@@ -136,11 +142,6 @@ public class CombatSystem : MonoBehaviour
         }
         else
         {
-            foreach(EnemyController enemy in enemiesToKill)
-            {
-                enemies.Remove(enemy);
-            }
-            enemiesToKill.Clear();
             NewRound();
         }
     }

@@ -27,6 +27,7 @@ public class Spawner : MonoBehaviour
 
     [SerializeField]
     private GameObject exclamation;
+    RectTransform canvas;
  
 
     void Start()
@@ -48,6 +49,7 @@ public class Spawner : MonoBehaviour
                 myTile.item = gameObject;
 
                 adjacentCells = TilesManager.instance.GetRadius(myTile.coordinates, 1, false, false, true);
+                transform.position = myTile.transform.position;
             }
         }
         #endregion
@@ -57,7 +59,10 @@ public class Spawner : MonoBehaviour
 
         GameObject exclamationParent = GameObject.Find("ExclamationParent");
         GameObject newExlamation = Instantiate(exclamation, exclamationParent.transform);
-        newExlamation.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(-3, 5));
+         canvas = exclamationParent.transform.parent.GetComponent<RectTransform>();
+        newExlamation.GetComponent<RectTransform>().position = WorldToCanvasPosition(canvas, Camera.main, transform.position) + new Vector2(-30,50);
+
+
         exclamation = newExlamation;
 
         if (nbOfTurnBeforeSpawning <= 1)
@@ -66,6 +71,21 @@ public class Spawner : MonoBehaviour
         }
         else exclamation.SetActive(false);
         
+    }
+    private void Update()
+    {
+        exclamation.GetComponent<RectTransform>().position = WorldToCanvasPosition(canvas, Camera.main, transform.position) + new Vector2(-30, 50);
+    }
+
+    private Vector2 WorldToCanvasPosition(RectTransform canvas, Camera camera, Vector3 position)
+    {
+        
+        Vector3 temp = camera.WorldToScreenPoint(position);
+        temp.z = 0;
+
+
+       
+        return temp;
     }
 
 
@@ -132,6 +152,7 @@ public class Spawner : MonoBehaviour
     public void Death()
     {
         isDead = true;
+        exclamation.SetActive(false);
         myTile.myTileSprite.color = TilesManager.instance.classicColor;
         GetComponent<SpriteRenderer>().sprite = spriteDead;
         Destroy(myButtonDeath);

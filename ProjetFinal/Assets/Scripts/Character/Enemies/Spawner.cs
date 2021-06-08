@@ -107,6 +107,7 @@ public class Spawner : MonoBehaviour
     {
         isDead = true;
         myTile.myTileSprite.color = TilesManager.instance.classicColor;
+        AudioManager.instance.Play("spawner_broken");
         GetComponent<SpriteRenderer>().sprite = spriteDead;
         Destroy(myButtonDeath);
         CombatSystem.instance.DestroySpawner(this);

@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public bool hasSpawned;
     public bool SkipFirstTurn = true;
     private int nbrTurnToSkip;
+    bool isMyTurn;
     // STATISTIQUES
     public StatsEnemy stats;
     // ----
@@ -107,13 +108,15 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        if (SkipFirstTurn)
+        if (SkipFirstTurn || isDead)
         {
             SkipFirstTurn = false;
             CombatSystem.instance.NextTurn();
 
             return;
         }
+
+        isMyTurn = true;
 
         if (isStun)
         {
@@ -144,6 +147,7 @@ public class EnemyController : MonoBehaviour
         PM = stats.PM;
         PA = stats.PA;
         isActionDone = true;
+        isMyTurn = false;
         CombatSystem.instance.NextTurn();
 
     }
@@ -286,7 +290,7 @@ public class EnemyController : MonoBehaviour
                 if (dist1 == 1 || dist2 == 1)
                 {
                     if (PA >= stats.attacks[0].costPA)
-                        Death(true, "self", "explosion");
+                        Death("self", "explosion");
                     else ContinueTurn();
 
                 }
@@ -614,7 +618,7 @@ public class EnemyController : MonoBehaviour
         {
             // Normalement dans Death, mais provoque un probleme avec la coroutine
             isDead = true;
-            CombatSystem.instance.enemies.Remove(this);
+            CombatSystem.instance.enemiesToKill.Add(this);
             if (myTile.tileType == HexCell.TILE_TYPE.GROUND)
                 myTile.UpdateTileDatas(HexCell.TILE_TYPE.GROUND);
             else if (myTile.tileType == HexCell.TILE_TYPE.HOLE)
@@ -648,7 +652,7 @@ public class EnemyController : MonoBehaviour
 
         if (health == 0)
         {
-            Death(false, characterType, attackSource);
+            Death(characterType, attackSource);
         }
     }
     
@@ -664,12 +668,12 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void Death(bool isMyTurn, string characterType, string attackSource)
+    private void Death(string characterType, string attackSource)
     {
         if (!isDead)
         {            
             isDead = true;
-            CombatSystem.instance.enemies.Remove(this);
+            CombatSystem.instance.enemiesToKill.Add(this);
             if (myTile.tileType == HexCell.TILE_TYPE.GROUND)
                 myTile.UpdateTileDatas(HexCell.TILE_TYPE.GROUND);
             else if (myTile.tileType == HexCell.TILE_TYPE.HOLE)
@@ -678,13 +682,7 @@ public class EnemyController : MonoBehaviour
 
         }
 
-        if (stats.Type == StatsEnemy.ENEMY_TYPE.KAMIKAZE)
-        {
-            Explode();
-            GetComponent<SpriteRenderer>().enabled = false;
-            CombatSystem.instance.index--;
-            CombatSystem.instance.NextTurn();
-        }
+     
 
         if (characterType.Equals("cowboy"))
         {
@@ -735,20 +733,20 @@ public class EnemyController : MonoBehaviour
                 AudioManager.instance.Play("alien_death_medium");
                 break;
         }
+        if (stats.Type == StatsEnemy.ENEMY_TYPE.KAMIKAZE)
+        {
+            Explode();
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
 
+        if (isMyTurn)
+            EndTurn();
 
         Destroy(gameObject);
     }
 
     private void Explode()
     {
-
-        //GameObject particles = Instantiate(CombatSystem.instance.kamikazeParticle, transform);
-        //particles.transform.SetParent(null);
-        //particles.transform.localScale = new Vector3(9, 9, 9);
-        //particles.transform.eulerAngles = new Vector3(-90f, 0, 0);
-
-        AudioManager.instance.Play("bio_explosion");
         foreach (HexCell tile in TilesManager.instance.GetRange(myTile.coordinates, stats.attacks[0].range, true, true))
         {
             GameObject particle = Instantiate(ExplosionParticle, tile.transform);

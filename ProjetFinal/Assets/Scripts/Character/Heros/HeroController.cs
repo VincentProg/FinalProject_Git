@@ -344,8 +344,6 @@ public class HeroController : MonoBehaviour
         }
 
         PopUpSystem.instance.Cut();
-        //DialogueRobot.instance.RobotSpeak("Bonjour, petit test du Robot, voici quelques petits mots qui, agenc�s les uns aux autres, n'ont aucun int�r�t");
-
 
         CheckSpawnerNear(true);
 

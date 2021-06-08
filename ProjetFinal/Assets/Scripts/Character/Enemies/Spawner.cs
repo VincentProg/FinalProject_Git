@@ -25,6 +25,9 @@ public class Spawner : MonoBehaviour
     [HideInInspector]
     public GameObject myButtonDeath = null;
 
+    [SerializeField]
+    private GameObject exclamation;
+ 
 
     void Start()
     {
@@ -51,6 +54,18 @@ public class Spawner : MonoBehaviour
 
         myTile.myTileSprite.color = colorSprite;
         GetComponent<SpriteRenderer>().sortingOrder = -myTile.coordinates.X;
+
+        GameObject exclamationParent = GameObject.Find("ExclamationParent");
+        GameObject newExlamation = Instantiate(exclamation, exclamationParent.transform);
+        newExlamation.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(-3, 5));
+        exclamation = newExlamation;
+
+        if (nbOfTurnBeforeSpawning <= 1)
+        {
+            exclamation.SetActive(true);
+        }
+        else exclamation.SetActive(false);
+        
     }
 
 
@@ -93,8 +108,19 @@ public class Spawner : MonoBehaviour
                     }
                 }
                 nbOfTurnBeforeSpawning = turnDelay;
+                if (nbOfTurnBeforeSpawning != 0)
+                {
+                    exclamation.SetActive(false);
+                }
             }
-            else nbOfTurnBeforeSpawning--;
+            else if (nbOfTurnBeforeSpawning == 1)
+            {
+                exclamation.SetActive(true);
+                nbOfTurnBeforeSpawning--;
+            } else
+            {
+                nbOfTurnBeforeSpawning--;
+            }
                
 
             CombatSystem.instance.NextTurn();

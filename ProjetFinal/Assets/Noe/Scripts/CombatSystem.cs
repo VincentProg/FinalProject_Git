@@ -30,6 +30,7 @@ public class CombatSystem : MonoBehaviour
     public List<HeroController> heros;
     [HideInInspector]
     public List<EnemyController> enemies;
+    public List<EnemyController> enemiesToKill;
     public List<Spawner> spawners;
     public int index = 0;
     bool heroesTurn;
@@ -71,7 +72,7 @@ public class CombatSystem : MonoBehaviour
 
     public void StartFight()
     {
-        PlayGames.instance.initAchievements();
+        //PlayGames.instance.initAchievements();
         state = CombatState.PlayerTurn;
         heros[0].StartTurn();
     }
@@ -108,6 +109,12 @@ public class CombatSystem : MonoBehaviour
         }
         else
         {
+            foreach (EnemyController enemy in enemiesToKill)
+            {
+                enemies.Remove(enemy);
+            }
+            enemiesToKill.Clear();
+
             state = CombatState.Spawner;
             index = 0;
             TurnSpawner();

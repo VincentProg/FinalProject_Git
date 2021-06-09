@@ -95,6 +95,7 @@ public class DialogueRobot : MonoBehaviour
             textEnded = false;
             Text.text = "";
             popUpBox.SetActive(true);
+            
             StartCoroutine(TypeSentence(text));
             if (!isRobotHere)
             {

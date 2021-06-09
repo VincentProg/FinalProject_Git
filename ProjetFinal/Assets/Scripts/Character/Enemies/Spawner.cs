@@ -25,6 +25,10 @@ public class Spawner : MonoBehaviour
     [HideInInspector]
     public GameObject myButtonDeath = null;
 
+    [SerializeField]
+    private GameObject exclamation;
+    RectTransform canvas;
+ 
 
     void Start()
     {
@@ -45,12 +49,43 @@ public class Spawner : MonoBehaviour
                 myTile.item = gameObject;
 
                 adjacentCells = TilesManager.instance.GetRadius(myTile.coordinates, 1, false, false, true);
+                transform.position = myTile.transform.position;
             }
         }
         #endregion
 
         myTile.myTileSprite.color = colorSprite;
         GetComponent<SpriteRenderer>().sortingOrder = -myTile.coordinates.X;
+
+        GameObject exclamationParent = GameObject.Find("ExclamationParent");
+        GameObject newExlamation = Instantiate(exclamation, exclamationParent.transform);
+         canvas = exclamationParent.transform.parent.GetComponent<RectTransform>();
+        newExlamation.GetComponent<RectTransform>().position = WorldToCanvasPosition(canvas, Camera.main, transform.position) + new Vector2(-30,50);
+
+
+        exclamation = newExlamation;
+
+        if (nbOfTurnBeforeSpawning <= 1)
+        {
+            exclamation.SetActive(true);
+        }
+        else exclamation.SetActive(false);
+        
+    }
+    private void Update()
+    {
+        exclamation.GetComponent<RectTransform>().position = WorldToCanvasPosition(canvas, Camera.main, transform.position) + new Vector2(-30, 50);
+    }
+
+    private Vector2 WorldToCanvasPosition(RectTransform canvas, Camera camera, Vector3 position)
+    {
+        
+        Vector3 temp = camera.WorldToScreenPoint(position);
+        temp.z = 0;
+
+
+       
+        return temp;
     }
 
 
@@ -93,8 +128,19 @@ public class Spawner : MonoBehaviour
                     }
                 }
                 nbOfTurnBeforeSpawning = turnDelay;
+                if (nbOfTurnBeforeSpawning != 0)
+                {
+                    exclamation.SetActive(false);
+                }
             }
-            else nbOfTurnBeforeSpawning--;
+            else if (nbOfTurnBeforeSpawning == 1)
+            {
+                exclamation.SetActive(true);
+                nbOfTurnBeforeSpawning--;
+            } else
+            {
+                nbOfTurnBeforeSpawning--;
+            }
                
 
             CombatSystem.instance.NextTurn();
@@ -106,6 +152,7 @@ public class Spawner : MonoBehaviour
     public void Death()
     {
         isDead = true;
+        exclamation.SetActive(false);
         myTile.myTileSprite.color = TilesManager.instance.classicColor;
         AudioManager.instance.Play("spawner_broken");
         GetComponent<SpriteRenderer>().sprite = spriteDead;

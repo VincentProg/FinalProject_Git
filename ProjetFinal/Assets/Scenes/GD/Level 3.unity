@@ -13062,10 +13062,10 @@ PrefabInstance:
       propertyPath: nbOfTileHeight
       value: 9.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4578216963983852505, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
-      propertyPath: BTN_KillSpawnerPrefab
+    - target: {fileID: 385716560160647109, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 294929069094255332, guid: f9d25631103dd5e46b6e97d3535d5660, type: 3}
+      objectReference: {fileID: 21300000, guid: fb9d509d073721c4fbbb8f8e65c5ab22, type: 3}
     - target: {fileID: 4578216963983852510, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.9

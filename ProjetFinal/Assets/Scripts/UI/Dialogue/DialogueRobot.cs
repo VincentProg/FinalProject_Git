@@ -9,6 +9,7 @@ public class DialogueRobot : MonoBehaviour
 
     [HideInInspector]
     public GameObject popUpBox;
+    public GameObject robot;
     private Animator anim;
     private Text Text;
     public bool isActive;
@@ -101,6 +102,7 @@ public class DialogueRobot : MonoBehaviour
             {
                 robotAnim.SetTrigger("Appear");
                 isRobotHere = true;
+                //robot.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0));
             }
         }
     }

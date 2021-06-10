@@ -114,3 +114,4 @@ MonoBehaviour:
   nbrTurnSkipStart: 0
   myButtonDeath: {fileID: 0}
   exclamation: {fileID: 5795509974137997368, guid: d670cbbfb8dcad349aa861597a903136, type: 3}
+  deathParticle: {fileID: 135446, guid: 44f744a0106dd1048a9ecd324b95e9c2, type: 3}

@@ -29,6 +29,7 @@ public class DialogueRobot : MonoBehaviour
 
     public bool isTuto;
     IEnumerator routineRunning = null;
+    Coroutine sentence = null;
 
     private void Awake()
     {
@@ -96,8 +97,12 @@ public class DialogueRobot : MonoBehaviour
             textEnded = false;
             Text.text = "";
             popUpBox.SetActive(true);
-            
-            StartCoroutine(TypeSentence(text));
+
+            if (sentence != null)
+                StopCoroutine(sentence);
+
+            sentence = StartCoroutine(TypeSentence(text));
+
             if (!isRobotHere)
             {
                 robotAnim.SetTrigger("Appear");
@@ -116,6 +121,7 @@ public class DialogueRobot : MonoBehaviour
             yield return null;
         }
 
+        sentence = null;
         textEnded = true;
     }
 

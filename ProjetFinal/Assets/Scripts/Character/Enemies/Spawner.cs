@@ -27,6 +27,7 @@ public class Spawner : MonoBehaviour
 
     [SerializeField]
     private GameObject exclamation;
+    public GameObject deathParticle;
  
 
     void Start()
@@ -139,5 +140,11 @@ public class Spawner : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = spriteDead;
         Destroy(myButtonDeath);
         CombatSystem.instance.DestroySpawner(this);
+
+        GameObject particles = Instantiate(deathParticle, transform);
+        particles.transform.localScale = new Vector3(4, 4, 4);
+
+        Camera.main.gameObject.GetComponent<CameraShake>().shakeDuration = .7f;
+        Handheld.Vibrate();
     }
 }

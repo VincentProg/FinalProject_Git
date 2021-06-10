@@ -14438,6 +14438,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: fb9d509d073721c4fbbb8f8e65c5ab22, type: 3}
+    - target: {fileID: 1409776456712743690, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409776456712743690, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 280.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3836583911581880104, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4578216963983852510, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.8
@@ -14498,6 +14510,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -9.1
       objectReference: {fileID: 0}
+    - target: {fileID: 4578216965463192023, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4578216965779947822, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: sounds.Array.data[5].loop
       value: 0
@@ -14550,6 +14566,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6130981228161004898, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 08e6898f15f19c84ea4f3f81a2ff3ae3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
 --- !u!1 &1575194881

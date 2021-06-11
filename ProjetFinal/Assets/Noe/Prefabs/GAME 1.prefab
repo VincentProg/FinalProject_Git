@@ -5945,16 +5945,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4578216965280959024}
-  m_LocalRotation: {x: -0, y: -0, z: 0.11645564, w: 0.9931959}
+  m_LocalRotation: {x: 0, y: 0, z: 0.23853342, w: 0.9711343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.22472501, y: 3.1128383, z: 1}
+  m_LocalScale: {x: -0.33, y: 1.47, z: 1}
   m_Children: []
   m_Father: {fileID: 4578216965367013958}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 13.375}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 27.6}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -46.9, y: 48}
+  m_AnchoredPosition: {x: -46, y: 44.3}
   m_SizeDelta: {x: 27.17, y: 16.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4578216965280959029
@@ -8314,13 +8314,7 @@ MonoBehaviour:
   isActive: 0
   textEnded: 0
   robotAnim: {fileID: 3534297203714797336}
-  startSentences:
-  - 'HEY ! The army sent us new grenades, they are more simple to wear and stronger
-    than the others ! '
-  - Spyke took the flash grenade, to stop the movement of the xenos and our marines
-    took big grenade for a big explosion.
-  - "Hey\u2026 you should try to use it at the same turn\u2026 he could have a good
-    effect !"
+  startSentences: []
   isTuto: 0
 --- !u!1 &4578216966033541446
 GameObject:

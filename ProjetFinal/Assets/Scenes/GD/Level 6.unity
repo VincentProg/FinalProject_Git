@@ -11384,6 +11384,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: startSentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: startSentences.Array.data[0]
+      value: 'HEY ! The army sent us new grenades, they are more simple to wear and
+        stronger than the others ! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: startSentences.Array.data[1]
+      value: Spyke took the flash grenade, to stop the movement of the xenos and
+        Angelos took big grenade for a big explosion.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
+      propertyPath: startSentences.Array.data[2]
+      value: "You should try to use it at the same turn\u2026 he could have a good
+        effect ! "
+      objectReference: {fileID: 0}
     - target: {fileID: 4578216966005560389, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

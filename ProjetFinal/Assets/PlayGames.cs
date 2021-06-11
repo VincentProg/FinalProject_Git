@@ -20,7 +20,8 @@ public class PlayGames : MonoBehaviour
 
     void Start()
     {
-        SignInOrOut();
+        if(!Social.localUser.authenticated)
+            SignInOrOut();
     }
 
     public void initAchievements()

@@ -25,6 +25,14 @@ public class GameManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ButtonManager.instance.SetPause();
+        }
+    }
+
     public void HighlightEnd()
     {
         endButtonUICowboy.GetComponent<Image>().sprite = endButtonImageLit;

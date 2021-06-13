@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
 
     [SerializeField]
     private GameObject exclamation;
-    RectTransform canvas;
+    public GameObject deathParticle;
  
 
     void Start()
@@ -58,12 +58,9 @@ public class Spawner : MonoBehaviour
         GetComponent<SpriteRenderer>().sortingOrder = -myTile.coordinates.X;
 
         GameObject exclamationParent = GameObject.Find("ExclamationParent");
-        GameObject newExlamation = Instantiate(exclamation, exclamationParent.transform);
-         canvas = exclamationParent.transform.parent.GetComponent<RectTransform>();
-        newExlamation.GetComponent<RectTransform>().position = WorldToCanvasPosition(canvas, Camera.main, transform.position) + new Vector2(-30,50);
-
-
-        exclamation = newExlamation;
+        GameObject newExclamation = Instantiate(exclamation, exclamationParent.transform);
+        newExclamation.transform.position = transform.position + new Vector3(-4, 5);
+        exclamation = newExclamation;
 
         if (nbOfTurnBeforeSpawning <= 1)
         {
@@ -71,21 +68,6 @@ public class Spawner : MonoBehaviour
         }
         else exclamation.SetActive(false);
         
-    }
-    private void Update()
-    {
-        exclamation.GetComponent<RectTransform>().position = WorldToCanvasPosition(canvas, Camera.main, transform.position) + new Vector2(-30, 50);
-    }
-
-    private Vector2 WorldToCanvasPosition(RectTransform canvas, Camera camera, Vector3 position)
-    {
-        
-        Vector3 temp = camera.WorldToScreenPoint(position);
-        temp.z = 0;
-
-
-       
-        return temp;
     }
 
 
@@ -158,5 +140,11 @@ public class Spawner : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = spriteDead;
         Destroy(myButtonDeath);
         CombatSystem.instance.DestroySpawner(this);
+
+        GameObject particles = Instantiate(deathParticle, transform);
+        particles.transform.localScale = new Vector3(4, 4, 4);
+
+        Camera.main.gameObject.GetComponent<CameraShake>().shakeDuration = .7f;
+        Handheld.Vibrate();
     }
 }

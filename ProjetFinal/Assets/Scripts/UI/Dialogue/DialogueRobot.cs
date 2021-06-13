@@ -9,6 +9,7 @@ public class DialogueRobot : MonoBehaviour
 
     [HideInInspector]
     public GameObject popUpBox;
+    public GameObject robot;
     private Animator anim;
     private Text Text;
     public bool isActive;
@@ -27,7 +28,9 @@ public class DialogueRobot : MonoBehaviour
     bool isFightStarted = false;
 
     public bool isTuto;
-    IEnumerator routineRunning = null;
+    Coroutine DisappearRunning = null;
+    Coroutine sentence = null;
+
 
     private void Awake()
     {
@@ -60,9 +63,8 @@ public class DialogueRobot : MonoBehaviour
 
                 if (isActive)
                 {
-                    routineRunning = iDisappear();
 
-                    StartCoroutine(routineRunning);
+                    DisappearRunning = StartCoroutine(iDisappear());
 
                     if (indexStart >= startSentences.Count)
                     {
@@ -90,17 +92,23 @@ public class DialogueRobot : MonoBehaviour
         if (!isActive)
         {
             hasToDisappear = false;
-
+            if(DisappearRunning != null)
+            StopCoroutine(DisappearRunning);
             isActive = true;
             textEnded = false;
             Text.text = "";
             popUpBox.SetActive(true);
-            
-            StartCoroutine(TypeSentence(text));
+
+            if (sentence != null)
+                StopCoroutine(sentence);
+
+            sentence = StartCoroutine(TypeSentence(text));
+
             if (!isRobotHere)
             {
                 robotAnim.SetTrigger("Appear");
                 isRobotHere = true;
+                //robot.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0));
             }
         }
     }
@@ -111,9 +119,10 @@ public class DialogueRobot : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             Text.text += letter;
-            yield return null;
+            yield return new WaitForSeconds(0.003f);
         }
 
+        sentence = null;
         textEnded = true;
     }
 

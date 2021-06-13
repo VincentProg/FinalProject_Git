@@ -199,10 +199,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUpBox: {fileID: 0}
+  robot: {fileID: 0}
   isActive: 0
   textEnded: 0
-  startSentences:
-  - Fuck
+  robotAnim: {fileID: 0}
+  startSentences: []
   isTuto: 0
 --- !u!1 &2029283100312775113
 GameObject:
@@ -222,7 +223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2029283100312775118
 RectTransform:
   m_ObjectHideFlags: 0

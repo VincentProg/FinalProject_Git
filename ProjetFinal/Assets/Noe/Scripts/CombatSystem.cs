@@ -162,14 +162,20 @@ public class CombatSystem : MonoBehaviour
 
     public void Win()
     {
+        StartCoroutine(showWin());
+    }
+
+    IEnumerator showWin()
+    {
+        yield return new WaitForSeconds(1);
+
         state = CombatState.Win;
         ButtonManager.instance.ShowWin();
-        print("WIN");
-        if(PlayerPrefs.GetInt("levelReached") <= SceneManager.GetActiveScene().buildIndex)
+        if (PlayerPrefs.GetInt("levelReached") <= SceneManager.GetActiveScene().buildIndex)
         {
             PlayerPrefs.SetInt("levelReached", SceneManager.GetActiveScene().buildIndex + 1);
         }
-        print ("levelReached"+ SceneManager.GetActiveScene().buildIndex);
+        print("levelReached" + SceneManager.GetActiveScene().buildIndex);
         AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDQ");
 
         if (gameManager.levelNumber == 1)
@@ -180,7 +186,7 @@ public class CombatSystem : MonoBehaviour
 
         if (killsCowboy == 0 || killsSoldier == 0)
         {
-            if(killsCowboy == 0 && killsSoldier == 0)
+            if (killsCowboy == 0 && killsSoldier == 0)
             {
                 AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQCQ");
 
@@ -198,6 +204,7 @@ public class CombatSystem : MonoBehaviour
                 AchievementsManager.TriggerAchievement("CgkImpif4cQQEAIQDQ");
         }
 
+        yield return null;
     }
 
     public void Loose()

@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     public Animator animator;
     void Start()
     {
-        PlayerPrefs.SetInt("levelReached", 100);
+        //PlayerPrefs.SetInt("levelReached", 100);
         updateLevelAvailable();
         AudioManager.instance.StopPlayAll();
         AudioManager.instance.Play("music_menu");

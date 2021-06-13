@@ -8,6 +8,7 @@ using GooglePlayGames.BasicApi;
 public class PlayGames : MonoBehaviour
 {
     public static PlayGames instance;
+    public static bool alreadyAsked = false;
 
     private void Awake()
     {
@@ -20,8 +21,14 @@ public class PlayGames : MonoBehaviour
 
     void Start()
     {
-        if(!Social.localUser.authenticated)
-            SignInOrOut();
+        if (!alreadyAsked)
+        {
+            if (!Social.localUser.authenticated)
+            {
+                SignInOrOut();
+            }
+            alreadyAsked = true;
+        }
     }
 
     public void initAchievements()

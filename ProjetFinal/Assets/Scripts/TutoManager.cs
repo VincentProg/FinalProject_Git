@@ -50,7 +50,7 @@ public class TutoManager : MonoBehaviour
             // Dialogue et disparition dialogue
             if (!isStepDone)
             {
-                DialogueRobot.instance.RobotSpeak("Welcome friends, it's been a long time since we worked together... Let's check the basis first.");
+                DialogueRobot.instance.RobotSpeak("Welcome friends, it's been a long time since we worked together... Let's check the basics first.");
                 isStepDone = true;
             }
             else if (TouchScreen() && DialogueRobot.instance.textEnded)

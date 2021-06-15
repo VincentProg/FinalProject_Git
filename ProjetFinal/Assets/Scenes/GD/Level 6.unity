@@ -11396,7 +11396,7 @@ PrefabInstance:
     - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: startSentences.Array.data[1]
       value: Spyke has the flash grenade, wich will stop xenos movement and Angelos
-        has a big grenade... Do i need to say what it does?
+        has a big grenade... Do I need to say what it does?
       objectReference: {fileID: 0}
     - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: startSentences.Array.data[2]

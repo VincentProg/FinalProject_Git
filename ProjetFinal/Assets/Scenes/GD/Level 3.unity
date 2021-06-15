@@ -13132,17 +13132,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: startSentences.Array.data[0]
-      value: Oh ! Sorry, I forgot to tell you that you had new stuff of the army.
+      value: Oh ! Sorry, I forgot to tell you that the army sent you new stuff!.
       objectReference: {fileID: 0}
     - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: startSentences.Array.data[1]
-      value: ' You can use them when you want, but becarefull, you cannot use them
-        at all turn, they need time to reload.'
+      value: ' You can use them whenever you want, but be carefull, you cannot use
+        them every turn, you need time to reload.'
       objectReference: {fileID: 0}
     - target: {fileID: 4578216966005560388, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: startSentences.Array.data[2]
-      value: Spyke got rocketboots to go far and faster and for Angelos, we have
-        a mine to protect position and himself. Have fun with xenos !
+      value: Spyke has rocketboots to jump over terrain and move faster and Angelos
+        got a mine to protect his position and himself. Have fun killing xenos !
       objectReference: {fileID: 0}
     - target: {fileID: 4578216966033541446, guid: 048b2098a566c02409dcc15b9e42fce9, type: 3}
       propertyPath: m_Name

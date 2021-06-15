@@ -226,7 +226,7 @@ public class TutoManager : MonoBehaviour
         {
             if (!DialogueRobot.instance.isActive)
             {
-                DialogueRobot.instance.RobotSpeak("Nice! All that's left is their nest bursting babies. They are protected from distant attacks, so you will need to get close and attack them to destroy it. A mission will not be over until all of these are destroyed. Good luck! You are on your own now.");                         
+                DialogueRobot.instance.RobotSpeak("Nice! All that's left is to destroy their gross nest. They are protected from distant attacks, so you will need to get close and attack them to destroy it. A mission will not be over until all of these are destroyed. Good luck! You are on your own now.");                         
             } 
             return;
         }
